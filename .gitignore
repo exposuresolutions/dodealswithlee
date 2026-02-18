@@ -1,0 +1,66 @@
+# ============================================================
+# DDWL-OS Security — .gitignore
+# ============================================================
+
+# API Keys and Secrets
+.env
+.env.local
+.env.production
+!.env.example
+*.key
+*.pem
+token.json
+credentials.json
+
+# Browser profiles (contain session cookies)
+agent-skills/browser-profiles/
+
+# Logs (may contain sensitive data)
+agent-skills/logs/
+*.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+
+# Node
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+
+# Downloads (large files)
+lenovo-setup/downloads/
+
+# Token files (OAuth)
+token-*.json
+
+# Screenshots and images (not needed in repo)
+screenshots/
+ScreenShot/
+*.png
+*.jpg
+*.webp
+
+# Chrome profiles
+chrome_profile_main/
+
+# Temp/old files
+*.bat
+*.reg
+*.url
+*.txt
+!README.txt
+!.env.example
+
+# Windsurf IDE
+.windsurf/

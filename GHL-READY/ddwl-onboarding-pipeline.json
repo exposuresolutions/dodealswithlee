@@ -1,0 +1,182 @@
+{
+  "pipeline": {
+    "name": "New Hire Onboarding",
+    "stages": [
+      {
+        "name": "Application Received",
+        "order": 1,
+        "description": "Initial application or hire decision made"
+      },
+      {
+        "name": "Accounts Created",
+        "order": 2,
+        "description": "G-Suite, GHL, and all system accounts provisioned"
+      },
+      {
+        "name": "Day 1 - System Access",
+        "order": 3,
+        "description": "New hire has logged into all systems and completed Day 1 checklist"
+      },
+      {
+        "name": "Week 1 - Orientation",
+        "order": 4,
+        "description": "Team intros, company overview, role training, phone scripts reviewed"
+      },
+      {
+        "name": "30-Day Review",
+        "order": 5,
+        "description": "First checkpoint - self-assessment, manager review, targets check"
+      },
+      {
+        "name": "60-Day Review",
+        "order": 6,
+        "description": "Independence assessment, KPI review, 360 feedback, advanced training"
+      },
+      {
+        "name": "90-Day Graduation",
+        "order": 7,
+        "description": "Probation complete - final review, full team member status"
+      },
+      {
+        "name": "Active Team Member",
+        "order": 8,
+        "description": "Fully onboarded and performing"
+      }
+    ]
+  },
+  "custom_fields": [
+    {
+      "name": "Hire Date",
+      "type": "DATE",
+      "folder": "Onboarding"
+    },
+    {
+      "name": "Role Title",
+      "type": "TEXT",
+      "folder": "Onboarding"
+    },
+    {
+      "name": "Reports To",
+      "type": "TEXT",
+      "folder": "Onboarding"
+    },
+    {
+      "name": "G-Suite Email",
+      "type": "TEXT",
+      "folder": "Onboarding"
+    },
+    {
+      "name": "GHL User Created",
+      "type": "CHECKBOX",
+      "folder": "Onboarding"
+    },
+    {
+      "name": "Windsurf Access",
+      "type": "CHECKBOX",
+      "folder": "Onboarding"
+    },
+    {
+      "name": "Synology Access",
+      "type": "CHECKBOX",
+      "folder": "Onboarding"
+    },
+    {
+      "name": "TeamViewer Installed",
+      "type": "CHECKBOX",
+      "folder": "Onboarding"
+    },
+    {
+      "name": "Phone Number Assigned",
+      "type": "TEXT",
+      "folder": "Onboarding"
+    },
+    {
+      "name": "30-Day Review Status",
+      "type": "SINGLE_OPTIONS",
+      "folder": "Onboarding",
+      "options": ["Pending", "Passed", "Needs Improvement", "Extended"]
+    },
+    {
+      "name": "60-Day Review Status",
+      "type": "SINGLE_OPTIONS",
+      "folder": "Onboarding",
+      "options": ["Pending", "Passed", "Needs Improvement", "Extended"]
+    },
+    {
+      "name": "90-Day Review Status",
+      "type": "SINGLE_OPTIONS",
+      "folder": "Onboarding",
+      "options": ["Pending", "Passed", "Needs Improvement", "Probation Extended", "Exited"]
+    },
+    {
+      "name": "Onboarding Portal Link",
+      "type": "TEXT",
+      "folder": "Onboarding"
+    },
+    {
+      "name": "Onboarding Notes",
+      "type": "LARGE_TEXT",
+      "folder": "Onboarding"
+    }
+  ],
+  "tags": [
+    "team-member",
+    "new-hire",
+    "onboarding-day1",
+    "onboarding-week1",
+    "onboarding-30day",
+    "onboarding-60day",
+    "onboarding-90day",
+    "probation-passed",
+    "probation-extended",
+    "active-employee"
+  ],
+  "automations": [
+    {
+      "name": "New Hire Welcome",
+      "trigger": "Tag Added: new-hire",
+      "actions": [
+        "Send welcome email with onboarding portal link",
+        "Create opportunity in 'New Hire Onboarding' pipeline at 'Application Received'",
+        "Assign to Daniel Gallagher for tech setup",
+        "Send internal notification to Krystle"
+      ]
+    },
+    {
+      "name": "Day 1 Complete",
+      "trigger": "Tag Added: onboarding-day1",
+      "actions": [
+        "Move pipeline to 'Day 1 - System Access'",
+        "Send 'Great start!' email to new hire",
+        "Schedule 30-day review calendar event"
+      ]
+    },
+    {
+      "name": "30-Day Review Reminder",
+      "trigger": "30 days after Hire Date",
+      "actions": [
+        "Send reminder to manager",
+        "Send self-assessment form to new hire",
+        "Move pipeline to '30-Day Review'"
+      ]
+    },
+    {
+      "name": "60-Day Review Reminder",
+      "trigger": "60 days after Hire Date",
+      "actions": [
+        "Send reminder to manager",
+        "Send 360 feedback request to team",
+        "Move pipeline to '60-Day Review'"
+      ]
+    },
+    {
+      "name": "90-Day Graduation",
+      "trigger": "90 days after Hire Date",
+      "actions": [
+        "Send final review reminder to Lee/Krystle",
+        "Move pipeline to '90-Day Graduation'",
+        "If passed: Add 'probation-passed' tag, move to 'Active Team Member'"
+      ]
+    }
+  ]
+}

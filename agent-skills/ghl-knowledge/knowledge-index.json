@@ -1,0 +1,243 @@
+{
+  "built_at": "2026-02-18T01:24:06.664153",
+  "transcripts": [
+    {
+      "file": "2wDjPGsJGNk.json",
+      "title": "Build A GoHighLevel App in 30 minutes!",
+      "video_id": "2wDjPGsJGNk",
+      "length": 29635
+    },
+    {
+      "file": "bMi5JZBz5E4.json",
+      "title": "NEW GoHighLevel Voice AI Widget (Sept 2025) \u2013 Full Setup & Website Integration",
+      "video_id": "bMi5JZBz5E4",
+      "length": 30500
+    },
+    {
+      "file": "DAxQA46e024.json",
+      "title": "Ultimate GoHighLevel Guide 2026: How To Use HighLevel For Beginners",
+      "video_id": "DAxQA46e024",
+      "length": 13221
+    },
+    {
+      "file": "huevGw_mgYA.json",
+      "title": "Watch this before you build a GHL marketplace app",
+      "video_id": "huevGw_mgYA",
+      "length": 12838
+    },
+    {
+      "file": "nPL0cZPHFxI.json",
+      "title": "2025\u2019s Best Voice AI for GoHighLevel: Assistable Ai Setup Tutorial & Pro Tips",
+      "video_id": "nPL0cZPHFxI",
+      "length": 38716
+    },
+    {
+      "file": "oIm1rx3RsXI.json",
+      "title": "GoHighLevel Outbound Voice AI Beta is HERE! (Full Setup + Compliance Walkthrough)",
+      "video_id": "oIm1rx3RsXI",
+      "length": 27188
+    },
+    {
+      "file": "PKUH0DMam6g.json",
+      "title": "GoHighLevel App Marketplace - How to Install Apps in GoHighLevel (Tutorial)",
+      "video_id": "PKUH0DMam6g",
+      "length": 2396
+    },
+    {
+      "file": "TuAc-z5Dw5k.json",
+      "title": "How to Use GoHighLevel AI Voice Agent (Full 2025 Tutorial)",
+      "video_id": "TuAc-z5Dw5k",
+      "length": 6735
+    },
+    {
+      "file": "VvYCVfoYuMk.json",
+      "title": "How to Use GoHighLevel AI Voice Agents: Ultimate 2025 Tutorial",
+      "video_id": "VvYCVfoYuMk",
+      "length": 31520
+    },
+    {
+      "file": "wmoshlenptM.json",
+      "title": "Build A GoHighLevel Marketplace App in 20 Minutes Or Less! (Updated 2026)",
+      "video_id": "wmoshlenptM",
+      "length": 17333
+    },
+    {
+      "file": "YMHJ9jvoKjY.json",
+      "title": "GoHighLevel Tutorial for Beginners 2026 - Step by Step",
+      "video_id": "YMHJ9jvoKjY",
+      "length": 63402
+    },
+    {
+      "file": "ZWfLg0ic3nM.json",
+      "title": "GoHighLevel IVR System Setup | Save Thousands and build an IVR System In HighLevel 2024",
+      "video_id": "ZWfLg0ic3nM",
+      "length": 15686
+    }
+  ],
+  "summaries": [
+    {
+      "file": "yt-2wDjPGsJGNk.md",
+      "title": "Build A GoHighLevel App in 30 minutes!",
+      "length": 2582
+    },
+    {
+      "file": "yt-bMi5JZBz5E4.md",
+      "title": "NEW GoHighLevel Voice AI Widget (Sept 2025) \u2013 Full Setup & Website Integration",
+      "length": 2061
+    },
+    {
+      "file": "yt-DAxQA46e024.md",
+      "title": "Ultimate GoHighLevel Guide 2026: How To Use HighLevel For Beginners",
+      "length": 2358
+    },
+    {
+      "file": "yt-huevGw_mgYA.md",
+      "title": "Watch this before you build a GHL marketplace app",
+      "length": 1742
+    },
+    {
+      "file": "yt-nPL0cZPHFxI.md",
+      "title": "2025\u2019s Best Voice AI for GoHighLevel: Assistable Ai Setup Tutorial & Pro Tips",
+      "length": 1812
+    },
+    {
+      "file": "yt-oIm1rx3RsXI.md",
+      "title": "GoHighLevel Outbound Voice AI Beta is HERE! (Full Setup + Compliance Walkthrough)",
+      "length": 2216
+    },
+    {
+      "file": "yt-PKUH0DMam6g.md",
+      "title": "GoHighLevel App Marketplace - How to Install Apps in GoHighLevel (Tutorial)",
+      "length": 1580
+    },
+    {
+      "file": "yt-TuAc-z5Dw5k.md",
+      "title": "How to Use GoHighLevel AI Voice Agent (Full 2025 Tutorial)",
+      "length": 2183
+    },
+    {
+      "file": "yt-VvYCVfoYuMk.md",
+      "title": "How to Use GoHighLevel AI Voice Agents: Ultimate 2025 Tutorial",
+      "length": 2249
+    },
+    {
+      "file": "yt-wmoshlenptM.md",
+      "title": "Build A GoHighLevel Marketplace App in 20 Minutes Or Less! (Updated 2026)",
+      "length": 2299
+    }
+  ],
+  "topics": {
+    "Workflow": [
+      "yt-2wDjPGsJGNk.md",
+      "yt-DAxQA46e024.md",
+      "yt-huevGw_mgYA.md",
+      "yt-nPL0cZPHFxI.md",
+      "yt-PKUH0DMam6g.md",
+      "yt-TuAc-z5Dw5k.md",
+      "yt-VvYCVfoYuMk.md"
+    ],
+    "Email": [
+      "yt-2wDjPGsJGNk.md",
+      "yt-DAxQA46e024.md",
+      "yt-huevGw_mgYA.md",
+      "yt-TuAc-z5Dw5k.md",
+      "yt-wmoshlenptM.md"
+    ],
+    "Payment": [
+      "yt-2wDjPGsJGNk.md",
+      "yt-wmoshlenptM.md"
+    ],
+    "Webhook": [
+      "yt-2wDjPGsJGNk.md",
+      "yt-huevGw_mgYA.md",
+      "yt-VvYCVfoYuMk.md"
+    ],
+    "API": [
+      "yt-2wDjPGsJGNk.md",
+      "yt-bMi5JZBz5E4.md",
+      "yt-DAxQA46e024.md",
+      "yt-huevGw_mgYA.md",
+      "yt-nPL0cZPHFxI.md",
+      "yt-oIm1rx3RsXI.md",
+      "yt-PKUH0DMam6g.md",
+      "yt-TuAc-z5Dw5k.md",
+      "yt-VvYCVfoYuMk.md",
+      "yt-wmoshlenptM.md"
+    ],
+    "Marketplace": [
+      "yt-2wDjPGsJGNk.md",
+      "yt-bMi5JZBz5E4.md",
+      "yt-DAxQA46e024.md",
+      "yt-huevGw_mgYA.md",
+      "yt-nPL0cZPHFxI.md",
+      "yt-oIm1rx3RsXI.md",
+      "yt-PKUH0DMam6g.md",
+      "yt-TuAc-z5Dw5k.md",
+      "yt-VvYCVfoYuMk.md",
+      "yt-wmoshlenptM.md"
+    ],
+    "Automation": [
+      "yt-2wDjPGsJGNk.md",
+      "yt-bMi5JZBz5E4.md",
+      "yt-DAxQA46e024.md",
+      "yt-huevGw_mgYA.md",
+      "yt-nPL0cZPHFxI.md",
+      "yt-oIm1rx3RsXI.md",
+      "yt-PKUH0DMam6g.md",
+      "yt-TuAc-z5Dw5k.md",
+      "yt-VvYCVfoYuMk.md",
+      "yt-wmoshlenptM.md"
+    ],
+    "Funnel": [
+      "yt-2wDjPGsJGNk.md",
+      "yt-DAxQA46e024.md",
+      "yt-huevGw_mgYA.md"
+    ],
+    "Voice AI": [
+      "yt-bMi5JZBz5E4.md",
+      "yt-nPL0cZPHFxI.md",
+      "yt-oIm1rx3RsXI.md"
+    ],
+    "Website": [
+      "yt-bMi5JZBz5E4.md",
+      "yt-DAxQA46e024.md",
+      "yt-PKUH0DMam6g.md",
+      "yt-TuAc-z5Dw5k.md",
+      "yt-VvYCVfoYuMk.md",
+      "yt-wmoshlenptM.md"
+    ],
+    "Pipeline": [
+      "yt-DAxQA46e024.md",
+      "yt-nPL0cZPHFxI.md"
+    ],
+    "Calendar": [
+      "yt-DAxQA46e024.md",
+      "yt-nPL0cZPHFxI.md"
+    ],
+    "Trigger": [
+      "yt-DAxQA46e024.md",
+      "yt-TuAc-z5Dw5k.md",
+      "yt-wmoshlenptM.md"
+    ],
+    "Social": [
+      "yt-DAxQA46e024.md",
+      "yt-TuAc-z5Dw5k.md"
+    ],
+    "Phone": [
+      "yt-huevGw_mgYA.md",
+      "yt-oIm1rx3RsXI.md",
+      "yt-TuAc-z5Dw5k.md",
+      "yt-VvYCVfoYuMk.md"
+    ],
+    "Custom Field": [
+      "yt-huevGw_mgYA.md",
+      "yt-nPL0cZPHFxI.md"
+    ],
+    "Custom Value": [
+      "yt-nPL0cZPHFxI.md"
+    ],
+    "Review": [
+      "yt-TuAc-z5Dw5k.md"
+    ]
+  }
+}

@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do Deals With Lee | Real Estate Academy | Tampa FL</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            black: '#0a0a0a',
+                            dark: '#111111',
+                            card: '#161616',
+                            cyan: '#00e5ff',
+                            'cyan-light': '#40efff',
+                            'cyan-dark': '#00b8d4',
+                            orange: '#ff6b00',
+                            'orange-light': '#ff8533',
+                            gold: '#ffd700',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        display: ['Playfair Display', 'Georgia', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* AGGRESSIVE GHL RESET */
+        html, body, #preview-container, .hl-page-preview, .hl_page-preview,
+        [id*="preview"], [class*="preview"], [class*="page-"], [class*="hl_page"],
+        [class*="wrapper"], [class*="container"], [class*="section"],
+        .c-editor, .c-editor-content, .hl-page-creator,
+        #section-0, #section-1, #section-2, #section-3, #section-4, #section-5,
+        .inner-section, .section-element, .row-element, .column-element,
+        div[data-page-element], div[class*="element"], div[class*="row"],
+        main, article, section, header, footer, aside, nav,
+        .page-wrapper, .site-wrapper, .content-wrapper, .hl-wrapper,
+        .hl-container, .hl-section, .hl-row, .hl-column {
+            background: #0a0a0a !important;
+            background-color: #0a0a0a !important;
+            border: none !important;
+            border-color: #0a0a0a !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            max-width: 100% !important;
+            box-shadow: none !important;
+        }
+        
+        .ddwl-container { padding: 0 20px !important; }
+        .ddwl-section { padding: 80px 20px !important; background: #0a0a0a !important; }
+        .ddwl-card { background: rgba(22, 22, 22, 0.8) !important; padding: 32px !important; }
+        .ddwl-nav { padding: 16px 0 !important; background: rgba(10, 10, 10, 0.95) !important; }
+        .ddwl-footer { background: #111 !important; padding: 48px 0 24px !important; }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: #0a0a0a !important;
+            color: #ffffff;
+            font-family: 'Inter', system-ui, sans-serif !important;
+            overflow-x: hidden;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #00e5ff 0%, #ff6b00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glass-card {
+            background: rgba(22, 22, 22, 0.8) !important;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .hero-gradient {
+            background: radial-gradient(ellipse at 20% 50%, rgba(0, 229, 255, 0.15) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 50%, rgba(255, 107, 0, 0.1) 0%, transparent 50%),
+                        #0a0a0a !important;
+        }
+        
+        .grid-pattern {
+            background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        
+        .marquee {
+            display: flex;
+            animation: marquee 30s linear infinite;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-shine::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(30deg) translateX(-100%);
+            transition: transform 0.6s;
+        }
+        
+        .btn-shine:hover::after {
+            transform: rotate(30deg) translateX(100%);
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .text-shadow-glow {
+            text-shadow: 0 0 30px rgba(0, 229, 255, 0.5);
+        }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #00e5ff; }
+        
+        .faq-content { 
+            max-height: 0; 
+            overflow: hidden; 
+            transition: max-height 0.3s ease-out;
+        }
+        .faq-content.active { 
+            max-height: 500px; 
+        }
+        
+        input, select, textarea, button {
+            font-family: 'Inter', system-ui, sans-serif !important;
+        }
+        
+        section {
+            background-color: #0a0a0a !important;
+            position: relative;
+        }
+        
+        .ddwl-wrapper {
+            background: #0a0a0a !important;
+            min-height: 100vh;
+        }
+        
+        .lee-image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 24px;
+            border: 2px solid rgba(0, 229, 255, 0.3);
+            box-shadow: 0 0 40px rgba(0, 229, 255, 0.2);
+        }
+        
+        .lee-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .lee-image-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, transparent 50%);
+        }
+    </style>
+</head>
+<body>
+
+<!-- WebFont Loader -->
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+WebFont.load({
+  google: { families: ['Inter:300,400,500,600,700,800,900', 'Playfair Display:400,600,700,800'] },
+  active: function() {
+    document.body.style.fontFamily = "'Inter', system-ui, sans-serif";
+  }
+});
+</script>
+<script>
+(function(){
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap';
+  document.head.appendChild(link);
+})();
+</script>
+
+<div class="ddwl-wrapper">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-brand-black/95 backdrop-blur-xl border-b border-white/5 ddwl-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ddwl-container">
+            <div class="flex justify-between items-center h-20">
+                <a href="https://dodealswithlee.com" target="_parent" class="flex items-center gap-3">
+                    <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/67630a6111b3975ed85ffd20.svg" alt="DDWL" class="h-12 w-auto">
+                    <div class="hidden sm:block">
+                        <span class="text-white font-bold text-lg tracking-tight block">Do Deals With Lee</span>
+                        <span class="text-brand-cyan text-xs tracking-widest uppercase">Academy</span>
+                    </div>
+                </a>
+
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#academy" class="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium">The Academy</a>
+                    <a href="#proof" class="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium">Results</a>
+                    <a href="#investment" class="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium">Investment</a>
+                    <a href="#calculator" class="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium">Calculator</a>
+                    <a href="#faq" class="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium">FAQ</a>
+                </div>
+
+                <div class="hidden md:flex items-center gap-4">
+                    <a href="tel:8136750916" class="text-brand-cyan hover:text-brand-cyan-light transition-colors" title="Call Lee Direct">
+                        <i data-lucide="phone" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#apply" class="bg-gradient-to-r from-brand-orange to-brand-orange-light text-white px-6 py-2.5 rounded-full font-semibold text-sm hover:shadow-lg hover:shadow-brand-orange/25 transition-all btn-shine">
+                        Apply Now
+                    </a>
+                </div>
+
+                <button id="mobileMenuBtn" class="md:hidden text-white p-2">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="hidden md:hidden bg-brand-dark border-t border-white/10">
+            <div class="px-4 py-6 space-y-4">
+                <a href="#academy" class="block text-gray-300 hover:text-brand-cyan py-2">The Academy</a>
+                <a href="#proof" class="block text-gray-300 hover:text-brand-cyan py-2">Results</a>
+                <a href="#investment" class="block text-gray-300 hover:text-brand-cyan py-2">Investment</a>
+                <a href="#calculator" class="block text-gray-300 hover:text-brand-cyan py-2">Calculator</a>
+                <a href="#faq" class="block text-gray-300 hover:text-brand-cyan py-2">FAQ</a>
+                <a href="#apply" class="block bg-brand-orange text-white text-center py-3 rounded-lg font-semibold mt-4">Apply Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 hero-gradient ddwl-section">
+        <div class="absolute inset-0 grid-pattern opacity-30"></div>
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-cyan/20 rounded-full blur-3xl animate-pulse" style="animation-duration: 3s;"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-brand-orange/10 rounded-full blur-3xl animate-pulse" style="animation-duration: 4s;"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 ddwl-container">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 bg-brand-orange/10 border border-brand-orange/30 rounded-full px-4 py-2 mb-6">
+                        <span class="w-2 h-2 bg-brand-orange rounded-full animate-pulse"></span>
+                        <span class="text-brand-orange text-sm font-semibold tracking-wider uppercase">Now Recruiting: DDWL Academy &bull; Tampa, FL</span>
+                    </div>
+
+                    <h1 class="font-display text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
+                        &ldquo;I&rsquo;m Opening My<br>
+                        <span class="gradient-text">Playbook</span>&mdash;And My<br>
+                        Office to <span class="text-brand-cyan text-shadow-glow">7 Serious<br>People</span>&rdquo;
+                    </h1>
+
+                    <p class="text-xl text-gray-400 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        After <span class="text-white font-semibold">7,000 deals</span> and <span class="text-white font-semibold">$500M in volume</span>, I&rsquo;m doing something I&rsquo;ve never done before: letting outsiders into my actual operation. Not a course. Not theory. <span class="text-brand-cyan">Real deals, real money, real mentorship.</span>
+                    </p>
+
+                    <div class="glass-card rounded-2xl p-4 mb-8 max-w-xl mx-auto lg:mx-0">
+                        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <div class="flex items-center gap-3">
+                                <i data-lucide="zap" class="w-5 h-5 text-brand-orange"></i>
+                                <span class="text-white font-semibold">Only 3 spots remaining</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm text-gray-400">
+                                <i data-lucide="clock" class="w-4 h-4"></i>
+                                <span>Closes in <span id="countdown" class="text-brand-cyan font-mono">72:00:00</span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#apply" class="group bg-gradient-to-r from-brand-orange to-brand-orange-light text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl hover:shadow-brand-orange/30 transition-all btn-shine flex items-center justify-center gap-2">
+                            Apply Now&mdash;Start Earning in 30 Days
+                            <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                        <a href="https://wa.me/18136750916" target="_blank" class="bg-white/5 border border-white/20 text-white px-8 py-4 rounded-full font-semibold hover:bg-white/10 transition-all flex items-center justify-center gap-2">
+                            <i data-lucide="message-circle" class="w-5 h-5 text-brand-cyan"></i>
+                            Text Lee: 813-675-0916
+                        </a>
+                    </div>
+
+                    <div class="mt-12 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-sm text-gray-500">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="shield-check" class="w-4 h-4 text-brand-cyan"></i>
+                            <span>Inc. 5000 Recognized</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="award" class="w-4 h-4 text-brand-cyan"></i>
+                            <span>MBA - USF</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="users" class="w-4 h-4 text-brand-cyan"></i>
+                            <span>500+ Students</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative hidden lg:block">
+                    <div class="relative z-10 floating-element">
+                        <div class="lee-image-container">
+                            <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/6740d661a865994979d38612.webp" alt="Lee Kearney - Real Estate Investor &amp; Founder of DDWL Academy">
+                            <div class="lee-image-overlay"></div>
+                            
+                            <div class="absolute bottom-6 left-6 right-6 glass-card rounded-xl p-4">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-10 h-10 rounded-full bg-brand-orange flex items-center justify-center">
+                                        <i data-lucide="trending-up" class="w-5 h-5 text-white"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-white font-bold">Lee Kearney</div>
+                                        <div class="text-xs text-gray-400">Founder &amp; CEO</div>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4 text-center">
+                                    <div>
+                                        <div class="text-2xl font-bold text-brand-cyan counter" data-target="7000">0</div>
+                                        <div class="text-xs text-gray-400">Deals Closed</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-2xl font-bold text-brand-orange counter" data-target="500">0</div>
+                                        <div class="text-xs text-gray-400">$M Volume</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-brand-cyan/30 rounded-full blur-3xl"></div>
+                    <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-brand-orange/20 rounded-full blur-3xl"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="bg-gradient-to-r from-brand-orange to-brand-orange-light py-4 overflow-hidden">
+        <div class="marquee whitespace-nowrap">
+            <span class="text-white font-bold text-sm tracking-widest mx-8">&#9733; DDWL ACADEMY &bull; TAMPA FL</span>
+            <span class="text-white font-bold text-sm tracking-widest mx-8">&#9733; REAL DEALS REAL MONEY REAL MENTORSHIP</span>
+            <span class="text-white font-bold text-sm tracking-widest mx-8">&#9733; STUDENT &#8594; PLAYER &#8594; EMPIRE</span>
+            <span class="text-white font-bold text-sm tracking-widest mx-8">&#9733; 7,000+ DEALS CLOSED</span>
+            <span class="text-white font-bold text-sm tracking-widest mx-8">&#9733; $500M+ VOLUME</span>
+            <span class="text-white font-bold text-sm tracking-widest mx-8">&#9733; DDWL ACADEMY &bull; TAMPA FL</span>
+            <span class="text-white font-bold text-sm tracking-widest mx-8">&#9733; REAL DEALS REAL MONEY REAL MENTORSHIP</span>
+        </div>
+    </div>
+
+    <!-- Social Proof -->
+    <section id="proof" class="py-24 bg-brand-dark ddwl-section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ddwl-container">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-display text-4xl md:text-5xl font-bold mb-4">Real People. <span class="gradient-text">Real Results.</span></h2>
+                <p class="text-gray-400 text-lg max-w-2xl mx-auto">Not theory. Not someday. Actual students who closed actual deals.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass-card rounded-2xl overflow-hidden group hover:border-brand-cyan/50 transition-all reveal ddwl-card">
+                    <div class="relative aspect-video bg-gray-800">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop" alt="Marcus - DDWL Student Success" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <a href="https://www.youtube.com/watch?v=example1" target="_blank" class="w-16 h-16 rounded-full bg-brand-cyan/90 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <i data-lucide="play" class="w-6 h-6 text-brand-black ml-1"></i>
+                            </a>
+                        </div>
+                        <div class="absolute top-3 left-3 bg-brand-orange text-white text-xs font-bold px-2 py-1 rounded">CLOSED</div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-brand-cyan font-bold text-lg">$18,500</span>
+                            <span class="text-gray-500 text-sm">assignment fee</span>
+                        </div>
+                        <p class="text-white font-semibold mb-1">Marcus T.</p>
+                        <p class="text-gray-400 text-sm">First deal in 23 days. Was working at Amazon warehouse.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-center items-center text-center reveal ddwl-card">
+                    <div class="text-6xl font-bold text-brand-cyan mb-2 counter" data-target="847">0</div>
+                    <div class="text-white font-semibold mb-1">Deals Closed</div>
+                    <div class="text-gray-500 text-sm">by DDWL students in 2024</div>
+                </div>
+
+                <div class="glass-card rounded-2xl overflow-hidden group hover:border-brand-cyan/50 transition-all reveal ddwl-card">
+                    <div class="relative aspect-video bg-gray-800">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=300&fit=crop" alt="Sarah - DDWL Student Success" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <a href="https://www.youtube.com/watch?v=example2" target="_blank" class="w-16 h-16 rounded-full bg-brand-cyan/90 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <i data-lucide="play" class="w-6 h-6 text-brand-black ml-1"></i>
+                            </a>
+                        </div>
+                        <div class="absolute top-3 left-3 bg-brand-orange text-white text-xs font-bold px-2 py-1 rounded">QUIT JOB</div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-brand-cyan font-bold text-lg">$40K/mo</span>
+                            <span class="text-gray-500 text-sm">now flipping</span>
+                        </div>
+                        <p class="text-white font-semibold mb-1">Sarah K.</p>
+                        <p class="text-gray-400 text-sm">Former nurse. Replaced salary in 4 months.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-center reveal ddwl-card">
+                    <div class="text-gray-500 text-sm mb-4 text-center">Featured In</div>
+                    <div class="space-y-4">
+                        <a href="https://www.inc.com/profile/do-deals-with-lee" target="_blank" class="flex items-center gap-3 opacity-60 hover:opacity-100 transition-opacity">
+                            <div class="w-8 h-8 bg-white rounded flex items-center justify-center text-brand-black font-bold text-xs">Inc</div>
+                            <span class="text-white text-sm">Inc. 5000 List</span>
+                        </a>
+                        <a href="https://www.biggerpockets.com" target="_blank" class="flex items-center gap-3 opacity-60 hover:opacity-100 transition-opacity">
+                            <div class="w-8 h-8 bg-white rounded flex items-center justify-center text-brand-black font-bold text-xs">BP</div>
+                            <span class="text-white text-sm">BiggerPockets</span>
+                        </a>
+                        <a href="https://finance.yahoo.com" target="_blank" class="flex items-center gap-3 opacity-60 hover:opacity-100 transition-opacity">
+                            <div class="w-8 h-8 bg-white rounded flex items-center justify-center text-brand-black font-bold text-xs">YF</div>
+                            <span class="text-white text-sm">Yahoo Finance</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="academy" class="py-24 bg-brand-black ddwl-section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ddwl-container">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-display text-4xl md:text-5xl font-bold mb-4">The <span class="gradient-text">DDWL Academy</span> Difference</h2>
+                <p class="text-gray-400 text-lg max-w-2xl mx-auto">This isn&rsquo;t a course you watch from your couch. This is a physical operation where you close real deals.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <div class="relative reveal">
+                    <div class="absolute -top-4 -left-4 text-8xl font-bold text-white/5 font-display">01</div>
+                    <div class="glass-card rounded-2xl p-8 relative z-10 h-full border-t-4 border-t-brand-orange ddwl-card">
+                        <div class="w-14 h-14 rounded-xl bg-brand-orange/20 flex items-center justify-center mb-6">
+                            <i data-lucide="door-open" class="w-7 h-7 text-brand-orange"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Pay to Play</h3>
+                        <p class="text-gray-400 mb-6">Choose your investment tier. Get your desk. Get your tools. Get direct access to my team and our deal flow.</p>
+                        <ul class="space-y-3 text-sm text-gray-300">
+                            <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-brand-cyan"></i>Your desk at the DDWL Academy</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-brand-cyan"></i>Lee&rsquo;s AI Clone (24/7)</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-brand-cyan"></i>Real deal pipeline access</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="relative reveal">
+                    <div class="absolute -top-4 -left-4 text-8xl font-bold text-white/5 font-display">02</div>
+                    <div class="glass-card rounded-2xl p-8 relative z-10 h-full border-t-4 border-t-brand-cyan ddwl-card">
+                        <div class="w-14 h-14 rounded-xl bg-brand-cyan/20 flex items-center justify-center mb-6">
+                            <i data-lucide="graduation-cap" class="w-7 h-7 text-brand-cyan"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Student Mode</h3>
+                        <p class="text-gray-400 mb-6">Learn by doing. Work alongside my team on actual deals. Close your first deal while you&rsquo;re still learning.</p>
+                        <ul class="space-y-3 text-sm text-gray-300">
+                            <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-brand-cyan"></i>Hands-on deal analysis</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-brand-cyan"></i>Weekly coaching calls</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-brand-cyan"></i>Earn while you learn</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="relative reveal">
+                    <div class="absolute -top-4 -left-4 text-8xl font-bold text-white/5 font-display">03</div>
+                    <div class="glass-card rounded-2xl p-8 relative z-10 h-full border-t-4 border-t-brand-gold ddwl-card">
+                        <div class="w-14 h-14 rounded-xl bg-brand-gold/20 flex items-center justify-center mb-6">
+                            <i data-lucide="crown" class="w-7 h-7 text-brand-gold"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Player Status</h3>
+                        <p class="text-gray-400 mb-6">Close 3 deals and graduate. Earn your seat at the table. Better splits. Build your team. Build your empire.</p>
+                        <ul class="space-y-3 text-sm text-gray-300">
+                            <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-brand-cyan"></i>Keep 75-85% of deals</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-brand-cyan"></i>Build your own team</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-brand-cyan"></i>Full DDWL branding</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment Tiers -->
+    <section id="investment" class="py-24 bg-brand-dark relative overflow-hidden ddwl-section">
+        <div class="absolute inset-0 grid-pattern opacity-20"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 ddwl-container">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-display text-4xl md:text-5xl font-bold mb-4">Choose Your <span class="gradient-text">Investment Level</span></h2>
+                <p class="text-gray-400 text-lg max-w-2xl mx-auto">Every tier includes your desk, tools, and direct access. No hidden fees. No upsells.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8 items-start">
+                <div class="glass-card rounded-2xl p-8 reveal hover:border-brand-cyan/30 transition-all ddwl-card">
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Starter</h3>
+                        <div class="flex items-baseline gap-1 mb-2">
+                            <span class="text-4xl font-bold text-white">$1,997</span>
+                            <span class="text-gray-500">/month</span>
+                        </div>
+                        <div class="text-sm text-brand-cyan font-medium">Avg: $8K-15K first 90 days</div>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start gap-3 text-gray-300"><i data-lucide="check" class="w-5 h-5 text-brand-cyan flex-shrink-0 mt-0.5"></i><span>Desk at the DDWL Academy</span></li>
+                        <li class="flex items-start gap-3 text-gray-300"><i data-lucide="check" class="w-5 h-5 text-brand-cyan flex-shrink-0 mt-0.5"></i><span>Lee&rsquo;s AI Clone (24/7)</span></li>
+                        <li class="flex items-start gap-3 text-gray-300"><i data-lucide="check" class="w-5 h-5 text-brand-cyan flex-shrink-0 mt-0.5"></i><span>Deal pipeline access</span></li>
+                        <li class="flex items-start gap-3 text-gray-300"><i data-lucide="check" class="w-5 h-5 text-brand-cyan flex-shrink-0 mt-0.5"></i><span>Weekly group coaching</span></li>
+                        <li class="flex items-start gap-3 text-white font-semibold bg-white/5 p-3 rounded-lg"><i data-lucide="percent" class="w-5 h-5 text-brand-orange flex-shrink-0 mt-0.5"></i><span>Keep 60% of your deals</span></li>
+                    </ul>
+                    
+                    <a href="#apply" class="block w-full py-4 rounded-full border border-white/20 text-white font-semibold hover:bg-white/5 transition-all text-center">Apply for Starter</a>
+                </div>
+
+                <div class="relative reveal">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-brand-orange to-brand-orange-light text-white text-sm font-bold px-4 py-1 rounded-full z-20">MOST POPULAR</div>
+                    <div class="glass-card rounded-2xl p-8 border-2 border-brand-cyan/50 shadow-2xl shadow-brand-cyan/10 relative ddwl-card">
+                        <div class="mb-6">
+                            <h3 class="text-xl font-bold text-white mb-2">Accelerator</h3>
+                            <div class="flex items-baseline gap-1 mb-2">
+                                <span class="text-4xl font-bold text-brand-cyan">$3,997</span>
+                                <span class="text-gray-500">/month</span>
+                            </div>
+                            <div class="text-sm text-brand-orange font-medium">Avg: $25K-40K first 90 days</div>
+                        </div>
+                        
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start gap-3 text-gray-300"><i data-lucide="check" class="w-5 h-5 text-brand-cyan flex-shrink-0 mt-0.5"></i><span>Everything in Starter, plus:</span></li>
+                            <li class="flex items-start gap-3 text-gray-300"><i data-lucide="check" class="w-5 h-5 text-brand-cyan flex-shrink-0 mt-0.5"></i><span>1-on-1 weekly calls with Lee</span></li>
+                            <li class="flex items-start gap-3 text-gray-300"><i data-lucide="check" class="w-5 h-5 text-brand-cyan flex-shrink-0 mt-0.5"></i><span>Priority deal access (72hr early)</span></li>
+                            <li class="flex items-start gap-3 text-gray-300"><i data-lucide="check" class="w-5 h-5 text-brand-cyan flex-shrink-0 mt-0.5"></i><span>Dedicated transaction coordinator</span></li>
+                            <li class="flex items-start gap-3 text-white font-semibold bg-brand-cyan/10 p-3 rounded-lg border border-brand-cyan/30"><i data-lucide="percent" class="w-5 h-5 text-brand-cyan flex-shrink-0 mt-0.5"></i><span>Keep 75% of your deals</span></li>
+                            <li class="flex items-start gap-3 text-white font-semibold bg-brand-orange/10 p-3 rounded-lg border border-brand-orange/30"><i data-lucide="zap" class="w-5 h-5 text-brand-orange flex-shrink-0 mt-0.5"></i><span>Graduate to Player in 60 days</span></li>
+                        </ul>
+                        
+                        <a href="#apply" class="block w-full py-4 rounded-full bg-gradient-to-r from-brand-cyan to-brand-cyan-light text-brand-black font-bold hover:shadow-lg hover:shadow-brand-cyan/30 transition-all btn-shine text-center animate-pulse">Apply for Accelerator</a>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-8 reveal hover:border-brand-gold/30 transition-all ddwl-card">
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Partner</h3>
+                        <div class="flex items-baseline gap-1 mb-2">
+                            <span class="text-4xl font-bold text-white">$7,997</span>
+                            <span class="text-gray-500">/month</span>
+                        </div>
+                        <div class="text-sm text-brand-gold font-medium">For builders targeting $100K+ months</div>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start gap-3 text-gray-300"><i data-lucide="check" class="w-5 h-5 text-brand-cyan flex-shrink-0 mt-0.5"></i><span>Everything in Accelerator, plus:</span></li>
+                        <li class="flex items-start gap-3 text-gray-300"><i data-lucide="check" class="w-5 h-5 text-brand-cyan flex-shrink-0 mt-0.5"></i><span>Lee co-signs your deals</span></li>
+                        <li class="flex items-start gap-3 text-gray-300"><i data-lucide="check" class="w-5 h-5 text-brand-cyan flex-shrink-0 mt-0.5"></i><span>Access to private lender network</span></li>
+                        <li class="flex items-start gap-3 text-gray-300"><i data-lucide="check" class="w-5 h-5 text-brand-cyan flex-shrink-0 mt-0.5"></i><span>Build team under DDWL brand</span></li>
+                        <li class="flex items-start gap-3 text-white font-semibold bg-white/5 p-3 rounded-lg"><i data-lucide="percent" class="w-5 h-5 text-brand-gold flex-shrink-0 mt-0.5"></i><span>Keep 85% of your deals</span></li>
+                    </ul>
+                    
+                    <a href="https://calendly.com/dodealswithlee/partner-interview" target="_blank" class="block w-full py-4 rounded-full border border-brand-gold/50 text-brand-gold font-semibold hover:bg-brand-gold/10 transition-all text-center">Schedule Partner Interview</a>
+                </div>
+            </div>
+
+            <div class="mt-12 glass-card rounded-2xl p-8 border border-brand-cyan/20 reveal ddwl-card">
+                <div class="flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+                    <div class="w-16 h-16 rounded-full bg-brand-cyan/20 flex items-center justify-center flex-shrink-0">
+                        <i data-lucide="shield-check" class="w-8 h-8 text-brand-cyan"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="text-xl font-bold text-white mb-2">The &ldquo;First Deal&rdquo; Guarantee</h4>
+                        <p class="text-gray-400">If you don&rsquo;t close a deal within 90 days, we work with you for free until you do. <span class="text-brand-cyan">We&rsquo;ve never had a student need this.</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Income Calculator -->
+    <section id="calculator" class="py-24 bg-brand-black ddwl-section">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 ddwl-container">
+            <div class="text-center mb-12 reveal">
+                <h2 class="font-display text-4xl md:text-5xl font-bold mb-4">See Your <span class="gradient-text">Potential Earnings</span></h2>
+                <p class="text-gray-400 text-lg">Adjust the sliders based on your commitment level</p>
+            </div>
+
+            <div class="glass-card rounded-3xl p-8 md:p-12 reveal ddwl-card">
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="space-y-8">
+                        <div>
+                            <label class="flex justify-between text-white font-medium mb-3">
+                                <span>Deals per month</span>
+                                <span class="text-brand-cyan font-bold" id="dealsValue">3</span>
+                            </label>
+                            <input type="range" min="1" max="10" value="3" id="dealsSlider" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer" style="accent-color: #00e5ff;">
+                            <div class="flex justify-between text-xs text-gray-500 mt-2"><span>1</span><span>10</span></div>
+                        </div>
+
+                        <div>
+                            <label class="flex justify-between text-white font-medium mb-3">
+                                <span>Average assignment fee</span>
+                                <span class="text-brand-cyan font-bold" id="feeValue">$15,000</span>
+                            </label>
+                            <input type="range" min="5000" max="50000" value="15000" step="1000" id="feeSlider" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer" style="accent-color: #00e5ff;">
+                            <div class="flex justify-between text-xs text-gray-500 mt-2"><span>$5K</span><span>$50K</span></div>
+                        </div>
+
+                        <div>
+                            <label class="text-white font-medium mb-3 block">Your tier</label>
+                            <div class="grid grid-cols-3 gap-3">
+                                <button class="tier-btn py-3 px-4 rounded-lg border border-white/20 text-sm text-gray-300 hover:border-brand-cyan hover:text-brand-cyan transition-all" data-split="0.60">Starter<br><span class="text-xs opacity-60">60%</span></button>
+                                <button class="tier-btn py-3 px-4 rounded-lg border-2 border-brand-cyan bg-brand-cyan/10 text-sm text-brand-cyan font-semibold" data-split="0.75">Accelerator<br><span class="text-xs opacity-60">75%</span></button>
+                                <button class="tier-btn py-3 px-4 rounded-lg border border-white/20 text-sm text-gray-300 hover:border-brand-cyan hover:text-brand-cyan transition-all" data-split="0.85">Partner<br><span class="text-xs opacity-60">85%</span></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col justify-center">
+                        <div class="space-y-6">
+                            <div class="bg-brand-dark rounded-2xl p-6 border border-white/10">
+                                <div class="text-gray-400 text-sm mb-1">Your monthly income</div>
+                                <div class="text-5xl font-bold text-brand-cyan" id="monthlyIncome">$33,750</div>
+                            </div>
+                            
+                            <div class="bg-brand-dark rounded-2xl p-6 border border-white/10">
+                                <div class="text-gray-400 text-sm mb-1">Annual income</div>
+                                <div class="text-4xl font-bold text-white" id="yearlyIncome">$405,000</div>
+                            </div>
+
+                            <div class="flex items-center gap-3 text-sm">
+                                <div class="w-2 h-2 rounded-full bg-brand-orange animate-pulse"></div>
+                                <span class="text-gray-400">That&rsquo;s <span class="text-brand-orange font-bold" id="comparison">8.1x</span> the average US salary</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-24 bg-brand-dark ddwl-section">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 ddwl-container">
+            <div class="text-center mb-12 reveal">
+                <h2 class="font-display text-4xl md:text-5xl font-bold mb-4">Common <span class="gradient-text">Questions</span></h2>
+                <p class="text-gray-400 text-lg">Everything you need to know</p>
+            </div>
+
+            <div class="space-y-4 reveal">
+                <div class="glass-card rounded-xl overflow-hidden ddwl-card">
+                    <button class="faq-btn w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/5 transition-all">
+                        <span class="text-white font-semibold pr-4">What is the DDWL Academy?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-brand-cyan flex-shrink-0 transition-transform faq-icon"></i>
+                    </button>
+                    <div class="faq-content px-6 pb-5">
+                        <p class="text-gray-400 leading-relaxed">The DDWL Academy is a physical location where serious people come to build a real estate business. You pay a subscription to access the tools, AI, coaching, deal pipeline, and workspace you need. Close 3 deals and you graduate from Student to Player.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-xl overflow-hidden ddwl-card">
+                    <button class="faq-btn w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/5 transition-all">
+                        <span class="text-white font-semibold pr-4">Where is the Academy located?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-brand-cyan flex-shrink-0 transition-transform faq-icon"></i>
+                    </button>
+                    <div class="faq-content px-6 pb-5">
+                        <p class="text-gray-400 leading-relaxed">The DDWL Academy is based in Tampa, FL. The campus features workspace, deal rooms, training areas, and direct access to Lee&rsquo;s team. We&rsquo;re expanding to new markets &mdash; apply now to secure your spot.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-xl overflow-hidden ddwl-card">
+                    <button class="faq-btn w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/5 transition-all">
+                        <span class="text-white font-semibold pr-4">Do I need experience?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-brand-cyan flex-shrink-0 transition-transform faq-icon"></i>
+                    </button>
+                    <div class="faq-content px-6 pb-5">
+                        <p class="text-gray-400 leading-relaxed">No. You need to be serious and willing to invest in yourself. Lee&rsquo;s AI clone teaches you step by step at your speed. Nothing from your past can hold you back but you.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-xl overflow-hidden ddwl-card">
+                    <button class="faq-btn w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/5 transition-all">
+                        <span class="text-white font-semibold pr-4">How much can I earn?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-brand-cyan flex-shrink-0 transition-transform faq-icon"></i>
+                    </button>
+                    <div class="faq-content px-6 pb-5">
+                        <p class="text-gray-400 leading-relaxed">Students typically earn their first commission within 30-60 days. Many Players earn $50K-$200K+ in their first year. Use our calculator above to see specific projections.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA / Application Form -->
+    <section id="apply" class="py-24 bg-brand-black relative overflow-hidden ddwl-section">
+        <div class="absolute inset-0 hero-gradient"></div>
+        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-brand-cyan to-transparent"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 ddwl-container">
+            <h2 class="font-display text-4xl md:text-6xl font-bold mb-6 reveal">Ready to Build Your <span class="gradient-text">Empire</span>?</h2>
+            <p class="text-xl text-gray-400 mb-8 reveal">Applications close in 72 hours. Only 3 spots remain.</p>
+            
+            <div id="apply-form" class="glass-card rounded-2xl p-8 max-w-2xl mx-auto reveal ddwl-card">
+                <form id="kimiContactForm" class="space-y-6 text-left">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Full Name *</label>
+                            <input type="text" id="kFullName" name="fullName" required class="w-full bg-brand-dark border border-white/10 rounded-lg px-4 py-3 text-white focus:border-brand-cyan focus:outline-none transition-colors" placeholder="John Doe">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Phone *</label>
+                            <input type="tel" id="kPhone" name="phone" required class="w-full bg-brand-dark border border-white/10 rounded-lg px-4 py-3 text-white focus:border-brand-cyan focus:outline-none transition-colors" placeholder="(555) 123-4567">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-400 mb-2">Email *</label>
+                        <input type="email" id="kEmail" name="email" required class="w-full bg-brand-dark border border-white/10 rounded-lg px-4 py-3 text-white focus:border-brand-cyan focus:outline-none transition-colors" placeholder="john@example.com">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-400 mb-2">Select Your Tier *</label>
+                        <select id="kTier" name="interest" class="w-full bg-brand-dark border border-white/10 rounded-lg px-4 py-3 text-white focus:border-brand-cyan focus:outline-none transition-colors">
+                            <option value="Starter ($1,997/month)">Starter ($1,997/month)</option>
+                            <option value="Accelerator ($3,997/month)" selected>Accelerator ($3,997/month) - Most Popular</option>
+                            <option value="Partner ($7,997/month)">Partner ($7,997/month)</option>
+                        </select>
+                    </div>
+                    <button type="submit" id="kSubmitBtn" class="w-full bg-gradient-to-r from-brand-cyan to-brand-cyan-light text-brand-black font-bold py-4 rounded-lg hover:shadow-lg hover:shadow-brand-cyan/30 transition-all">
+                        Submit Application
+                    </button>
+                </form>
+            </div>
+
+            <div class="mt-8 flex items-center justify-center gap-2 text-gray-500 text-sm reveal">
+                <i data-lucide="lock" class="w-4 h-4"></i>
+                <span>256-bit encryption. Your information is secure.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark border-t border-white/10 py-12 ddwl-footer">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ddwl-container">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-2">
+                    <a href="https://dodealswithlee.com" target="_parent">
+                        <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/67630a6111b3975ed85ffd20.svg" alt="DDWL" class="h-10 w-auto mb-4">
+                    </a>
+                    <p class="text-gray-400 text-sm max-w-sm">7,000+ deals closed. $500M+ volume. The DDWL Academy&mdash;where serious people build real estate empires.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Academy</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#academy" class="hover:text-brand-cyan transition-colors">Tampa Academy</a></li>
+                        <li><a href="#investment" class="hover:text-brand-cyan transition-colors">Investment Tiers</a></li>
+                        <li><a href="#proof" class="hover:text-brand-cyan transition-colors">Success Stories</a></li>
+                        <li><a href="#faq" class="hover:text-brand-cyan transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="phone" class="w-4 h-4"></i>
+                            <a href="tel:8136750916" class="hover:text-brand-cyan transition-colors">813-675-0916</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="mail" class="w-4 h-4"></i>
+                            <a href="mailto:info@dodealswithlee.com" class="hover:text-brand-cyan transition-colors">info@dodealswithlee.com</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="map-pin" class="w-4 h-4"></i>
+                            <span>Tampa, FL (HQ)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-sm">&copy; 2026 Do Deals With Lee. All rights reserved.</p>
+                <div class="flex gap-4">
+                    <a href="https://facebook.com/dodealswithlee" target="_blank" class="text-gray-400 hover:text-brand-cyan transition-colors"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                    <a href="https://instagram.com/dodealswithlee" target="_blank" class="text-gray-400 hover:text-brand-cyan transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                    <a href="https://youtube.com/dodealswithlee" target="_blank" class="text-gray-400 hover:text-brand-cyan transition-colors"><i data-lucide="youtube" class="w-5 h-5"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+<!-- Toast notification -->
+<div id="kToast" style="position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#28c840;color:#000;padding:14px 28px;border-radius:8px;font-weight:600;opacity:0;transition:opacity 0.3s;z-index:999;pointer-events:none;max-width:90%;text-align:center;"></div>
+
+<script>
+    // Initialize Icons
+    lucide.createIcons();
+
+    // GHL Webhook + Form Submission
+    const GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/KbiucErIMNPbO1mY4qXL/webhook-trigger/mCdlXsgchQ4v9BQeIa9E';
+    const NOTIFY_EMAILS = ['lilly@dodealswithlee.com', 'daniel@exposuresolutions.me', 'admin@dodealswithlee.com'];
+
+    function showKToast(msg, type) {
+        var t = document.getElementById('kToast');
+        t.textContent = msg;
+        t.style.background = type === 'error' ? '#ff5f57' : '#28c840';
+        t.style.opacity = '1';
+        setTimeout(function(){ t.style.opacity = '0'; }, 5000);
+    }
+
+    async function submitToGHL(data, formType) {
+        var payload = {
+            _form_type: formType,
+            _submitted_at: new Date().toISOString(),
+            _source: 'dodealswithlee.com/kimihome'
+        };
+        Object.keys(data).forEach(function(k){ payload[k] = data[k]; });
+
+        try {
+            var r = await fetch(GHL_WEBHOOK, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            if (r.ok) return true;
+        } catch (e) { console.error('GHL error:', e); }
+
+        for (var i = 0; i < NOTIFY_EMAILS.length; i++) {
+            try {
+                var fd = new FormData();
+                fd.append('_subject', 'DDWL Academy Application - ' + (data.fullName || 'Unknown'));
+                fd.append('_template', 'table');
+                fd.append('_captcha', 'false');
+                Object.keys(data).forEach(function(k){ fd.append(k, data[k]); });
+                var r2 = await fetch('https://formsubmit.co/ajax/' + NOTIFY_EMAILS[i], {
+                    method: 'POST', headers: { 'Accept': 'application/json' }, body: fd
+                });
+                if (r2.ok) return true;
+            } catch (e) { console.error('Email fallback error:', e); }
+        }
+        return false;
+    }
+
+    document.getElementById('kimiContactForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        var btn = document.getElementById('kSubmitBtn');
+        btn.textContent = 'Sending...';
+        btn.disabled = true;
+
+        var data = {
+            fullName: document.getElementById('kFullName').value,
+            phone: document.getElementById('kPhone').value,
+            email: document.getElementById('kEmail').value,
+            interest: document.getElementById('kTier').value
+        };
+
+        var ok = await submitToGHL(data, 'Academy Application (Kimi Version)');
+        if (ok) {
+            showKToast('Application sent! Lilly will follow up within 24 hours.');
+            this.reset();
+        } else {
+            showKToast('Something went wrong. Please call 813-675-0916 directly.', 'error');
+        }
+        btn.textContent = 'Submit Application';
+        btn.disabled = false;
+    });
+
+    // Mobile Menu
+    var mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    var mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', function() { mobileMenu.classList.toggle('hidden'); });
+
+    // Navbar Scroll
+    var navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) navbar.classList.add('shadow-lg', 'shadow-brand-cyan/5');
+        else navbar.classList.remove('shadow-lg', 'shadow-brand-cyan/5');
+    });
+
+    // Countdown
+    function updateCountdown() {
+        var el = document.getElementById('countdown');
+        var parts = el.textContent.split(':').map(Number);
+        var h = parts[0], m = parts[1], s = parts[2];
+        s--; if (s < 0) { s = 59; m--; if (m < 0) { m = 59; h--; if (h < 0) h = 72; } }
+        el.textContent = String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+    }
+    setInterval(updateCountdown, 1000);
+
+    // Counter Animation
+    function animateCounter(el) {
+        var target = parseInt(el.getAttribute('data-target'));
+        var current = 0;
+        var step = target / 50;
+        var timer = setInterval(function() {
+            current += step;
+            if (current >= target) { el.textContent = target.toLocaleString(); clearInterval(timer); }
+            else el.textContent = Math.floor(current).toLocaleString();
+        }, 30);
+    }
+
+    // Intersection Observer
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                entry.target.querySelectorAll('.counter').forEach(function(c) {
+                    if (!c.classList.contains('animated')) { c.classList.add('animated'); animateCounter(c); }
+                });
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+
+    // FAQ Toggle
+    document.querySelectorAll('.faq-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var content = btn.nextElementSibling;
+            var icon = btn.querySelector('.faq-icon');
+            
+            document.querySelectorAll('.faq-content').forEach(function(c) {
+                if (c !== content) c.classList.remove('active');
+            });
+            document.querySelectorAll('.faq-icon').forEach(function(i) {
+                if (i !== icon) i.style.transform = 'rotate(0deg)';
+            });
+            
+            content.classList.toggle('active');
+            icon.style.transform = content.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
+        });
+    });
+
+    // Calculator
+    var dealsSlider = document.getElementById('dealsSlider');
+    var feeSlider = document.getElementById('feeSlider');
+    var currentSplit = 0.75;
+
+    function calculate() {
+        var deals = parseInt(dealsSlider.value) || 3;
+        var fee = parseInt(feeSlider.value) || 15000;
+        var monthly = deals * fee * currentSplit;
+        var yearly = monthly * 12;
+        
+        document.getElementById('dealsValue').textContent = deals;
+        document.getElementById('feeValue').textContent = '$' + fee.toLocaleString();
+        document.getElementById('monthlyIncome').textContent = '$' + Math.floor(monthly).toLocaleString();
+        document.getElementById('yearlyIncome').textContent = '$' + Math.floor(yearly).toLocaleString();
+        document.getElementById('comparison').textContent = (yearly / 59428).toFixed(1) + 'x';
+    }
+
+    calculate();
+    dealsSlider.addEventListener('input', calculate);
+    feeSlider.addEventListener('input', calculate);
+
+    document.querySelectorAll('.tier-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.tier-btn').forEach(function(b) {
+                b.classList.remove('border-2', 'border-brand-cyan', 'bg-brand-cyan/10', 'text-brand-cyan', 'font-semibold');
+                b.classList.add('border', 'border-white/20', 'text-gray-300');
+            });
+            btn.classList.remove('border', 'border-white/20', 'text-gray-300');
+            btn.classList.add('border-2', 'border-brand-cyan', 'bg-brand-cyan/10', 'text-brand-cyan', 'font-semibold');
+            currentSplit = parseFloat(btn.getAttribute('data-split'));
+            calculate();
+        });
+    });
+
+    // GSAP
+    if (typeof gsap !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.to('.floating-element', {
+            yPercent: -20,
+            ease: "none",
+            scrollTrigger: { trigger: "body", start: "top top", end: "bottom top", scrub: true }
+        });
+    }
+
+    // Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            var target = document.querySelector(this.getAttribute('href'));
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+</script>
+</body>
+</html>

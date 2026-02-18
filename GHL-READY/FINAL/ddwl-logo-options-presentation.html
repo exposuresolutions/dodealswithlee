@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DDWL Logo Options — Presentation</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@700;800&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Inter',sans-serif; background:#0a0a0a; color:#fff; }
+  
+  @media print {
+    body { background:#0a0a0a !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    .page { page-break-after:always; break-after:page; }
+    .page:last-child { page-break-after:avoid; }
+    .no-print { display:none !important; }
+  }
+
+  .page {
+    width:1000px; min-height:700px; margin:0 auto 40px auto;
+    padding:60px; position:relative; overflow:hidden;
+  }
+  .page-dark { background:#0a0a0a; }
+  .page-white { background:#ffffff; color:#333; }
+
+  h1 { font-family:'Playfair Display',serif; font-size:42px; font-weight:800; margin-bottom:8px; }
+  h2 { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; margin-bottom:12px; }
+  h3 { font-size:18px; font-weight:700; margin-bottom:8px; }
+  .subtitle { font-size:16px; color:#aaa; margin-bottom:30px; }
+  .cyan { color:#00e5ff; }
+  .orange { color:#ff6b00; }
+  .gold { color:#ffd700; }
+  .tag { display:inline-block; padding:4px 14px; border-radius:20px; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:2px; margin-bottom:16px; }
+  .tag-cyan { background:rgba(0,229,255,0.15); color:#00e5ff; border:1px solid rgba(0,229,255,0.3); }
+  .tag-orange { background:rgba(255,107,0,0.15); color:#ff6b00; border:1px solid rgba(255,107,0,0.3); }
+  .tag-gold { background:rgba(255,215,0,0.15); color:#ffd700; border:1px solid rgba(255,215,0,0.3); }
+
+  .logo-grid { display:grid; grid-template-columns:1fr 1fr; gap:30px; margin:30px 0; }
+  .logo-card { background:#111; border-radius:16px; padding:30px; text-align:center; border:1px solid rgba(255,255,255,0.08); }
+  .logo-card img { max-width:320px; height:auto; margin:0 auto 16px auto; display:block; border-radius:8px; }
+  .logo-card h3 { color:#fff; }
+  .logo-card p { font-size:13px; color:#999; line-height:1.5; }
+
+  .detail-row { display:grid; grid-template-columns:380px 1fr; gap:40px; align-items:center; margin:30px 0; }
+  .detail-row img { width:100%; border-radius:12px; }
+  .detail-text h2 { margin-bottom:8px; }
+  .detail-text .style-desc { font-size:14px; color:#ccc; line-height:1.7; margin-bottom:16px; }
+  .detail-text .best-for { font-size:13px; color:#999; line-height:1.6; }
+  .detail-text .best-for strong { color:#fff; }
+
+  .divider { border:none; border-top:1px solid rgba(255,255,255,0.1); margin:30px 0; }
+
+  .print-btn {
+    position:fixed; bottom:30px; right:30px; z-index:100;
+    background:linear-gradient(135deg,#00e5ff,#ff6b00); color:#000;
+    border:none; padding:14px 28px; border-radius:50px; font-weight:700;
+    font-size:14px; cursor:pointer; box-shadow:0 4px 20px rgba(0,229,255,0.3);
+  }
+  .print-btn:hover { transform:scale(1.05); }
+
+  .footer-bar { text-align:center; padding:20px 0; font-size:11px; color:#555; border-top:1px solid rgba(255,255,255,0.08); margin-top:40px; }
+  .page-num { position:absolute; bottom:20px; right:40px; font-size:11px; color:#555; }
+  .es-badge { position:absolute; bottom:20px; left:40px; font-size:10px; color:#444; }
+</style>
+</head>
+<body>
+
+<button class="print-btn no-print" onclick="window.print()">Save as PDF</button>
+
+<!-- PAGE 1: COVER -->
+<div class="page page-dark">
+  <div style="display:flex;flex-direction:column;justify-content:center;height:100%;text-align:center;">
+    <div class="tag tag-cyan">Do Deals With Lee&trade;</div>
+    <h1 style="font-size:52px;margin-bottom:12px;">New Logo Concepts</h1>
+    <p class="subtitle" style="font-size:20px;max-width:600px;margin:0 auto 40px auto;">4 AI-generated neon logo versions with matching website designs for your review</p>
+    <div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap;">
+      <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/6990a763c08665a3b0d65616.png" width="180" style="border-radius:10px;">
+      <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/6990a76336a392c3f033797b.png" width="180" style="border-radius:10px;">
+      <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/6990a76336a392a80533797a.png" width="180" style="border-radius:10px;">
+      <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/6990a7630084987c66721a4f.png" width="180" style="border-radius:10px;">
+    </div>
+    <p style="margin-top:40px;font-size:13px;color:#555;">Prepared by Exposure Solutions &bull; February 2026</p>
+  </div>
+  <span class="page-num">1 / 7</span>
+</div>
+
+<!-- PAGE 2: CURRENT LOGO -->
+<div class="page page-dark">
+  <div class="tag tag-orange">Current Logo</div>
+  <h1>The Original</h1>
+  <p class="subtitle">Your existing Do Deals With Lee logo for reference</p>
+  
+  <div style="text-align:center;margin:40px 0;">
+    <div style="background:#000;display:inline-block;padding:50px 80px;border-radius:16px;border:1px solid rgba(255,255,255,0.08);">
+      <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/67630a6111b3975ed85ffd20.svg" width="350" alt="Current DDWL Logo">
+    </div>
+  </div>
+
+  <div style="max-width:700px;margin:0 auto;">
+    <h3>Current Brand Colors</h3>
+    <div style="display:flex;gap:16px;margin:16px 0 30px 0;">
+      <div style="text-align:center;">
+        <div style="width:60px;height:60px;background:#FF6200;border-radius:10px;margin-bottom:6px;"></div>
+        <span style="font-size:11px;color:#999;">Orange<br>#FF6200</span>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:60px;height:60px;background:#01FFFF;border-radius:10px;margin-bottom:6px;"></div>
+        <span style="font-size:11px;color:#999;">Cyan<br>#01FFFF</span>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:60px;height:60px;background:#0a0a0a;border:1px solid #333;border-radius:10px;margin-bottom:6px;"></div>
+        <span style="font-size:11px;color:#999;">Black<br>#0A0A0A</span>
+      </div>
+    </div>
+    <p style="font-size:14px;color:#999;line-height:1.6;">The current logo uses a flat design with orange and cyan on black. It&rsquo;s clean and recognizable. The new concepts below build on this foundation with premium neon treatments while keeping the same core elements: the house, the text, and the &ldquo;WITH LEE&rdquo; tag.</p>
+  </div>
+  <span class="page-num">2 / 7</span>
+  <span class="es-badge">Exposure Solutions</span>
+</div>
+
+<!-- PAGE 3: ALL 4 OPTIONS OVERVIEW -->
+<div class="page page-dark">
+  <div class="tag tag-cyan">Overview</div>
+  <h1>4 New Concepts</h1>
+  <p class="subtitle">Each keeps the core DDWL elements with a bold neon treatment</p>
+
+  <div class="logo-grid">
+    <div class="logo-card">
+      <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/6990a763c08665a3b0d65616.png" alt="Option 1">
+      <h3>Option 1: <span class="cyan">The Holographic Glow</span></h3>
+      <p>Cyan-to-gold gradient, iridescent metallic text, reflective floor effect</p>
+    </div>
+    <div class="logo-card">
+      <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/6990a76336a392c3f033797b.png" alt="Option 2">
+      <h3>Option 2: <span class="orange">The Classic Neon</span></h3>
+      <p>True neon tube outlines, orange/blue split, clean and timeless</p>
+    </div>
+    <div class="logo-card">
+      <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/6990a76336a392a80533797a.png" alt="Option 3">
+      <h3>Option 3: <span class="cyan">The Brick Wall Neon</span></h3>
+      <p>Realistic neon on dark brick with mounting brackets and wiring</p>
+    </div>
+    <div class="logo-card">
+      <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/6990a7630084987c66721a4f.png" alt="Option 4">
+      <h3>Option 4: <span class="gold">The Premium Metal</span></h3>
+      <p>Brushed metal plaque, gold + cyan glow, executive luxury feel</p>
+    </div>
+  </div>
+  <span class="page-num">3 / 7</span>
+  <span class="es-badge">Exposure Solutions</span>
+</div>
+
+<!-- PAGE 4: OPTION 1 DETAIL -->
+<div class="page page-dark">
+  <div class="tag tag-cyan">Option 1</div>
+  <h1>The Holographic Glow</h1>
+  <p class="subtitle">Futuristic gradient with iridescent metallic quality</p>
+
+  <div class="detail-row">
+    <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/6990a763c08665a3b0d65616.png" alt="Option 1">
+    <div class="detail-text">
+      <h2 class="cyan">Style</h2>
+      <p class="style-desc">Holographic gradient with cyan-to-gold color shift and a soft ambient glow. The text has a metallic, iridescent quality with a reflective floor effect that adds depth and dimension.</p>
+      <h3>Best For</h3>
+      <p class="best-for"><strong>Social media headers</strong>, YouTube thumbnails, <strong>premium merch</strong>, event backdrops, digital ads. The gradient effect gives it a high-end, futuristic feel that stands out in feeds.</p>
+      <hr class="divider">
+      <p style="font-size:12px;color:#666;">Website version: dodealswithlee.com/home1</p>
+    </div>
+  </div>
+  <span class="page-num">4 / 7</span>
+  <span class="es-badge">Exposure Solutions</span>
+</div>
+
+<!-- PAGE 5: OPTION 2 DETAIL -->
+<div class="page page-dark">
+  <div class="tag tag-orange">Option 2</div>
+  <h1>The Classic Neon</h1>
+  <p class="subtitle">True neon tube aesthetic &mdash; timeless and instantly recognizable</p>
+
+  <div class="detail-row">
+    <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/6990a76336a392c3f033797b.png" alt="Option 2">
+    <div class="detail-text">
+      <h2 class="orange">Style</h2>
+      <p class="style-desc">True neon tube aesthetic with visible outlines and a warm orange-to-blue color split. &ldquo;DO&rdquo; and the house glow orange, &ldquo;DEALS&rdquo; glows electric blue. Clean, outlined letterforms with realistic neon tube rendering.</p>
+      <h3>Best For</h3>
+      <p class="best-for"><strong>Signage</strong>, office wall art, <strong>business cards</strong>, website hero sections. This is the most &ldquo;classic neon sign&rdquo; of the four &mdash; instantly recognizable and timeless.</p>
+      <hr class="divider">
+      <p style="font-size:12px;color:#666;">Website version: dodealswithlee.com/home2</p>
+    </div>
+  </div>
+  <span class="page-num">5 / 7</span>
+  <span class="es-badge">Exposure Solutions</span>
+</div>
+
+<!-- PAGE 6: OPTION 3 DETAIL -->
+<div class="page page-dark">
+  <div class="tag tag-cyan">Option 3</div>
+  <h1>The Brick Wall Neon Sign</h1>
+  <p class="subtitle">Photorealistic neon mounted on dark brick</p>
+
+  <div class="detail-row">
+    <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/6990a76336a392a80533797a.png" alt="Option 3">
+    <div class="detail-text">
+      <h2 class="cyan">Style</h2>
+      <p class="style-desc">Realistic neon sign mounted on a dark brick wall with visible mounting brackets and wiring. The most photorealistic of all four &mdash; looks like an actual neon sign you&rsquo;d see in a storefront or office lobby.</p>
+      <h3>Best For</h3>
+      <p class="best-for"><strong>Office/event space branding</strong>, Instagram content, <strong>podcast backgrounds</strong>, investor presentations. This version has the most &ldquo;real-world&rdquo; feel and would look incredible as an actual fabricated sign.</p>
+      <hr class="divider">
+      <p style="font-size:12px;color:#666;">Website version: dodealswithlee.com/home3</p>
+    </div>
+  </div>
+  <span class="page-num">6 / 7</span>
+  <span class="es-badge">Exposure Solutions</span>
+</div>
+
+<!-- PAGE 7: OPTION 4 DETAIL -->
+<div class="page page-dark">
+  <div class="tag tag-gold">Option 4</div>
+  <h1>The Premium Metal</h1>
+  <p class="subtitle">Brushed metal plaque with gold and cyan glow</p>
+
+  <div class="detail-row">
+    <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/6990a7630084987c66721a4f.png" alt="Option 4">
+    <div class="detail-text">
+      <h2 class="gold">Style</h2>
+      <p class="style-desc">Brushed metal plaque with gold &ldquo;DO&rdquo; and house, glowing cyan &ldquo;DEALS&rdquo;, and a gold &ldquo;WITH LEE&rdquo; tag. Combines metallic texture with neon glow for a luxury, executive feel.</p>
+      <h3>Best For</h3>
+      <p class="best-for"><strong>Premium merch</strong> (polos, dress shirts, awards), <strong>investor decks</strong>, business cards, LinkedIn banners. This is the most &ldquo;executive&rdquo; version &mdash; perfect for high-end positioning and VIP materials.</p>
+      <hr class="divider">
+      <p style="font-size:12px;color:#666;">Website version: dodealswithlee.com/home4</p>
+    </div>
+  </div>
+
+  <div style="margin-top:40px;padding:20px;background:rgba(0,229,255,0.05);border:1px solid rgba(0,229,255,0.15);border-radius:12px;">
+    <h3 style="margin-bottom:8px;">Next Steps</h3>
+    <p style="font-size:13px;color:#999;line-height:1.6;">Reply with your pick or let us know if you&rsquo;d like modifications. Whichever you choose, we&rsquo;ll create: transparent PNG, SVG vector, light &amp; dark versions, social media sizes, and merch-ready files. We can also get a real neon sign fabricated.</p>
+  </div>
+
+  <div class="footer-bar">
+    Prepared by Exposure Solutions &bull; daniel@exposuresolutions.me &bull; February 2026<br>
+    &copy; 2026 Do Deals With Lee&trade; &bull; All logos remain property of DDWL
+  </div>
+  <span class="page-num">7 / 7</span>
+  <span class="es-badge">Exposure Solutions</span>
+</div>
+
+</body>
+</html>

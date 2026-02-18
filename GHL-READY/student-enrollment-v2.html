@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Enrollment | Do Deals With Lee</title>
+<meta name="description" content="Learn real estate investing from Lee Kearney. 7,000+ deals, $500M+ volume. Enroll in Flip Your Income, Short Sale Mastery, or Deal Mastery Mentorship.">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    'lee-black': '#0a0a0a',
+                    'lee-dark': '#111111',
+                    'lee-card': '#161616',
+                    'lee-cyan': '#00e5ff',
+                    'lee-orange': '#ff6b00',
+                    'lee-gold': '#ffd700'
+                },
+                fontFamily: {
+                    'playfair': ['Playfair Display', 'serif'],
+                    'inter': ['Inter', 'system-ui', 'sans-serif']
+                }
+            }
+        }
+    }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+    /* GHL AGGRESSIVE RESET */
+    html, body, #preview-container, .hl-page-preview, .hl_page-preview,
+    [id*="preview"], [class*="preview"], [class*="page-"], [class*="hl_page"],
+    [class*="wrapper"], [class*="container"], [class*="section"],
+    .c-editor, .c-editor-content, .hl-page-creator,
+    #section-0, #section-1, #section-2, #section-3, #section-4, #section-5,
+    .inner-section, .section-element, .row-element, .column-element,
+    div[data-page-element], div[class*="element"], div[class*="row"],
+    main, article, section, header, footer, aside, nav,
+    .page-wrapper, .site-wrapper, .content-wrapper, .hl-wrapper,
+    .hl-container, .hl-section, .hl-row, .hl-column {
+        background: #0a0a0a !important;
+        background-color: #0a0a0a !important;
+        border: none !important;
+        border-color: #0a0a0a !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+        box-shadow: none !important;
+    }
+
+    .glass-card {
+        background: rgba(22, 22, 22, 0.8) !important;
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
+    .gradient-text {
+        background: linear-gradient(135deg, #00e5ff, #ffd700);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .hero-glow { box-shadow: 0 0 100px rgba(0, 229, 255, 0.3); }
+    .toast { transform: translateX(100%); transition: transform 0.3s ease; }
+    .toast.show { transform: translateX(0); }
+    .modal-overlay { display: none; }
+    .modal-overlay.open { display: flex; }
+</style>
+</head>
+
+<body class="bg-lee-black text-white font-inter overflow-x-hidden">
+
+<!-- Navigation -->
+<nav class="fixed top-0 w-full z-50 glass-card">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <a href="https://dodealswithlee.com">
+            <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/67630a6111b3975ed85ffd20.svg" alt="DDWL" class="h-8">
+        </a>
+        <div class="hidden md:flex space-x-8">
+            <a href="https://dodealswithlee.com" class="hover:text-lee-cyan transition-colors">Home</a>
+            <a href="#programs" class="hover:text-lee-cyan transition-colors">Programs</a>
+            <a href="#benefits" class="hover:text-lee-cyan transition-colors">What You Get</a>
+            <a href="#process" class="hover:text-lee-cyan transition-colors">How It Works</a>
+            <a href="https://dodealswithlee.com/careersportal" class="hover:text-lee-cyan transition-colors">Careers</a>
+        </div>
+        <a href="#programs" class="bg-lee-cyan text-lee-black px-6 py-2 rounded-lg font-semibold hover:bg-lee-gold transition-all">
+            Enroll Now
+        </a>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="min-h-[70vh] flex items-center relative overflow-hidden pt-20">
+    <div class="absolute inset-0 opacity-10">
+        <div class="hero-glow absolute top-1/4 left-1/4 w-96 h-96 rounded-full"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-8">
+            <h1 class="text-5xl lg:text-7xl font-playfair font-bold leading-tight">
+                Learn to
+                <span class="gradient-text">Do Deals</span>
+                With Lee
+            </h1>
+
+            <p class="text-xl text-gray-300 leading-relaxed">
+                Real estate investing education from someone who&rsquo;s actually done it.
+                <strong class="text-lee-cyan">7,000+ deals. $500M+ in volume.</strong>
+                No theory &mdash; just proven systems you can use today.
+            </p>
+
+            <div class="flex flex-wrap gap-4">
+                <div class="flex items-center space-x-2">
+                    <i data-lucide="trending-up" class="w-5 h-5 text-lee-gold"></i>
+                    <span>7,000+ Deals Closed</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <i data-lucide="award" class="w-5 h-5 text-lee-gold"></i>
+                    <span>Inc. 5000 Recognized</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <i data-lucide="users" class="w-5 h-5 text-lee-gold"></i>
+                    <span>500+ Students Trained</span>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4">
+                <button onclick="scrollTo('#programs')" class="bg-lee-cyan text-lee-black px-8 py-4 rounded-lg font-semibold hover:bg-lee-gold transition-all flex items-center justify-center space-x-2">
+                    <span>View Programs</span>
+                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </button>
+                <button onclick="scrollTo('#benefits')" class="border border-lee-cyan text-lee-cyan px-8 py-4 rounded-lg font-semibold hover:bg-lee-cyan hover:text-lee-black transition-all">
+                    What You Get
+                </button>
+            </div>
+        </div>
+
+        <div class="relative hidden lg:block">
+            <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/6740d661a865994979d38612.webp"
+                 alt="Lee Kearney" class="w-full rounded-2xl shadow-2xl">
+            <div class="absolute -bottom-6 -right-6 glass-card p-6 rounded-xl">
+                <div class="text-3xl font-bold text-lee-gold">$500M+</div>
+                <div class="text-sm text-gray-400">Total Sales Volume</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Programs -->
+<section id="programs" class="py-20 bg-lee-dark">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl lg:text-6xl font-playfair font-bold mb-6">
+                Choose Your <span class="gradient-text">Program</span>
+            </h2>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                Every program includes mentorship, real-deal access, and AI-powered tools.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8" id="programGrid"></div>
+    </div>
+</section>
+
+<!-- What You Get -->
+<section id="benefits" class="py-20">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl lg:text-5xl font-playfair font-bold mb-6">
+                What You <span class="gradient-text">Get</span>
+            </h2>
+            <p class="text-xl text-gray-300">This isn&rsquo;t a course you watch and forget. It&rsquo;s a system you use.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="glass-card p-8 rounded-xl text-center">
+                <div class="w-16 h-16 bg-lee-cyan rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i data-lucide="target" class="w-8 h-8 text-lee-black"></i>
+                </div>
+                <h3 class="text-xl font-playfair font-bold mb-4">Real Deal Access</h3>
+                <p class="text-gray-300">Work on actual deals alongside Lee&rsquo;s team. See the numbers, the negotiations, the closings.</p>
+            </div>
+
+            <div class="glass-card p-8 rounded-xl text-center border-2 border-lee-gold relative">
+                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-lee-gold text-lee-black px-4 py-1 rounded-full text-sm font-bold">
+                    GAME CHANGER
+                </div>
+                <div class="w-16 h-16 bg-lee-gold rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i data-lucide="brain" class="w-8 h-8 text-lee-black"></i>
+                </div>
+                <h3 class="text-xl font-playfair font-bold mb-4">AI-Powered Tools</h3>
+                <p class="text-gray-300">Proprietary AI agents that analyze deals, generate comps, and automate your workflow.</p>
+            </div>
+
+            <div class="glass-card p-8 rounded-xl text-center">
+                <div class="w-16 h-16 bg-lee-orange rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i data-lucide="phone" class="w-8 h-8 text-white"></i>
+                </div>
+                <h3 class="text-xl font-playfair font-bold mb-4">Live Mentorship</h3>
+                <p class="text-gray-300">Weekly live calls with Lee and the team. Ask questions, get feedback, stay accountable.</p>
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 mt-8">
+            <div class="glass-card p-8 rounded-xl text-center">
+                <div class="w-16 h-16 bg-lee-cyan rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i data-lucide="book-open" class="w-8 h-8 text-lee-black"></i>
+                </div>
+                <h3 class="text-xl font-playfair font-bold mb-4">Complete Playbook</h3>
+                <p class="text-gray-300">Scripts, templates, checklists, and SOPs for every step of the deal process.</p>
+            </div>
+
+            <div class="glass-card p-8 rounded-xl text-center">
+                <div class="w-16 h-16 bg-lee-gold rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i data-lucide="users" class="w-8 h-8 text-lee-black"></i>
+                </div>
+                <h3 class="text-xl font-playfair font-bold mb-4">Community Access</h3>
+                <p class="text-gray-300">Private network of active investors. Share deals, ask questions, find partners.</p>
+            </div>
+
+            <div class="glass-card p-8 rounded-xl text-center">
+                <div class="w-16 h-16 bg-lee-orange rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i data-lucide="refresh-cw" class="w-8 h-8 text-white"></i>
+                </div>
+                <h3 class="text-xl font-playfair font-bold mb-4">Lifetime Updates</h3>
+                <p class="text-gray-300">Markets change. Our content updates with them. You get every update, forever.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Student Results -->
+<section class="py-20 bg-lee-dark">
+    <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-4xl font-playfair font-bold text-center mb-16">
+            Student <span class="gradient-text">Results</span>
+        </h2>
+
+        <div class="grid md:grid-cols-4 gap-8 mb-16">
+            <div class="text-center">
+                <div class="text-4xl font-bold text-lee-gold mb-2">500+</div>
+                <div class="text-gray-400">Students Trained</div>
+            </div>
+            <div class="text-center">
+                <div class="text-4xl font-bold text-lee-cyan mb-2">60</div>
+                <div class="text-gray-400">Days to First Deal (avg)</div>
+            </div>
+            <div class="text-center">
+                <div class="text-4xl font-bold text-lee-orange mb-2">92%</div>
+                <div class="text-gray-400">Completion Rate</div>
+            </div>
+            <div class="text-center">
+                <div class="text-4xl font-bold text-lee-gold mb-2">4.9</div>
+                <div class="text-gray-400">Student Rating</div>
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="glass-card p-6 rounded-xl">
+                <div class="flex items-center space-x-4 mb-4">
+                    <div class="w-12 h-12 bg-lee-cyan rounded-full flex items-center justify-center font-bold text-lee-black">JM</div>
+                    <div>
+                        <h4 class="font-bold">James M.</h4>
+                        <p class="text-sm text-gray-400">Flip Your Income Graduate</p>
+                    </div>
+                </div>
+                <p class="text-gray-300">&ldquo;Closed my first deal within 60 days of joining. The AI tools alone are worth 10x the investment.&rdquo;</p>
+            </div>
+            <div class="glass-card p-6 rounded-xl">
+                <div class="flex items-center space-x-4 mb-4">
+                    <div class="w-12 h-12 bg-lee-gold rounded-full flex items-center justify-center font-bold text-lee-black">AT</div>
+                    <div>
+                        <h4 class="font-bold">Ashley T.</h4>
+                        <p class="text-sm text-gray-400">Short Sale Mastery Graduate</p>
+                    </div>
+                </div>
+                <p class="text-gray-300">&ldquo;Lee doesn&rsquo;t just teach theory. He shows you his actual deals, his actual numbers. That&rsquo;s what makes this different.&rdquo;</p>
+            </div>
+            <div class="glass-card p-6 rounded-xl">
+                <div class="flex items-center space-x-4 mb-4">
+                    <div class="w-12 h-12 bg-lee-orange rounded-full flex items-center justify-center font-bold text-white">RK</div>
+                    <div>
+                        <h4 class="font-bold">Robert K.</h4>
+                        <p class="text-sm text-gray-400">Deal Mastery Student</p>
+                    </div>
+                </div>
+                <p class="text-gray-300">&ldquo;The community is incredible. I found my first JV partner through the group and we&rsquo;ve done 3 deals together since.&rdquo;</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works -->
+<section id="process" class="py-20">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl lg:text-5xl font-playfair font-bold mb-6">
+                How It <span class="gradient-text">Works</span>
+            </h2>
+            <p class="text-xl text-gray-300">Simple. Fast. No BS.</p>
+        </div>
+
+        <div class="grid md:grid-cols-4 gap-8">
+            <div class="glass-card p-8 rounded-xl text-center relative">
+                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-lee-cyan rounded-full flex items-center justify-center text-lee-black font-bold text-sm">1</div>
+                <div class="w-14 h-14 bg-lee-cyan/20 rounded-full flex items-center justify-center mx-auto mb-4 mt-2">
+                    <i data-lucide="edit" class="w-7 h-7 text-lee-cyan"></i>
+                </div>
+                <h4 class="font-bold mb-2">Enroll</h4>
+                <p class="text-sm text-gray-400">Pick your program and fill out the form. Takes 2 minutes.</p>
+            </div>
+            <div class="glass-card p-8 rounded-xl text-center relative">
+                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-lee-gold rounded-full flex items-center justify-center text-lee-black font-bold text-sm">2</div>
+                <div class="w-14 h-14 bg-lee-gold/20 rounded-full flex items-center justify-center mx-auto mb-4 mt-2">
+                    <i data-lucide="key" class="w-7 h-7 text-lee-gold"></i>
+                </div>
+                <h4 class="font-bold mb-2">Get Access</h4>
+                <p class="text-sm text-gray-400">Instant access to course materials, AI tools, and community.</p>
+            </div>
+            <div class="glass-card p-8 rounded-xl text-center relative">
+                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-lee-orange rounded-full flex items-center justify-center text-white font-bold text-sm">3</div>
+                <div class="w-14 h-14 bg-lee-orange/20 rounded-full flex items-center justify-center mx-auto mb-4 mt-2">
+                    <i data-lucide="book-open" class="w-7 h-7 text-lee-orange"></i>
+                </div>
+                <h4 class="font-bold mb-2">Learn &amp; Do</h4>
+                <p class="text-sm text-gray-400">Follow the system. Attend live calls. Work on real deals.</p>
+            </div>
+            <div class="glass-card p-8 rounded-xl text-center relative">
+                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm">4</div>
+                <div class="w-14 h-14 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4 mt-2">
+                    <i data-lucide="dollar-sign" class="w-7 h-7 text-green-400"></i>
+                </div>
+                <h4 class="font-bold mb-2">Close Deals</h4>
+                <p class="text-sm text-gray-400">Apply what you learn. Close your first deal. Scale from there.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-lee-dark py-16">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid md:grid-cols-4 gap-8 mb-12">
+            <div>
+                <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/67630a6111b3975ed85ffd20.svg" alt="DDWL" class="h-8 mb-4">
+                <p class="text-gray-400 mb-4">Real estate education from someone who&rsquo;s actually done it.</p>
+            </div>
+            <div>
+                <h4 class="font-bold mb-4">Site</h4>
+                <ul class="space-y-2 text-gray-400">
+                    <li><a href="https://dodealswithlee.com" class="hover:text-lee-cyan transition-colors">Home</a></li>
+                    <li><a href="https://dodealswithlee.com/studentenrollment" class="hover:text-lee-cyan transition-colors">Student Enrollment</a></li>
+                    <li><a href="https://dodealswithlee.com/careersportal" class="hover:text-lee-cyan transition-colors">Careers</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-4">Programs</h4>
+                <ul class="space-y-2 text-gray-400">
+                    <li>Flip Your Income</li>
+                    <li>Short Sale Mastery</li>
+                    <li>Deal Mastery Mentorship</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-4">Contact</h4>
+                <div class="space-y-2 text-gray-400">
+                    <div class="flex items-center space-x-2"><i data-lucide="phone" class="w-4 h-4"></i><span>813-675-0916</span></div>
+                    <div class="flex items-center space-x-2"><i data-lucide="mail" class="w-4 h-4"></i><span>info@dodealswithlee.com</span></div>
+                    <div class="flex items-start space-x-2"><i data-lucide="map-pin" class="w-4 h-4 mt-1"></i><span>PO Box 172566<br>Tampa FL 33672</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+            <p>&copy; 2025 Do Deals With Lee&trade; | All rights reserved. | Every enrollment inquiry receives a personal response within 24 hours.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Enrollment Modal -->
+<div class="modal-overlay fixed inset-0 bg-black/85 z-[200] overflow-y-auto items-start justify-center p-4" id="modalOverlay">
+    <div class="glass-card rounded-xl max-w-2xl w-full mx-auto my-10">
+        <div class="flex justify-between items-center p-6 border-b border-white/10">
+            <h2 class="text-xl font-playfair font-bold" id="modalTitle">Enroll Now</h2>
+            <button onclick="closeModal()" class="text-gray-400 hover:text-white text-2xl">&times;</button>
+        </div>
+        <div class="p-6" id="modalBody">
+            <form id="enrollForm" class="space-y-5">
+                <input type="hidden" id="fProgramId" name="programId">
+                <input type="hidden" id="fProgramTitle" name="programTitle">
+
+                <div class="grid md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">First Name *</label>
+                        <input type="text" name="firstName" required class="w-full bg-lee-black border border-gray-600 rounded-lg px-4 py-3 focus:border-lee-cyan focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">Last Name *</label>
+                        <input type="text" name="lastName" required class="w-full bg-lee-black border border-gray-600 rounded-lg px-4 py-3 focus:border-lee-cyan focus:outline-none">
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">Email *</label>
+                        <input type="email" name="email" required class="w-full bg-lee-black border border-gray-600 rounded-lg px-4 py-3 focus:border-lee-cyan focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">Phone *</label>
+                        <input type="tel" name="phone" required class="w-full bg-lee-black border border-gray-600 rounded-lg px-4 py-3 focus:border-lee-cyan focus:outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold mb-2">Location</label>
+                    <input type="text" name="location" class="w-full bg-lee-black border border-gray-600 rounded-lg px-4 py-3 focus:border-lee-cyan focus:outline-none" placeholder="City, State">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold mb-2">Experience Level *</label>
+                    <select name="experience" required class="w-full bg-lee-black border border-gray-600 rounded-lg px-4 py-3 focus:border-lee-cyan focus:outline-none">
+                        <option value="">Select your level...</option>
+                        <option value="complete-beginner">Complete Beginner &mdash; Never done a deal</option>
+                        <option value="some-knowledge">Some Knowledge &mdash; Studied but no deals yet</option>
+                        <option value="1-5-deals">1-5 Deals &mdash; Getting started</option>
+                        <option value="5-20-deals">5-20 Deals &mdash; Intermediate</option>
+                        <option value="20-plus">20+ Deals &mdash; Experienced, want to scale</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold mb-2">What&rsquo;s your #1 goal? *</label>
+                    <select name="goal" required class="w-full bg-lee-black border border-gray-600 rounded-lg px-4 py-3 focus:border-lee-cyan focus:outline-none">
+                        <option value="">Select...</option>
+                        <option value="first-deal">Close my first deal</option>
+                        <option value="quit-job">Replace my W-2 income</option>
+                        <option value="scale">Scale to 10+ deals/month</option>
+                        <option value="short-sales">Master short sales</option>
+                        <option value="loss-mitigation">Learn loss mitigation</option>
+                        <option value="wholesaling">Start wholesaling</option>
+                        <option value="flipping">Learn to flip houses</option>
+                        <option value="passive-income">Build passive rental income</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold mb-2">Tell us about yourself</label>
+                    <textarea name="about" rows="3" class="w-full bg-lee-black border border-gray-600 rounded-lg px-4 py-3 focus:border-lee-cyan focus:outline-none" placeholder="Background, goals, questions..."></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold mb-2">How did you hear about us?</label>
+                    <select name="source" class="w-full bg-lee-black border border-gray-600 rounded-lg px-4 py-3 focus:border-lee-cyan focus:outline-none">
+                        <option value="">Select...</option>
+                        <option value="google">Google Search</option>
+                        <option value="youtube">YouTube</option>
+                        <option value="instagram">Instagram</option>
+                        <option value="tiktok">TikTok</option>
+                        <option value="facebook">Facebook</option>
+                        <option value="referral">Friend/Referral</option>
+                        <option value="podcast">Podcast</option>
+                        <option value="event">Live Event</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-lee-cyan to-lee-gold text-lee-black py-4 rounded-lg font-bold text-lg hover:opacity-90 transition-all">
+                    Submit Enrollment
+                </button>
+            </form>
+
+            <div id="successMsg" class="text-center py-12 hidden">
+                <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i data-lucide="check" class="w-8 h-8 text-white"></i>
+                </div>
+                <h3 class="text-2xl font-playfair font-bold mb-3 text-green-400">Enrollment Submitted!</h3>
+                <p class="text-gray-300 mb-2">Thank you for your interest in learning with Lee.</p>
+                <p class="text-gray-300">A member of our team will reach out within 24 hours to get you started.</p>
+                <p class="text-gray-500 text-sm mt-4">Reference: <strong id="enrollRef"></strong></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Toast -->
+<div id="toast" class="toast fixed top-20 right-6 z-50 glass-card p-4 rounded-lg max-w-sm">
+    <div class="flex items-center space-x-3">
+        <div class="w-8 h-8 rounded-full flex items-center justify-center bg-green-500">
+            <i data-lucide="check" class="w-5 h-5 text-white"></i>
+        </div>
+        <div>
+            <div id="toastTitle" class="font-semibold"></div>
+            <div id="toastMsg" class="text-sm text-gray-400"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Font Loading -->
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+WebFont.load({
+    google: { families: ['Inter:300,400,500,600,700,800,900', 'Playfair Display:400,600,700,800'] },
+    active: function() { document.body.style.fontFamily = "'Inter', system-ui, sans-serif"; }
+});
+</script>
+
+<script>
+lucide.createIcons();
+gsap.registerPlugin(ScrollTrigger);
+gsap.from("h1", { duration: 1.2, y: 50, opacity: 0, ease: "power2.out" });
+gsap.from("h1 + p", { duration: 1.2, y: 30, opacity: 0, ease: "power2.out", delay: 0.2 });
+gsap.utils.toArray('.glass-card').forEach(function(card) {
+    gsap.from(card, { scrollTrigger: card, y: 50, opacity: 0, duration: 0.8, ease: "power2.out" });
+});
+
+function scrollTo(sel) {
+    document.querySelector(sel).scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ============================================================
+// PROGRAMS
+// ============================================================
+var PROGRAMS = [
+    {
+        id: "flip-your-income",
+        title: "Flip Your Income",
+        price: "$2,997",
+        duration: "12 Weeks",
+        popular: true,
+        color: "lee-gold",
+        icon: "trending-up",
+        description: "The flagship program. Learn Lee's complete system for finding, analyzing, negotiating, and closing real estate deals.",
+        includes: ["24 video modules", "Weekly live Q&A with Lee", "Deal analysis AI tools", "Private community access", "Scripts & templates", "Lifetime updates"]
+    },
+    {
+        id: "short-sale-mastery",
+        title: "Short Sale Mastery",
+        price: "$1,997",
+        duration: "8 Weeks",
+        popular: false,
+        color: "lee-cyan",
+        icon: "shield",
+        description: "Master the art of short sales. Learn how to negotiate with banks, structure deals, and close short sales consistently.",
+        includes: ["16 video modules", "Bank negotiation scripts", "Live deal walkthroughs", "Short sale templates", "Community access"]
+    },
+    {
+        id: "deal-mastery-mentorship",
+        title: "Deal Mastery Mentorship",
+        price: "Apply",
+        duration: "6 Months",
+        popular: false,
+        isNew: true,
+        color: "lee-orange",
+        icon: "crown",
+        description: "The ultimate hands-on experience. Work directly with Lee's team on live deals. Limited to 10 students per cohort.",
+        includes: ["1-on-1 mentorship with Lee", "Live deal participation", "All courses included", "Priority AI tool access", "JV deal opportunities", "6 months of support"]
+    }
+];
+
+var CONFIG = {
+    ghlWebhook: "https://services.leadconnectorhq.com/hooks/KbiucErIMNPbO1mY4qXL/webhook-trigger/mCdlXsgchQ4v9BQeIa9E"
+};
+
+function renderPrograms() {
+    var grid = document.getElementById('programGrid');
+    grid.innerHTML = PROGRAMS.map(function(p) {
+        var borderClass = p.popular ? ' border-2 border-lee-gold' : '';
+        var badge = p.popular ? '<div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-lee-gold text-lee-black px-4 py-1 rounded-full text-sm font-bold">MOST POPULAR</div>' : '';
+        if (p.isNew) badge = '<div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-1 rounded-full text-sm font-bold">NEW</div>';
+
+        var includes = p.includes.map(function(i) {
+            return '<li class="flex items-center space-x-2 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-' + p.color + ' flex-shrink-0"></i><span>' + i + '</span></li>';
+        }).join('');
+
+        var btnText = p.price === 'Apply' ? 'Apply Now' : 'Enroll Now';
+
+        return '<div class="glass-card p-8 rounded-xl relative' + borderClass + '">' +
+            badge +
+            '<div class="w-16 h-16 bg-' + p.color + ' rounded-full flex items-center justify-center mx-auto mb-6"><i data-lucide="' + p.icon + '" class="w-8 h-8 text-lee-black"></i></div>' +
+            '<h3 class="text-2xl font-playfair font-bold text-center mb-2">' + p.title + '</h3>' +
+            '<div class="text-center text-sm text-gray-400 mb-4">' + p.duration + '</div>' +
+            '<p class="text-gray-300 text-center mb-6">' + p.description + '</p>' +
+            '<ul class="space-y-2 mb-8">' + includes + '</ul>' +
+            '<div class="text-center mb-6"><div class="text-3xl font-bold text-' + p.color + '">' + p.price + '</div></div>' +
+            '<button onclick="openEnroll(\'' + p.id + '\')" class="w-full bg-' + p.color + ' text-lee-black py-3 rounded-lg font-bold hover:opacity-80 transition-all">' + btnText + '</button>' +
+            '</div>';
+    }).join('');
+
+    lucide.createIcons();
+}
+
+// ============================================================
+// ENROLLMENT MODAL
+// ============================================================
+function openEnroll(programId) {
+    var p = PROGRAMS.find(function(x) { return x.id === programId; });
+    if (!p) return;
+    document.getElementById('fProgramId').value = p.id;
+    document.getElementById('fProgramTitle').value = p.title;
+    document.getElementById('modalTitle').textContent = 'Enroll: ' + p.title;
+    document.getElementById('enrollForm').style.display = 'block';
+    document.getElementById('successMsg').classList.add('hidden');
+    document.getElementById('enrollForm').reset();
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+document.getElementById('modalOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+});
+
+// ============================================================
+// SUBMIT
+// ============================================================
+document.getElementById('enrollForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
+
+    var fd = new FormData(this);
+    var data = {};
+    fd.forEach(function(v, k) { data[k] = v; });
+
+    var ref = 'DDWL-STU-' + Date.now().toString(36).toUpperCase();
+    data.enrollmentRef = ref;
+    data.enrolledAt = new Date().toISOString();
+    data.type = 'student-enrollment';
+    data.tags = ['student-inquiry', 'new-enrollment', data.programId];
+
+    // localStorage bridge
+    try {
+        var pending = JSON.parse(localStorage.getItem('ddwl_pending_applications')) || [];
+        pending.push(data);
+        localStorage.setItem('ddwl_pending_applications', JSON.stringify(pending));
+    } catch(err) {}
+
+    // GHL webhook
+    fetch(CONFIG.ghlWebhook, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
+    .then(function() { showSuccess(ref); })
+    .catch(function() { showSuccess(ref); });
+});
+
+function showSuccess(ref) {
+    document.getElementById('enrollForm').style.display = 'none';
+    document.getElementById('enrollRef').textContent = ref;
+    document.getElementById('successMsg').classList.remove('hidden');
+    lucide.createIcons();
+    showToast('Enrollment Submitted!', 'We\'ll be in touch within 24 hours.');
+}
+
+function showToast(title, msg) {
+    document.getElementById('toastTitle').textContent = title;
+    document.getElementById('toastMsg').textContent = msg;
+    document.getElementById('toast').classList.add('show');
+    setTimeout(function() { document.getElementById('toast').classList.remove('show'); }, 5000);
+}
+
+// INIT
+renderPrograms();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DDWL Mission Control</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0a0a0a; --card: #111; --card-border: #1a1a1a;
+    --cyan: #00e5ff; --cyan-dim: rgba(0,229,255,0.15);
+    --orange: #ff6b00; --orange-dim: rgba(255,107,0,0.15);
+    --green: #00e676; --green-dim: rgba(0,230,118,0.15);
+    --red: #ff4444; --red-dim: rgba(255,68,68,0.15);
+    --yellow: #ffd700; --yellow-dim: rgba(255,215,0,0.15);
+    --text: #e8e8e8; --muted: #666; --dim: #333;
+  }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    min-height: 100vh; padding: 24px;
+  }
+  a { color: var(--cyan); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Header */
+  .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; flex-wrap: wrap; gap: 12px; }
+  .header h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
+  .header h1 span { color: var(--cyan); }
+  .header-meta { display: flex; align-items: center; gap: 16px; font-size: 13px; color: var(--muted); }
+  .header-meta .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); animation: pulse-dot 2s infinite; }
+  @keyframes pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  /* Grid */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; }
+
+  /* Cards */
+  .card {
+    background: var(--card); border: 1px solid var(--card-border);
+    border-radius: 12px; padding: 20px; position: relative; overflow: hidden;
+  }
+  .card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--cyan); opacity: 0.5;
+  }
+  .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+  .card-title { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); }
+  .card-badge {
+    font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .badge-online { background: var(--green-dim); color: var(--green); }
+  .badge-offline { background: var(--red-dim); color: var(--red); }
+  .badge-pending { background: var(--yellow-dim); color: var(--yellow); }
+  .badge-idle { background: var(--cyan-dim); color: var(--cyan); }
+
+  /* Agent cards */
+  .agent-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--card-border); }
+  .agent-row:last-child { border-bottom: none; }
+  .agent-avatar {
+    width: 36px; height: 36px; border-radius: 50%; display: flex;
+    align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex-shrink: 0;
+  }
+  .agent-info { flex: 1; }
+  .agent-name { font-weight: 600; font-size: 14px; }
+  .agent-role { font-size: 12px; color: var(--muted); }
+  .agent-status { font-size: 11px; font-weight: 600; }
+
+  /* Stat rows */
+  .stat-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--card-border); }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-label { color: var(--muted); font-size: 13px; }
+  .stat-value { font-weight: 600; font-size: 13px; }
+
+  /* Big numbers */
+  .big-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 14px; }
+  .big-stat { text-align: center; }
+  .big-stat-num { font-size: 28px; font-weight: 700; color: var(--cyan); }
+  .big-stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* Log */
+  .log-entry { padding: 6px 0; border-bottom: 1px solid var(--card-border); font-size: 12px; font-family: 'JetBrains Mono', 'Fira Code', monospace; }
+  .log-entry:last-child { border-bottom: none; }
+  .log-time { color: var(--muted); margin-right: 8px; }
+  .log-tag { font-weight: 600; margin-right: 6px; }
+  .log-tag-scout { color: var(--cyan); }
+  .log-tag-lilly { color: var(--green); }
+  .log-tag-builder { color: var(--orange); }
+  .log-tag-voice { color: var(--yellow); }
+  .log-tag-system { color: var(--red); }
+
+  /* Quick actions */
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; }
+  .action-btn {
+    padding: 8px 16px; border-radius: 8px; border: 1px solid var(--dim);
+    background: transparent; color: var(--text); font-size: 13px; cursor: pointer;
+    font-family: inherit; transition: all 0.15s;
+  }
+  .action-btn:hover { border-color: var(--cyan); color: var(--cyan); background: var(--cyan-dim); }
+  .action-btn-primary { border-color: var(--cyan); color: var(--cyan); background: var(--cyan-dim); }
+
+  /* Full-width card */
+  .card-full { grid-column: 1 / -1; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    body { padding: 12px; }
+    .grid { grid-template-columns: 1fr; }
+    .big-stats { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1><span>DDWL</span> Mission Control</h1>
+  <div class="header-meta">
+    <div class="live-dot"></div>
+    <span id="clock">--:--:--</span>
+    <span>|</span>
+    <span id="uptime">Uptime: --</span>
+  </div>
+</div>
+
+<!-- Big Stats -->
+<div class="grid" style="margin-bottom: 16px;">
+  <div class="card card-full">
+    <div class="big-stats">
+      <div class="big-stat">
+        <div class="big-stat-num" id="stat-agents">4</div>
+        <div class="big-stat-label">Agents</div>
+      </div>
+      <div class="big-stat">
+        <div class="big-stat-num" id="stat-contacts">--</div>
+        <div class="big-stat-label">GHL Contacts</div>
+      </div>
+      <div class="big-stat">
+        <div class="big-stat-num" id="stat-cost">$0</div>
+        <div class="big-stat-label">Today's Cost</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="grid">
+
+  <!-- Agent Team -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Agent Team</div>
+      <div class="card-badge badge-online">All Online</div>
+    </div>
+    <div class="agent-row">
+      <div class="agent-avatar" style="background:var(--green-dim);color:var(--green);">L</div>
+      <div class="agent-info">
+        <div class="agent-name">Lilly</div>
+        <div class="agent-role">Chief of Staff — Telegram Bot</div>
+      </div>
+      <div class="agent-status" style="color:var(--green);">ACTIVE</div>
+    </div>
+    <div class="agent-row">
+      <div class="agent-avatar" style="background:var(--cyan-dim);color:var(--cyan);">S</div>
+      <div class="agent-info">
+        <div class="agent-name">Scout</div>
+        <div class="agent-role">Research & Intelligence</div>
+      </div>
+      <div class="agent-status" style="color:var(--cyan);">IDLE</div>
+    </div>
+    <div class="agent-row">
+      <div class="agent-avatar" style="background:var(--orange-dim);color:var(--orange);">B</div>
+      <div class="agent-info">
+        <div class="agent-name">Builder</div>
+        <div class="agent-role">Dev & Automation</div>
+      </div>
+      <div class="agent-status" style="color:var(--cyan);">IDLE</div>
+    </div>
+    <div class="agent-row">
+      <div class="agent-avatar" style="background:var(--yellow-dim);color:var(--yellow);">V</div>
+      <div class="agent-info">
+        <div class="agent-name">Voice</div>
+        <div class="agent-role">Content & Communications</div>
+      </div>
+      <div class="agent-status" style="color:var(--cyan);">IDLE</div>
+    </div>
+  </div>
+
+  <!-- Services -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Services</div>
+      <div class="card-badge badge-online">Healthy</div>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Telegram Bot</span>
+      <span class="stat-value" style="color:var(--green);">Running</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Chat Widget API</span>
+      <span class="stat-value" style="color:var(--green);">:8090</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Morning Brief Cron</span>
+      <span class="stat-value" style="color:var(--green);">7:00 AM</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Email Watcher</span>
+      <span class="stat-value" style="color:var(--yellow);">Pending</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Tailscale VPN</span>
+      <span class="stat-value" style="color:var(--green);">Connected</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Mission Control</span>
+      <span class="stat-value" style="color:var(--green);">:8080</span>
+    </div>
+  </div>
+
+  <!-- API Health -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">API Health</div>
+      <div class="card-badge badge-online">6/8</div>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Groq (primary)</span>
+      <span class="stat-value" style="color:var(--green);">0.3s — Free</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Mistral</span>
+      <span class="stat-value" style="color:var(--green);">0.3s — Free</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Cerebras</span>
+      <span class="stat-value" style="color:var(--green);">0.4s — Free</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Google Gemini</span>
+      <span class="stat-value" style="color:var(--green);">4.7s — Free</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">ElevenLabs</span>
+      <span class="stat-value" style="color:var(--green);">~$5/mo</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">GoHighLevel</span>
+      <span class="stat-value" style="color:var(--green);">Active</span>
+    </div>
+  </div>
+
+  <!-- GHL Overview -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">GoHighLevel</div>
+      <div class="card-badge badge-online">Connected</div>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Location</span>
+      <span class="stat-value">KbiucErIMNPbO1mY4qXL</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Workflows</span>
+      <span class="stat-value">2 (1 published, 1 draft)</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Phone</span>
+      <span class="stat-value">(813) 675-0916</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">AI Builder</span>
+      <span class="stat-value" style="color:var(--green);">Enabled</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Voice AI</span>
+      <span class="stat-value" style="color:var(--yellow);">Draft</span>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Quick Actions</div>
+    </div>
+    <div class="actions">
+      <button class="action-btn action-btn-primary" onclick="action('brief')">Run Morning Brief</button>
+      <button class="action-btn" onclick="action('trends')">Scan Trends</button>
+      <button class="action-btn" onclick="action('health')">API Health Check</button>
+      <button class="action-btn" onclick="action('restart-bot')">Restart Telegram Bot</button>
+      <button class="action-btn" onclick="action('logs')">View Logs</button>
+      <button class="action-btn" onclick="action('usage')">Usage Report</button>
+    </div>
+    <div id="action-output" style="margin-top:12px;font-size:12px;color:var(--muted);font-family:monospace;display:none;"></div>
+  </div>
+
+  <!-- Today's Brief -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Latest Morning Brief</div>
+      <div class="card-badge badge-idle" id="brief-date">Today</div>
+    </div>
+    <div style="font-size:13px;line-height:1.6;color:var(--muted);" id="brief-summary">
+      <strong style="color:var(--text);">Tampa Bay:</strong> Home prices expected to dip in 2026. Median earners priced out (Axios). Investors getting first real opening since 2020.<br><br>
+      <strong style="color:var(--text);">Wholesaling:</strong> Ohio + Oklahoma passing bills to regulate wholesaling — monitor compliance.<br><br>
+      <strong style="color:var(--text);">AI:</strong> Forbes, Google, TechRadar predict AI agents transform business in 2026.<br><br>
+      <strong style="color:var(--text);">Action:</strong> Review Tampa Bay price drops for buying opportunities.
+    </div>
+  </div>
+
+  <!-- Activity Log -->
+  <div class="card card-full">
+    <div class="card-header">
+      <div class="card-title">Activity Log</div>
+      <div class="card-badge badge-idle">Live</div>
+    </div>
+    <div id="log-container">
+      <div class="log-entry"><span class="log-time">09:07</span><span class="log-tag log-tag-system">SYSTEM</span> Ubuntu installing on Lenovo Mini PC</div>
+      <div class="log-entry"><span class="log-time">04:50</span><span class="log-tag log-tag-builder">BUILDER</span> Chat widget + API backend created</div>
+      <div class="log-entry"><span class="log-time">04:44</span><span class="log-tag log-tag-scout">SCOUT</span> TJ Mulloy research dossier completed</div>
+      <div class="log-entry"><span class="log-time">04:37</span><span class="log-tag log-tag-builder">BUILDER</span> Agent identity files created (Lilly, Scout, Builder, Voice)</div>
+      <div class="log-entry"><span class="log-time">04:32</span><span class="log-tag log-tag-scout">SCOUT</span> Morning brief generated + sent to Telegram</div>
+      <div class="log-entry"><span class="log-time">04:31</span><span class="log-tag log-tag-scout">SCOUT</span> Scout wired into Telegram (/trends, /news, /brief)</div>
+      <div class="log-entry"><span class="log-time">04:28</span><span class="log-tag log-tag-scout">SCOUT</span> Scout agent rebuilt on Groq (free) — tested OK</div>
+      <div class="log-entry"><span class="log-time">04:00</span><span class="log-tag log-tag-lilly">LILLY</span> Telegram bot session started</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// Clock
+function updateClock() {
+  var now = new Date();
+  document.getElementById('clock').textContent = now.toLocaleTimeString('en-GB');
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// Uptime (simulated — in production, fetch from API)
+var startTime = new Date();
+function updateUptime() {
+  var diff = Math.floor((new Date() - startTime) / 1000);
+  var h = Math.floor(diff / 3600);
+  var m = Math.floor((diff % 3600) / 60);
+  var s = diff % 60;
+  document.getElementById('uptime').textContent = 'Uptime: ' + h + 'h ' + m + 'm ' + s + 's';
+}
+setInterval(updateUptime, 1000);
+
+// Quick actions (in production, these call the API)
+function action(cmd) {
+  var out = document.getElementById('action-output');
+  out.style.display = 'block';
+  out.textContent = '> Running ' + cmd + '...';
+  out.style.color = 'var(--cyan)';
+
+  setTimeout(function() {
+    var responses = {
+      'brief': 'Morning brief generated. Check Telegram.',
+      'trends': 'Scout scanning Google News + Reddit... 12 stories found.',
+      'health': 'Groq: 0.31s OK | Mistral: 0.32s OK | Cerebras: 0.42s OK | Gemini: 4.7s OK | ElevenLabs: OK | GHL: OK',
+      'restart-bot': 'Telegram bot restarted. PID: 4821',
+      'logs': 'Last 24h: 47 messages, 3 voice clips, 1 morning brief, 0 errors.',
+      'usage': 'Today: $0.00 (Groq free) | This week: $0.00 | ElevenLabs: ~$0.12',
+    };
+    out.textContent = '> ' + (responses[cmd] || 'Done.');
+    out.style.color = 'var(--green)';
+  }, 800 + Math.random() * 600);
+}
+</script>
+
+</body>
+</html>

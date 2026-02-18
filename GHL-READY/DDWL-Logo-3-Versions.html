@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DDWL — 3 Creative Logo Concepts</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;600;700;900&family=Oswald:wght@700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#050508;color:#fff;font-family:'Inter',sans-serif;padding:0}
+.page{width:100%;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 32px;position:relative;overflow:hidden}
+
+/* HEADER */
+.header{text-align:center;margin-bottom:60px}
+.header h1{font-family:'Playfair Display',serif;font-size:38px;font-weight:900;margin-bottom:8px}
+.header h1 span{background:linear-gradient(135deg,#00e5ff,#ffd700,#ff6b00);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.header p{color:#555;font-size:13px;letter-spacing:1px}
+
+/* GRID */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;max-width:1400px;width:100%}
+.card{border-radius:24px;overflow:hidden;position:relative}
+.card-inner{padding:48px 40px;display:flex;flex-direction:column;align-items:center;min-height:600px;position:relative;z-index:1}
+.card h2{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:6px}
+.card .style-name{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;margin-bottom:32px}
+.card .desc{font-size:11px;color:rgba(255,255,255,.5);line-height:1.7;text-align:center;margin-top:auto;max-width:300px}
+.card .desc b{color:rgba(255,255,255,.7)}
+
+/* ====== LOGO 1: THE NEON SIGN ====== */
+.card1{background:#0a0a0a;border:1px solid rgba(0,229,255,.08)}
+.card1 h2{color:#00E5FF}
+.card1 .style-name{color:#fff}
+.logo1{width:320px;height:320px;position:relative;display:flex;align-items:center;justify-content:center;margin-bottom:24px}
+.logo1::before{content:'';position:absolute;inset:-20px;background:radial-gradient(circle,rgba(0,229,255,.08) 0%,transparent 70%);border-radius:50%}
+.logo1 .house{position:relative;width:200px;height:200px}
+/* Roof */
+.roof{width:0;height:0;border-left:120px solid transparent;border-right:120px solid transparent;border-bottom:70px solid transparent;position:absolute;top:-10px;left:50%;transform:translateX(-50%);filter:drop-shadow(0 0 20px rgba(255,107,0,.6)) drop-shadow(0 0 40px rgba(255,107,0,.3))}
+.roof::after{content:'';position:absolute;top:0;left:-120px;width:0;height:0;border-left:120px solid transparent;border-right:120px solid transparent;border-bottom:70px solid #FF6B00;filter:blur(0px)}
+/* Chimney */
+.chimney{position:absolute;top:-30px;right:25px;width:18px;height:35px;border:3px solid #FF6B00;border-bottom:none;border-radius:3px 3px 0 0;filter:drop-shadow(0 0 8px rgba(255,107,0,.8))}
+/* Walls */
+.walls{position:absolute;bottom:0;left:20px;right:20px;top:60px;border:3px solid #00E5FF;border-top:none;filter:drop-shadow(0 0 12px rgba(0,229,255,.6))}
+/* Windows */
+.win-grid{position:absolute;top:15px;left:50%;transform:translateX(-50%);display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.win{width:28px;height:28px;background:rgba(0,229,255,.15);border:2px solid #00E5FF;border-radius:3px;filter:drop-shadow(0 0 8px rgba(0,229,255,.7))}
+/* D and O */
+.letter-d,.letter-o{position:absolute;top:50%;transform:translateY(-50%);font-family:'Inter',sans-serif;font-size:80px;font-weight:900;color:#FF6B00;filter:drop-shadow(0 0 15px rgba(255,107,0,.7)) drop-shadow(0 0 30px rgba(255,107,0,.3))}
+.letter-d{left:-70px}
+.letter-o{right:-70px}
+/* DEALS */
+.deals-text{font-family:'Inter',sans-serif;font-size:52px;font-weight:900;letter-spacing:10px;color:#00E5FF;filter:drop-shadow(0 0 15px rgba(0,229,255,.7)) drop-shadow(0 0 40px rgba(0,229,255,.3));margin-bottom:8px}
+/* Arrow */
+.arrow-banner{position:relative;padding:8px 40px 8px 50px;border:2px solid #FF6B00;filter:drop-shadow(0 0 10px rgba(255,107,0,.6));display:flex;align-items:center;clip-path:polygon(8% 0%,100% 0%,92% 50%,100% 100%,8% 100%,0% 50%)}
+.arrow-banner span{font-family:'Inter',sans-serif;font-size:18px;font-weight:800;letter-spacing:6px;color:#FF6B00}
+.arrow-dot{width:10px;height:10px;border-radius:50%;background:#FF6B00;position:absolute;left:12px;filter:drop-shadow(0 0 6px rgba(255,107,0,.8))}
+
+/* ====== LOGO 2: THE LUXURY BADGE ====== */
+.card2{background:linear-gradient(160deg,#0c0c0c 0%,#111 100%);border:1px solid rgba(255,215,0,.1)}
+.card2 h2{color:#FFD700}
+.card2 .style-name{background:linear-gradient(135deg,#FFD700,#FF6B00);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.logo2{width:300px;margin-bottom:24px;text-align:center;position:relative}
+.badge-ring{width:280px;height:280px;border-radius:50%;border:2px solid rgba(255,215,0,.3);display:flex;align-items:center;justify-content:center;position:relative;margin:0 auto 16px}
+.badge-ring::before{content:'';position:absolute;inset:8px;border-radius:50%;border:1px solid rgba(255,215,0,.15)}
+.badge-ring::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:1px solid rgba(255,215,0,.08)}
+.badge-inner{text-align:center}
+.badge-do{font-family:'Oswald',sans-serif;font-size:28px;font-weight:700;letter-spacing:14px;color:#FFD700;margin-bottom:-4px}
+.badge-deals{font-family:'Playfair Display',serif;font-size:56px;font-weight:900;background:linear-gradient(180deg,#FFD700 0%,#FF6B00 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:2px}
+.badge-with{font-size:10px;letter-spacing:8px;color:rgba(255,215,0,.4);text-transform:uppercase;margin-bottom:-2px}
+.badge-lee{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:#FFD700;letter-spacing:6px}
+.badge-house{width:40px;height:40px;margin:8px auto 0;position:relative}
+.badge-house-roof{width:0;height:0;border-left:22px solid transparent;border-right:22px solid transparent;border-bottom:16px solid #FFD700;margin:0 auto}
+.badge-house-body{width:28px;height:20px;border:1.5px solid #FFD700;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:3px}
+.badge-house-body div{background:rgba(255,215,0,.2);border:1px solid rgba(255,215,0,.4)}
+.badge-line{width:200px;height:1px;background:linear-gradient(90deg,transparent,rgba(255,215,0,.3),transparent);margin:0 auto}
+
+/* ====== LOGO 3: THE GRADIENT WAVE ====== */
+.card3{background:#0a0a0a;border:1px solid rgba(0,229,255,.06);position:relative}
+.card3::before{content:'';position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(0deg,rgba(0,229,255,.04) 0%,transparent 100%);pointer-events:none;z-index:0}
+.card3 h2{color:#00E5FF}
+.card3 .style-name{background:linear-gradient(135deg,#00E5FF,#FFD700,#FF6B00);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.logo3{width:340px;margin-bottom:24px;text-align:center;position:relative}
+.wave-do{font-family:'Inter',sans-serif;font-size:24px;font-weight:900;letter-spacing:20px;margin-bottom:-8px}
+.wave-do .wd{background:linear-gradient(135deg,#FF6B00,#FFD700);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.wave-do .wo{background:linear-gradient(135deg,#FFD700,#00E5FF);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.wave-deals{font-family:'Inter',sans-serif;font-size:72px;font-weight:900;letter-spacing:6px;line-height:1;margin-bottom:4px;background:linear-gradient(135deg,#00E5FF 0%,#FFD700 50%,#FF6B00 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;position:relative}
+.wave-deals::after{content:'DEALS';position:absolute;top:0;left:0;font-size:72px;font-weight:900;letter-spacing:6px;background:linear-gradient(135deg,#00E5FF 0%,#FFD700 50%,#FF6B00 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:blur(20px);opacity:.4;z-index:-1}
+.wave-line{width:100%;height:3px;background:linear-gradient(90deg,#00E5FF,#FFD700,#FF6B00);border-radius:2px;margin:8px 0;position:relative}
+.wave-line::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#00E5FF,#FFD700,#FF6B00);filter:blur(8px);opacity:.5}
+.wave-with-lee{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:6px}
+.wave-with{font-size:12px;letter-spacing:8px;color:rgba(255,255,255,.3)}
+.wave-lee{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;background:linear-gradient(135deg,#FFD700,#FF6B00);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.wave-house{margin:16px auto 0;width:50px;position:relative}
+.wave-house-roof{width:0;height:0;border-left:28px solid transparent;border-right:28px solid transparent;border-bottom:18px solid transparent;position:relative}
+.wave-house-roof::after{content:'';position:absolute;top:0;left:-28px;width:0;height:0;border-left:28px solid transparent;border-right:28px solid transparent;border-bottom:18px solid;border-image:linear-gradient(90deg,#00E5FF,#FF6B00) 1}
+.wave-house-body{width:36px;height:24px;margin:0 auto;border:2px solid transparent;border-image:linear-gradient(180deg,#00E5FF,#FF6B00) 1;display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:3px}
+.wave-house-body div{background:linear-gradient(135deg,rgba(0,229,255,.3),rgba(255,107,0,.3))}
+
+.footer{text-align:center;font-size:10px;color:#333;padding:40px 0}
+@media(max-width:1100px){.grid{grid-template-columns:1fr;max-width:500px}}
+</style>
+</head>
+<body>
+
+<div class="page">
+<div class="header">
+<h1>DDWL — <span>3 Logo Concepts</span></h1>
+<p>Version A palette &bull; Cyan #00E5FF &bull; Orange #FF6B00 &bull; Gold #FFD700</p>
+</div>
+
+<div class="grid">
+
+<!-- ====== LOGO 1: THE NEON SIGN ====== -->
+<div class="card card1">
+<div class="card-inner">
+<h2>Concept 1</h2>
+<p class="style-name">The Neon Sign</p>
+
+<div class="logo1">
+<div class="letter-d">D</div>
+<div class="house">
+<div class="chimney"></div>
+<div class="roof"></div>
+<div class="walls">
+<div class="win-grid">
+<div class="win"></div><div class="win"></div>
+<div class="win"></div><div class="win"></div>
+</div>
+</div>
+</div>
+<div class="letter-o">O</div>
+</div>
+
+<div class="deals-text">DEALS</div>
+
+<div class="arrow-banner">
+<div class="arrow-dot"></div>
+<span>WITH LEE</span>
+</div>
+
+<p class="desc"><b>Neon tube sign aesthetic.</b> Glowing outlines and light spill. Exactly what Lee's podcast studio neon sign would look like. Orange tubes for D, O, roof, arrow. Cyan tubes for DEALS, windows.</p>
+</div>
+</div>
+
+<!-- ====== LOGO 2: THE LUXURY BADGE ====== -->
+<div class="card card2">
+<div class="card-inner">
+<h2>Concept 2</h2>
+<p class="style-name">The Luxury Badge</p>
+
+<div class="logo2">
+<div class="badge-ring">
+<div class="badge-inner">
+<div class="badge-do">D &nbsp; O</div>
+<div class="badge-deals">DEALS</div>
+<div class="badge-with">WITH</div>
+<div class="badge-lee">LEE</div>
+<div class="badge-house">
+<div class="badge-house-roof"></div>
+<div class="badge-house-body"><div></div><div></div><div></div><div></div></div>
+</div>
+</div>
+</div>
+<div class="badge-line"></div>
+</div>
+
+<p class="desc"><b>Premium authority badge.</b> Gold + orange gradient on black. Circular emblem format — works on merch, business cards, wax seals, embroidery. The luxury real estate brand feel.</p>
+</div>
+</div>
+
+<!-- ====== LOGO 3: THE GRADIENT WAVE ====== -->
+<div class="card card3">
+<div class="card-inner">
+<h2>Concept 3</h2>
+<p class="style-name">The Gradient Wave</p>
+
+<div class="logo3">
+<div class="wave-do"><span class="wd">D</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="wo">O</span></div>
+<div class="wave-deals">DEALS</div>
+<div class="wave-line"></div>
+<div class="wave-with-lee">
+<span class="wave-with">WITH</span>
+<span class="wave-lee">LEE</span>
+</div>
+<div class="wave-house">
+<div class="wave-house-roof"></div>
+<div class="wave-house-body"><div></div><div></div><div></div><div></div></div>
+</div>
+</div>
+
+<p class="desc"><b>Full brand gradient flow.</b> Cyan &rarr; Gold &rarr; Orange sweeps through every element. The gradient line is the signature — it flows through merch, signage, website. Modern, bold, unmistakable.</p>
+</div>
+</div>
+
+</div><!-- /grid -->
+</div>
+
+<p class="footer">Do Deals With Lee&trade; &bull; 3 Logo Concepts &bull; Version A Palette<br>Prepared by Daniel Gallagher &amp; Lilly &bull; Exposure Solutions &bull; February 2026</p>
+
+</body>
+</html>

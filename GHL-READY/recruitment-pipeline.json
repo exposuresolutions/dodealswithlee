@@ -1,0 +1,301 @@
+{
+  "pipeline": {
+    "name": "DDWL Recruitment Pipeline",
+    "locationId": "KbiucErIMNPbO1mY4qXL",
+    "stages": [
+      {
+        "name": "New Application",
+        "position": 1,
+        "color": "#00e5ff",
+        "description": "Application received, awaiting initial review"
+      },
+      {
+        "name": "Under Review",
+        "position": 2,
+        "color": "#a855f7",
+        "description": "Application being reviewed by hiring manager"
+      },
+      {
+        "name": "Phone Screen",
+        "position": 3,
+        "color": "#ffd700",
+        "description": "Initial phone/video screening scheduled or completed"
+      },
+      {
+        "name": "Interview Scheduled",
+        "position": 4,
+        "color": "#ff6b00",
+        "description": "Formal interview booked with team"
+      },
+      {
+        "name": "Interview Complete",
+        "position": 5,
+        "color": "#ff8533",
+        "description": "Interview done, awaiting decision"
+      },
+      {
+        "name": "Reference Check",
+        "position": 6,
+        "color": "#40efff",
+        "description": "Checking references and background"
+      },
+      {
+        "name": "Offer Extended",
+        "position": 7,
+        "color": "#28c840",
+        "description": "Job offer sent to candidate"
+      },
+      {
+        "name": "Hired",
+        "position": 8,
+        "color": "#00ff88",
+        "description": "Candidate accepted, move to onboarding pipeline"
+      },
+      {
+        "name": "Unsuccessful",
+        "position": 9,
+        "color": "#ff5f57",
+        "description": "Candidate not selected — rejection email sent automatically"
+      },
+      {
+        "name": "Talent Pool",
+        "position": 10,
+        "color": "#999999",
+        "description": "Good candidate, no current fit — keep for future roles"
+      }
+    ]
+  },
+  "customFields": [
+    {
+      "name": "Job Applied For",
+      "key": "job_applied_for",
+      "type": "text",
+      "group": "Recruitment"
+    },
+    {
+      "name": "Application Reference",
+      "key": "application_ref",
+      "type": "text",
+      "group": "Recruitment"
+    },
+    {
+      "name": "Application Date",
+      "key": "application_date",
+      "type": "date",
+      "group": "Recruitment"
+    },
+    {
+      "name": "CV File Name",
+      "key": "cv_file_name",
+      "type": "text",
+      "group": "Recruitment"
+    },
+    {
+      "name": "LinkedIn URL",
+      "key": "linkedin_url",
+      "type": "text",
+      "group": "Recruitment"
+    },
+    {
+      "name": "Cover Note",
+      "key": "cover_note",
+      "type": "textarea",
+      "group": "Recruitment"
+    },
+    {
+      "name": "Source",
+      "key": "recruitment_source",
+      "type": "dropdown",
+      "options": ["Google", "LinkedIn", "Indeed", "Glassdoor", "Referral", "Social Media", "Website", "Other"],
+      "group": "Recruitment"
+    },
+    {
+      "name": "Earliest Start Date",
+      "key": "earliest_start_date",
+      "type": "date",
+      "group": "Recruitment"
+    },
+    {
+      "name": "Interview Date",
+      "key": "interview_date",
+      "type": "date",
+      "group": "Recruitment"
+    },
+    {
+      "name": "Interview Notes",
+      "key": "interview_notes",
+      "type": "textarea",
+      "group": "Recruitment"
+    },
+    {
+      "name": "Hiring Decision",
+      "key": "hiring_decision",
+      "type": "dropdown",
+      "options": ["Pending", "Hire", "Reject", "Talent Pool", "On Hold"],
+      "group": "Recruitment"
+    },
+    {
+      "name": "Rejection Reason",
+      "key": "rejection_reason",
+      "type": "dropdown",
+      "options": ["Not qualified", "Better candidate selected", "Culture fit", "Salary expectations", "Withdrew application", "No response", "Other"],
+      "group": "Recruitment"
+    },
+    {
+      "name": "Rejection Email Sent",
+      "key": "rejection_email_sent",
+      "type": "checkbox",
+      "group": "Recruitment"
+    },
+    {
+      "name": "Offered Salary",
+      "key": "offered_salary",
+      "type": "text",
+      "group": "Recruitment"
+    },
+    {
+      "name": "Recruiter Notes",
+      "key": "recruiter_notes",
+      "type": "textarea",
+      "group": "Recruitment"
+    }
+  ],
+  "tags": [
+    "job-applicant",
+    "new-application",
+    "under-review",
+    "phone-screen-scheduled",
+    "interview-scheduled",
+    "interview-complete",
+    "reference-check",
+    "offer-extended",
+    "hired",
+    "unsuccessful",
+    "talent-pool",
+    "rejection-sent",
+    "high-priority-candidate",
+    "referral-candidate"
+  ],
+  "automations": [
+    {
+      "name": "New Application — Acknowledge & Notify",
+      "trigger": "Tag added: new-application",
+      "actions": [
+        "Send email to candidate: 'Thank you for applying to {job_applied_for} at DDWL. Your application reference is {application_ref}. We review every application and will be in touch within 48 hours.'",
+        "Send internal notification to admin@dodealswithlee.com: 'New application received for {job_applied_for} from {first_name} {last_name}'",
+        "Add to Recruitment Pipeline → New Application stage",
+        "Create task: 'Review application from {first_name} {last_name}' assigned to Lilly, due in 24 hours"
+      ]
+    },
+    {
+      "name": "Under Review — Update Candidate",
+      "trigger": "Pipeline stage moved to: Under Review",
+      "actions": [
+        "Send email to candidate: 'Hi {first_name}, your application for {job_applied_for} is now being reviewed by our team. We appreciate your patience.'",
+        "Add tag: under-review",
+        "Remove tag: new-application"
+      ]
+    },
+    {
+      "name": "Phone Screen Scheduled",
+      "trigger": "Pipeline stage moved to: Phone Screen",
+      "actions": [
+        "Send email to candidate: 'Hi {first_name}, we'd like to schedule a phone screen with you for the {job_applied_for} role. Please use the link below to book a time that works for you: [CALENDAR_LINK]'",
+        "Add tag: phone-screen-scheduled",
+        "Remove tag: under-review"
+      ]
+    },
+    {
+      "name": "Interview Scheduled — Notify Admins",
+      "trigger": "Pipeline stage moved to: Interview Scheduled",
+      "actions": [
+        "Send email to candidate: 'Hi {first_name}, your interview for {job_applied_for} has been confirmed. Details: [DATE/TIME]. We look forward to meeting you!'",
+        "Send email to krystle.gordon@dodealswithlee.com: 'Interview scheduled: {first_name} {last_name} for {job_applied_for}'",
+        "Add tag: interview-scheduled",
+        "Remove tag: phone-screen-scheduled"
+      ]
+    },
+    {
+      "name": "Offer Extended — Notify Lee & Krystle",
+      "trigger": "Pipeline stage moved to: Offer Extended",
+      "actions": [
+        "Send email to candidate: 'Hi {first_name}, congratulations! We'd like to extend an offer for the {job_applied_for} position. Please check your email for the full details.'",
+        "Send email to lee.kearney@dodealswithlee.com: 'Offer extended to {first_name} {last_name} for {job_applied_for}'",
+        "Send email to krystle.gordon@dodealswithlee.com: 'Offer extended to {first_name} {last_name} for {job_applied_for}'",
+        "Add tag: offer-extended"
+      ]
+    },
+    {
+      "name": "Hired — Trigger Onboarding",
+      "trigger": "Pipeline stage moved to: Hired",
+      "actions": [
+        "Send email to candidate: 'Welcome to the team, {first_name}! We're thrilled to have you join DDWL. You'll receive onboarding instructions shortly.'",
+        "Send email to lee.kearney@dodealswithlee.com: 'NEW HIRE: {first_name} {last_name} has accepted the {job_applied_for} position'",
+        "Send email to krystle.gordon@dodealswithlee.com: 'NEW HIRE: {first_name} {last_name} — please begin onboarding setup'",
+        "Send email to daniel@exposuresolutions.me: 'NEW HIRE: {first_name} {last_name} — tech setup required (G-Suite, GHL, Windsurf, etc.)'",
+        "Add to Onboarding Pipeline → Day 1 Setup stage",
+        "Add tag: hired",
+        "Remove tags: offer-extended, interview-scheduled"
+      ]
+    },
+    {
+      "name": "Unsuccessful — Send Rejection (ALWAYS)",
+      "trigger": "Pipeline stage moved to: Unsuccessful",
+      "actions": [
+        "Wait 2 hours (avoid instant rejection feel)",
+        "Send email to candidate: 'Hi {first_name}, thank you for taking the time to apply for {job_applied_for} at DDWL. After careful consideration, we've decided to move forward with other candidates at this time. We were impressed by your application and encourage you to apply for future openings. We wish you all the best in your career. — The DDWL Team'",
+        "Set field: rejection_email_sent = true",
+        "Add tag: rejection-sent",
+        "Add tag: unsuccessful",
+        "Remove all other recruitment stage tags"
+      ]
+    },
+    {
+      "name": "Talent Pool — Keep Warm",
+      "trigger": "Pipeline stage moved to: Talent Pool",
+      "actions": [
+        "Send email to candidate: 'Hi {first_name}, while we don't have a perfect match right now, we were really impressed by your profile. We've added you to our talent pool and will reach out when a suitable role opens up. Stay in touch!'",
+        "Add tag: talent-pool",
+        "Create task: 'Re-engage {first_name} {last_name} from talent pool' due in 90 days"
+      ]
+    },
+    {
+      "name": "Stale Application Check (7 days)",
+      "trigger": "Time-based: 7 days after entering New Application stage with no movement",
+      "actions": [
+        "Send internal notification to admin@dodealswithlee.com: 'REMINDER: Application from {first_name} {last_name} for {job_applied_for} has been sitting for 7 days with no action'",
+        "Create task: 'Review stale application: {first_name} {last_name}' assigned to Lilly, due in 24 hours"
+      ]
+    },
+    {
+      "name": "No Response Follow-Up (3 days after email)",
+      "trigger": "3 days after candidate email sent with no reply",
+      "actions": [
+        "Send follow-up email to candidate: 'Hi {first_name}, just checking in regarding your application for {job_applied_for}. If you have any questions, feel free to reply to this email. We'd love to hear from you!'",
+        "Create task: 'Follow up with {first_name} {last_name} — no response' assigned to Lilly"
+      ]
+    }
+  ],
+  "emailTemplates": {
+    "applicationReceived": {
+      "subject": "Application Received — {{job_applied_for}} at DDWL",
+      "body": "Hi {{first_name}},\n\nThank you for applying for the {{job_applied_for}} position at Do Deals With Lee.\n\nYour application reference is: {{application_ref}}\n\nWe review every application personally and you'll hear from us within 48 hours.\n\nIn the meantime, learn more about us at https://dodealswithlee.com\n\nBest regards,\nThe DDWL Team"
+    },
+    "interviewInvite": {
+      "subject": "Interview Invitation — {{job_applied_for}} at DDWL",
+      "body": "Hi {{first_name}},\n\nGreat news! We'd like to invite you for an interview for the {{job_applied_for}} position.\n\nPlease use the link below to book a time that works for you:\n[CALENDAR_LINK]\n\nThe interview will be approximately 30 minutes and will be conducted via video call.\n\nLooking forward to meeting you!\n\nBest regards,\nThe DDWL Team"
+    },
+    "offerLetter": {
+      "subject": "Job Offer — {{job_applied_for}} at DDWL",
+      "body": "Hi {{first_name}},\n\nWe're delighted to offer you the position of {{job_applied_for}} at Do Deals With Lee!\n\nPlease find the details of your offer below:\n- Position: {{job_applied_for}}\n- Start Date: {{earliest_start_date}}\n- Salary: {{offered_salary}}\n\nPlease reply to confirm your acceptance or if you have any questions.\n\nWelcome aboard!\n\nBest regards,\nLee Kearney\nCEO, Do Deals With Lee"
+    },
+    "rejection": {
+      "subject": "Update on Your Application — DDWL",
+      "body": "Hi {{first_name}},\n\nThank you for taking the time to apply for the {{job_applied_for}} position at Do Deals With Lee.\n\nAfter careful consideration, we've decided to move forward with other candidates at this time.\n\nThis was not an easy decision — we were genuinely impressed by your application. We encourage you to apply for future openings as they become available.\n\nWe wish you all the best in your career.\n\nWarm regards,\nThe DDWL Team"
+    },
+    "talentPool": {
+      "subject": "You're in Our Talent Pool — DDWL",
+      "body": "Hi {{first_name}},\n\nWhile we don't have a perfect match for you right now, we were really impressed by your profile and experience.\n\nWe've added you to our talent pool and will reach out when a suitable role opens up. In the meantime, feel free to keep an eye on our careers page.\n\nStay in touch!\n\nBest regards,\nThe DDWL Team"
+    }
+  }
+}

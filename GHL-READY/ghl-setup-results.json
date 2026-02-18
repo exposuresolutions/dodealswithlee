@@ -1,0 +1,84 @@
+{
+  "pipeline": null,
+  "custom_fields": [
+    {
+      "name": "Job Applied For",
+      "id": "ltlhwoKpcCtKIPUV2NNS"
+    },
+    {
+      "name": "Application Reference",
+      "id": "1YdTrlbPWPTxak4wleeM"
+    },
+    {
+      "name": "Application Date",
+      "id": "xQnqSnhRXk8DddXMzzNP"
+    },
+    {
+      "name": "CV File Name",
+      "id": "sj1QH4dsA8JuzhhshXDU"
+    },
+    {
+      "name": "LinkedIn URL",
+      "id": "ipuq2fXXMz4UuAulA9e2"
+    },
+    {
+      "name": "Cover Note",
+      "id": "0q8sfiE0pY6Pb1dqXH0i"
+    },
+    {
+      "name": "Recruitment Source",
+      "id": "sXrIvSqN7Kwy59SqR8kR"
+    },
+    {
+      "name": "Earliest Start Date",
+      "id": "zNmr5xrfwwgrfaSq30Fg"
+    },
+    {
+      "name": "Interview Date",
+      "id": "AQe1IrGLsGYF5CYYSWQ2"
+    },
+    {
+      "name": "Interview Notes",
+      "id": "xcguYj9fRBUp2TvbEp1w"
+    },
+    {
+      "name": "Hiring Decision",
+      "id": "ijvO0cyIBk9iTZC9lNUB"
+    },
+    {
+      "name": "Rejection Reason",
+      "id": "13QWVDQXHKzehPKtCnjq"
+    },
+    {
+      "name": "Rejection Email Sent",
+      "id": "GQfAOHQeGdG3wD1ZiF6w"
+    },
+    {
+      "name": "Offered Salary",
+      "id": "YFzzcwCC4tucvsZHCSCp"
+    },
+    {
+      "name": "Recruiter Notes",
+      "id": "E1kMgR0E0IxRCGYUICNo"
+    }
+  ],
+  "tags": [
+    "job-applicant",
+    "new-application",
+    "under-review",
+    "phone-screen-scheduled",
+    "interview-scheduled",
+    "interview-complete",
+    "reference-check",
+    "offer-extended",
+    "hired",
+    "unsuccessful",
+    "talent-pool",
+    "rejection-sent",
+    "high-priority-candidate",
+    "referral-candidate"
+  ],
+  "errors": [
+    "Pipeline creation failed: {'error': 401, 'message': '{\"statusCode\":401,\"message\":\"The token is not authorized for this scope.\"}'}"
+  ]
+}

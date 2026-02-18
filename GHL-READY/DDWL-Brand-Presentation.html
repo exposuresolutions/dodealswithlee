@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DDWL Brand &amp; Logo Presentation - For Lee Kearney</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;600;700;800;900&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: #ffffff; }
+
+@media print {
+    body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    .page { page-break-after: always; break-after: page; }
+    .page:last-child { page-break-after: avoid; }
+    .no-print { display: none !important; }
+}
+
+.page {
+    min-height: 100vh;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-number {
+    position: absolute;
+    bottom: 30px;
+    right: 60px;
+    font-size: 12px;
+    color: #666;
+    letter-spacing: 2px;
+}
+
+h1 { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 800; line-height: 1.2; }
+h2 { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; line-height: 1.3; }
+h3 { font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; }
+p { font-size: 16px; line-height: 1.8; color: #ccc; }
+
+.gradient-text {
+    background: linear-gradient(135deg, #00e5ff, #ffd700);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.cyan { color: #00e5ff; }
+.gold { color: #ffd700; }
+.orange { color: #ff6b00; }
+
+.tag {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.tag-cyan { background: rgba(0, 229, 255, 0.15); color: #00e5ff; border: 1px solid rgba(0, 229, 255, 0.3); }
+.tag-gold { background: rgba(255, 215, 0, 0.15); color: #ffd700; border: 1px solid rgba(255, 215, 0, 0.3); }
+.tag-orange { background: rgba(255, 107, 0, 0.15); color: #ff6b00; border: 1px solid rgba(255, 107, 0, 0.3); }
+
+.card {
+    background: rgba(22, 22, 22, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 32px;
+    backdrop-filter: blur(20px);
+}
+
+.color-swatch {
+    width: 100%;
+    height: 120px;
+    border-radius: 12px;
+    display: flex;
+    align-items: flex-end;
+    padding: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    position: relative;
+}
+
+.neon-glow {
+    text-shadow: 0 0 10px #00e5ff, 0 0 20px #00e5ff, 0 0 40px #00e5ff, 0 0 80px #00e5ff;
+}
+
+.neon-box-glow {
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.5), 0 0 30px rgba(0, 229, 255, 0.3), 0 0 60px rgba(0, 229, 255, 0.15), inset 0 0 15px rgba(0, 229, 255, 0.1);
+}
+
+.neon-border {
+    border: 2px solid #00e5ff;
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.5), 0 0 20px rgba(0, 229, 255, 0.3), inset 0 0 10px rgba(0, 229, 255, 0.1);
+}
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+.grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px; }
+
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-col { display: flex; flex-direction: column; }
+.gap-8 { gap: 8px; }
+.gap-16 { gap: 16px; }
+.gap-24 { gap: 24px; }
+.gap-32 { gap: 32px; }
+.gap-48 { gap: 48px; }
+.mb-8 { margin-bottom: 8px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-24 { margin-bottom: 24px; }
+.mb-32 { margin-bottom: 32px; }
+.mb-48 { margin-bottom: 48px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mt-32 { margin-top: 32px; }
+.text-center { text-align: center; }
+.text-sm { font-size: 14px; }
+.text-xs { font-size: 12px; }
+.text-lg { font-size: 18px; }
+.bold { font-weight: 700; }
+
+.divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.3), transparent);
+    margin: 32px 0;
+}
+
+.screenshot-frame {
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #111;
+}
+
+.screenshot-bar {
+    background: #1a1a1a;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot-red { background: #ff5f57; }
+.dot-yellow { background: #febc2e; }
+.dot-green { background: #28c840; }
+
+.url-bar {
+    background: #0a0a0a;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    color: #666;
+    margin-left: 12px;
+    flex: 1;
+}
+
+.neon-sign-sim {
+    background: #050505;
+    border-radius: 16px;
+    padding: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border: 1px solid #1a1a1a;
+}
+
+.neon-sign-sim::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(0, 229, 255, 0.1), transparent, rgba(0, 229, 255, 0.05));
+    z-index: 0;
+}
+
+.print-btn {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #00e5ff;
+    color: #0a0a0a;
+    border: none;
+    padding: 14px 40px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    z-index: 100;
+    box-shadow: 0 4px 20px rgba(0, 229, 255, 0.4);
+}
+.print-btn:hover { background: #ffd700; }
+
+.spec-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.spec-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 14px;
+}
+.spec-table td:first-child {
+    color: #666;
+    width: 180px;
+    font-weight: 500;
+}
+.spec-table td:last-child {
+    color: #fff;
+    font-weight: 600;
+}
+
+.checkmark {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 0;
+    font-size: 14px;
+    color: #ccc;
+}
+.checkmark::before {
+    content: '\2713';
+    color: #00e5ff;
+    font-weight: 800;
+    font-size: 16px;
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== PAGE 1: COVER ==================== -->
+<div class="page" style="justify-content: center; align-items: center; text-align: center;">
+    <div style="position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(0, 229, 255, 0.08) 0%, transparent 70%);"></div>
+    <div style="position: relative; z-index: 1;">
+        <div class="mb-32">
+            <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/67630a6111b3975ed85ffd20.svg" alt="Do Deals With Lee" style="height: 60px; margin: 0 auto;">
+        </div>
+        <div class="tag tag-cyan mb-24">Brand &amp; Logo Presentation</div>
+        <h1 style="font-size: 56px;" class="mb-24">
+            Your Website.<br>
+            Your <span class="gradient-text">Brand</span>.<br>
+            Your <span class="cyan">Neon Sign</span>.
+        </h1>
+        <p style="max-width: 500px; margin: 0 auto;" class="mb-48">
+            Everything you need to see about the version you picked, the exact colors for your neon sign, and what comes next.
+        </p>
+        <div style="display: flex; gap: 32px; justify-content: center; font-size: 13px; color: #666;">
+            <span>Prepared for <strong style="color: #fff;">Lee Kearney</strong></span>
+            <span>|</span>
+            <span>By <strong style="color: #00e5ff;">Daniel &amp; Lilly</strong></span>
+            <span>|</span>
+            <span>February 2026</span>
+        </div>
+    </div>
+    <div class="page-number">01 / 07</div>
+</div>
+
+<!-- ==================== PAGE 2: THE VERSION YOU PICKED ==================== -->
+<div class="page">
+    <div class="tag tag-cyan">The Version You Picked</div>
+    <h2 class="mb-16">"Claude Homepage" &mdash; <span class="gradient-text">Version A</span></h2>
+    <p class="mb-32">This is the homepage you saw at <strong style="color: #00e5ff;">dodealswithlee.com/claudehome</strong>. You said the logo and colors looked much better than the original. Here's exactly what makes it different.</p>
+
+    <div class="screenshot-frame mb-32">
+        <div class="screenshot-bar">
+            <div class="dot dot-red"></div>
+            <div class="dot dot-yellow"></div>
+            <div class="dot dot-green"></div>
+            <div class="url-bar">dodealswithlee.com/claudehome</div>
+        </div>
+        <div style="padding: 40px; background: #0a0a0a;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/67630a6111b3975ed85ffd20.svg" alt="DDWL" style="height: 32px;">
+                <div style="display: flex; gap: 24px; font-size: 13px; color: #999;">
+                    <span style="color: #00e5ff;">Home</span>
+                    <span>Network</span>
+                    <span>Education</span>
+                    <span>Mastermind</span>
+                    <span>Calculator</span>
+                </div>
+                <div style="background: #00e5ff; color: #0a0a0a; padding: 8px 20px; border-radius: 8px; font-size: 13px; font-weight: 700;">Apply Now</div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+                <div>
+                    <h1 style="font-size: 36px; font-family: 'Playfair Display', serif; margin-bottom: 16px;">Scale Your <span class="gradient-text">Real Estate Empire</span> Like a Pro</h1>
+                    <p style="font-size: 14px; color: #999; margin-bottom: 20px;">Join Lee Kearney's exclusive investor network. 20 years experience, $500M+ in deals.</p>
+                    <div style="display: flex; gap: 12px;">
+                        <div style="background: #00e5ff; color: #0a0a0a; padding: 12px 24px; border-radius: 8px; font-size: 13px; font-weight: 700;">Join The Network &rarr;</div>
+                        <div style="border: 1px solid #00e5ff; color: #00e5ff; padding: 12px 24px; border-radius: 8px; font-size: 13px; font-weight: 600;">Try Deal Calculator</div>
+                    </div>
+                </div>
+                <div style="position: relative;">
+                    <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/6740d661a865994979d38612.webp" alt="Lee Kearney" style="width: 100%; border-radius: 12px;">
+                    <div style="position: absolute; bottom: -10px; right: -10px; background: #161616; padding: 16px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+                        <div style="font-size: 20px; font-weight: 800; color: #ffd700;">$500M+</div>
+                        <div style="font-size: 10px; color: #999;">Total Sales Volume</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-3">
+        <div class="card text-center">
+            <div style="font-size: 32px; margin-bottom: 8px;">&#x1F3A8;</div>
+            <h3 class="mb-8">Dark Premium Theme</h3>
+            <p class="text-sm">Full black background (#0a0a0a) with glass-card effects and backdrop blur</p>
+        </div>
+        <div class="card text-center">
+            <div style="font-size: 32px; margin-bottom: 8px;">&#x2728;</div>
+            <h3 class="mb-8">Gradient Text Effect</h3>
+            <p class="text-sm">Headlines use a <span class="gradient-text">cyan &rarr; gold gradient</span> that pops on dark backgrounds</p>
+        </div>
+        <div class="card text-center">
+            <div style="font-size: 32px; margin-bottom: 8px;">&#x1F4A1;</div>
+            <h3 class="mb-8">Neon-Ready Colors</h3>
+            <p class="text-sm">The cyan <span class="cyan">#00e5ff</span> is specifically chosen to look incredible as a neon sign</p>
+        </div>
+    </div>
+    <div class="page-number">02 / 07</div>
+</div>
+
+<!-- ==================== PAGE 3: THE LOGO ==================== -->
+<div class="page">
+    <div class="tag tag-gold">The Logo</div>
+    <h2 class="mb-16">Your Logo on <span class="gradient-text">Version A</span></h2>
+    <p class="mb-32">The logo used on the Claude homepage is your existing DDWL SVG. Here's how it appears across the site and why it works so well with the color scheme.</p>
+
+    <div class="grid-2 mb-32">
+        <div class="card" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 200px;">
+            <div class="text-xs mb-16" style="color: #666; text-transform: uppercase; letter-spacing: 2px;">Navigation Bar</div>
+            <div style="background: rgba(22,22,22,0.8); padding: 16px 32px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(20px);">
+                <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/67630a6111b3975ed85ffd20.svg" alt="DDWL Logo" style="height: 32px;">
+            </div>
+            <div class="text-xs mt-16" style="color: #666;">Height: 32px &bull; On glass-card navbar</div>
+        </div>
+        <div class="card" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 200px;">
+            <div class="text-xs mb-16" style="color: #666; text-transform: uppercase; letter-spacing: 2px;">Footer</div>
+            <div style="background: #111; padding: 20px 40px; border-radius: 12px;">
+                <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/67630a6111b3975ed85ffd20.svg" alt="DDWL Logo" style="height: 32px;">
+            </div>
+            <div class="text-xs mt-16" style="color: #666;">Height: 32px &bull; On dark footer (#111111)</div>
+        </div>
+    </div>
+
+    <div class="card mb-32">
+        <h3 class="mb-16">Logo File Details</h3>
+        <table class="spec-table">
+            <tr><td>Format</td><td>SVG (Scalable Vector Graphics) &mdash; infinite resolution</td></tr>
+            <tr><td>Source URL</td><td style="font-size: 12px; word-break: break-all; color: #00e5ff;">https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/67630a6111b3975ed85ffd20.svg</td></tr>
+            <tr><td>Background</td><td>Transparent &mdash; works on any background color</td></tr>
+            <tr><td>Primary Color</td><td><span style="color: #fff;">White text on dark backgrounds</span></td></tr>
+            <tr><td>Scalability</td><td>Perfect for web, print, signage, and <strong style="color: #00e5ff;">neon signs</strong></td></tr>
+        </table>
+    </div>
+
+    <div style="background: rgba(0, 229, 255, 0.05); border: 1px solid rgba(0, 229, 255, 0.2); border-radius: 12px; padding: 24px;">
+        <p style="color: #00e5ff; font-weight: 700; margin-bottom: 8px;">&#x1F4A1; Key Insight</p>
+        <p class="text-sm">This SVG logo is the exact outline a neon sign maker needs. The clean lines and bold lettering translate perfectly to neon tubing. The sign maker can trace the SVG paths directly.</p>
+    </div>
+    <div class="page-number">03 / 07</div>
+</div>
+
+<!-- ==================== PAGE 4: THE NEON COLOR ==================== -->
+<div class="page">
+    <div class="tag tag-cyan">The Neon Color</div>
+    <h2 class="mb-16">DDWL Cyan: <span class="cyan">#00E5FF</span></h2>
+    <p class="mb-32">This is the signature color from Version A. It's the exact blue Lee wants for his podcast studio neon sign. Here's everything a sign maker needs.</p>
+
+    <div class="grid-2 mb-32">
+        <!-- Neon simulation -->
+        <div class="neon-sign-sim">
+            <div style="position: relative; z-index: 1; text-align: center;">
+                <div style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 800; color: #00e5ff; text-shadow: 0 0 10px #00e5ff, 0 0 20px #00e5ff, 0 0 40px #00e5ff, 0 0 80px #00e5ff, 0 0 120px rgba(0, 229, 255, 0.3); letter-spacing: 2px;">DO DEALS</div>
+                <div style="font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600; color: #00e5ff; text-shadow: 0 0 10px #00e5ff, 0 0 20px #00e5ff, 0 0 40px #00e5ff; letter-spacing: 4px; margin-top: 4px;">WITH LEE</div>
+                <div style="width: 60%; height: 2px; background: #00e5ff; margin: 12px auto; box-shadow: 0 0 10px #00e5ff, 0 0 20px #00e5ff;"></div>
+                <div style="font-size: 10px; color: rgba(0, 229, 255, 0.6); letter-spacing: 3px; text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);">REAL ESTATE &bull; INVESTING &bull; COACHING</div>
+            </div>
+        </div>
+
+        <!-- Color specs -->
+        <div class="flex-col gap-16">
+            <div class="card">
+                <h3 class="mb-16 cyan">Neon Sign Specifications</h3>
+                <table class="spec-table">
+                    <tr><td>HEX</td><td style="color: #00e5ff; font-size: 20px;">#00E5FF</td></tr>
+                    <tr><td>RGB</td><td>R: 0 &nbsp; G: 229 &nbsp; B: 255</td></tr>
+                    <tr><td>HSL</td><td>186&deg; &nbsp; 100% &nbsp; 50%</td></tr>
+                    <tr><td>CMYK</td><td>C: 100 &nbsp; M: 10 &nbsp; Y: 0 &nbsp; K: 0</td></tr>
+                    <tr><td>Pantone Match</td><td>Pantone 311 C (closest)</td></tr>
+                    <tr><td>Neon Gas</td><td>Argon gas + mercury + phosphor coating (cyan/ice blue)</td></tr>
+                    <tr><td>LED Neon</td><td>Ice Blue / Cyan LED flex neon (most common for custom signs)</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="card" style="border-color: rgba(0, 229, 255, 0.3);">
+        <h3 class="mb-16">&#x1F3AC; For the Podcast Studio Sign Maker</h3>
+        <p class="text-sm mb-16">Give your sign maker these exact specs:</p>
+        <div class="grid-3">
+            <div>
+                <p class="text-xs bold mb-8" style="color: #666;">COLOR REFERENCE</p>
+                <p class="text-sm"><strong class="cyan">#00E5FF</strong> &mdash; "Ice Blue" or "Cyan Neon"</p>
+                <p class="text-xs mt-8" style="color: #666;">This is NOT standard blue. It's a bright cyan/ice blue with strong green undertones.</p>
+            </div>
+            <div>
+                <p class="text-xs bold mb-8" style="color: #666;">SIGN TYPE</p>
+                <p class="text-sm"><strong>LED Flex Neon</strong> recommended</p>
+                <p class="text-xs mt-8" style="color: #666;">More consistent color, dimmable, energy efficient, and exact color match possible with LED.</p>
+            </div>
+            <div>
+                <p class="text-xs bold mb-8" style="color: #666;">LOGO FILE</p>
+                <p class="text-sm"><strong>SVG vector file</strong> provided</p>
+                <p class="text-xs mt-8" style="color: #666;">Send the sign maker the SVG URL. They can scale it to any size without quality loss.</p>
+            </div>
+        </div>
+    </div>
+    <div class="page-number">04 / 07</div>
+</div>
+
+<!-- ==================== PAGE 5: FULL COLOR PALETTE ==================== -->
+<div class="page">
+    <div class="tag tag-gold">Full Color Palette</div>
+    <h2 class="mb-16">The DDWL <span class="gradient-text">Brand Colors</span></h2>
+    <p class="mb-32">These are all the colors used in Version A. The cyan is the hero color &mdash; it's what makes the site (and your neon sign) pop.</p>
+
+    <div class="grid-4 mb-32">
+        <div>
+            <div class="color-swatch" style="background: #0a0a0a; border: 1px solid #333;">
+                <span style="color: #666;">Black</span>
+            </div>
+            <div class="mt-16 text-center">
+                <div class="bold text-sm">#0A0A0A</div>
+                <div class="text-xs" style="color: #666;">Background</div>
+            </div>
+        </div>
+        <div>
+            <div class="color-swatch neon-box-glow" style="background: #00e5ff;">
+                <span style="color: #003;">Cyan</span>
+            </div>
+            <div class="mt-16 text-center">
+                <div class="bold text-sm cyan">#00E5FF</div>
+                <div class="text-xs" style="color: #666;">Primary &bull; Neon Sign</div>
+            </div>
+        </div>
+        <div>
+            <div class="color-swatch" style="background: #ffd700;">
+                <span style="color: #333;">Gold</span>
+            </div>
+            <div class="mt-16 text-center">
+                <div class="bold text-sm gold">#FFD700</div>
+                <div class="text-xs" style="color: #666;">Accent &bull; Premium</div>
+            </div>
+        </div>
+        <div>
+            <div class="color-swatch" style="background: #ff6b00;">
+                <span style="color: #fff;">Orange</span>
+            </div>
+            <div class="mt-16 text-center">
+                <div class="bold text-sm orange">#FF6B00</div>
+                <div class="text-xs" style="color: #666;">CTA &bull; Energy</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-2 mb-32">
+        <div class="card">
+            <h3 class="mb-16">Supporting Colors</h3>
+            <div style="display: flex; gap: 12px; margin-bottom: 16px;">
+                <div style="flex: 1;">
+                    <div style="height: 60px; background: #111111; border-radius: 8px; border: 1px solid #222;"></div>
+                    <div class="text-xs text-center mt-8" style="color: #666;">#111111 Dark</div>
+                </div>
+                <div style="flex: 1;">
+                    <div style="height: 60px; background: #161616; border-radius: 8px; border: 1px solid #222;"></div>
+                    <div class="text-xs text-center mt-8" style="color: #666;">#161616 Card</div>
+                </div>
+                <div style="flex: 1;">
+                    <div style="height: 60px; background: #40efff; border-radius: 8px;"></div>
+                    <div class="text-xs text-center mt-8" style="color: #666;">#40EFFF Cyan Light</div>
+                </div>
+                <div style="flex: 1;">
+                    <div style="height: 60px; background: #ff8533; border-radius: 8px;"></div>
+                    <div class="text-xs text-center mt-8" style="color: #666;">#FF8533 Orange Light</div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <h3 class="mb-16">Typography</h3>
+            <div class="mb-16">
+                <div class="text-xs mb-8" style="color: #666; text-transform: uppercase; letter-spacing: 2px;">Headlines</div>
+                <div style="font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 800;">Playfair Display</div>
+                <div class="text-xs" style="color: #666;">Weights: 700, 800, 900</div>
+            </div>
+            <div>
+                <div class="text-xs mb-8" style="color: #666; text-transform: uppercase; letter-spacing: 2px;">Body Text</div>
+                <div style="font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400;">Inter Sans-Serif</div>
+                <div class="text-xs" style="color: #666;">Weights: 400, 500, 600, 700</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card" style="text-align: center;">
+        <h3 class="mb-8">The Gradient Effect</h3>
+        <p class="text-sm mb-16" style="color: #666;">Used on key headlines throughout the site</p>
+        <div style="font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 800;">
+            <span class="gradient-text">Do Deals With Lee</span>
+        </div>
+        <div class="text-xs mt-16" style="color: #666;">Linear gradient: #00E5FF (cyan) &rarr; #FFD700 (gold) at 135&deg;</div>
+    </div>
+    <div class="page-number">05 / 07</div>
+</div>
+
+<!-- ==================== PAGE 6: NEON SIGN MOCKUPS ==================== -->
+<div class="page">
+    <div class="tag tag-cyan">Neon Sign Concepts</div>
+    <h2 class="mb-16">Podcast Studio <span class="cyan neon-glow">Neon Sign</span> Concepts</h2>
+    <p class="mb-32">Three concepts for how the DDWL neon sign could look in your podcast studio. All use the exact <span class="cyan">#00E5FF</span> cyan from the website.</p>
+
+    <div class="grid-3 mb-32">
+        <!-- Concept 1: Logo only -->
+        <div class="card text-center" style="min-height: 280px; display: flex; flex-direction: column; justify-content: center;">
+            <div class="text-xs mb-16" style="color: #666; text-transform: uppercase; letter-spacing: 2px;">Concept 1: Logo Text</div>
+            <div style="background: #030303; border-radius: 12px; padding: 40px 20px; margin-bottom: 16px;">
+                <div style="font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 800; color: #00e5ff; text-shadow: 0 0 8px #00e5ff, 0 0 16px #00e5ff, 0 0 32px #00e5ff, 0 0 64px rgba(0, 229, 255, 0.4); letter-spacing: 3px;">DO DEALS</div>
+                <div style="font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 600; color: #00e5ff; text-shadow: 0 0 8px #00e5ff, 0 0 16px #00e5ff, 0 0 32px #00e5ff; letter-spacing: 5px; margin-top: 4px;">WITH LEE</div>
+            </div>
+            <p class="text-xs" style="color: #666;">Clean &amp; minimal &mdash; matches website nav</p>
+        </div>
+
+        <!-- Concept 2: Full brand -->
+        <div class="card text-center" style="min-height: 280px; display: flex; flex-direction: column; justify-content: center; border-color: rgba(0, 229, 255, 0.3);">
+            <div class="text-xs mb-16" style="color: #00e5ff; text-transform: uppercase; letter-spacing: 2px;">Concept 2: Full Brand &#x2B50;</div>
+            <div style="background: #030303; border-radius: 12px; padding: 30px 20px; margin-bottom: 16px;">
+                <div style="font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 800; color: #00e5ff; text-shadow: 0 0 10px #00e5ff, 0 0 20px #00e5ff, 0 0 40px #00e5ff, 0 0 80px rgba(0, 229, 255, 0.4); letter-spacing: 2px;">DO DEALS</div>
+                <div style="font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 600; color: #00e5ff; text-shadow: 0 0 8px #00e5ff, 0 0 16px #00e5ff, 0 0 32px #00e5ff; letter-spacing: 4px; margin-top: 2px;">WITH LEE</div>
+                <div style="width: 50%; height: 2px; background: #00e5ff; margin: 10px auto; box-shadow: 0 0 8px #00e5ff, 0 0 16px #00e5ff;"></div>
+                <div style="font-size: 8px; color: rgba(0, 229, 255, 0.7); letter-spacing: 3px; text-shadow: 0 0 8px rgba(0, 229, 255, 0.5);">REAL ESTATE &bull; INVESTING</div>
+            </div>
+            <p class="text-xs" style="color: #00e5ff;">Recommended &mdash; most impact on camera</p>
+        </div>
+
+        <!-- Concept 3: Dual color -->
+        <div class="card text-center" style="min-height: 280px; display: flex; flex-direction: column; justify-content: center;">
+            <div class="text-xs mb-16" style="color: #666; text-transform: uppercase; letter-spacing: 2px;">Concept 3: Dual Color</div>
+            <div style="background: #030303; border-radius: 12px; padding: 40px 20px; margin-bottom: 16px;">
+                <div style="font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 800; color: #00e5ff; text-shadow: 0 0 8px #00e5ff, 0 0 16px #00e5ff, 0 0 32px #00e5ff; letter-spacing: 3px;">DO DEALS</div>
+                <div style="font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 600; color: #ffd700; text-shadow: 0 0 8px #ffd700, 0 0 16px #ffd700, 0 0 32px rgba(255, 215, 0, 0.4); letter-spacing: 5px; margin-top: 4px;">WITH LEE</div>
+            </div>
+            <p class="text-xs" style="color: #666;">Cyan + Gold &mdash; matches gradient effect</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3 class="mb-16">&#x1F4CB; What to Tell Your Sign Maker</h3>
+        <div class="grid-2">
+            <div>
+                <div class="checkmark">Color: Ice Blue / Cyan LED Neon &mdash; HEX #00E5FF</div>
+                <div class="checkmark">Style: LED Flex Neon (not traditional glass)</div>
+                <div class="checkmark">Backing: Black acrylic or clear (for dark wall mount)</div>
+                <div class="checkmark">Font: Playfair Display Bold/ExtraBold (provide TTF file)</div>
+            </div>
+            <div>
+                <div class="checkmark">Size: 24-36 inches wide (typical podcast backdrop)</div>
+                <div class="checkmark">Dimmer: Yes &mdash; adjustable for camera lighting</div>
+                <div class="checkmark">Power: Standard wall plug with inline dimmer</div>
+                <div class="checkmark">Provide: SVG logo file for exact letter shapes</div>
+            </div>
+        </div>
+    </div>
+    <div class="page-number">06 / 07</div>
+</div>
+
+<!-- ==================== PAGE 7: NEXT STEPS ==================== -->
+<div class="page">
+    <div class="tag tag-orange">Next Steps</div>
+    <h2 class="mb-16">What Happens <span class="gradient-text">Next</span></h2>
+    <p class="mb-32">Here's the plan to get your brand locked in across everything &mdash; website, neon sign, and all materials.</p>
+
+    <div class="flex-col gap-24 mb-48">
+        <div class="card" style="display: flex; gap: 24px; align-items: flex-start;">
+            <div style="min-width: 48px; height: 48px; background: #00e5ff; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 800; color: #0a0a0a;">1</div>
+            <div>
+                <h3 class="mb-8">Confirm This Is the Right Version</h3>
+                <p class="text-sm">Reply to confirm that Version A (Claude Homepage at /claudehome) is the look you want. Specifically confirm the <span class="cyan">cyan #00E5FF</span> color and the logo treatment.</p>
+            </div>
+        </div>
+        <div class="card" style="display: flex; gap: 24px; align-items: flex-start;">
+            <div style="min-width: 48px; height: 48px; background: #ffd700; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 800; color: #0a0a0a;">2</div>
+            <div>
+                <h3 class="mb-8">We Apply This Look to All Pages</h3>
+                <p class="text-sm">Once confirmed, we'll update the homepage content (keeping Version A's design) and ensure all portal pages (careers, onboarding, admin, student enrollment) match this exact style.</p>
+            </div>
+        </div>
+        <div class="card" style="display: flex; gap: 24px; align-items: flex-start;">
+            <div style="min-width: 48px; height: 48px; background: #ff6b00; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 800; color: #0a0a0a;">3</div>
+            <div>
+                <h3 class="mb-8">Neon Sign Production</h3>
+                <p class="text-sm">We'll prepare a complete neon sign spec sheet with the SVG file, exact color codes, font files, and sizing recommendations for your sign maker.</p>
+            </div>
+        </div>
+        <div class="card" style="display: flex; gap: 24px; align-items: flex-start;">
+            <div style="min-width: 48px; height: 48px; background: linear-gradient(135deg, #00e5ff, #ffd700); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 800; color: #0a0a0a;">4</div>
+            <div>
+                <h3 class="mb-8">Go Live</h3>
+                <p class="text-sm">Replace the current homepage with the finalized version, test everything, and launch. Your website and neon sign will be a perfect match.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="text-center">
+        <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/67630a6111b3975ed85ffd20.svg" alt="DDWL" style="height: 40px; margin-bottom: 16px;">
+        <p class="text-sm" style="color: #666;">Do Deals With Lee&trade; &bull; Brand &amp; Logo Presentation</p>
+        <p class="text-xs" style="color: #444;">Prepared by Daniel Gallagher &amp; Lilly &bull; Exposure Solutions &bull; February 2026</p>
+        <p class="text-xs mt-16" style="color: #444;">info@dodealswithlee.com &bull; (813) 675-0916 &bull; PO Box 172566, Tampa FL 33672</p>
+    </div>
+    <div class="page-number">07 / 07</div>
+</div>
+
+<!-- Print Button -->
+<button class="print-btn no-print" onclick="window.print()">&#x1F5A8; Save as PDF / Print</button>
+
+</body>
+</html>

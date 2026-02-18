@@ -1,0 +1,52 @@
+{
+  "client": "McGinty's Garage Repair",
+  "bot_username": "mcgintys_bot",
+  "bot_token_env": "MCGINTYS_BOT_TOKEN",
+  "brand_color": "#FF6B00",
+  "greeting": "Hey! I'm the McGinty's Garage assistant. I can help you book a service, get an estimate, or answer questions about your vehicle.",
+  "ghl": {
+    "api_key_env": "GHL_API_KEY",
+    "location_id": "KbiucErIMNPbO1mY4qXL",
+    "calendar_id": null,
+    "pipeline_id": null
+  },
+  "voice": {
+    "enabled": false,
+    "voice_id": null,
+    "voice_name": null
+  },
+  "faqs": [
+    {"q": "What are your hours?", "a": "Monday-Friday 8am-6pm, Saturday 9am-2pm. Closed Sundays."},
+    {"q": "Where are you located?", "a": "We're at 123 Main Street, Cleveland, OH 44101."},
+    {"q": "Do you do oil changes?", "a": "Yes! Walk-ins welcome or book online. Standard oil change starts at $39.99."},
+    {"q": "How much is a brake job?", "a": "Brake service starts at $149 per axle. We'll inspect for free and give you an exact quote."},
+    {"q": "Do you offer towing?", "a": "Yes, we partner with local towing companies. Call us and we'll arrange a tow to our shop."},
+    {"q": "Do you work on all makes?", "a": "We service all makes and models — domestic and import."},
+    {"q": "How long does a repair take?", "a": "Most standard services are same-day. We'll give you a time estimate when you drop off."}
+  ],
+  "services": [
+    "Oil Change — from $39.99",
+    "Brake Service — from $149/axle",
+    "Tire Rotation — $29.99",
+    "Full Vehicle Inspection — $89.99",
+    "Engine Diagnostics — $79.99",
+    "Transmission Service — from $199",
+    "AC Repair — from $129",
+    "Battery Replacement — from $89"
+  ],
+  "lead_capture": {
+    "enabled": true,
+    "required_fields": ["name", "phone"],
+    "optional_fields": ["email", "vehicle"],
+    "auto_tag": ["website-lead", "telegram", "auto-repair"]
+  },
+  "notifications": {
+    "owner_chat_ids": [],
+    "notify_on_new_lead": true,
+    "notify_on_appointment": true
+  },
+  "ai_fallback": {
+    "enabled": true,
+    "system_prompt": "You are the AI assistant for McGinty's Garage Repair in Cleveland, OH. Help customers with service questions, pricing, and booking. Be friendly and professional. If you don't know something specific, encourage them to call or visit."
+  }
+}

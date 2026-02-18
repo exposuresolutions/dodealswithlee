@@ -1,0 +1,62 @@
+[
+  {
+    "title": "Invoices, Estimates: Open in new tab",
+    "link": "https://ideas.gohighlevel.com/changelog/invoices-estimates-open-in-new-tab",
+    "description": "What\u201a\u00c4\u00f4s New?View/Edit Invoices in a New Tab: You can now open any invoice/estimate in a separate browser tab directly from the 3-dot menu. No more losing your place in the invoice list while editing.How to Use?Go to Payments \u201a\u00dc\u00ed Invoices &amp; EstimatesClick on the 3-dot menu beside",
+    "date": "Tue, 17 Feb 2026 06:54:33 GMT"
+  },
+  {
+    "title": "\uf8ff\u00fc\u00f6\u00c4 Import from Media Storage in Courses ( Labs )",
+    "link": "https://ideas.gohighlevel.com/changelog/import-from-media-storage-in-courses-labs",
+    "description": "You can now add audio and video content to your courses directly from Media Storage.Simply import existing media into your course lessons in just a few clicks.What\u201a\u00c4\u00f4s NewImport Media from Media StorageCourse creators can now:Browse existing audio and video files from Media StorageSelect and import media directly into course lessonsInstantly reuse previously uploaded contentThis enables faster content creation a",
+    "date": "Mon, 16 Feb 2026 12:54:32 GMT"
+  },
+  {
+    "title": "Manus triggers and actions in Workflows",
+    "link": "https://ideas.gohighlevel.com/changelog/manus-triggers-and-actions-in-workflows",
+    "description": "What\u201a\u00c4\u00f4s Improved?We\u201a\u00c4\u00f4ve added native Manus triggers and actions to Workflows, enabling you to create, manage, and automate Manus tasks directly inside HighLevel - without relying on third-party automation tools.This integration allows you to trigger workflows based on Manus task activity and perform task operations like creating, updating, continuing, fetching, or deleting tasks - all from within GHL.Manus is a task-based AI system where each t",
+    "date": "Mon, 16 Feb 2026 12:17:01 GMT"
+  },
+  {
+    "title": "Introducing New Templates",
+    "link": "https://ideas.gohighlevel.com/changelog/introducing-new-templates-80",
+    "description": "We are thrilled to announce our new web templates, designed to elevate your marketing efforts. Whether building a website, creating a sales funnel, or sending email campaigns, our versatile and user-friendly templates have you covered. Fully customizable and professional, they streamline your workflow, saving you time and letting you focus on engaging your audience and driving results.List of New Templates------------------------------------------------",
+    "date": "Sun, 15 Feb 2026 01:13:45 GMT"
+  },
+  {
+    "title": "Unknown",
+    "link": "https://ideas.gohighlevel.com/changelog/workflows-expanded-error-highlight-feature",
+    "description": "Workflow error detection now covers significantly more actions and triggers, catching misconfigurations before they impact live executions.What&#39;s NewExpanded Validation CoverageActions with error highlighting: 14 \u201a\u00dc\u00ed 48Triggers with error highlighting: 26 \u201a\u00dc\u00ed 28Enhanced If-Else &amp; Wait Validation",
+    "date": "Fri, 13 Feb 2026 16:29:45 GMT"
+  },
+  {
+    "title": "Deskphone-to-Deskphone Calling &amp; Transfer",
+    "link": "https://ideas.gohighlevel.com/changelog/deskphone-to-deskphone-calling-transfer",
+    "description": "12th of February, 2026Users can now transfer IVR calls from one deskphone to another deskphone. Previously, when a call came in through an IVR flow and landed on a deskphone, there was no way to hand it off to another deskphone user. That limitation is now removed.The ability to transfer any regular (non-IVR) call from a deskphone to another deskphone continues to work as it did earlier.How it worksDuring an active IVR call on your deskpho",
+    "date": "Fri, 13 Feb 2026 14:02:04 GMT"
+  },
+  {
+    "title": "Unknown",
+    "link": "https://ideas.gohighlevel.com/changelog/ai-builder-conversational-editing-for-if-else-wait-actions",
+    "description": "AI Builder now supports editing If-Else and Wait actions directly through conversation. Previously, while these actions could be created via AI and other action types could be edited conversationally, modifying If-Else and Wait actions required manual configuration. This update delivers a fully seamless workflow building experience.What&#39;s NewMulti-Turn Editing for Complex ActionsEdit workflow logic conversationally without switching to manual configuration.",
+    "date": "Fri, 13 Feb 2026 12:54:07 GMT"
+  },
+  {
+    "title": "Voice Dictation in AI Builder &amp; Assistant",
+    "link": "https://ideas.gohighlevel.com/changelog/voice-dictation-in-ai-builder-assistant",
+    "description": "AI Builder &amp; Assistant now supports voice input, allowing you to create workflows by simply speaking your requirements aloud or ask any query without the need to type. What&#39;s NewVoice-to-Workflow Creation \u201a\u00c4\u00ec Click the mic icon and describe your workflow naturally. AI Builder transcribes your speech and generates the corresponding workflow instantly.Multi-Language Support \u201a\u00c4\u00ec Dictate in any language. Voice recognition works across all supported l",
+    "date": "Fri, 13 Feb 2026 12:12:13 GMT"
+  },
+  {
+    "title": "Highlight Contact Path \u201a\u00c4\u00ee Enhanced Visual Debuggin",
+    "link": "https://ideas.gohighlevel.com/changelog/highlight-contact-path-enhanced-visual-debuggin",
+    "description": "We&#39;ve significantly upgraded the Highlight Contact Path feature with expanded visual indicators, providing deeper insight into contact execution behavior directly within the workflow builder.New CapabilitiesError Visibility \u201a\u00c4\u00ee Nodes where errors occurred are now highlighted directly in the builder, enabling faster identification of failure points.Skipped Node Indicators \u201a\u00c4\u00ee View which nodes a contact bypassed during executionEntry &amp; Exi",
+    "date": "Fri, 13 Feb 2026 11:16:16 GMT"
+  },
+  {
+    "title": "New Email Template Update API \uf8ff\u00fc\u00f6\u00c4 ",
+    "link": "https://ideas.gohighlevel.com/changelog/new-email-template-update-api",
+    "description": "We\u201a\u00c4\u00f4ve introduced a new endpoint that allows updating Email Builder templates and email settings in a single API call.\uf8ff\u00fc\u00f6\u00c4  What is New?New Endpoint  PATCH /emails/builder/:templateId\u201a\u00c4\u00a2 Updates existing email builder templates.\u201a\u00c4\u00a2 Maintains all existing update behavior.\u201a\u00c4\u00a2 Now supports updating: subject fromName fromEmail previewTextSimplified Editor PayloadStreamli",
+    "date": "Thu, 12 Feb 2026 15:58:57 GMT"
+  }
+]

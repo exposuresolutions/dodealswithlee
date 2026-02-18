@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DDWL Command Center</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0a;color:rgba(255,255,255,0.9);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:#00e5ff;text-decoration:none}a:hover{color:#40efff}
+:root{--black:#0a0a0a;--dark:#111;--card:#161616;--card-hover:#1a1a1a;--primary:#00e5ff;--primary-light:#40efff;--accent:#ff6b00;--accent-light:#ff8533;--white90:rgba(255,255,255,0.9);--white70:rgba(255,255,255,0.7);--white50:rgba(255,255,255,0.5);--white20:rgba(255,255,255,0.2);--white10:rgba(255,255,255,0.1);--white05:rgba(255,255,255,0.05);--glass:rgba(255,255,255,0.08);--green:#28c840;--red:#ff5f57;--gold:#ffd700;--purple:#a855f7;--radius:12px;--radius-sm:8px}
+/* GHL AGGRESSIVE RESET - NUCLEAR */
+*:not(.app):not(.sidebar):not(.main):not(.panel):not(.stat-card):not(.stat-icon):not(.chart-bar):not(.activity-item):not(.ob-check):not(.badge):not(a):not(span):not(i):not(img):not(input):not(textarea):not(select):not(button):not(label):not(p):not(h1):not(h2):not(h3):not(h4):not(h5):not(h6):not(li):not(ul):not(ol):not(strong):not(em):not(b):not(small):not(br):not(table):not(tr):not(td):not(th):not(thead):not(tbody){background-color:#0a0a0a!important}
+#preview-container,.hl-page-preview,.hl_page-preview,[id*="preview"],[class*="preview"],[class*="page-"],[class*="hl_page"],.c-editor,.c-editor-content,.hl-page-creator,#section-0,#section-1,#section-2,#section-3,#section-4,#section-5,#section-6,#section-7,#section-8,#section-9,#section-10,.inner-section,.section-element,.row-element,.column-element,div[data-page-element],.page-wrapper,.site-wrapper,.content-wrapper,.hl-wrapper,.hl-container,.hl-section,.hl-row,.hl-column,.row-fluid,.container-fluid,.body-wrapper,div[style*="background: rgb(255"],div[style*="background-color: rgb(255"],div[style*="background: white"],div[style*="background-color: white"],div[style*="background:#fff"],div[style*="background-color:#fff"]{background:#0a0a0a!important;background-color:#0a0a0a!important;border:none!important;border-color:#0a0a0a!important;margin:0!important;padding:0!important;max-width:100%!important;box-shadow:none!important}
+.app{display:flex;min-height:100vh}
+.sidebar{width:250px;background:var(--dark);border-right:1px solid var(--white10);position:fixed;top:0;left:0;bottom:0;overflow-y:auto;z-index:50;display:flex;flex-direction:column}
+.main{flex:1;margin-left:250px;padding:24px 32px;min-height:100vh}
+@media(max-width:900px){.sidebar{transform:translateX(-100%);transition:transform 0.3s;width:280px}.sidebar.open{transform:translateX(0)}.main{margin-left:0;padding:16px}.mob-toggle{display:flex!important}}
+.sidebar-logo{padding:16px 20px;border-bottom:1px solid var(--white10)}
+.sidebar-logo img{height:32px}
+.sidebar-section{padding:8px 12px}
+.sidebar-label{font-size:0.68rem;font-weight:700;color:var(--white50);text-transform:uppercase;letter-spacing:1.5px;padding:4px 8px;margin-bottom:4px}
+.sidebar-link{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:var(--radius-sm);font-size:0.88rem;font-weight:500;color:var(--white70);cursor:pointer;transition:all 0.2s;text-decoration:none}
+.sidebar-link:hover{background:var(--glass);color:#fff}
+.sidebar-link.active{background:rgba(0,229,255,0.12);color:var(--primary);font-weight:600}
+.sidebar-link .icon{font-size:1.1rem;width:22px;text-align:center}
+.sidebar-link .badge{margin-left:auto;background:var(--accent);color:#fff;font-size:0.62rem;font-weight:700;padding:2px 7px;border-radius:10px;min-width:20px;text-align:center}
+.sidebar-footer{margin-top:auto;padding:16px 20px;border-top:1px solid var(--white10);display:flex;align-items:center;gap:10px}
+.avatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.75rem;color:#fff;flex-shrink:0}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+.topbar h1{font-size:1.5rem;font-weight:800}
+.topbar-actions{display:flex;gap:8px;flex-wrap:wrap}
+.mob-toggle{display:none;align-items:center;justify-content:center;width:40px;height:40px;border-radius:var(--radius-sm);background:var(--glass);border:1px solid var(--white10);color:#fff;cursor:pointer;font-size:1.2rem;margin-bottom:12px}
+.btn{padding:8px 16px;border-radius:var(--radius-sm);font-size:0.85rem;font-weight:600;border:none;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:6px}
+.btn-primary{background:var(--primary);color:var(--black)}.btn-primary:hover{background:var(--primary-light)}
+.btn-accent{background:var(--accent);color:#fff}.btn-accent:hover{background:var(--accent-light)}
+.btn-success{background:var(--green);color:#fff}.btn-danger{background:var(--red);color:#fff}
+.btn-ghost{background:var(--glass);color:var(--white70);border:1px solid var(--white10)}.btn-ghost:hover{background:var(--white10);color:#fff}
+.btn-gold{background:var(--gold);color:var(--black)}.btn-sm{padding:5px 10px;font-size:0.78rem}
+.stat-card{background:var(--card);border:1px solid var(--white10);border-radius:var(--radius);padding:20px;transition:all 0.2s}
+.stat-card:hover{border-color:var(--primary);transform:translateY(-2px)}
+.stat-card .label{font-size:0.78rem;color:var(--white50);margin-bottom:6px;font-weight:500}
+.stat-card .value{font-size:1.8rem;font-weight:800}
+.stat-card .trend{font-size:0.75rem;margin-top:4px}
+.stat-card .trend.up{color:var(--green)}.stat-card .trend.down{color:var(--red)}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:24px}
+.table-wrap{overflow-x:auto;background:var(--card);border:1px solid var(--white10);border-radius:var(--radius);margin-bottom:24px}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;padding:12px 16px;font-size:0.75rem;font-weight:700;color:var(--white50);text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid var(--white10)}
+td{padding:12px 16px;font-size:0.88rem;border-bottom:1px solid var(--white05)}
+tr:hover{background:var(--glass)}
+.candidate-name{font-weight:600;font-size:0.9rem}.candidate-email{font-size:0.78rem;color:var(--white50)}
+.status{display:inline-block;padding:3px 10px;border-radius:20px;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px}
+.status-new{background:rgba(0,229,255,0.15);color:#00e5ff}.status-review{background:rgba(168,85,247,0.15);color:#a855f7}
+.status-phone{background:rgba(255,215,0,0.15);color:#ffd700}.status-interview{background:rgba(255,107,0,0.15);color:#ff6b00}
+.status-reference{background:rgba(64,239,255,0.15);color:#40efff}.status-offer{background:rgba(40,200,64,0.15);color:#28c840}
+.status-hired{background:rgba(0,255,136,0.15);color:#00ff88}.status-rejected{background:rgba(255,95,87,0.15);color:#ff5f57}
+.status-pool{background:rgba(153,153,153,0.15);color:#999}.status-active{background:rgba(40,200,64,0.15);color:#28c840}
+.status-draft{background:rgba(255,215,0,0.15);color:#ffd700}.status-published{background:rgba(0,229,255,0.15);color:#00e5ff}
+.pipeline-board{display:flex;gap:12px;overflow-x:auto;padding-bottom:12px}
+.pipeline-col{min-width:160px;flex:1;background:var(--card);border:1px solid var(--white10);border-radius:var(--radius)}
+.pipeline-col-header{padding:12px;border-bottom:1px solid var(--white10);display:flex;justify-content:space-between;align-items:center}
+.pipeline-col-title{font-size:0.78rem;font-weight:700}.pipeline-col-count{font-size:0.72rem;background:var(--glass);padding:2px 8px;border-radius:10px;color:var(--white50)}
+.pipeline-col-body{padding:8px;min-height:80px}
+.pipeline-card{background:var(--glass);border:1px solid var(--white10);border-radius:var(--radius-sm);padding:10px;margin-bottom:6px;cursor:pointer;transition:all 0.2s}
+.pipeline-card:hover{border-color:var(--primary)}.pipeline-card .name{font-weight:600;font-size:0.82rem}.pipeline-card .role{font-size:0.72rem;color:var(--white50)}.pipeline-card .date{font-size:0.68rem;color:var(--white50);margin-top:4px}
+.panel{display:none}.panel.active{display:block}
+.detail-panel{position:fixed;top:0;right:-450px;width:450px;max-width:90vw;height:100vh;background:var(--dark);border-left:1px solid var(--white10);z-index:100;transition:right 0.3s;overflow-y:auto;display:flex;flex-direction:column}
+.detail-panel.open{right:0}
+.detail-header{padding:20px;border-bottom:1px solid var(--white10);display:flex;justify-content:space-between;align-items:center}
+.detail-header h2{font-size:1.1rem;font-weight:700}
+.detail-close{background:none;border:none;color:var(--white50);font-size:1.5rem;cursor:pointer}.detail-close:hover{color:#fff}
+.detail-body{padding:20px;flex:1}
+.detail-field{margin-bottom:16px}.detail-field .label{font-size:0.72rem;color:var(--white50);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px}.detail-field .value{font-size:0.9rem}
+.detail-actions{padding:20px;border-top:1px solid var(--white10);display:flex;gap:8px;flex-wrap:wrap}
+.course-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:24px}
+.course-card{background:var(--card);border:1px solid var(--white10);border-radius:var(--radius);overflow:hidden;transition:all 0.2s}
+.course-card:hover{border-color:var(--primary);transform:translateY(-2px)}
+.course-card-header{padding:16px;border-bottom:1px solid var(--white10)}
+.course-card-header h3{font-size:1rem;font-weight:700;margin-bottom:4px}
+.course-card-body{padding:16px}.course-card-footer{padding:12px 16px;border-top:1px solid var(--white05);display:flex;justify-content:space-between;align-items:center}
+.course-meta{display:flex;gap:12px;font-size:0.78rem;color:var(--white50)}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:200;overflow-y:auto;align-items:flex-start;justify-content:center;padding:40px 16px}
+.modal-overlay.open{display:flex}
+.modal{background:var(--dark);border:1px solid var(--white10);border-radius:var(--radius);max-width:600px;width:100%;margin:auto}
+.modal-header{padding:20px;border-bottom:1px solid var(--white10);display:flex;justify-content:space-between;align-items:center}
+.modal-header h2{font-size:1.1rem;font-weight:700}
+.modal-body{padding:20px}.modal-footer{padding:16px 20px;border-top:1px solid var(--white10);display:flex;gap:8px;justify-content:flex-end}
+.field{margin-bottom:16px}.field label{display:block;font-size:0.82rem;font-weight:600;margin-bottom:6px;color:var(--white70)}
+.field input,.field select,.field textarea{width:100%;background:var(--black);border:1px solid var(--white20);border-radius:var(--radius-sm);padding:10px 14px;color:#fff;font-size:0.88rem;font-family:inherit}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--primary)}
+.field textarea{resize:vertical;min-height:80px}.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.chart-bar{display:flex;align-items:flex-end;gap:6px;height:120px;justify-content:center;margin:16px 0}
+.chart-label{display:flex;gap:6px;justify-content:center;font-size:0.68rem;color:var(--white50)}.chart-label span{width:28px;text-align:center}
+.feed-item{background:var(--card);border:1px solid var(--white10);border-radius:var(--radius);padding:16px;margin-bottom:12px;display:flex;gap:12px;align-items:flex-start}
+.feed-icon{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1rem}
+.feed-content{flex:1}.feed-content .title{font-weight:600;font-size:0.9rem;margin-bottom:2px}.feed-content .desc{font-size:0.82rem;color:var(--white50)}
+.feed-time{font-size:0.72rem;color:var(--white50);white-space:nowrap}
+.ob-phase{background:var(--card);border:1px solid var(--white10);border-radius:var(--radius);margin-bottom:12px;overflow:hidden}
+.ob-phase-header{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer}.ob-phase-header:hover{background:var(--glass)}
+.ob-phase-header h3{font-size:0.95rem;font-weight:700}
+.ob-phase-body{display:none;padding:0 16px 16px}.ob-phase-body.open{display:block}
+.ob-task{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--white05)}.ob-task:last-child{border-bottom:none}
+.ob-check{width:20px;height:20px;border-radius:6px;border:2px solid var(--white20);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.2s}
+.ob-check:hover{border-color:var(--primary)}.ob-check.done{background:var(--green);border-color:var(--green)}
+.ob-check.done::after{content:'\2713';color:#fff;font-size:12px;font-weight:700}
+.ob-task.completed{opacity:0.5}.ob-task .task-text{font-size:0.88rem}.ob-task .task-note{font-size:0.75rem;color:var(--white50)}
+.toast{position:fixed;bottom:20px;right:20px;background:var(--green);color:#fff;padding:12px 20px;border-radius:var(--radius-sm);font-weight:600;font-size:0.9rem;z-index:300;transform:translateY(100px);opacity:0;transition:all 0.4s}
+.toast.show{transform:translateY(0);opacity:1}.toast.error{background:var(--red)}
+::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--white20);border-radius:3px}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar" id="sidebar">
+<div class="sidebar-logo"><a href="/claudehome"><img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/67630a6111b3975ed85ffd20.svg" alt="DDWL"></a></div>
+<div class="sidebar-section">
+<div class="sidebar-label">Site</div>
+<a href="/claudehome" class="sidebar-link"><span class="icon">&#x1F3E0;</span> Home</a>
+<a href="/careeer" class="sidebar-link"><span class="icon">&#x1F4BC;</span> Careers</a>
+<a href="/studentenrollment" class="sidebar-link"><span class="icon">&#x1F393;</span> Students</a>
+</div>
+<div class="sidebar-section">
+<div class="sidebar-label">Business</div>
+<div class="sidebar-link active" onclick="showPanel('overview')"><span class="icon">&#x1F4CA;</span> Overview</div>
+<div class="sidebar-link" onclick="showPanel('ghl')"><span class="icon">&#x1F4BB;</span> GHL Data</div>
+<div class="sidebar-link" onclick="showPanel('leads')"><span class="icon">&#x1F4E5;</span> Leads <span class="badge" id="badgeLeads">0</span></div>
+</div>
+<div class="sidebar-section">
+<div class="sidebar-label">Education</div>
+<div class="sidebar-link" onclick="showPanel('courses')"><span class="icon">&#x1F4DA;</span> Courses <span class="badge" id="badgeCourses" style="background:var(--gold)">0</span></div>
+<div class="sidebar-link" onclick="showPanel('students')"><span class="icon">&#x1F9D1;</span> Enrolled</div>
+</div>
+<div class="sidebar-section">
+<div class="sidebar-label">Recruitment</div>
+<div class="sidebar-link" onclick="showPanel('candidates')"><span class="icon">&#x1F465;</span> Candidates <span class="badge" id="badgeCandidates">0</span></div>
+<div class="sidebar-link" onclick="showPanel('pipeline')"><span class="icon">&#x1F4CB;</span> Pipeline</div>
+<div class="sidebar-link" onclick="showPanel('jobs')"><span class="icon">&#x1F4BC;</span> Jobs</div>
+</div>
+<div class="sidebar-section">
+<div class="sidebar-label">Team</div>
+<div class="sidebar-link" onclick="showPanel('onboarding')"><span class="icon">&#x2705;</span> Onboarding</div>
+<div class="sidebar-link" onclick="showPanel('settings')"><span class="icon">&#x2699;&#xFE0F;</span> Settings</div>
+</div>
+<div class="sidebar-footer">
+<div class="avatar" style="background:var(--accent)" id="userAvatar">LK</div>
+<div><div style="font-size:0.85rem;font-weight:600" id="userName">Lee Kearney</div><div style="font-size:0.72rem;color:var(--white50)" id="userRole">CEO &amp; Founder</div></div>
+</div>
+</aside>
+
+<main class="main">
+<button class="mob-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')" title="Menu">&#9776;</button>
+
+<!-- OVERVIEW -->
+<div class="panel active" id="panel-overview">
+<div class="topbar"><h1>&#x1F4CA; Command Center</h1><div class="topbar-actions"><button class="btn btn-primary" onclick="showPanel('leads')">&#x1F4E5; Leads</button><button class="btn btn-ghost" onclick="exportAllData()">&#x1F4E5; Export</button></div></div>
+<div class="stats-grid">
+<div class="stat-card"><div class="label">Total Contacts</div><div class="value" id="statContacts">247</div><div class="trend up">&#x25B2; 12% this month</div></div>
+<div class="stat-card"><div class="label">Active Leads</div><div class="value" style="color:var(--primary)" id="statLeads">38</div><div class="trend up">&#x25B2; 8 new this week</div></div>
+<div class="stat-card"><div class="label">Pipeline Value</div><div class="value" style="color:var(--gold)" id="statPipeline">$1.2M</div><div class="trend up">&#x25B2; 3 deals pending</div></div>
+<div class="stat-card"><div class="label">Active Students</div><div class="value" style="color:var(--green)" id="statStudents">14</div><div class="trend up">&#x25B2; 3 this month</div></div>
+<div class="stat-card"><div class="label">Course Revenue</div><div class="value" style="color:var(--accent)" id="statCourseRev">$8,470</div><div class="trend up">&#x25B2; 22% vs last month</div></div>
+<div class="stat-card"><div class="label">Open Jobs</div><div class="value" style="color:var(--purple)" id="statJobs">0</div><div class="trend">Active postings</div></div>
+</div>
+<div style="background:var(--card);border:1px solid var(--white10);border-radius:var(--radius);padding:24px;margin-bottom:24px">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><h3 style="font-size:1rem;font-weight:700">Monthly Revenue</h3><span style="font-size:0.78rem;color:var(--white50)">Last 6 months</span></div>
+<div class="chart-bar" id="revenueChart"></div><div class="chart-label" id="revenueLabels"></div>
+</div>
+<h2 style="font-size:1.1rem;font-weight:700;margin-bottom:14px">Recent Activity</h2>
+<div id="activityFeed"></div>
+<h2 style="font-size:1.1rem;font-weight:700;margin:24px 0 14px">Quick Actions</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px">
+<button class="btn btn-primary" onclick="showPanel('courses');setTimeout(openCourseModal,100)" style="justify-content:center;padding:16px">&#x2795; Add Course</button>
+<button class="btn btn-accent" onclick="showPanel('jobs');setTimeout(createJob,100)" style="justify-content:center;padding:16px">&#x2795; Post Job</button>
+<button class="btn btn-gold" onclick="showPanel('onboarding')" style="justify-content:center;padding:16px">&#x1F4CB; Onboarding</button>
+<a href="https://app.gohighlevel.com" target="_blank" rel="noopener" class="btn btn-ghost" style="justify-content:center;padding:16px;text-decoration:none">&#x1F4BB; Open GHL</a>
+</div>
+</div>
+
+<!-- GHL DATA -->
+<div class="panel" id="panel-ghl">
+<div class="topbar"><h1>&#x1F4BB; GHL Data Center</h1><div class="topbar-actions"><a href="https://app.gohighlevel.com" target="_blank" rel="noopener" class="btn btn-primary">Open GHL &rarr;</a></div></div>
+<p style="color:var(--white50);margin-bottom:20px">Click any card to open that section directly in GoHighLevel.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:24px">
+<div class="stat-card" style="cursor:pointer" onclick="window.open('https://app.gohighlevel.com/contacts','_blank')"><div class="label">&#x1F465; Contacts</div><div class="value">247</div><div style="font-size:0.78rem;color:var(--white50);margin-top:8px">Manage in GHL</div></div>
+<div class="stat-card" style="cursor:pointer" onclick="window.open('https://app.gohighlevel.com/opportunities','_blank')"><div class="label">&#x1F4B0; Opportunities</div><div class="value" style="color:var(--gold)">12</div><div style="font-size:0.78rem;color:var(--white50);margin-top:8px">View pipeline</div></div>
+<div class="stat-card" style="cursor:pointer" onclick="window.open('https://app.gohighlevel.com/calendars','_blank')"><div class="label">&#x1F4C5; Appointments</div><div class="value" style="color:var(--green)">5</div><div style="font-size:0.78rem;color:var(--white50);margin-top:8px">This week</div></div>
+<div class="stat-card" style="cursor:pointer" onclick="window.open('https://app.gohighlevel.com/conversations','_blank')"><div class="label">&#x1F4AC; Conversations</div><div class="value" style="color:var(--primary)">18</div><div style="font-size:0.78rem;color:var(--white50);margin-top:8px">Unread</div></div>
+<div class="stat-card" style="cursor:pointer" onclick="window.open('https://app.gohighlevel.com/payments','_blank')"><div class="label">&#x1F4B3; Payments</div><div class="value" style="color:var(--accent)">$24,800</div><div style="font-size:0.78rem;color:var(--white50);margin-top:8px">This month</div></div>
+<div class="stat-card" style="cursor:pointer" onclick="window.open('https://app.gohighlevel.com/reporting','_blank')"><div class="label">&#x1F4C8; Reports</div><div class="value" style="color:var(--purple)">View</div><div style="font-size:0.78rem;color:var(--white50);margin-top:8px">Full analytics</div></div>
+</div>
+<h2 style="font-size:1.1rem;font-weight:700;margin-bottom:14px">Quick Links</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px">
+<a href="https://app.gohighlevel.com/contacts" target="_blank" rel="noopener" class="feed-item" style="text-decoration:none;cursor:pointer"><div class="feed-icon" style="background:rgba(0,229,255,0.15)">&#x1F465;</div><div class="feed-content"><div class="title">Contacts</div><div class="desc">View, search, tag all contacts</div></div></a>
+<a href="https://app.gohighlevel.com/opportunities" target="_blank" rel="noopener" class="feed-item" style="text-decoration:none;cursor:pointer"><div class="feed-icon" style="background:rgba(255,215,0,0.15)">&#x1F4B0;</div><div class="feed-content"><div class="title">Deal Pipeline</div><div class="desc">Track deals lead to close</div></div></a>
+<a href="https://app.gohighlevel.com/calendars" target="_blank" rel="noopener" class="feed-item" style="text-decoration:none;cursor:pointer"><div class="feed-icon" style="background:rgba(40,200,64,0.15)">&#x1F4C5;</div><div class="feed-content"><div class="title">Calendar</div><div class="desc">Appointments and meetings</div></div></a>
+<a href="https://app.gohighlevel.com/conversations" target="_blank" rel="noopener" class="feed-item" style="text-decoration:none;cursor:pointer"><div class="feed-icon" style="background:rgba(168,85,247,0.15)">&#x1F4AC;</div><div class="feed-content"><div class="title">Conversations</div><div class="desc">SMS, email, chat</div></div></a>
+<a href="https://app.gohighlevel.com/automation" target="_blank" rel="noopener" class="feed-item" style="text-decoration:none;cursor:pointer"><div class="feed-icon" style="background:rgba(255,107,0,0.15)">&#x26A1;</div><div class="feed-content"><div class="title">Automations</div><div class="desc">Workflows and triggers</div></div></a>
+<a href="https://app.gohighlevel.com/funnels-websites" target="_blank" rel="noopener" class="feed-item" style="text-decoration:none;cursor:pointer"><div class="feed-icon" style="background:rgba(255,95,87,0.15)">&#x1F310;</div><div class="feed-content"><div class="title">Sites &amp; Funnels</div><div class="desc">Website and landing pages</div></div></a>
+</div>
+</div>
+
+<!-- LEADS -->
+<div class="panel" id="panel-leads">
+<div class="topbar"><h1>&#x1F4E5; Leads</h1><div class="topbar-actions"><button class="btn btn-primary" onclick="addLead()">&#x2795; Add Lead</button></div></div>
+<div class="stats-grid">
+<div class="stat-card"><div class="label">Network Apps</div><div class="value" id="leadNetworkCount">0</div></div>
+<div class="stat-card"><div class="label">Student Inquiries</div><div class="value" style="color:var(--green)" id="leadStudentCount">0</div></div>
+<div class="stat-card"><div class="label">Job Apps</div><div class="value" style="color:var(--accent)" id="leadJobCount">0</div></div>
+<div class="stat-card"><div class="label">Total</div><div class="value" style="color:var(--gold)" id="leadMonthCount">0</div></div>
+</div>
+<div class="table-wrap"><table><thead><tr><th>Name</th><th>Type</th><th>Source</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead><tbody id="leadsTable"><tr><td colspan="6" style="text-align:center;padding:40px;color:var(--white50)">Leads from website forms appear here automatically.</td></tr></tbody></table></div>
+</div>
+
+<!-- COURSES -->
+<div class="panel" id="panel-courses">
+<div class="topbar"><h1>&#x1F4DA; Course Manager</h1><div class="topbar-actions"><button class="btn btn-primary" onclick="openCourseModal()">&#x2795; Add Course</button><button class="btn btn-ghost" onclick="openContentRequest()">&#x1F4E7; How to Add Content</button></div></div>
+<div style="background:var(--card);border:1px solid var(--gold);border-radius:var(--radius);padding:16px;margin-bottom:20px;display:flex;gap:12px;align-items:flex-start">
+<div style="font-size:1.5rem">&#x1F4A1;</div>
+<div><div style="font-weight:700;color:var(--gold);margin-bottom:4px">Demo Content</div><div style="font-size:0.85rem;color:var(--white70)">These are sample courses based on Lee&rsquo;s expertise. Edit, delete, or add your own using the buttons above. Lee and Krystle control all content.</div></div>
+</div>
+<div class="course-grid" id="courseGrid"></div>
+</div>
+
+<!-- STUDENTS -->
+<div class="panel" id="panel-students">
+<div class="topbar"><h1>&#x1F9D1; Student Management</h1></div>
+<div class="stats-grid">
+<div class="stat-card"><div class="label">Active</div><div class="value" style="color:var(--green)" id="activeStudentCount">0</div></div>
+<div class="stat-card"><div class="label">Completed</div><div class="value" style="color:var(--gold)" id="completedStudentCount">0</div></div>
+<div class="stat-card"><div class="label">Avg Completion</div><div class="value" style="color:var(--primary)" id="avgCompletion">0%</div></div>
+</div>
+<div class="table-wrap"><table><thead><tr><th>Student</th><th>Course</th><th>Progress</th><th>Enrolled</th><th>Status</th></tr></thead><tbody id="studentTable"><tr><td colspan="5" style="text-align:center;padding:40px;color:var(--white50)">Student enrollments appear here when people sign up.</td></tr></tbody></table></div>
+</div>
+
+<!-- CANDIDATES -->
+<div class="panel" id="panel-candidates">
+<div class="topbar"><h1>&#x1F465; Candidates</h1><div class="topbar-actions"><button class="btn btn-accent" onclick="addCandidate()">&#x2795; Add</button></div></div>
+<div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap">
+<input type="text" id="candidateSearch" placeholder="Search..." onkeyup="renderCandidates()" style="flex:1;min-width:200px;background:var(--card);border:1px solid var(--white10);border-radius:var(--radius-sm);padding:10px 14px;color:#fff;font-size:0.88rem">
+<select id="statusFilter" onchange="renderCandidates()" style="background:var(--card);border:1px solid var(--white10);border-radius:var(--radius-sm);padding:10px 14px;color:#fff;font-size:0.88rem"><option value="">All</option><option value="new-application">New</option><option value="under-review">Review</option><option value="phone-screen">Phone Screen</option><option value="interview">Interview</option><option value="offer-extended">Offer</option><option value="hired">Hired</option><option value="unsuccessful">Rejected</option></select>
+</div>
+<div class="table-wrap"><table><thead><tr><th>Candidate</th><th>Position</th><th>Source</th><th>Status</th><th>Applied</th><th>Actions</th></tr></thead><tbody id="candidatesTable"><tr><td colspan="6" style="text-align:center;padding:40px;color:var(--white50)">No candidates yet.</td></tr></tbody></table></div>
+</div>
+
+<!-- PIPELINE -->
+<div class="panel" id="panel-pipeline">
+<div class="topbar"><h1>&#x1F4CB; Pipeline</h1><div class="topbar-actions"><button class="btn btn-ghost" onclick="renderPipeline();showToast('Refreshed')">&#x1F504; Refresh</button></div></div>
+<div class="pipeline-board" id="pipelineBoard"></div>
+</div>
+
+<!-- JOBS -->
+<div class="panel" id="panel-jobs">
+<div class="topbar"><h1>&#x1F4BC; Job Postings</h1><div class="topbar-actions"><button class="btn btn-accent" onclick="createJob()">&#x2795; New Job</button></div></div>
+<div id="jobList"></div>
+</div>
+
+<!-- ONBOARDING -->
+<div class="panel" id="panel-onboarding">
+<div class="topbar"><h1>&#x2705; Staff Onboarding</h1><div class="topbar-actions"><button class="btn btn-primary" onclick="openOnboardingEditor()">&#x270F;&#xFE0F; Edit Checklist</button></div></div>
+<div style="background:var(--card);border:1px solid var(--gold);border-radius:var(--radius);padding:16px;margin-bottom:20px;display:flex;gap:12px;align-items:flex-start">
+<div style="font-size:1.5rem">&#x1F4A1;</div>
+<div><div style="font-weight:700;color:var(--gold);margin-bottom:4px">Demo Checklist</div><div style="font-size:0.85rem;color:var(--white70)">Sample onboarding tasks. Lee and Krystle &mdash; customize phases and tasks using the Edit button. Final version should include your actual systems and processes.</div></div>
+</div>
+<div id="onboardingChecklist"></div>
+<h2 style="font-size:1.1rem;font-weight:700;margin:24px 0 14px">Hired &amp; Onboarding</h2>
+<div class="table-wrap"><table><thead><tr><th>Name</th><th>Position</th><th>Start</th><th>Phase</th><th>Progress</th><th>Actions</th></tr></thead><tbody id="onboardingTable"><tr><td colspan="6" style="text-align:center;padding:40px;color:var(--white50)">Hired candidates appear here.</td></tr></tbody></table></div>
+</div>
+
+<!-- SETTINGS -->
+<div class="panel" id="panel-settings">
+<div class="topbar"><h1>&#x2699;&#xFE0F; Settings</h1></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px">
+<div class="stat-card"><h3 style="font-size:1rem;font-weight:700;margin-bottom:12px">Team</h3><div id="adminList"></div></div>
+<div class="stat-card"><h3 style="font-size:1rem;font-weight:700;margin-bottom:12px">Phone Extensions</h3><div style="font-size:0.85rem;color:var(--white70)"><div style="padding:6px 0;border-bottom:1px solid var(--white05)"><strong>(813) 675-0916</strong> Main</div><div style="padding:6px 0;border-bottom:1px solid var(--white05)">ext 200 Admin</div><div style="padding:6px 0;border-bottom:1px solid var(--white05)">ext 201 Krystle</div><div style="padding:6px 0;border-bottom:1px solid var(--white05)">ext 202 Becky</div><div style="padding:6px 0;border-bottom:1px solid var(--white05)">ext 203 Stacy</div><div style="padding:6px 0;border-bottom:1px solid var(--white05)">ext 204 Lilly (AI)</div><div style="padding:6px 0">ext 209 Lee</div></div></div>
+<div class="stat-card"><h3 style="font-size:1rem;font-weight:700;margin-bottom:12px">Notifications</h3><div style="font-size:0.85rem;color:var(--white70)"><div style="padding:6px 0;border-bottom:1px solid var(--white05)"><strong>New App</strong> &rarr; Lilly + Krystle</div><div style="padding:6px 0;border-bottom:1px solid var(--white05)"><strong>Interview</strong> &rarr; Lee + Krystle</div><div style="padding:6px 0;border-bottom:1px solid var(--white05)"><strong>Offer</strong> &rarr; Lee + Krystle + Daniel</div><div style="padding:6px 0;border-bottom:1px solid var(--white05)"><strong>Hired</strong> &rarr; All</div><div style="padding:6px 0"><strong>New Lead</strong> &rarr; Lilly + Lee</div></div></div>
+<div class="stat-card"><h3 style="font-size:1rem;font-weight:700;margin-bottom:12px">Data</h3><div style="display:grid;gap:8px"><button class="btn btn-ghost" onclick="exportAllData()" style="width:100%;justify-content:center">&#x1F4E5; Export JSON</button><button class="btn btn-ghost" onclick="importData()" style="width:100%;justify-content:center">&#x1F4E4; Import</button><button class="btn btn-danger" onclick="clearAllData()" style="width:100%;justify-content:center">&#x1F5D1; Clear All</button></div></div>
+</div>
+</div>
+
+</main>
+</div>
+
+<!-- DETAIL PANEL -->
+<div class="detail-panel" id="detailPanel"><div class="detail-header"><h2 id="detailName">Details</h2><button class="detail-close" onclick="closeDetail()">&times;</button></div><div class="detail-body" id="detailBody"></div><div class="detail-actions" id="detailActions"></div></div>
+
+<!-- COURSE MODAL -->
+<div class="modal-overlay" id="courseModal"><div class="modal"><div class="modal-header"><h2 id="courseModalTitle">Add Course</h2><button class="detail-close" onclick="closeCourseModal()">&times;</button></div><div class="modal-body"><form id="courseForm"><input type="hidden" id="courseEditId"><div class="field"><label>Course Title *</label><input type="text" id="cTitle" required placeholder="e.g. Flip Your Income"></div><div class="field-row"><div class="field"><label>Category</label><select id="cCategory"><option value="wholesaling">Wholesaling</option><option value="fix-flip">Fix &amp; Flip</option><option value="short-sales">Short Sales</option><option value="market-analysis">Market Analysis</option><option value="negotiation">Negotiation</option><option value="business">Business</option><option value="ai-tools">AI Tools</option><option value="cleveland">Cleveland</option></select></div><div class="field"><label>Price</label><input type="text" id="cPrice" placeholder="$497 or Free"></div></div><div class="field-row"><div class="field"><label>Duration</label><input type="text" id="cDuration" placeholder="20 hours"></div><div class="field"><label>Lessons</label><input type="number" id="cLessons" placeholder="12"></div></div><div class="field"><label>Description</label><textarea id="cDesc" placeholder="What students will learn..."></textarea></div><div class="field"><label>Status</label><select id="cStatus"><option value="published">Published</option><option value="draft">Draft</option></select></div></form></div><div class="modal-footer"><button class="btn btn-ghost" onclick="closeCourseModal()">Cancel</button><button class="btn btn-primary" onclick="saveCourse()">Save</button></div></div></div>
+
+<!-- ONBOARDING EDITOR -->
+<div class="modal-overlay" id="onboardingModal"><div class="modal" style="max-width:700px"><div class="modal-header"><h2>Edit Onboarding</h2><button class="detail-close" onclick="closeOnboardingEditor()">&times;</button></div><div class="modal-body"><p style="color:var(--white50);margin-bottom:16px;font-size:0.88rem">Edit below or email changes to <a href="mailto:daniel@exposuresolutions.me?subject=DDWL Onboarding">daniel@exposuresolutions.me</a></p><div class="field"><label>Onboarding Data (JSON)</label><textarea id="onboardingJson" style="min-height:300px;font-family:monospace;font-size:0.8rem"></textarea></div></div><div class="modal-footer"><button class="btn btn-ghost" onclick="closeOnboardingEditor()">Cancel</button><button class="btn btn-primary" onclick="saveOnboardingData()">Save</button></div></div></div>
+
+<!-- CONTENT REQUEST -->
+<div class="modal-overlay" id="contentRequestModal"><div class="modal"><div class="modal-header"><h2>&#x1F4E7; How to Add Content</h2><button class="detail-close" onclick="document.getElementById('contentRequestModal').classList.remove('open')">&times;</button></div><div class="modal-body">
+<div class="feed-item" style="margin-bottom:12px"><div class="feed-icon" style="background:rgba(0,229,255,0.15)">1</div><div class="feed-content"><div class="title">Email It</div><div class="desc">Send outlines to <a href="mailto:daniel@exposuresolutions.me">daniel@exposuresolutions.me</a> or <a href="mailto:admin@dodealswithlee.com">admin@dodealswithlee.com</a></div></div></div>
+<div class="feed-item" style="margin-bottom:12px"><div class="feed-icon" style="background:rgba(255,215,0,0.15)">2</div><div class="feed-content"><div class="title">Voice Note</div><div class="desc">Record and send to Lilly. She&rsquo;ll transcribe and structure it.</div></div></div>
+<div class="feed-item" style="margin-bottom:12px"><div class="feed-icon" style="background:rgba(40,200,64,0.15)">3</div><div class="feed-content"><div class="title">Use This Dashboard</div><div class="desc">Click Add Course and fill in the form. Saves instantly.</div></div></div>
+<div class="feed-item"><div class="feed-icon" style="background:rgba(168,85,247,0.15)">4</div><div class="feed-content"><div class="title">Google Doc / Sheet</div><div class="desc">Share a doc with content. We import it automatically.</div></div></div>
+</div><div class="modal-footer"><button class="btn btn-ghost" onclick="document.getElementById('contentRequestModal').classList.remove('open')">Close</button><a href="mailto:daniel@exposuresolutions.me?subject=DDWL%20Course%20Content&body=Hi%20Daniel%2C%0A%0ACourse%201%3A%0ATitle%3A%20%0ADescription%3A%20%0APrice%3A%20%0ALessons%3A%20%0A%0AThanks%2C%0ALee" class="btn btn-primary" style="text-decoration:none">&#x1F4E7; Email Template</a></div></div></div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>WebFont.load({google:{families:['Inter:400,500,600,700,800','Playfair Display:700,800,900']},active:function(){document.body.style.fontFamily="'Inter',-apple-system,sans-serif"}});</script>
+<script>
+var STORE_KEY='ddwl_command_center';
+function getStore(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||defaultStore()}catch(e){return defaultStore()}}
+function saveStore(d){localStorage.setItem(STORE_KEY,JSON.stringify(d))}
+function defaultStore(){return{candidates:[],jobs:[],courses:[],students:[],leads:[],onboarding:null}}
+function initStore(){var s=getStore();if(!s.courses||s.courses.length===0){s.courses=[{id:'c1',title:'Flip Your Income Master Course',category:'fix-flip',price:'$497',duration:'20 hours',lessons:24,desc:'Comprehensive fix and flip system from finding deals to closing profits. Taught by Lee\'s AI voice clone.',status:'published',students:8,created:'2026-01-15'},{id:'c2',title:'Wholesale Deal Machine',category:'wholesaling',price:'$297',duration:'12 hours',lessons:16,desc:'Step-by-step wholesaling. Finding motivated sellers, negotiating contracts, assigning deals for profit.',status:'published',students:12,created:'2026-01-20'},{id:'c3',title:'Short Sale Mastery',category:'short-sales',price:'$397',duration:'15 hours',lessons:18,desc:'Master short sales. Bank negotiation scripts, timeline management, profiting from distressed properties.',status:'published',students:5,created:'2026-02-01'},{id:'c4',title:'Cleveland Big Parcel Blueprint',category:'cleveland',price:'$997',duration:'8 hours',lessons:10,desc:'Exclusive case study from Lee\'s Cleveland parcel project. Due diligence, approvals, subdivision strategy.',status:'draft',students:0,created:'2026-02-10'},{id:'c5',title:'Deal Analysis with AI',category:'ai-tools',price:'Free',duration:'3 hours',lessons:6,desc:'Using AI tools to analyze deals faster, generate comps, and automate your business.',status:'published',students:22,created:'2026-01-25'},{id:'c6',title:'Negotiation Masterclass',category:'negotiation',price:'$197',duration:'6 hours',lessons:8,desc:'Lee\'s negotiation framework from 7,000+ deals. Scripts, tactics, psychology.',status:'published',students:15,created:'2026-02-05'}];}
+if(!s.jobs||s.jobs.length===0){s.jobs=[{id:'acquisitions-mgr',title:'Acquisitions Manager',type:'Full-Time',location:'Tampa, FL',remote:false,salary:'$60K-$80K + Bonuses',status:'active',posted:'2026-02-01',applicants:0},{id:'marketing-coord',title:'Marketing Coordinator',type:'Full-Time',location:'Remote',remote:true,salary:'$45K-$55K',status:'active',posted:'2026-02-05',applicants:0},{id:'ai-ops',title:'AI Operations Specialist',type:'Full-Time',location:'Remote',remote:true,salary:'$55K-$75K',status:'active',posted:'2026-02-12',applicants:0}];}
+if(!s.onboarding){s.onboarding=[{phase:'Day 1: Welcome & Setup',tasks:[{text:'Welcome call with Lee or Krystle',note:'30 min intro',done:false},{text:'Sign employment agreement & NDA',note:'Via DocuSign',done:false},{text:'Set up company email',note:'Google Workspace',done:false},{text:'GHL account created',note:'Krystle or Daniel',done:false},{text:'Add to team group chat',note:'',done:false},{text:'Receive brand guide & email signature',note:'Templates provided',done:false}]},{phase:'Week 1: Systems & Tools',tasks:[{text:'GHL training: contacts, pipeline, conversations',note:'2-hour walkthrough',done:false},{text:'Phone extension assigned',note:'(813) 675-0916',done:false},{text:'Calendar integration',note:'GHL calendar',done:false},{text:'Review SOPs',note:'Google Drive',done:false},{text:'Shadow team member 2 days',note:'',done:false}]},{phase:'Week 2: Role Training',tasks:[{text:'Role-specific training with supervisor',note:'',done:false},{text:'Complete assigned courses',note:'Student portal',done:false},{text:'Practice deal analysis',note:'Deal calculator',done:false},{text:'First solo task',note:'With review',done:false}]},{phase:'Month 1: Performance',tasks:[{text:'30-day check-in',note:'Lee & Krystle',done:false},{text:'Set 90-day goals',note:'',done:false},{text:'Full system access',note:'After probation',done:false},{text:'Join weekly team meeting',note:'Monday 10am ET',done:false}]},{phase:'Ongoing',tasks:[{text:'Monthly 1:1 with manager',note:'',done:false},{text:'Quarterly review with Lee',note:'',done:false},{text:'Continued education access',note:'Free for team',done:false}]}];}
+saveStore(s);return s;}
+var STAGES=[{key:'new-application',label:'New',color:'#00e5ff',cssClass:'status-new'},{key:'under-review',label:'Review',color:'#a855f7',cssClass:'status-review'},{key:'phone-screen',label:'Phone Screen',color:'#ffd700',cssClass:'status-phone'},{key:'interview',label:'Interview',color:'#ff6b00',cssClass:'status-interview'},{key:'reference-check',label:'Ref Check',color:'#40efff',cssClass:'status-reference'},{key:'offer-extended',label:'Offer',color:'#28c840',cssClass:'status-offer'},{key:'hired',label:'Hired',color:'#00ff88',cssClass:'status-hired'},{key:'unsuccessful',label:'Rejected',color:'#ff5f57',cssClass:'status-rejected'},{key:'talent-pool',label:'Talent Pool',color:'#999',cssClass:'status-pool'}];
+var ADMINS=[{name:'Lee Kearney',role:'CEO & Founder',initials:'LK',color:'#ff6b00',email:'lee@dodealswithlee.com'},{name:'Krystle Gordon',role:'Operations Manager',initials:'KG',color:'#00e5ff',email:'krystle@dodealswithlee.com'},{name:'Daniel Gallagher',role:'Tech Lead',initials:'DG',color:'#28c840',email:'daniel@exposuresolutions.me'},{name:'Lilly',role:'AI Agent',initials:'L',color:'#a855f7',email:'admin@dodealswithlee.com'}];
+function timeAgo(d){if(!d)return'-';var ms=Date.now()-new Date(d).getTime();var m=Math.floor(ms/60000);if(m<1)return'just now';if(m<60)return m+'m ago';var h=Math.floor(m/60);if(h<24)return h+'h ago';return Math.floor(h/24)+'d ago';}
+function showPanel(name){document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active')});document.querySelectorAll('.sidebar-link').forEach(function(l){l.classList.remove('active')});var panel=document.getElementById('panel-'+name);if(panel)panel.classList.add('active');document.querySelectorAll('.sidebar-link').forEach(function(l){if(l.getAttribute('onclick')&&l.getAttribute('onclick').indexOf("'"+name+"'")>-1)l.classList.add('active');});document.getElementById('sidebar').classList.remove('open');var fn={overview:renderOverview,leads:renderLeads,courses:renderCourses,students:renderStudents,candidates:renderCandidates,pipeline:renderPipeline,jobs:renderJobs,onboarding:renderOnboarding,settings:renderSettings};if(fn[name])fn[name]();}
+function renderOverview(){var s=getStore();document.getElementById('statJobs').textContent=s.jobs.filter(function(j){return j.status==='active'}).length;document.getElementById('badgeCandidates').textContent=s.candidates.length;document.getElementById('badgeCourses').textContent=s.courses.length;document.getElementById('badgeLeads').textContent=s.leads.length;var months=['Sep','Oct','Nov','Dec','Jan','Feb'],values=[4200,5800,6100,7400,6900,8470],max=Math.max.apply(null,values);document.getElementById('revenueChart').innerHTML=values.map(function(v,i){var bg=i<4?'var(--white20)':i===4?'#00b8d4':'var(--primary)';return '<div style="height:'+Math.round(v/max*100)+'%;background:'+bg+';width:28px;border-radius:4px 4px 0 0" title="$'+v.toLocaleString()+'"></div>';}).join('');document.getElementById('revenueLabels').innerHTML=months.map(function(m){return '<span>'+m+'</span>'}).join('');var feed=[];s.candidates.slice(-3).reverse().forEach(function(c){feed.push({icon:'&#x1F4E5;',bg:'rgba(0,229,255,0.15)',title:c.firstName+' '+c.lastName+' applied',desc:(c.jobTitle||'General'),time:timeAgo(c.appliedAt)});});s.leads.slice(-3).reverse().forEach(function(l){feed.push({icon:'&#x2B50;',bg:'rgba(255,215,0,0.15)',title:'Lead: '+l.name,desc:l.type,time:timeAgo(l.date)});});if(!feed.length)feed.push({icon:'&#x1F44B;',bg:'rgba(0,229,255,0.15)',title:'Welcome to your Command Center',desc:'Activity appears here.',time:'now'});document.getElementById('activityFeed').innerHTML=feed.slice(0,5).map(function(f){return '<div class="feed-item"><div class="feed-icon" style="background:'+f.bg+'">'+f.icon+'</div><div class="feed-content"><div class="title">'+f.title+'</div><div class="desc">'+f.desc+'</div></div><div class="feed-time">'+f.time+'</div></div>';}).join('');}
+function renderCourses(){var s=getStore();document.getElementById('badgeCourses').textContent=s.courses.length;var g=document.getElementById('courseGrid');if(!s.courses.length){g.innerHTML='<div style="text-align:center;padding:40px;color:var(--white50)">No courses. Click Add Course.</div>';return;}g.innerHTML=s.courses.map(function(c){var b=c.status==='published'?'<span class="status status-published">Published</span>':'<span class="status status-draft">Draft</span>';return '<div class="course-card"><div class="course-card-header"><h3>'+c.title+' '+b+'</h3><div class="course-meta"><span>'+c.category+'</span><span>'+c.duration+'</span><span>'+c.lessons+' lessons</span></div></div><div class="course-card-body"><p style="font-size:0.85rem;color:var(--white70);margin-bottom:12px">'+c.desc+'</p><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:1.2rem;font-weight:800;color:var(--gold)">'+c.price+'</span><span style="font-size:0.78rem;color:var(--white50)">'+c.students+' students</span></div></div><div class="course-card-footer"><button class="btn btn-sm btn-ghost" onclick="editCourse(\''+c.id+'\')">Edit</button><button class="btn btn-sm btn-danger" onclick="deleteCourse(\''+c.id+'\')">Delete</button></div></div>';}).join('');}
+function openCourseModal(eid){document.getElementById('courseEditId').value=eid||'';document.getElementById('courseModalTitle').textContent=eid?'Edit Course':'Add Course';if(eid){var s=getStore(),c=s.courses.find(function(x){return x.id===eid});if(c){document.getElementById('cTitle').value=c.title;document.getElementById('cCategory').value=c.category;document.getElementById('cPrice').value=c.price;document.getElementById('cDuration').value=c.duration;document.getElementById('cLessons').value=c.lessons;document.getElementById('cDesc').value=c.desc;document.getElementById('cStatus').value=c.status;}}else{document.getElementById('courseForm').reset();}document.getElementById('courseModal').classList.add('open');}
+function closeCourseModal(){document.getElementById('courseModal').classList.remove('open')}
+function editCourse(id){openCourseModal(id)}
+function saveCourse(){var s=getStore(),eid=document.getElementById('courseEditId').value,d={title:document.getElementById('cTitle').value,category:document.getElementById('cCategory').value,price:document.getElementById('cPrice').value||'Free',duration:document.getElementById('cDuration').value||'TBD',lessons:parseInt(document.getElementById('cLessons').value)||0,desc:document.getElementById('cDesc').value,status:document.getElementById('cStatus').value};if(!d.title){showToast('Enter title',true);return}if(eid){var c=s.courses.find(function(x){return x.id===eid});if(c)Object.assign(c,d);showToast('Updated');}else{d.id='c'+Date.now().toString(36);d.students=0;d.created=new Date().toISOString().split('T')[0];s.courses.push(d);showToast('Created');}saveStore(s);closeCourseModal();renderCourses();}
+function deleteCourse(id){if(!confirm('Delete?'))return;var s=getStore();s.courses=s.courses.filter(function(c){return c.id!==id});saveStore(s);showToast('Deleted');renderCourses();}
+function openContentRequest(){document.getElementById('contentRequestModal').classList.add('open')}
+function renderStudents(){var s=getStore(),a=s.students.filter(function(x){return x.status==='active'}),co=s.students.filter(function(x){return x.status==='completed'});document.getElementById('activeStudentCount').textContent=a.length;document.getElementById('completedStudentCount').textContent=co.length;document.getElementById('avgCompletion').textContent=(s.students.length?Math.round(s.students.reduce(function(a,b){return a+b.progress},0)/s.students.length):0)+'%';var tb=document.getElementById('studentTable');if(!s.students.length){tb.innerHTML='<tr><td colspan="5" style="text-align:center;padding:40px;color:var(--white50)">Enrollments appear when people sign up.</td></tr>';return;}tb.innerHTML=s.students.map(function(st){return '<tr><td><div class="candidate-name">'+st.name+'</div><div class="candidate-email">'+st.email+'</div></td><td>'+st.course+'</td><td><div style="display:flex;align-items:center;gap:8px"><div style="background:var(--white10);border-radius:4px;height:6px;width:80px"><div style="background:var(--primary);border-radius:4px;height:6px;width:'+st.progress+'%"></div></div><span style="font-size:0.78rem;color:var(--white50)">'+st.progress+'%</span></div></td><td>'+st.enrolled+'</td><td><span class="status status-active">'+st.status+'</span></td></tr>';}).join('');}
+function renderLeads(){var s=getStore();document.getElementById('leadNetworkCount').textContent=s.leads.filter(function(l){return l.type==='network'}).length;document.getElementById('leadStudentCount').textContent=s.leads.filter(function(l){return l.type==='student'}).length;document.getElementById('leadJobCount').textContent=s.leads.filter(function(l){return l.type==='job'}).length;document.getElementById('leadMonthCount').textContent=s.leads.length;document.getElementById('badgeLeads').textContent=s.leads.length;var tb=document.getElementById('leadsTable');if(!s.leads.length){tb.innerHTML='<tr><td colspan="6" style="text-align:center;padding:40px;color:var(--white50)">Leads from forms appear here.</td></tr>';return;}tb.innerHTML=s.leads.map(function(l){return '<tr><td><div class="candidate-name">'+l.name+'</div><div class="candidate-email">'+l.email+'</div></td><td><span class="status status-new">'+l.type+'</span></td><td>'+l.source+'</td><td>'+timeAgo(l.date)+'</td><td><span class="status status-new">New</span></td><td><a href="mailto:'+l.email+'" class="btn btn-sm btn-ghost">Email</a></td></tr>';}).join('');}
+function addLead(){var n=prompt('Name:');if(!n)return;var e=prompt('Email:'),t=prompt('Type (network/student/job):','network');var s=getStore();s.leads.push({id:'l'+Date.now().toString(36),name:n,email:e||'',type:t||'network',source:'Manual',date:new Date().toISOString()});saveStore(s);showToast('Added');renderLeads();}
+function renderCandidates(){var s=getStore(),q=(document.getElementById('candidateSearch').value||'').toLowerCase(),sf=document.getElementById('statusFilter').value;document.getElementById('badgeCandidates').textContent=s.candidates.length;var f=s.candidates.filter(function(c){return(!q||(c.firstName+' '+c.lastName+' '+c.email+' '+c.jobTitle).toLowerCase().indexOf(q)>-1)&&(!sf||c.status===sf);});var tb=document.getElementById('candidatesTable');if(!f.length){tb.innerHTML='<tr><td colspan="6" style="text-align:center;padding:40px;color:var(--white50)">No candidates.</td></tr>';return;}tb.innerHTML=f.map(function(c){var st=STAGES.find(function(x){return x.key===c.status})||STAGES[0];return '<tr onclick="openDetail(\''+c.id+'\')" style="cursor:pointer"><td><div class="candidate-name">'+c.firstName+' '+c.lastName+'</div><div class="candidate-email">'+c.email+'</div></td><td>'+(c.jobTitle||'-')+'</td><td>'+(c.source||'-')+'</td><td><span class="status '+st.cssClass+'">'+st.label+'</span></td><td>'+timeAgo(c.appliedAt)+'</td><td><div style="display:flex;gap:4px"><button class="btn btn-sm btn-success" onclick="event.stopPropagation();advanceCandidate(\''+c.id+'\')">&#x25B6;</button><button class="btn btn-sm btn-danger" onclick="event.stopPropagation();rejectCandidate(\''+c.id+'\')">&#x2716;</button></div></td></tr>';}).join('');}
+function renderPipeline(){var s=getStore();document.getElementById('pipelineBoard').innerHTML=STAGES.map(function(st){var cards=s.candidates.filter(function(c){return c.status===st.key});var h=!cards.length?'<div style="text-align:center;padding:16px;color:var(--white50);font-size:0.78rem">Empty</div>':cards.map(function(c){return '<div class="pipeline-card" onclick="openDetail(\''+c.id+'\')"><div class="name">'+c.firstName+' '+c.lastName+'</div><div class="role">'+(c.jobTitle||'General')+'</div><div class="date">'+timeAgo(c.appliedAt)+'</div></div>';}).join('');return '<div class="pipeline-col"><div class="pipeline-col-header" style="border-top:3px solid '+st.color+'"><div class="pipeline-col-title">'+st.label+'</div><div class="pipeline-col-count">'+cards.length+'</div></div><div class="pipeline-col-body">'+h+'</div></div>';}).join('');}
+function renderJobs(){var s=getStore(),el=document.getElementById('jobList');if(!s.jobs.length){el.innerHTML='<div style="text-align:center;padding:40px;color:var(--white50)">No jobs.</div>';return;}el.innerHTML=s.jobs.map(function(j){var n=s.candidates.filter(function(c){return c.jobId===j.id}).length;var b=j.status==='active'?'<span class="status status-active">Active</span>':'<span class="status status-rejected">Closed</span>';return '<div class="feed-item"><div class="feed-icon" style="background:rgba(255,107,0,0.15)">&#x1F4BC;</div><div class="feed-content"><div class="title">'+j.title+' '+b+'</div><div class="desc">'+j.type+' &bull; '+j.location+' &bull; '+j.salary+' &bull; '+n+' app'+(n!==1?'s':'')+'</div></div><div style="display:flex;gap:4px"><button class="btn btn-sm btn-ghost" onclick="toggleJobStatus(\''+j.id+'\')">'+(j.status==='active'?'Close':'Open')+'</button><button class="btn btn-sm btn-danger" onclick="deleteJob(\''+j.id+'\')">Del</button></div></div>';}).join('');}
+function renderOnboarding(){var s=getStore(),el=document.getElementById('onboardingChecklist');if(!s.onboarding||!s.onboarding.length){el.innerHTML='<div style="padding:40px;text-align:center;color:var(--white50)">No checklist.</div>';return;}el.innerHTML=s.onboarding.map(function(p,pi){var dn=p.tasks.filter(function(t){return t.done}).length,tt=p.tasks.length,pc=tt?Math.round(dn/tt*100):0;return '<div class="ob-phase"><div class="ob-phase-header" onclick="this.nextElementSibling.classList.toggle(\'open\')"><h3>'+p.phase+'</h3><div style="display:flex;align-items:center;gap:8px"><span style="font-size:0.78rem;color:var(--white50)">'+dn+'/'+tt+'</span><div style="background:var(--white10);border-radius:4px;height:6px;width:60px"><div style="background:var(--green);border-radius:4px;height:6px;width:'+pc+'%"></div></div></div></div><div class="ob-phase-body'+(pi===0?' open':'')+'">'+p.tasks.map(function(t,ti){return '<div class="ob-task'+(t.done?' completed':'')+'"><div class="ob-check'+(t.done?' done':'')+'" onclick="toggleOBTask('+pi+','+ti+')"></div><div><div class="task-text">'+t.text+'</div>'+(t.note?'<div class="task-note">'+t.note+'</div>':'')+'</div></div>';}).join('')+'</div></div>';}).join('');var hired=s.candidates.filter(function(c){return c.status==='hired'}),tb=document.getElementById('onboardingTable');if(!hired.length){tb.innerHTML='<tr><td colspan="6" style="text-align:center;padding:40px;color:var(--white50)">Hired candidates appear here.</td></tr>';return;}tb.innerHTML=hired.map(function(c){return '<tr><td>'+c.firstName+' '+c.lastName+'</td><td>'+(c.jobTitle||'-')+'</td><td>'+(c.startDate||'TBD')+'</td><td><span class="status status-new">Day 1</span></td><td><div style="background:var(--white10);border-radius:4px;height:6px;width:80px"><div style="background:var(--primary);height:6px;width:10%;border-radius:4px"></div></div></td><td><a href="/onboardingportal" target="_blank" class="btn btn-sm btn-primary">Portal</a></td></tr>';}).join('');}
+function toggleOBTask(pi,ti){var s=getStore();if(s.onboarding[pi]&&s.onboarding[pi].tasks[ti]){s.onboarding[pi].tasks[ti].done=!s.onboarding[pi].tasks[ti].done;saveStore(s);renderOnboarding();}}
+function openOnboardingEditor(){var s=getStore();document.getElementById('onboardingJson').value=JSON.stringify(s.onboarding,null,2);document.getElementById('onboardingModal').classList.add('open');}
+function closeOnboardingEditor(){document.getElementById('onboardingModal').classList.remove('open')}
+function saveOnboardingData(){try{var d=JSON.parse(document.getElementById('onboardingJson').value);var s=getStore();s.onboarding=d;saveStore(s);closeOnboardingEditor();renderOnboarding();showToast('Saved');}catch(e){showToast('Invalid JSON',true)}}
+function renderSettings(){document.getElementById('adminList').innerHTML=ADMINS.map(function(a){return '<div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--white05)"><div class="avatar" style="background:'+a.color+'">'+a.initials+'</div><div><div style="font-weight:600;font-size:0.9rem">'+a.name+'</div><div style="font-size:0.78rem;color:var(--white50)">'+a.role+' - '+a.email+'</div></div></div>';}).join('');}
+function openDetail(id){var s=getStore(),c=s.candidates.find(function(x){return x.id===id});if(!c)return;document.getElementById('detailName').textContent=c.firstName+' '+c.lastName;var st=STAGES.find(function(x){return x.key===c.status})||STAGES[0];document.getElementById('detailBody').innerHTML=[{l:'Status',v:'<span class="status '+st.cssClass+'">'+st.label+'</span>'},{l:'Email',v:'<a href="mailto:'+c.email+'">'+c.email+'</a>'},{l:'Phone',v:c.phone||'-'},{l:'Position',v:c.jobTitle||'-'},{l:'Source',v:c.source||'-'},{l:'Applied',v:c.appliedAt?new Date(c.appliedAt).toLocaleDateString():'-'},{l:'Note',v:c.coverNote||'-'}].map(function(f){return '<div class="detail-field"><div class="label">'+f.l+'</div><div class="value">'+f.v+'</div></div>'}).join('');var act='';if(c.status!=='hired'&&c.status!=='unsuccessful')act+='<button class="btn btn-success" onclick="advanceCandidate(\''+c.id+'\');closeDetail()">Advance</button>';if(c.status!=='unsuccessful'&&c.status!=='hired')act+='<button class="btn btn-danger" onclick="rejectCandidate(\''+c.id+'\');closeDetail()">Reject</button>';act+='<button class="btn btn-ghost" onclick="window.open(\'mailto:'+c.email+'\')">Email</button>';document.getElementById('detailActions').innerHTML=act;document.getElementById('detailPanel').classList.add('open');}
+function closeDetail(){document.getElementById('detailPanel').classList.remove('open')}
+function advanceCandidate(id){var s=getStore(),c=s.candidates.find(function(x){return x.id===id});if(!c)return;var i=STAGES.findIndex(function(x){return x.key===c.status}),n=i+1;while(n<STAGES.length&&(STAGES[n].key==='unsuccessful'||STAGES[n].key==='talent-pool'))n++;if(n>=STAGES.length-2)n=Math.min(i+1,6);c.status=STAGES[n].key;saveStore(s);showToast(c.firstName+' > '+STAGES[n].label);refreshCurrentPanel();}
+function rejectCandidate(id){if(!confirm('Reject?'))return;var s=getStore(),c=s.candidates.find(function(x){return x.id===id});if(!c)return;c.status='unsuccessful';saveStore(s);showToast('Rejected');refreshCurrentPanel();}
+function moveToPool(id){var s=getStore(),c=s.candidates.find(function(x){return x.id===id});if(!c)return;c.status='talent-pool';saveStore(s);showToast('Talent pool');refreshCurrentPanel();}
+function createJob(){var t=prompt('Job Title:');if(!t)return;var ty=prompt('Type:','Full-Time'),lo=prompt('Location:','Tampa, FL'),sa=prompt('Salary:','Competitive');var s=getStore();s.jobs.push({id:t.toLowerCase().replace(/[^a-z0-9]+/g,'-')+'-'+Date.now().toString(36),title:t,type:ty||'Full-Time',location:lo||'Tampa, FL',remote:false,salary:sa||'Competitive',status:'active',posted:new Date().toISOString().split('T')[0],applicants:0});saveStore(s);showToast('Created');renderJobs();}
+function toggleJobStatus(id){var s=getStore(),j=s.jobs.find(function(x){return x.id===id});if(!j)return;j.status=j.status==='active'?'closed':'active';saveStore(s);showToast(j.status==='active'?'Reopened':'Closed');renderJobs();}
+function deleteJob(id){if(!confirm('Delete?'))return;var s=getStore();s.jobs=s.jobs.filter(function(j){return j.id!==id});saveStore(s);showToast('Deleted');renderJobs();}
+function addCandidate(){var fn=prompt('First Name:');if(!fn)return;var ln=prompt('Last Name:'),em=prompt('Email:'),ph=prompt('Phone:');var s=getStore(),opts=s.jobs.filter(function(j){return j.status==='active'}).map(function(j){return j.title}).join(', '),jt=prompt('Position ('+opts+'):'),job=s.jobs.find(function(j){return j.title===jt});s.candidates.push({id:'m-'+Date.now().toString(36),firstName:fn,lastName:ln||'',email:em||'',phone:ph||'',jobId:job?job.id:'',jobTitle:jt||'',status:'new-application',source:'Manual',appliedAt:new Date().toISOString(),applicationRef:'DDWL-'+Date.now().toString(36).toUpperCase(),location:'',linkedin:'',coverNote:'',startDate:''});saveStore(s);showToast('Added');renderCandidates();}
+function exportAllData(){var s=getStore(),b=new Blob([JSON.stringify(s,null,2)],{type:'application/json'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='ddwl-'+new Date().toISOString().split('T')[0]+'.json';a.click();URL.revokeObjectURL(u);showToast('Exported');}
+function importData(){var i=document.createElement('input');i.type='file';i.accept='.json';i.onchange=function(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(ev){try{saveStore(JSON.parse(ev.target.result));showToast('Imported');refreshCurrentPanel()}catch(x){showToast('Bad file',true)}};r.readAsText(f);};i.click();}
+function clearAllData(){if(!confirm('Delete ALL data?'))return;if(!confirm('Really sure?'))return;localStorage.removeItem(STORE_KEY);initStore();showToast('Cleared');refreshCurrentPanel();}
+function checkForNewApplications(){try{var p=JSON.parse(localStorage.getItem('ddwl_pending_applications'))||[];if(p.length){var s=getStore();p.forEach(function(a){if(!s.candidates.find(function(c){return c.applicationRef===a.applicationRef}))s.candidates.push({id:a.applicationRef||'a-'+Date.now().toString(36),firstName:a.firstName||'',lastName:a.lastName||'',email:a.email||'',phone:a.phone||'',jobId:a.jobId||'',jobTitle:a.jobTitle||'',status:'new-application',source:a.source||'Careers Portal',appliedAt:a.appliedAt||new Date().toISOString(),applicationRef:a.applicationRef||'',location:a.location||'',linkedin:a.linkedin||'',coverNote:a.coverNote||'',startDate:''});});saveStore(s);localStorage.removeItem('ddwl_pending_applications');refreshCurrentPanel();}}catch(e){}}
+setInterval(checkForNewApplications,5000);
+function refreshCurrentPanel(){var a=document.querySelector('.panel.active');if(a)showPanel(a.id.replace('panel-',''));}
+function showToast(msg,err){var t=document.getElementById('toast');t.textContent=msg;t.className='toast show'+(err?' error':'');setTimeout(function(){t.className='toast'},3000);}
+initStore();renderOverview();renderSettings();
+</script>
+</body>
+</html>

@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Review A - Know Your Terrain | DDWL</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script>
+        WebFont.load({
+            google: {
+                families: ['Inter:300,400,500,600,700', 'Playfair Display:400,500,600,700']
+            }
+        });
+    </script>
+    <style>
+        html, body, #preview-container, .hl-page-preview, .hl_page-preview,
+        [id*="preview"], [class*="preview"], [class*="page-"], [class*="hl_page"],
+        [class*="wrapper"], [class*="container"], [class*="section"],
+        .c-editor, .c-editor-content, .hl-page-creator,
+        #section-0, #section-1, #section-2, #section-3, #section-4, #section-5,
+        .inner-section, .section-element, .row-element, .column-element,
+        div[data-page-element], div[class*="element"], div[class*="row"],
+        main, article, section, header, footer, aside, nav,
+        .page-wrapper, .site-wrapper, .content-wrapper {
+            background: #0a0a0a !important;
+            background-color: #0a0a0a !important;
+            border: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            max-width: 100% !important;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 0;
+        }
+
+        .logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #00e5ff, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 16px;
+            color: #cccccc;
+            margin-bottom: 10px;
+        }
+
+        .header a {
+            color: #00e5ff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .header a:hover {
+            color: #ffd700;
+        }
+
+        .form-card {
+            background: rgba(22, 22, 22, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00e5ff, #ffd700, #ff6b00);
+        }
+
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #333333;
+            z-index: 1;
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00e5ff, #ffd700);
+            z-index: 2;
+            transition: width 0.5s ease;
+        }
+
+        .progress-step {
+            background: #333333;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            position: relative;
+            z-index: 3;
+            transition: all 0.3s ease;
+        }
+
+        .progress-step.active {
+            background: linear-gradient(45deg, #00e5ff, #ffd700);
+            color: #000000;
+            transform: scale(1.1);
+        }
+
+        .progress-step.completed {
+            background: #00e5ff;
+            color: #000000;
+        }
+
+        .form-step {
+            display: none;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.5s ease;
+        }
+
+        .form-step.active {
+            display: block;
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .step-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #00e5ff;
+        }
+
+        .step-subtitle {
+            font-size: 16px;
+            color: #cccccc;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(17, 17, 17, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #00e5ff;
+            box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .star-rating {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .star {
+            font-size: 24px;
+            color: #333333;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .star:hover,
+        .star.active {
+            color: #ffd700;
+        }
+
+        .emoji-selector {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .emoji-option {
+            background: rgba(17, 17, 17, 0.8);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .emoji-option:hover {
+            border-color: #00e5ff;
+            transform: scale(1.05);
+        }
+
+        .emoji-option.selected {
+            border-color: #00e5ff;
+            background: rgba(0, 229, 255, 0.1);
+        }
+
+        .checkbox-group,
+        .radio-group {
+            display: grid;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .checkbox-item,
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: rgba(17, 17, 17, 0.5);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .checkbox-item:hover,
+        .radio-item:hover {
+            background: rgba(17, 17, 17, 0.8);
+        }
+
+        .checkbox-item input,
+        .radio-item input {
+            width: auto;
+        }
+
+        .range-slider {
+            margin: 20px 0;
+        }
+
+        .range-slider input {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #333333;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .range-slider input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #00e5ff;
+            cursor: pointer;
+        }
+
+        .range-value {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: #00e5ff;
+            margin-top: 10px;
+        }
+
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #00e5ff, #0099cc);
+            color: #000000;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 229, 255, 0.3);
+        }
+
+        .btn-success {
+            background: linear-gradient(45deg, #00e5ff, #ffd700);
+            color: #000000;
+        }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 16px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.3s ease;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .toast.success {
+            background: rgba(0, 229, 255, 0.9);
+            color: #000000;
+        }
+
+        .toast.error {
+            background: rgba(255, 107, 0, 0.9);
+            color: #ffffff;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .form-card {
+                padding: 25px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .step-title {
+                font-size: 20px;
+            }
+
+            .emoji-selector {
+                gap: 10px;
+            }
+
+            .emoji-option {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+
+            .form-navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/67630a6111b3975ed85ffd20.svg" alt="DDWL Logo" class="logo">
+            <h1>You&rsquo;re reviewing <strong>Version A (Claude Build)</strong> of the new Do Deals With Lee homepage.</h1>
+            <p><a href='/newhome-a'>View the site first &rarr;</a></p>
+            <p>This review focuses on <strong>Market &amp; Positioning</strong> &mdash; how the site positions Lee against the competition.</p>
+        </div>
+
+        <div class="form-card">
+            <div class="progress-bar" id="progressBar">
+                <div class="progress-step active">1</div>
+                <div class="progress-step">2</div>
+                <div class="progress-step">3</div>
+                <div class="progress-step">4</div>
+                <div class="progress-step">5</div>
+            </div>
+
+            <form id="siteReviewForm">
+                <!-- Step 1: Who Are You? -->
+                <div class="form-step active" id="step1">
+                    <h2 class="step-title">Who Are You?</h2>
+                    
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="role">Role</label>
+                        <select id="role" name="role" required>
+                            <option value="">Select your role</option>
+                            <option value="Lee Kearney">Lee Kearney</option>
+                            <option value="Krystle Gordon">Krystle Gordon</option>
+                            <option value="Team Member">Team Member</option>
+                            <option value="Investor/Partner">Investor/Partner</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Step 2: First Impressions & Design -->
+                <div class="form-step" id="step2">
+                    <h2 class="step-title">First Impressions &amp; Design</h2>
+                    
+                    <div class="form-group">
+                        <label>Overall rating</label>
+                        <div class="star-rating" data-field="overall_rating">
+                            <span class="star" data-value="1">★</span>
+                            <span class="star" data-value="2">★</span>
+                            <span class="star" data-value="3">★</span>
+                            <span class="star" data-value="4">★</span>
+                            <span class="star" data-value="5">★</span>
+                        </div>
+                        <input type="hidden" name="overall_rating" id="overall_rating">
+                    </div>
+
+                    <div class="form-group">
+                        <label>First impression</label>
+                        <div class="emoji-selector" data-field="first_impression">
+                            <div class="emoji-option" data-value="killer">🔥 Killer</div>
+                            <div class="emoji-option" data-value="solid">👍 Solid</div>
+                            <div class="emoji-option" data-value="meh">😐 Meh</div>
+                            <div class="emoji-option" data-value="needs_work">😕 Needs Work</div>
+                            <div class="emoji-option" data-value="scrap_it">💩 Scrap It</div>
+                        </div>
+                        <input type="hidden" name="first_impression" id="first_impression">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="site_description">In 10 words or less, what does this site say about Lee?</label>
+                        <input type="text" id="site_description" name="site_description" maxlength="100">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="first_emotion">What&rsquo;s the first emotion you felt?</label>
+                        <input type="text" id="first_emotion" name="first_emotion">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Rate each section (1-5)</label>
+                        <div class="section-ratings">
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
+                                <span>Hero</span>
+                                <div class="star-rating" data-field="hero_rating">
+                                    <span class="star" data-value="1">★</span>
+                                    <span class="star" data-value="2">★</span>
+                                    <span class="star" data-value="3">★</span>
+                                    <span class="star" data-value="4">★</span>
+                                    <span class="star" data-value="5">★</span>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
+                                <span>Services</span>
+                                <div class="star-rating" data-field="services_rating">
+                                    <span class="star" data-value="1">★</span>
+                                    <span class="star" data-value="2">★</span>
+                                    <span class="star" data-value="3">★</span>
+                                    <span class="star" data-value="4">★</span>
+                                    <span class="star" data-value="5">★</span>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
+                                <span>Pricing</span>
+                                <div class="star-rating" data-field="pricing_rating">
+                                    <span class="star" data-value="1">★</span>
+                                    <span class="star" data-value="2">★</span>
+                                    <span class="star" data-value="3">★</span>
+                                    <span class="star" data-value="4">★</span>
+                                    <span class="star" data-value="5">★</span>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
+                                <span>Social Proof</span>
+                                <div class="star-rating" data-field="social_proof_rating">
+                                    <span class="star" data-value="1">★</span>
+                                    <span class="star" data-value="2">★</span>
+                                    <span class="star" data-value="3">★</span>
+                                    <span class="star" data-value="4">★</span>
+                                    <span class="star" data-value="5">★</span>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
+                                <span>FAQ</span>
+                                <div class="star-rating" data-field="faq_rating">
+                                    <span class="star" data-value="1">★</span>
+                                    <span class="star" data-value="2">★</span>
+                                    <span class="star" data-value="3">★</span>
+                                    <span class="star" data-value="4">★</span>
+                                    <span class="star" data-value="5">★</span>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
+                                <span>Form</span>
+                                <div class="star-rating" data-field="form_rating">
+                                    <span class="star" data-value="1">★</span>
+                                    <span class="star" data-value="2">★</span>
+                                    <span class="star" data-value="3">★</span>
+                                    <span class="star" data-value="4">★</span>
+                                    <span class="star" data-value="5">★</span>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
+                                <span>Footer</span>
+                                <div class="star-rating" data-field="footer_rating">
+                                    <span class="star" data-value="1">★</span>
+                                    <span class="star" data-value="2">★</span>
+                                    <span class="star" data-value="3">★</span>
+                                    <span class="star" data-value="4">★</span>
+                                    <span class="star" data-value="5">★</span>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" name="hero_rating" id="hero_rating">
+                        <input type="hidden" name="services_rating" id="services_rating">
+                        <input type="hidden" name="pricing_rating" id="pricing_rating">
+                        <input type="hidden" name="social_proof_rating" id="social_proof_rating">
+                        <input type="hidden" name="faq_rating" id="faq_rating">
+                        <input type="hidden" name="form_rating" id="form_rating">
+                        <input type="hidden" name="footer_rating" id="footer_rating">
+                    </div>
+                </div>
+
+                <!-- Step 3: Know Your Terrain -->
+                <div class="form-step" id="step3">
+                    <h2 class="step-title">Know Your Terrain (Art of War)</h2>
+                    <p class="step-subtitle">Sun Tzu said: &ldquo;He who knows the terrain can make the ground fight for him.&rdquo;</p>
+                    
+                    <div class="form-group">
+                        <label for="top_competitor">Who is Lee&rsquo;s #1 competitor in the market right now?</label>
+                        <input type="text" id="top_competitor" name="top_competitor">
+                    </div>
+
+                    <div class="form-group">
+                        <label>What does this site do BETTER than competitors?</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="better_than_competitors" value="credibility" id="better_credibility">
+                                <label for="better_credibility">Credibility</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="better_than_competitors" value="pricing_clarity" id="better_pricing_clarity">
+                                <label for="better_pricing_clarity">Pricing clarity</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="better_than_competitors" value="design" id="better_design">
+                                <label for="better_design">Design</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="better_than_competitors" value="trust_signals" id="better_trust_signals">
+                                <label for="better_trust_signals">Trust signals</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="better_than_competitors" value="unique_offer" id="better_unique_offer">
+                                <label for="better_unique_offer">Unique offer</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="better_than_competitors" value="call_to_action" id="better_cta">
+                                <label for="better_cta">Call to action</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="better_than_competitors" value="mobile_experience" id="better_mobile">
+                                <label for="better_mobile">Mobile experience</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="better_than_competitors" value="speed" id="better_speed">
+                                <label for="better_speed">Speed</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="missing_vs_competition">What does the competition do that this site is MISSING?</label>
+                        <textarea id="missing_vs_competition" name="missing_vs_competition" rows="4"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>If a potential student/partner lands on this AND a competitor site, who wins?</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" name="site_vs_competitor" value="this_site_wins" id="this_wins">
+                                <label for="this_wins">This site wins</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" name="site_vs_competitor" value="competitor_wins" id="competitor_wins">
+                                <label for="competitor_wins">Competitor wins</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" name="site_vs_competitor" value="too_close_to_call" id="too_close">
+                                <label for="too_close">Too close to call</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="instant_winner">What would make this site an INSTANT winner over any competitor?</label>
+                        <textarea id="instant_winner" name="instant_winner" rows="4"></textarea>
+                    </div>
+                </div>
+
+                <!-- Step 4: The Offer & Pricing -->
+                <div class="form-step" id="step4">
+                    <h2 class="step-title">The Offer &amp; Pricing</h2>
+                    
+                    <div class="form-group">
+                        <label>Does the pricing feel right for what Lee offers?</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" name="pricing_feel" value="too_cheap" id="pricing_cheap">
+                                <label for="pricing_cheap">Too cheap</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" name="pricing_feel" value="just_right" id="pricing_right">
+                                <label for="pricing_right">Just right</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" name="pricing_feel" value="too_expensive" id="pricing_expensive">
+                                <label for="pricing_expensive">Too expensive</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" name="pricing_feel" value="cant_tell" id="pricing_unclear">
+                                <label for="pricing_unclear">Can&rsquo;t tell</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="strongest_offer">Which offer on this page is the strongest?</label>
+                        <textarea id="strongest_offer" name="strongest_offer" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="weakest_offer">Which offer is the weakest or most confusing?</label>
+                        <textarea id="weakest_offer" name="weakest_offer" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Would YOU pay for what&rsquo;s being offered here?</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" name="would_pay" value="yes_absolutely" id="pay_yes">
+                                <label for="pay_yes">Yes absolutely</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" name="would_pay" value="maybe" id="pay_maybe">
+                                <label for="pay_maybe">Maybe</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" name="would_pay" value="no" id="pay_no">
+                                <label for="pay_no">No</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" name="would_pay" value="need_more_info" id="pay_info">
+                                <label for="pay_info">Need more info</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="irresistible_offer">What&rsquo;s missing from the offer that would make it irresistible?</label>
+                        <textarea id="irresistible_offer" name="irresistible_offer" rows="4"></textarea>
+                    </div>
+                </div>
+
+                <!-- Step 5: Final Verdict -->
+                <div class="form-step" id="step5">
+                    <h2 class="step-title">Final Verdict</h2>
+                    
+                    <div class="form-group">
+                        <label for="readiness_score">On a scale of 1-10, how ready is this site to go live?</label>
+                        <div class="range-slider">
+                            <input type="range" id="readiness_score" name="readiness_score" min="1" max="10" value="5">
+                            <div class="range-value" id="readinessValue">5</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="one_change">If you could change ONE thing, what would it be?</label>
+                        <textarea id="one_change" name="one_change" rows="4"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Would you send this link to a friend who wants to learn real estate?</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" name="recommend_friend" value="yes" id="recommend_yes">
+                                <label for="recommend_yes">Yes</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" name="recommend_friend" value="no" id="recommend_no">
+                                <label for="recommend_no">No</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" name="recommend_friend" value="with_changes" id="recommend_changes">
+                                <label for="recommend_changes">With changes</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="additional_feedback">Any other thoughts, ideas, or feedback?</label>
+                        <textarea id="additional_feedback" name="additional_feedback" rows="5"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-navigation">
+                    <button type="button" class="btn btn-secondary" id="prevBtn" style="display: none;">Previous</button>
+                    <div></div>
+                    <button type="button" class="btn btn-primary" id="nextBtn">Next</button>
+                    <button type="submit" class="btn btn-success" id="submitBtn" style="display: none;">Submit Review</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        let currentStep = 1;
+        const totalSteps = 5;
+
+        // Initialize form
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgressBar();
+            initializeInteractions();
+        });
+
+        // Star rating functionality
+        function initializeInteractions() {
+            // Star ratings
+            document.querySelectorAll('.star-rating').forEach(rating => {
+                const stars = rating.querySelectorAll('.star');
+                const field = rating.dataset.field;
+                
+                stars.forEach((star, index) => {
+                    star.addEventListener('click', () => {
+                        const value = index + 1;
+                        const hiddenInput = document.getElementById(field);
+                        if (hiddenInput) {
+                            hiddenInput.value = value;
+                        }
+                        
+                        stars.forEach((s, i) => {
+                            s.classList.toggle('active', i < value);
+                        });
+                    });
+                });
+            });
+
+            // Emoji selector
+            document.querySelectorAll('.emoji-selector').forEach(selector => {
+                const options = selector.querySelectorAll('.emoji-option');
+                const field = selector.dataset.field;
+                
+                options.forEach(option => {
+                    option.addEventListener('click', () => {
+                        options.forEach(o => o.classList.remove('selected'));
+                        option.classList.add('selected');
+                        
+                        const hiddenInput = document.getElementById(field);
+                        if (hiddenInput) {
+                            hiddenInput.value = option.dataset.value;
+                        }
+                    });
+                });
+            });
+
+            // Range slider
+            const readinessSlider = document.getElementById('readiness_score');
+            const readinessValue = document.getElementById('readinessValue');
+            
+            if (readinessSlider && readinessValue) {
+                readinessSlider.addEventListener('input', function() {
+                    readinessValue.textContent = this.value;
+                });
+            }
+
+            // Navigation buttons
+            document.getElementById('nextBtn').addEventListener('click', nextStep);
+            document.getElementById('prevBtn').addEventListener('click', prevStep);
+            document.getElementById('siteReviewForm').addEventListener('submit', handleSubmit);
+        }
+
+        function updateProgressBar() {
+            const steps = document.querySelectorAll('.progress-step');
+            const progressBarAfter = document.querySelector('.progress-bar::after') || document.querySelector('.progress-bar');
+            
+            steps.forEach((step, index) => {
+                const stepNum = index + 1;
+                step.classList.remove('active', 'completed');
+                
+                if (stepNum < currentStep) {
+                    step.classList.add('completed');
+                } else if (stepNum === currentStep) {
+                    step.classList.add('active');
+                }
+            });
+
+            // Update progress bar width
+            const progressWidth = ((currentStep - 1) / (totalSteps - 1)) * 100;
+            if (progressBarAfter) {
+                progressBarAfter.style.setProperty('--progress-width', `${progressWidth}%`);
+            }
+        }
+
+        function showStep(stepNumber) {
+            document.querySelectorAll('.form-step').forEach(step => {
+                step.classList.remove('active');
+            });
+            
+            const targetStep = document.getElementById(`step${stepNumber}`);
+            if (targetStep) {
+                setTimeout(() => {
+                    targetStep.classList.add('active');
+                }, 100);
+            }
+
+            // Update navigation buttons
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const submitBtn = document.getElementById('submitBtn');
+
+            prevBtn.style.display = stepNumber > 1 ? 'block' : 'none';
+            nextBtn.style.display = stepNumber < totalSteps ? 'block' : 'none';
+            submitBtn.style.display = stepNumber === totalSteps ? 'block' : 'none';
+
+            updateProgressBar();
+        }
+
+        function nextStep() {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                showStep(currentStep);
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        }
+
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast ${type}`;
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
+        }
+
+        async function handleSubmit(e) {
+            e.preventDefault();
+
+            const formData = new FormData(e.target);
+            const data = {};
+
+            // Collect all form data
+            for (let [key, value] of formData.entries()) {
+                if (data[key]) {
+                    if (Array.isArray(data[key])) {
+                        data[key].push(value);
+                    } else {
+                        data[key] = [data[key], value];
+                    }
+                } else {
+                    data[key] = value;
+                }
+            }
+
+            // Add metadata
+            data._form_type = "Site Review A - Know Your Terrain";
+            data._source = "dodealswithlee.com/review-a";
+            data._submitted_at = new Date().toISOString();
+
+            try {
+                // Try primary endpoint
+                const response = await fetch('https://ghl-proxy-blush.vercel.app/sitereview', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    showToast('Review submitted successfully! Thank you for your feedback.', 'success');
+                    e.target.reset();
+                    currentStep = 1;
+                    showStep(1);
+                } else {
+                    throw new Error('Primary endpoint failed');
+                }
+            } catch (error) {
+                // Fallback to FormSubmit
+                try {
+                    const fallbackResponse = await fetch('https://formsubmit.co/ajax/lilly@dodealswithlee.com', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    if (fallbackResponse.ok) {
+                        showToast('Review submitted successfully! Thank you for your feedback.', 'success');
+                        e.target.reset();
+                        currentStep = 1;
+                        showStep(1);
+                    } else {
+                        throw new Error('Fallback also failed');
+                    }
+                } catch (fallbackError) {
+                    showToast('Error submitting review. Please try again.', 'error');
+                }
+            }
+        }
+
+        // Add CSS for progress bar animation
+        const style = document.createElement('style');
+        style.textContent = `
+            .progress-bar::after {
+                width: var(--progress-width, 0%);
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

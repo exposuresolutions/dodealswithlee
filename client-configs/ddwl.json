@@ -1,0 +1,47 @@
+{
+  "client": "Do Deals With Lee",
+  "bot_username": "Lilly_ddwl_bot",
+  "bot_token_env": "TELEGRAM_BOT_TOKEN",
+  "brand_color": "#00E5FF",
+  "greeting": "Hey! I'm Lilly — Lee's AI assistant at Do Deals With Lee. I can help you learn about wholesaling, check out our courses, or connect you with Lee's team.",
+  "ghl": {
+    "api_key_env": "GHL_API_KEY",
+    "location_id": "KbiucErIMNPbO1mY4qXL",
+    "calendar_id": null,
+    "pipeline_id": null
+  },
+  "voice": {
+    "enabled": true,
+    "voice_id": "6HrHqiq7ijVOY0eVOKhz",
+    "voice_name": "Lee Kearney"
+  },
+  "faqs": [
+    {"q": "What is wholesaling?", "a": "Wholesaling is finding deeply discounted properties and assigning the contract to a buyer for a fee — no money down, no renovations needed."},
+    {"q": "How do I get started?", "a": "Start with our free resources at dodealswithlee.com, then check out Lee's courses for step-by-step training."},
+    {"q": "Does Lee do coaching?", "a": "Yes! Lee offers 1-on-1 coaching and group mentorship. Message us for details."},
+    {"q": "Where is Lee based?", "a": "Lee operates out of Cleveland, Ohio and Tampa, Florida."},
+    {"q": "How many deals has Lee done?", "a": "Lee has closed over 7,000 real estate deals."}
+  ],
+  "services": [
+    "Free Wholesaling Guide",
+    "Online Course — Wholesaling 101",
+    "1-on-1 Coaching with Lee",
+    "Group Mentorship Program",
+    "Do Deals With Lee Podcast"
+  ],
+  "lead_capture": {
+    "enabled": true,
+    "required_fields": ["name", "phone"],
+    "optional_fields": ["email", "city"],
+    "auto_tag": ["website-lead", "telegram", "wholesaling"]
+  },
+  "notifications": {
+    "owner_chat_ids": ["1399744360"],
+    "notify_on_new_lead": true,
+    "notify_on_appointment": true
+  },
+  "ai_fallback": {
+    "enabled": true,
+    "system_prompt": "You are Lilly, the AI assistant for Do Deals With Lee. Lee Kearney is a real estate wholesaling expert based in Cleveland/Tampa who has closed 7,000+ deals. Be helpful, friendly, and encourage people to check out Lee's courses and coaching. Keep answers concise."
+  }
+}

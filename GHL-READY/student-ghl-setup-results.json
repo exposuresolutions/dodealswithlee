@@ -1,0 +1,74 @@
+{
+  "custom_fields": [
+    {
+      "name": "Program Enrolled",
+      "id": "xHISPj3hnnkIpjVlH2vo"
+    },
+    {
+      "name": "Enrollment Reference",
+      "id": "9vgHv40uSg9X8klZunZj"
+    },
+    {
+      "name": "Enrollment Date",
+      "id": "t2CuzQwl6KXYzEhYdXJ1"
+    },
+    {
+      "name": "Experience Level",
+      "id": "SOla2eVhbxN5l9Dqhr6w"
+    },
+    {
+      "name": "Student Goal",
+      "id": "xSvqgl9Ml1ePn7VnDHLz"
+    },
+    {
+      "name": "Student About",
+      "id": "kiQzXw0uWm9maITmRaqO"
+    },
+    {
+      "name": "Student Source",
+      "id": "8QuifXa7CfT8JUHfgENH"
+    },
+    {
+      "name": "Student Status",
+      "id": "HImQXO0VW8ml8GwIYiuk"
+    },
+    {
+      "name": "Cohort",
+      "id": "W0QIh3SKZptDnMBLtGcg"
+    },
+    {
+      "name": "Enrollment Notes",
+      "id": "TH8F24YIVAGLzmCC0KnI"
+    },
+    {
+      "name": "Course Progress",
+      "id": "wknQFXURmYTue0D3bhyn"
+    },
+    {
+      "name": "Deals Closed (Student)",
+      "id": "Q9WQMZCsbTowSZ7C3bm5"
+    },
+    {
+      "name": "Mentor Assigned",
+      "id": "s7dP1xLHne1mwrle5L6Y"
+    }
+  ],
+  "tags": [
+    "student-inquiry",
+    "new-enrollment",
+    "student-active",
+    "student-paused",
+    "student-completed",
+    "student-dropped",
+    "student-alumni",
+    "flip-your-income",
+    "short-sale-mastery",
+    "deal-mastery-mentorship",
+    "beginner",
+    "intermediate",
+    "advanced",
+    "high-value-student",
+    "referral-student"
+  ],
+  "errors": []
+}

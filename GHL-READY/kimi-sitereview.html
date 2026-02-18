@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DDWL Site Review | Help Us Build Something Amazing</title>
+<style>
+/* GHL Reset */
+html, body, #preview-container, .hl-page-preview, .hl_page-preview,
+[id*="preview"], [class*="preview"], [class*="page-"], [class*="hl_page"],
+[class*="wrapper"], [class*="container"], [class*="section"],
+.c-editor, .c-editor-content, .hl-page-creator,
+#section-0, #section-1, #section-2, #section-3, #section-4, #section-5,
+.inner-section, .section-element, .row-element, .column-element,
+div[data-page-element], div[class*="element"], div[class*="row"],
+main, article, section, header, footer, aside, nav,
+.page-wrapper, .site-wrapper, .content-wrapper {
+    background: #0a0a0a !important;
+    background-color: #0a0a0a !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+}
+
+.review-wrapper { background: #0a0a0a !important; min-height: 100vh; }
+.review-container { padding: 0 20px !important; max-width: 900px !important; margin: 0 auto !important; }
+.review-section { padding: 60px 20px !important; background: #0a0a0a !important; }
+.review-card { background: rgba(22, 22, 22, 0.8) !important; padding: 32px !important; border-radius: 16px !important; border: 1px solid rgba(255,255,255,0.1) !important; }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: #0a0a0a !important;
+    color: #ffffff;
+    font-family: 'Inter', system-ui, sans-serif !important;
+    overflow-x: hidden;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, #00e5ff 0%, #ff6b00 50%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.glass-card {
+    background: rgba(22, 22, 22, 0.8) !important;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.rating-star {
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.rating-star:hover,
+.rating-star.active {
+    color: #ff6b00;
+    transform: scale(1.2);
+}
+
+.progress-bar {
+    height: 8px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #00e5ff, #ff6b00);
+    transition: width 0.5s ease;
+}
+
+.checkbox-custom {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 4px;
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s;
+}
+.checkbox-custom:checked {
+    background: #00e5ff;
+    border-color: #00e5ff;
+}
+.checkbox-custom:checked::after {
+    content: '\2713';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #0a0a0a;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.radio-custom {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+.radio-custom:checked {
+    border-color: #00e5ff;
+}
+.radio-custom:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background: #00e5ff;
+    border-radius: 50%;
+}
+
+textarea, input[type="text"], input[type="email"] {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: white;
+    padding: 12px 16px;
+    border-radius: 8px;
+    width: 100%;
+    font-family: inherit;
+    transition: all 0.3s;
+    font-size: 1rem;
+}
+textarea:focus, input:focus {
+    outline: none;
+    border-color: #00e5ff;
+    box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.1);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #ff6b00, #ff8533);
+    color: white;
+    padding: 16px 32px;
+    border-radius: 50px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.1rem;
+}
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(255, 107, 0, 0.3);
+}
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+.step-indicator {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+}
+.step-indicator.active {
+    background: linear-gradient(135deg, #00e5ff, #ff6b00);
+    color: #0a0a0a;
+}
+.step-indicator.completed {
+    background: #00e5ff;
+    color: #0a0a0a;
+}
+.step-indicator.pending {
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.5);
+}
+.step-line {
+    height: 2px;
+    flex: 1;
+    background: rgba(255,255,255,0.1);
+    margin: 0 10px;
+    transition: all 0.3s;
+}
+.step-line.completed {
+    background: linear-gradient(90deg, #00e5ff, #ff6b00);
+}
+
+.question-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s forwards;
+}
+@keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.emoji-btn {
+    font-size: 2rem;
+    padding: 8px 16px;
+    border-radius: 12px;
+    border: 2px solid rgba(255,255,255,0.1);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.emoji-btn:hover,
+.emoji-btn.selected {
+    background: rgba(0, 229, 255, 0.1);
+    border-color: #00e5ff;
+    transform: scale(1.1);
+}
+
+.tag-btn {
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: transparent;
+    color: rgba(255,255,255,0.7);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+}
+.tag-btn:hover,
+.tag-btn.selected {
+    background: rgba(0, 229, 255, 0.2);
+    border-color: #00e5ff;
+    color: #00e5ff;
+}
+
+.toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #28c840;
+    color: #000; padding: 14px 28px; border-radius: 8px; font-weight: 600; opacity: 0;
+    transition: opacity 0.3s; z-index: 999; pointer-events: none; max-width: 90%; text-align: center; }
+.toast.show { opacity: 1; }
+.toast.error { background: #ff5f57; }
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #0a0a0a; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #00e5ff; }
+</style>
+</head>
+<body>
+<!-- WebFont Loader -->
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+WebFont.load({
+  google: { families: ['Inter:300,400,500,600,700,800,900', 'Playfair Display:400,600,700,800'] },
+  active: function() {
+    document.body.style.fontFamily = "'Inter', system-ui, sans-serif";
+  }
+});
+</script>
+<script>
+(function(){
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap';
+  document.head.appendChild(link);
+})();
+</script>
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+    theme: {
+        extend: {
+            colors: {
+                brand: {
+                    black: '#0a0a0a',
+                    dark: '#111111',
+                    card: '#161616',
+                    cyan: '#00e5ff',
+                    'cyan-light': '#40efff',
+                    orange: '#ff6b00',
+                    'orange-light': '#ff8533',
+                    purple: '#8b5cf6',
+                    pink: '#ec4899',
+                }
+            },
+            fontFamily: {
+                sans: ['Inter', 'system-ui', 'sans-serif'],
+                display: ['Playfair Display', 'Georgia', 'serif'],
+            }
+        }
+    }
+}
+</script>
+
+<div class="review-wrapper">
+
+    <!-- Header -->
+    <header class="py-6 border-b border-white/10" style="background:#0a0a0a !important;">
+        <div class="max-w-4xl mx-auto px-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/67630a6111b3975ed85ffd20.svg" alt="DDWL" class="h-10 w-auto">
+                <span class="text-white font-bold text-lg hidden sm:block">Site Review</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="text-sm text-gray-400">Version B &mdash; Kimi Build</span>
+                <span class="bg-brand-orange text-white text-xs font-bold px-3 py-1 rounded-full">CONFIDENTIAL</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="review-section pt-12 pb-6">
+        <div class="review-container text-center">
+            <div class="inline-flex items-center gap-2 bg-brand-cyan/10 border border-brand-cyan/30 rounded-full px-4 py-2 mb-6">
+                <i data-lucide="sparkles" class="w-4 h-4 text-brand-cyan"></i>
+                <span class="text-brand-cyan text-sm font-semibold">Help Shape the Future of DDWL</span>
+            </div>
+
+            <h1 class="font-display text-4xl md:text-5xl font-bold mb-4">
+                How Was Your <span class="gradient-text">Experience?</span>
+            </h1>
+
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto mb-4">
+                You&rsquo;re reviewing <strong class="text-brand-cyan">Version B (Kimi Build)</strong> of the DDWL Academy site.
+                Your feedback directly impacts the final product.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4 mb-8 text-sm">
+                <a href="https://dodealswithlee.com/kimihome" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-brand-cyan/10 border border-brand-cyan/30 rounded-full px-4 py-2 text-brand-cyan hover:bg-brand-cyan/20 transition-all">
+                    <i data-lucide="external-link" class="w-4 h-4"></i>
+                    View Version B Site
+                </a>
+                <a href="https://dodealswithlee.com/nhome" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white/5 border border-white/20 rounded-full px-4 py-2 text-gray-400 hover:text-white transition-all">
+                    <i data-lucide="external-link" class="w-4 h-4"></i>
+                    Compare: Version A
+                </a>
+            </div>
+
+            <!-- Progress -->
+            <div class="max-w-md mx-auto mb-4">
+                <div class="flex justify-between text-sm text-gray-400 mb-2">
+                    <span>Progress</span>
+                    <span id="progressText">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressBar" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Step Indicator -->
+    <section class="review-section py-4">
+        <div class="review-container">
+            <div class="flex items-center justify-center max-w-2xl mx-auto">
+                <div class="step-indicator active" id="step1">1</div>
+                <div class="step-line" id="line1"></div>
+                <div class="step-indicator pending" id="step2">2</div>
+                <div class="step-line" id="line2"></div>
+                <div class="step-indicator pending" id="step3">3</div>
+                <div class="step-line" id="line3"></div>
+                <div class="step-indicator pending" id="step4">4</div>
+            </div>
+            <div class="flex justify-center gap-8 mt-2 text-xs text-gray-500">
+                <span>First Impressions</span>
+                <span>Content</span>
+                <span>Functionality</span>
+                <span>Final Thoughts</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Survey Form -->
+    <form id="siteReviewForm" class="review-section py-8">
+        <div class="review-container space-y-8">
+
+            <!-- STEP 1: First Impressions -->
+            <div id="section-first" class="question-card" style="animation-delay: 0.1s">
+                <div class="review-card">
+                    <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                        <i data-lucide="eye" class="w-6 h-6 text-brand-cyan"></i>
+                        First Impressions
+                    </h2>
+
+                    <div class="mb-8">
+                        <label class="block text-white font-medium mb-3">Your Name *</label>
+                        <input type="text" name="responder" required placeholder="Lee or Krystle">
+                    </div>
+
+                    <div class="mb-8">
+                        <label class="block text-white font-medium mb-3">Your Email *</label>
+                        <p class="text-sm text-gray-500 mb-2">So we can follow up with you directly on any changes.</p>
+                        <input type="email" name="email" required placeholder="your@email.com">
+                    </div>
+
+                    <div class="mb-8">
+                        <label class="block text-white font-medium mb-3">How would you rate the overall look and feel?</label>
+                        <div class="flex gap-2 mb-2" id="overallRating">
+                            <i data-lucide="star" class="w-8 h-8 rating-star text-gray-600" data-rating="1"></i>
+                            <i data-lucide="star" class="w-8 h-8 rating-star text-gray-600" data-rating="2"></i>
+                            <i data-lucide="star" class="w-8 h-8 rating-star text-gray-600" data-rating="3"></i>
+                            <i data-lucide="star" class="w-8 h-8 rating-star text-gray-600" data-rating="4"></i>
+                            <i data-lucide="star" class="w-8 h-8 rating-star text-gray-600" data-rating="5"></i>
+                        </div>
+                        <input type="hidden" name="overall_rating" id="overallRatingInput">
+                        <p class="text-sm text-gray-500" id="ratingText">Click to rate</p>
+                    </div>
+
+                    <div class="mb-8">
+                        <label class="block text-white font-medium mb-3">How visually appealing is the site?</label>
+                        <div class="flex gap-4 flex-wrap" id="visualAppealGroup">
+                            <button type="button" class="emoji-btn" data-value="5" data-label="Love it">&#128525;</button>
+                            <button type="button" class="emoji-btn" data-value="4" data-label="Good">&#128578;</button>
+                            <button type="button" class="emoji-btn" data-value="3" data-label="Neutral">&#128528;</button>
+                            <button type="button" class="emoji-btn" data-value="2" data-label="Meh">&#128533;</button>
+                            <button type="button" class="emoji-btn" data-value="1" data-label="Bad">&#128555;</button>
+                        </div>
+                        <input type="hidden" name="visual_appeal" id="visualAppealInput">
+                    </div>
+
+                    <div class="mb-8">
+                        <label class="block text-white font-medium mb-4">Does this look like a $500M brand?</label>
+                        <div class="space-y-3">
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="professionalism" value="yes" class="radio-custom"><span class="text-gray-300">Yes, absolutely professional</span></label>
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="professionalism" value="mostly" class="radio-custom"><span class="text-gray-300">Mostly, with minor issues</span></label>
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="professionalism" value="somewhat" class="radio-custom"><span class="text-gray-300">Somewhat, needs work</span></label>
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="professionalism" value="no" class="radio-custom"><span class="text-gray-300">No, looks amateur</span></label>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block text-white font-medium mb-4">How trustworthy does the site feel?</label>
+                        <div class="space-y-3">
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="trust" value="completely" class="radio-custom"><span class="text-gray-300">Completely trustworthy</span></label>
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="trust" value="mostly" class="radio-custom"><span class="text-gray-300">Mostly trustworthy</span></label>
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="trust" value="neutral" class="radio-custom"><span class="text-gray-300">Neutral / unsure</span></label>
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="trust" value="skeptical" class="radio-custom"><span class="text-gray-300">Seems sketchy</span></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 2: Content -->
+            <div id="section-content" class="question-card" style="animation-delay: 0.2s">
+                <div class="review-card">
+                    <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                        <i data-lucide="file-text" class="w-6 h-6 text-brand-orange"></i>
+                        Content &amp; Messaging
+                    </h2>
+
+                    <div class="mb-8">
+                        <label class="block text-white font-medium mb-3">How clear is our value proposition?</label>
+                        <div class="flex gap-2 mb-2" id="clarityRating">
+                            <i data-lucide="star" class="w-8 h-8 rating-star text-gray-600" data-rating="1"></i>
+                            <i data-lucide="star" class="w-8 h-8 rating-star text-gray-600" data-rating="2"></i>
+                            <i data-lucide="star" class="w-8 h-8 rating-star text-gray-600" data-rating="3"></i>
+                            <i data-lucide="star" class="w-8 h-8 rating-star text-gray-600" data-rating="4"></i>
+                            <i data-lucide="star" class="w-8 h-8 rating-star text-gray-600" data-rating="5"></i>
+                        </div>
+                        <input type="hidden" name="clarity_rating" id="clarityRatingInput">
+                    </div>
+
+                    <div class="mb-8">
+                        <label class="block text-white font-medium mb-4">Is &ldquo;Pay to Play&rdquo; confusing or off-putting?</label>
+                        <div class="space-y-3">
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="pay_to_play" value="clear" class="radio-custom"><span class="text-gray-300">No, it&rsquo;s clear and honest</span></label>
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="pay_to_play" value="slightly" class="radio-custom"><span class="text-gray-300">Slightly confusing but OK</span></label>
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="pay_to_play" value="concerning" class="radio-custom"><span class="text-gray-300">Sounds like a scam/red flag</span></label>
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="pay_to_play" value="unclear" class="radio-custom"><span class="text-gray-300">I don&rsquo;t understand what it means</span></label>
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <label class="block text-white font-medium mb-4">What information is missing or unclear? <span class="text-gray-500 text-sm">(Select all that apply)</span></label>
+                        <div class="flex flex-wrap gap-2" id="missingInfoGroup">
+                            <button type="button" class="tag-btn" data-value="pricing">Pricing details</button>
+                            <button type="button" class="tag-btn" data-value="location">Academy location</button>
+                            <button type="button" class="tag-btn" data-value="curriculum">What&rsquo;s taught</button>
+                            <button type="button" class="tag-btn" data-value="timeline">Program timeline</button>
+                            <button type="button" class="tag-btn" data-value="results">Student results</button>
+                            <button type="button" class="tag-btn" data-value="lee_background">Lee&rsquo;s background</button>
+                            <button type="button" class="tag-btn" data-value="guarantee">Refund policy</button>
+                            <button type="button" class="tag-btn" data-value="next_steps">How to apply</button>
+                        </div>
+                        <input type="hidden" name="missing_info" id="missingInfoInput">
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block text-white font-medium mb-3">Any specific copy that needs improvement?</label>
+                        <textarea name="copy_feedback" rows="3" placeholder="e.g., 'The headline is too vague' or 'The pricing section is confusing because...'"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 3: Functionality -->
+            <div id="section-functionality" class="question-card" style="animation-delay: 0.3s">
+                <div class="review-card">
+                    <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                        <i data-lucide="mouse-pointer-click" class="w-6 h-6 text-brand-purple"></i>
+                        Functionality &amp; UX
+                    </h2>
+
+                    <div class="mb-8">
+                        <label class="block text-white font-medium mb-4">How easy is it to find what you&rsquo;re looking for?</label>
+                        <div class="space-y-3">
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="navigation" value="very_easy" class="radio-custom"><span class="text-gray-300">Very easy &mdash; intuitive layout</span></label>
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="navigation" value="easy" class="radio-custom"><span class="text-gray-300">Easy &mdash; found everything</span></label>
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="navigation" value="somewhat" class="radio-custom"><span class="text-gray-300">Somewhat &mdash; had to search</span></label>
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="navigation" value="difficult" class="radio-custom"><span class="text-gray-300">Difficult &mdash; frustrating experience</span></label>
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <label class="block text-white font-medium mb-4">How does the site perform on mobile?</label>
+                        <div class="space-y-3">
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="mobile" value="excellent" class="radio-custom"><span class="text-gray-300">Excellent &mdash; perfect on phone</span></label>
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="mobile" value="good" class="radio-custom"><span class="text-gray-300">Good &mdash; minor issues</span></label>
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="mobile" value="poor" class="radio-custom"><span class="text-gray-300">Poor &mdash; hard to use on mobile</span></label>
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="mobile" value="not_tested" class="radio-custom"><span class="text-gray-300">Didn&rsquo;t test on mobile</span></label>
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <label class="block text-white font-medium mb-4">How fast does the site load?</label>
+                        <div class="space-y-3">
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="speed" value="instant" class="radio-custom"><span class="text-gray-300">Instant &mdash; no waiting</span></label>
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="speed" value="fast" class="radio-custom"><span class="text-gray-300">Fast &mdash; under 2 seconds</span></label>
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="speed" value="slow" class="radio-custom"><span class="text-gray-300">Slow &mdash; noticeable delay</span></label>
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="speed" value="very_slow" class="radio-custom"><span class="text-gray-300">Very slow &mdash; frustrating</span></label>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block text-white font-medium mb-3">Did you encounter any bugs or broken elements?</label>
+                        <textarea name="bugs" rows="3" placeholder="Describe any broken links, layout issues, error messages, or things that didn't work..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 4: Final Thoughts -->
+            <div id="section-final" class="question-card" style="animation-delay: 0.4s">
+                <div class="review-card">
+                    <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                        <i data-lucide="message-square" class="w-6 h-6 text-brand-pink"></i>
+                        Final Thoughts
+                    </h2>
+
+                    <div class="mb-8">
+                        <label class="block text-white font-medium mb-4">If you were interested in real estate investing, would you apply?</label>
+                        <div class="space-y-3">
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="would_apply" value="definitely" class="radio-custom"><span class="text-gray-300">Definitely &mdash; already convinced</span></label>
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="would_apply" value="probably" class="radio-custom"><span class="text-gray-300">Probably &mdash; need more info</span></label>
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="would_apply" value="maybe" class="radio-custom"><span class="text-gray-300">Maybe &mdash; on the fence</span></label>
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="would_apply" value="no" class="radio-custom"><span class="text-gray-300">No &mdash; not convinced</span></label>
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <label class="block text-white font-medium mb-3">What&rsquo;s the ONE thing we should fix first?</label>
+                        <input type="text" name="one_thing" placeholder="The single most important improvement...">
+                    </div>
+
+                    <div class="mb-8">
+                        <label class="block text-white font-medium mb-3">What did you like BEST about the site?</label>
+                        <textarea name="favorite" rows="2" placeholder="Don't be shy &mdash; we want to know what's working!"></textarea>
+                    </div>
+
+                    <div class="mb-8">
+                        <label class="block text-white font-medium mb-4">Which version do you prefer? <span class="text-gray-500 text-sm">(if you&rsquo;ve seen both)</span></label>
+                        <div class="space-y-3">
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="preference" value="B" class="radio-custom"><span class="text-gray-300">Version B (this Kimi build)</span></label>
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="preference" value="A" class="radio-custom"><span class="text-gray-300">Version A (the other build)</span></label>
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="preference" value="mix" class="radio-custom"><span class="text-gray-300">Mix of both</span></label>
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="preference" value="neither" class="radio-custom"><span class="text-gray-300">Neither &mdash; start fresh</span></label>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block text-white font-medium mb-3">Email <span class="text-gray-500 text-sm">(optional &mdash; for follow-up)</span></label>
+                        <input type="email" name="email" placeholder="you@example.com">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <div class="text-center pb-12">
+                <button type="submit" class="btn-primary text-lg" id="submitBtn">
+                    Submit Review
+                    <i data-lucide="send" class="w-5 h-5"></i>
+                </button>
+                <p class="text-gray-500 text-sm mt-4">Thank you for helping us build something amazing!</p>
+            </div>
+
+        </div>
+    </form>
+
+    <!-- Success Message -->
+    <div id="successMessage" class="hidden" style="min-height:80vh;display:none;align-items:center;justify-content:center;">
+        <div class="review-container text-center" style="padding-top:120px;">
+            <div class="w-20 h-20 rounded-full bg-brand-cyan/20 flex items-center justify-center mx-auto mb-6">
+                <i data-lucide="check" class="w-10 h-10 text-brand-cyan"></i>
+            </div>
+            <h2 class="font-display text-4xl font-bold text-white mb-4">Thank You!</h2>
+            <p class="text-gray-400 text-lg mb-8">Your feedback has been recorded and will directly shape the next version of the DDWL Academy website.</p>
+            <div class="glass-card rounded-2xl p-6 max-w-md mx-auto mb-8">
+                <p class="text-brand-cyan font-semibold mb-2">What happens next?</p>
+                <p class="text-gray-400 text-sm">Lee and Krystle will review all submissions. Changes will be implemented and a new version sent for review.</p>
+            </div>
+            <a href="https://dodealswithlee.com/kimihome" class="btn-primary">
+                Back to Version B Site
+                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// Initialize Lucide Icons
+lucide.createIcons();
+
+// GHL Webhook
+var GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/KbiucErIMNPbO1mY4qXL/webhook-trigger/mCdlXsgchQ4v9BQeIa9E';
+var GHL_PROXY = 'https://ghl-proxy-blush.vercel.app/sitereview';
+var NOTIFY_EMAILS = ['lilly@dodealswithlee.com', 'daniel@exposuresolutions.me', 'admin@dodealswithlee.com'];
+
+// Toast
+function showToast(msg, type) {
+    var t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast ' + (type || 'success') + ' show';
+    setTimeout(function(){ t.classList.remove('show'); }, 5000);
+}
+
+// Progress Tracking
+var answeredQuestions = 0;
+var totalQuestions = 15;
+
+function updateProgress() {
+    var progress = Math.min((answeredQuestions / totalQuestions) * 100, 100);
+    document.getElementById('progressBar').style.width = progress + '%';
+    document.getElementById('progressText').textContent = Math.round(progress) + '%';
+
+    if (progress >= 25) {
+        document.getElementById('step1').className = 'step-indicator completed';
+        document.getElementById('step2').className = 'step-indicator active';
+        document.getElementById('line1').className = 'step-line completed';
+    }
+    if (progress >= 50) {
+        document.getElementById('step2').className = 'step-indicator completed';
+        document.getElementById('step3').className = 'step-indicator active';
+        document.getElementById('line2').className = 'step-line completed';
+    }
+    if (progress >= 75) {
+        document.getElementById('step3').className = 'step-indicator completed';
+        document.getElementById('step4').className = 'step-indicator active';
+        document.getElementById('line3').className = 'step-line completed';
+    }
+    if (progress >= 90) {
+        document.getElementById('step4').className = 'step-indicator completed';
+    }
+}
+
+// Track interactions
+var tracked = {};
+function trackAnswer(key) {
+    if (!tracked[key]) {
+        tracked[key] = true;
+        answeredQuestions++;
+        updateProgress();
+    }
+}
+
+// Star Ratings
+var ratingLabels = ['', 'Poor', 'Below Average', 'Average', 'Good', 'Excellent'];
+
+function setupStarRating(containerId, inputId) {
+    var container = document.getElementById(containerId);
+    if (!container) return;
+    var stars = container.querySelectorAll('.rating-star');
+    stars.forEach(function(star) {
+        star.addEventListener('click', function() {
+            var rating = parseInt(this.getAttribute('data-rating'));
+            document.getElementById(inputId).value = rating;
+            stars.forEach(function(s, idx) {
+                if (idx < rating) {
+                    s.classList.add('active');
+                    s.style.color = '#ff6b00';
+                    s.style.fill = '#ff6b00';
+                } else {
+                    s.classList.remove('active');
+                    s.style.color = '#4b5563';
+                    s.style.fill = 'none';
+                }
+            });
+            var textEl = document.getElementById(containerId === 'overallRating' ? 'ratingText' : '');
+            if (textEl) textEl.textContent = ratingLabels[rating] || '';
+            trackAnswer(containerId);
+        });
+    });
+}
+
+setupStarRating('overallRating', 'overallRatingInput');
+setupStarRating('clarityRating', 'clarityRatingInput');
+
+// Emoji Buttons
+var emojiGroup = document.getElementById('visualAppealGroup');
+if (emojiGroup) {
+    emojiGroup.querySelectorAll('.emoji-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            emojiGroup.querySelectorAll('.emoji-btn').forEach(function(b) { b.classList.remove('selected'); });
+            this.classList.add('selected');
+            document.getElementById('visualAppealInput').value = this.getAttribute('data-value');
+            trackAnswer('visual_appeal');
+        });
+    });
+}
+
+// Tag Buttons (multi-select)
+var tagGroup = document.getElementById('missingInfoGroup');
+if (tagGroup) {
+    tagGroup.querySelectorAll('.tag-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            this.classList.toggle('selected');
+            var selected = [];
+            tagGroup.querySelectorAll('.tag-btn.selected').forEach(function(b) {
+                selected.push(b.getAttribute('data-value'));
+            });
+            document.getElementById('missingInfoInput').value = selected.join(', ');
+            trackAnswer('missing_info');
+        });
+    });
+}
+
+// Track radio button changes
+document.querySelectorAll('input[type="radio"]').forEach(function(radio) {
+    radio.addEventListener('change', function() {
+        trackAnswer(this.name);
+    });
+});
+
+// Track text input changes
+document.querySelectorAll('textarea, input[type="text"], input[type="email"]').forEach(function(input) {
+    input.addEventListener('input', function() {
+        if (this.value.length > 2) {
+            trackAnswer(this.name || this.id || 'text_' + Math.random());
+        }
+    });
+});
+
+// Form Submission
+async function submitToGHL(data) {
+    var payload = {
+        _form_type: 'Site Review Feedback - Version B (Kimi)',
+        _submitted_at: new Date().toISOString(),
+        _source: 'dodealswithlee.com/kimisitereview'
+    };
+    Object.keys(data).forEach(function(k) { payload[k] = data[k]; });
+
+    var webhookOk = false;
+    var proxyOk = false;
+    var emailOk = false;
+
+    // 1. Send to GHL proxy (creates/updates contact with custom fields)
+    try {
+        var r0 = await fetch(GHL_PROXY, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+        if (r0.ok) proxyOk = true;
+    } catch (e) { console.error('Proxy error:', e); }
+
+    // 2. Also send to GHL webhook (for workflow triggers)
+    try {
+        var r = await fetch(GHL_WEBHOOK, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+        if (r.ok) webhookOk = true;
+    } catch (e) { console.error('GHL error:', e); }
+
+    // 3. ALSO send email notification
+    for (var i = 0; i < NOTIFY_EMAILS.length; i++) {
+        try {
+            var fd = new FormData();
+            fd.append('_subject', 'DDWL Site Review - Version B (Kimi) - ' + (data.responder || 'Unknown'));
+            fd.append('_template', 'table');
+            fd.append('_captcha', 'false');
+            fd.append('_replyto', data.email || 'noreply@dodealswithlee.com');
+            Object.keys(payload).forEach(function(k) { fd.append(k, payload[k]); });
+            var r2 = await fetch('https://formsubmit.co/ajax/' + NOTIFY_EMAILS[i], {
+                method: 'POST', headers: { 'Accept': 'application/json' }, body: fd
+            });
+            if (r2.ok) emailOk = true;
+        } catch (e) { console.error('Email error:', e); }
+    }
+    return proxyOk || webhookOk || emailOk;
+}
+
+document.getElementById('siteReviewForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    var btn = document.getElementById('submitBtn');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    var data = {};
+    new FormData(this).forEach(function(v, k) { data[k] = v; });
+
+    var ok = await submitToGHL(data);
+    if (ok) {
+        document.getElementById('siteReviewForm').style.display = 'none';
+        var success = document.getElementById('successMessage');
+        success.classList.remove('hidden');
+        success.style.display = 'flex';
+        lucide.createIcons();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+        showToast('Something went wrong. Please email lilly@dodealswithlee.com directly.', 'error');
+        btn.textContent = 'Submit Review';
+        btn.disabled = false;
+    }
+});
+</script>
+</body>
+</html>

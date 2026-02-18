@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DDWL &mdash; New Team Member Onboarding</title>
+<style>
+/* GHL AGGRESSIVE RESET - NUCLEAR */
+*:not(.container):not(.nav):not(.nav-inner):not(.hero):not(.card):not(.phase-card):not(.phase-header):not(.phase-body):not(.check-item):not(.check-box):not(.progress-bar):not(.progress-fill):not(.contact-card):not(.system-card):not(.footer):not(.footer-inner):not(.modal):not(.modal-content):not(.toast):not(a):not(span):not(i):not(img):not(input):not(textarea):not(select):not(button):not(label):not(p):not(h1):not(h2):not(h3):not(h4):not(h5):not(h6):not(li):not(ul):not(ol):not(strong):not(em):not(b):not(small):not(br):not(table):not(tr):not(td):not(th){background-color:#0a0a0a!important}
+html,body{background:#0a0a0a!important;margin:0!important;padding:0!important}
+#preview-container,.hl-page-preview,.hl_page-preview,
+[id*="preview"],[class*="preview"],[class*="page-"],[class*="hl_page"],
+[class*="hl-wrapper"],[class*="hl-container"],[class*="hl-section"],[class*="hl-row"],[class*="hl-column"],
+.c-editor,.c-editor-content,.hl-page-creator,
+#section-0,#section-1,#section-2,#section-3,#section-4,#section-5,
+#section-6,#section-7,#section-8,#section-9,#section-10,
+.inner-section,.section-element,.row-element,.column-element,
+div[data-page-element],
+.page-wrapper,.site-wrapper,.content-wrapper,.hl-wrapper,
+.row-fluid,.container-fluid,.body-wrapper,
+div[style*="background: rgb(255"],div[style*="background-color: rgb(255"],
+div[style*="background: white"],div[style*="background-color: white"],
+div[style*="background:#fff"],div[style*="background-color:#fff"]{
+background:#0a0a0a!important;background-color:#0a0a0a!important;
+border-color:#0a0a0a!important;box-shadow:none!important}
+
+/* === GHL RESET === */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#0a0a0a;color:rgba(255,255,255,0.9);line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto}
+a{color:#00e5ff;text-decoration:none}
+a:hover{color:#40efff}
+
+/* === VARIABLES === */
+:root{
+  --black:#0a0a0a;--dark:#111111;--card:#161616;
+  --cyan:#00e5ff;--cyan-light:#40efff;--cyan-dark:#00b8d4;
+  --orange:#ff6b00;--orange-light:#ff8533;
+  --white90:rgba(255,255,255,0.9);--white70:rgba(255,255,255,0.7);
+  --white50:rgba(255,255,255,0.5);--white20:rgba(255,255,255,0.2);
+  --white10:rgba(255,255,255,0.1);--white05:rgba(255,255,255,0.05);
+  --glass:rgba(255,255,255,0.08);
+  --green:#28c840;--red:#ff5f57;--gold:#ffd700;
+  --radius:12px;--radius-sm:8px;
+}
+
+/* === LAYOUT === */
+.container{max-width:900px;margin:0 auto;padding:0 20px}
+.section{padding:40px 0}
+
+/* === NAV === */
+.nav{position:sticky;top:0;z-index:100;background:rgba(10,10,10,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--white10);padding:12px 0}
+.nav-inner{display:flex;align-items:center;justify-content:space-between}
+.nav-logo{height:40px}
+.nav-badge{background:linear-gradient(135deg,var(--orange),var(--orange-light));color:#fff;font-size:0.75rem;font-weight:700;padding:4px 12px;border-radius:20px;letter-spacing:1px;text-transform:uppercase}
+
+/* === HERO === */
+.hero{text-align:center;padding:60px 0 40px}
+.hero-badge{display:inline-block;background:var(--glass);border:1px solid var(--white10);padding:6px 16px;border-radius:20px;font-size:0.82rem;font-weight:600;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:900;line-height:1.15;margin-bottom:16px}
+.hero h1 span{background:linear-gradient(135deg,var(--cyan),var(--cyan-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:1.1rem;color:var(--white70);max-width:600px;margin:0 auto 24px}
+.hero-name{font-size:1.3rem;color:var(--orange);font-weight:700}
+
+/* === PROGRESS BAR === */
+.progress-section{background:var(--dark);border-radius:var(--radius);padding:24px;margin-bottom:32px;border:1px solid var(--white10)}
+.progress-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.progress-label{font-weight:700;font-size:1rem}
+.progress-pct{color:var(--cyan);font-weight:700;font-size:1.1rem}
+.progress-bar{background:var(--white10);border-radius:20px;height:12px;overflow:hidden}
+.progress-fill{background:linear-gradient(90deg,var(--cyan),var(--orange));height:100%;border-radius:20px;transition:width 0.8s ease;width:0%}
+.progress-steps{display:flex;justify-content:space-between;margin-top:8px;font-size:0.75rem;color:var(--white50)}
+
+/* === PHASE CARDS === */
+.phase{margin-bottom:32px}
+.phase-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;cursor:pointer;padding:16px 20px;background:var(--dark);border-radius:var(--radius);border:1px solid var(--white10);transition:all 0.3s}
+.phase-header:hover{border-color:var(--cyan);box-shadow:0 0 20px rgba(0,229,255,0.1)}
+.phase-header.active{border-color:var(--cyan);background:rgba(0,229,255,0.05)}
+.phase-header.completed{border-color:var(--green);background:rgba(40,200,64,0.05)}
+.phase-number{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0}
+.phase-number.pending{background:var(--white10);color:var(--white50)}
+.phase-number.active{background:var(--cyan);color:var(--black)}
+.phase-number.completed{background:var(--green);color:#fff}
+.phase-title{flex:1}
+.phase-title h3{font-size:1.1rem;font-weight:700;margin-bottom:2px}
+.phase-title p{font-size:0.82rem;color:var(--white50)}
+.phase-status{font-size:0.75rem;font-weight:600;padding:4px 10px;border-radius:12px;text-transform:uppercase;letter-spacing:1px}
+.phase-status.pending{background:var(--white10);color:var(--white50)}
+.phase-status.active{background:rgba(0,229,255,0.15);color:var(--cyan)}
+.phase-status.completed{background:rgba(40,200,64,0.15);color:var(--green)}
+
+/* === CHECKLIST === */
+.checklist{display:none;padding:0 0 0 20px;margin-bottom:8px}
+.checklist.open{display:block}
+.check-item{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;background:var(--card);border-radius:var(--radius-sm);margin-bottom:8px;border:1px solid var(--white05);transition:all 0.3s}
+.check-item:hover{border-color:var(--white20)}
+.check-item.done{opacity:0.6}
+.check-box{width:22px;height:22px;border-radius:6px;border:2px solid var(--white20);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:all 0.3s;margin-top:2px}
+.check-box:hover{border-color:var(--cyan)}
+.check-box.checked{background:var(--green);border-color:var(--green)}
+.check-box.checked::after{content:'\2713';color:#fff;font-size:14px;font-weight:700}
+.check-content h4{font-size:0.95rem;font-weight:600;margin-bottom:4px}
+.check-content p{font-size:0.82rem;color:var(--white50);line-height:1.5}
+.check-content a{color:var(--cyan);font-weight:600}
+.check-content .credential{background:var(--dark);padding:8px 12px;border-radius:var(--radius-sm);margin-top:8px;font-family:monospace;font-size:0.82rem;border:1px solid var(--white10);display:inline-block}
+.check-content .credential .label{color:var(--white50);margin-right:8px}
+.check-content .credential .value{color:var(--cyan);user-select:all}
+.check-content .warning{color:var(--orange);font-weight:600;font-size:0.8rem;margin-top:6px}
+
+/* === SYSTEM CARDS === */
+.system-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin:20px 0}
+.system-card{background:var(--card);border-radius:var(--radius);padding:20px;border:1px solid var(--white10);transition:all 0.3s}
+.system-card:hover{border-color:var(--cyan);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+.system-card .icon{font-size:2rem;margin-bottom:12px}
+.system-card h4{font-weight:700;margin-bottom:6px}
+.system-card p{font-size:0.82rem;color:var(--white50);margin-bottom:12px}
+.system-card .link-btn{display:inline-block;background:linear-gradient(135deg,var(--orange),var(--orange-light));color:#fff;padding:6px 14px;border-radius:var(--radius-sm);font-size:0.8rem;font-weight:600;transition:all 0.3s}
+.system-card .link-btn:hover{transform:scale(1.05);box-shadow:0 4px 12px rgba(255,107,0,0.3)}
+
+/* === CONTACT CARDS === */
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin:20px 0}
+.contact-card{background:var(--card);border-radius:var(--radius);padding:16px;border:1px solid var(--white10);text-align:center}
+.contact-card .avatar{width:60px;height:60px;border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:800}
+.contact-card .name{font-weight:700;margin-bottom:2px}
+.contact-card .role{font-size:0.8rem;color:var(--white50);margin-bottom:8px}
+.contact-card .contact-info{font-size:0.78rem;color:var(--cyan)}
+
+/* === TIMELINE === */
+.timeline{position:relative;padding-left:30px;margin:20px 0}
+.timeline::before{content:'';position:absolute;left:10px;top:0;bottom:0;width:2px;background:var(--white10)}
+.timeline-item{position:relative;margin-bottom:24px}
+.timeline-item::before{content:'';position:absolute;left:-24px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--white20);border:2px solid var(--dark)}
+.timeline-item.current::before{background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+.timeline-item.future::before{background:var(--white10)}
+.timeline-item h4{font-weight:700;font-size:0.95rem;margin-bottom:4px}
+.timeline-item .period{font-size:0.8rem;color:var(--orange);font-weight:600;margin-bottom:4px}
+.timeline-item p{font-size:0.82rem;color:var(--white50)}
+.timeline-item ul{font-size:0.82rem;color:var(--white50);padding-left:16px;margin-top:6px}
+.timeline-item ul li{margin-bottom:4px}
+
+/* === CTA === */
+.cta-box{background:linear-gradient(135deg,rgba(0,229,255,0.1),rgba(255,107,0,0.1));border:1px solid var(--white20);border-radius:var(--radius);padding:32px;text-align:center;margin:32px 0}
+.cta-box h3{font-size:1.3rem;font-weight:800;margin-bottom:8px}
+.cta-box p{color:var(--white70);margin-bottom:20px}
+.cta-btn{display:inline-block;background:linear-gradient(135deg,var(--orange),var(--orange-light));color:#fff;padding:12px 32px;border-radius:var(--radius-sm);font-weight:700;font-size:1rem;border:none;cursor:pointer;transition:all 0.3s}
+.cta-btn:hover{transform:scale(1.05);box-shadow:0 8px 24px rgba(255,107,0,0.3);color:#fff}
+
+/* === FOOTER === */
+.footer{text-align:center;padding:40px 0;border-top:1px solid var(--white10);margin-top:40px}
+.footer p{font-size:0.82rem;color:var(--white50)}
+.footer a{color:var(--cyan)}
+
+/* === RESPONSIVE === */
+@media(max-width:600px){
+  .hero{padding:40px 0 24px}
+  .system-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr 1fr}
+  .phase-header{padding:12px 14px}
+  .checklist{padding-left:8px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/67630a6111b3975ed85ffd20.svg" alt="DDWL Logo" class="nav-logo">
+    <span class="nav-badge">Team Onboarding</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">Welcome to the Team</div>
+    <h1>Your <span>DDWL Onboarding</span> Hub</h1>
+    <p>Everything you need to get set up, trained, and ready to close deals. Follow each phase below &mdash; Lilly will guide you through every step.</p>
+    <div class="hero-name" id="heroName">Welcome, New Team Member</div>
+  </div>
+</section>
+
+<!-- PROGRESS -->
+<div class="container">
+  <div class="progress-section">
+    <div class="progress-header">
+      <span class="progress-label">Onboarding Progress</span>
+      <span class="progress-pct" id="progressPct">0%</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-steps">
+      <span>Day 1: Access</span>
+      <span>Week 1: Training</span>
+      <span>Day 30: Review</span>
+      <span>Day 60</span>
+      <span>Day 90: Graduate</span>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- PHASE 1: DAY 1 — SYSTEM ACCESS -->
+  <!-- ============================================ -->
+  <div class="phase" data-phase="1">
+    <div class="phase-header active" onclick="togglePhase(1)">
+      <div class="phase-number active">1</div>
+      <div class="phase-title">
+        <h3>Day 1 &mdash; System Access &amp; Setup</h3>
+        <p>Get logged into every system you need</p>
+      </div>
+      <span class="phase-status active">Current</span>
+    </div>
+    <div class="checklist open" id="checklist-1">
+
+      <div class="check-item" data-task="gsuite">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="check-content">
+          <h4>Google Workspace (G-Suite)</h4>
+          <p>Your primary email, calendar, docs, and drive. This replaces Office 365 &mdash; everything is Google Docs by default.</p>
+          <div class="credential"><span class="label">Email:</span><span class="value" id="userEmail">your.name@dodealswithlee.com</span></div>
+          <div class="credential"><span class="label">Temp Password:</span><span class="value">Provided by admin</span></div>
+          <p class="warning">Change your password immediately on first login. Enable 2FA.</p>
+          <p style="margin-top:8px"><a href="https://workspace.google.com" target="_blank" rel="noopener">Login to Google Workspace &rarr;</a></p>
+        </div>
+      </div>
+
+      <div class="check-item" data-task="gemini">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="check-content">
+          <h4>Gemini AI (included with G-Suite)</h4>
+          <p>Google&rsquo;s AI assistant is built into your workspace. Use it for drafting emails, summarizing docs, and research.</p>
+          <p style="margin-top:8px"><a href="https://gemini.google.com" target="_blank" rel="noopener">Open Gemini &rarr;</a></p>
+        </div>
+      </div>
+
+      <div class="check-item" data-task="ghl">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="check-content">
+          <h4>GoHighLevel (GHL) &mdash; CRM</h4>
+          <p>Our CRM, pipeline management, automations, and client communication hub. This is where deals live.</p>
+          <div class="credential"><span class="label">Login:</span><span class="value">Your @dodealswithlee.com email</span></div>
+          <p class="warning">Ask Daniel or Krystle for your GHL user invite if not received.</p>
+          <p style="margin-top:8px"><a href="https://app.gohighlevel.com" target="_blank" rel="noopener">Login to GHL &rarr;</a></p>
+        </div>
+      </div>
+
+      <div class="check-item" data-task="windsurf">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="check-content">
+          <h4>Windsurf IDE</h4>
+          <p>AI-powered development environment. Access the DDWL OS &mdash; automation scripts, AI agents, and tools we&rsquo;ve built and tested. Cascade AI is your coding partner.</p>
+          <p style="margin-top:8px"><a href="https://windsurf.com/download" target="_blank" rel="noopener">Download Windsurf &rarr;</a></p>
+        </div>
+      </div>
+
+      <div class="check-item" data-task="synology">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="check-content">
+          <h4>Synology NAS (Backup)</h4>
+          <p>Network-attached storage for company file backups. Access will be configured by Daniel.</p>
+          <p class="warning">Credentials will be provided separately. Do NOT share NAS access externally.</p>
+        </div>
+      </div>
+
+      <div class="check-item" data-task="teamviewer">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="check-content">
+          <h4>TeamViewer</h4>
+          <p>Remote desktop support. Used for troubleshooting and remote access when needed.</p>
+          <p style="margin-top:8px"><a href="https://www.teamviewer.com/en/download/" target="_blank" rel="noopener">Download TeamViewer &rarr;</a></p>
+        </div>
+      </div>
+
+      <div class="check-item" data-task="phone">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="check-content">
+          <h4>Phone System Setup</h4>
+          <p>Your GHL phone number is assigned for outbound calls. Check with Krystle for your assigned line and any call forwarding rules.</p>
+          <p class="warning">Main line is for Krystle. Your assigned number will be confirmed during setup.</p>
+        </div>
+      </div>
+
+      <div class="check-item" data-task="docs-standard">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="check-content">
+          <h4>Set Google Docs as Default</h4>
+          <p>Company standard: all documents should be created in Google Docs/Sheets/Slides. If you have Microsoft Office installed, set Google as default for new documents.</p>
+          <p style="margin-top:8px"><strong>Why?</strong> Saves Office 365 licenses, better collaboration, Gemini AI integration, auto-backup to Drive.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- PHASE 2: WEEK 1 — ORIENTATION & TRAINING -->
+  <!-- ============================================ -->
+  <div class="phase" data-phase="2">
+    <div class="phase-header pending" onclick="togglePhase(2)">
+      <div class="phase-number pending">2</div>
+      <div class="phase-title">
+        <h3>Week 1 &mdash; Orientation &amp; Training</h3>
+        <p>Learn the business, the systems, and your role</p>
+      </div>
+      <span class="phase-status pending">Upcoming</span>
+    </div>
+    <div class="checklist" id="checklist-2">
+
+      <div class="check-item" data-task="meet-team">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="check-content">
+          <h4>Meet the Team</h4>
+          <p>Introduction calls/meetings with key team members:</p>
+          <ul style="margin-top:6px;padding-left:16px;font-size:0.82rem;color:rgba(255,255,255,0.5)">
+            <li><strong>Lee Kearney</strong> &mdash; CEO &amp; Founder</li>
+            <li><strong>Krystle Gordon</strong> &mdash; Operations Manager</li>
+            <li><strong>Daniel Gallagher</strong> &mdash; Tech Lead (Exposure Solutions)</li>
+            <li><strong>Lilly</strong> &mdash; AI Agent (yes, she&rsquo;s on the team)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="check-item" data-task="company-overview">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="check-content">
+          <h4>Company Overview &amp; History</h4>
+          <p>Understand DDWL&rsquo;s story: 7,000+ deals, $500M+ volume, Inc. 5000 recognition. Lee&rsquo;s MBA from USF. The mission: real deals, real money, real mentorship.</p>
+          <p style="margin-top:8px"><a href="https://dodealswithlee.com" target="_blank" rel="noopener">Visit DDWL Website &rarr;</a></p>
+        </div>
+      </div>
+
+      <div class="check-item" data-task="role-overview">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="check-content">
+          <h4>Your Role &mdash; &ldquo;A Day in the Life&rdquo;</h4>
+          <p>Review your role description, daily responsibilities, and what a typical day looks like. This will be provided by your manager.</p>
+          <p class="warning">Document will be shared in your Google Drive &ldquo;Onboarding&rdquo; folder.</p>
+        </div>
+      </div>
+
+      <div class="check-item" data-task="ghl-training">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="check-content">
+          <h4>GHL Training &mdash; CRM Basics</h4>
+          <p>Learn how to navigate GHL: contacts, pipelines, conversations, calendars, and automations. This is your daily driver.</p>
+          <ul style="margin-top:6px;padding-left:16px;font-size:0.82rem;color:rgba(255,255,255,0.5)">
+            <li>Contact management &amp; search</li>
+            <li>Pipeline stages &amp; deal tracking</li>
+            <li>Sending SMS/email from GHL</li>
+            <li>Calendar &amp; appointment booking</li>
+            <li>Using Lilly (AI agent) for tasks</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="check-item" data-task="phone-scripts">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="check-content">
+          <h4>Phone Scripts &amp; Communication Templates</h4>
+          <p>Review and practice the standard phone scripts for inbound and outbound calls. Templates for common email and SMS communications.</p>
+          <p class="warning">Scripts will be shared in your Google Drive &ldquo;Training&rdquo; folder.</p>
+        </div>
+      </div>
+
+      <div class="check-item" data-task="compliance">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="check-content">
+          <h4>Compliance &amp; Legal Basics</h4>
+          <p>Understand what you can and cannot say. Key rules:</p>
+          <ul style="margin-top:6px;padding-left:16px;font-size:0.82rem;color:rgba(255,255,255,0.5)">
+            <li>Never guarantee income or returns</li>
+            <li>Always use approved scripts and templates</li>
+            <li>Data protection &amp; client confidentiality</li>
+            <li>Recording and documentation requirements</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- PHASE 3: 30-DAY CHECKPOINT -->
+  <!-- ============================================ -->
+  <div class="phase" data-phase="3">
+    <div class="phase-header pending" onclick="togglePhase(3)">
+      <div class="phase-number pending">3</div>
+      <div class="phase-title">
+        <h3>30-Day Checkpoint</h3>
+        <p>First review &mdash; are you on track?</p>
+      </div>
+      <span class="phase-status pending">Day 30</span>
+    </div>
+    <div class="checklist" id="checklist-3">
+
+      <div class="check-item" data-task="30-self-review">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="check-content">
+          <h4>Self-Assessment</h4>
+          <p>Complete your 30-day self-assessment. Rate your confidence in each system and skill area. Identify what you need more training on.</p>
+        </div>
+      </div>
+
+      <div class="check-item" data-task="30-manager-review">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="check-content">
+          <h4>Manager Review Meeting</h4>
+          <p>Sit down with your manager to review your first 30 days. Topics:</p>
+          <ul style="margin-top:6px;padding-left:16px;font-size:0.82rem;color:rgba(255,255,255,0.5)">
+            <li>What&rsquo;s going well?</li>
+            <li>Where do you need support?</li>
+            <li>Are you hitting your initial targets?</li>
+            <li>Feedback on team integration</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="check-item" data-task="30-targets">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="check-content">
+          <h4>30-Day Targets Review</h4>
+          <p>Review against your 30-day targets (set during Week 1). Adjust 60-day targets based on progress.</p>
+          <p class="warning">Targets will be defined by your manager during orientation.</p>
+        </div>
+      </div>
+
+      <div class="check-item" data-task="30-development">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="check-content">
+          <h4>Personal Development Plan Update</h4>
+          <p>Update your PDP with new goals, skills to develop, and resources needed for the next 30 days.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- PHASE 4: 60-DAY CHECKPOINT -->
+  <!-- ============================================ -->
+  <div class="phase" data-phase="4">
+    <div class="phase-header pending" onclick="togglePhase(4)">
+      <div class="phase-number pending">4</div>
+      <div class="phase-title">
+        <h3>60-Day Checkpoint</h3>
+        <p>Building momentum &mdash; independent performance</p>
+      </div>
+      <span class="phase-status pending">Day 60</span>
+    </div>
+    <div class="checklist" id="checklist-4">
+
+      <div class="check-item" data-task="60-independence">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="check-content">
+          <h4>Independent Task Completion</h4>
+          <p>By Day 60, you should be handling your core responsibilities independently. Manager will assess your autonomy level.</p>
+        </div>
+      </div>
+
+      <div class="check-item" data-task="60-kpi-review">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="check-content">
+          <h4>KPI Review</h4>
+          <p>Formal review of key performance indicators. Are you tracking toward your role&rsquo;s expectations?</p>
+        </div>
+      </div>
+
+      <div class="check-item" data-task="60-feedback">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="check-content">
+          <h4>360 Feedback</h4>
+          <p>Collect feedback from team members you work with. What&rsquo;s your impact? Where can you improve?</p>
+        </div>
+      </div>
+
+      <div class="check-item" data-task="60-advanced">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="check-content">
+          <h4>Advanced Training</h4>
+          <p>Based on your role, complete advanced training modules. This could include advanced GHL workflows, AI agent management, or deal analysis techniques.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- PHASE 5: 90-DAY GRADUATION -->
+  <!-- ============================================ -->
+  <div class="phase" data-phase="5">
+    <div class="phase-header pending" onclick="togglePhase(5)">
+      <div class="phase-number pending">5</div>
+      <div class="phase-title">
+        <h3>90-Day Graduation &mdash; Probation Complete</h3>
+        <p>Final review &amp; full team member status</p>
+      </div>
+      <span class="phase-status pending">Day 90</span>
+    </div>
+    <div class="checklist" id="checklist-5">
+
+      <div class="check-item" data-task="90-final-review">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="check-content">
+          <h4>Final Probation Review</h4>
+          <p>Comprehensive review with Lee and/or Krystle. Decision: full team member, extended probation, or exit.</p>
+        </div>
+      </div>
+
+      <div class="check-item" data-task="90-targets-met">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="check-content">
+          <h4>Targets Achievement</h4>
+          <p>Review all targets set at 30 and 60 days. Document achievements and areas of excellence.</p>
+        </div>
+      </div>
+
+      <div class="check-item" data-task="90-hr-complete">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="check-content">
+          <h4>HR &amp; Admin Finalization</h4>
+          <p>Ensure all HR paperwork is complete. Access to payslip portal confirmed. Benefits enrollment (if applicable).</p>
+        </div>
+      </div>
+
+      <div class="check-item" data-task="90-development-plan">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="check-content">
+          <h4>Long-Term Development Plan</h4>
+          <p>Set your 6-month and 1-year goals. Career path discussion. What do you want to achieve at DDWL?</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- SYSTEMS OVERVIEW -->
+  <!-- ============================================ -->
+  <div class="section">
+    <h2 style="font-size:1.5rem;font-weight:800;margin-bottom:8px">Your Systems</h2>
+    <p style="color:rgba(255,255,255,0.5);margin-bottom:16px">Quick access to every tool you&rsquo;ll use daily</p>
+
+    <div class="system-grid">
+      <div class="system-card">
+        <div class="icon">&#x1F4E7;</div>
+        <h4>Google Workspace</h4>
+        <p>Email, Calendar, Docs, Drive, Meet. Your digital HQ.</p>
+        <a href="https://workspace.google.com" target="_blank" rel="noopener" class="link-btn">Open Gmail</a>
+      </div>
+
+      <div class="system-card">
+        <div class="icon">&#x1F916;</div>
+        <h4>Gemini AI</h4>
+        <p>AI assistant for drafting, research, and analysis. Built into G-Suite.</p>
+        <a href="https://gemini.google.com" target="_blank" rel="noopener" class="link-btn">Open Gemini</a>
+      </div>
+
+      <div class="system-card">
+        <div class="icon">&#x1F4CA;</div>
+        <h4>GoHighLevel</h4>
+        <p>CRM, pipelines, automations, calls, SMS, email. Where deals happen.</p>
+        <a href="https://app.gohighlevel.com" target="_blank" rel="noopener" class="link-btn">Open GHL</a>
+      </div>
+
+      <div class="system-card">
+        <div class="icon">&#x1F3C4;</div>
+        <h4>Windsurf IDE</h4>
+        <p>AI-powered dev environment. Access DDWL OS automations and agents.</p>
+        <a href="https://windsurf.com" target="_blank" rel="noopener" class="link-btn">Open Windsurf</a>
+      </div>
+
+      <div class="system-card">
+        <div class="icon">&#x1F4BE;</div>
+        <h4>Synology NAS</h4>
+        <p>Company file backup and shared storage. Access via local network or VPN.</p>
+        <span class="link-btn" style="opacity:0.5;cursor:default">Setup Required</span>
+      </div>
+
+      <div class="system-card">
+        <div class="icon">&#x1F5A5;</div>
+        <h4>TeamViewer</h4>
+        <p>Remote desktop support and troubleshooting.</p>
+        <a href="https://www.teamviewer.com" target="_blank" rel="noopener" class="link-btn">Download</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- KEY CONTACTS -->
+  <!-- ============================================ -->
+  <div class="section">
+    <h2 style="font-size:1.5rem;font-weight:800;margin-bottom:8px">Key Contacts</h2>
+    <p style="color:rgba(255,255,255,0.5);margin-bottom:16px">Your team &mdash; reach out anytime</p>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="avatar" style="background:linear-gradient(135deg,var(--orange),var(--orange-light));color:#fff">LK</div>
+        <div class="name">Lee Kearney</div>
+        <div class="role">CEO &amp; Founder</div>
+        <div class="contact-info">lee.kearney@dodealswithlee.com</div>
+      </div>
+
+      <div class="contact-card">
+        <div class="avatar" style="background:linear-gradient(135deg,var(--cyan),var(--cyan-dark));color:#000">KG</div>
+        <div class="name">Krystle Gordon</div>
+        <div class="role">Operations Manager</div>
+        <div class="contact-info">krystle.gordon@dodealswithlee.com</div>
+      </div>
+
+      <div class="contact-card">
+        <div class="avatar" style="background:linear-gradient(135deg,#28c840,#20a035);color:#fff">DG</div>
+        <div class="name">Daniel Gallagher</div>
+        <div class="role">Tech Lead</div>
+        <div class="contact-info">daniel@exposuresolutions.me</div>
+      </div>
+
+      <div class="contact-card">
+        <div class="avatar" style="background:linear-gradient(135deg,#a855f7,#7c3aed);color:#fff">L</div>
+        <div class="name">Lilly</div>
+        <div class="role">AI Agent</div>
+        <div class="contact-info">lilly@dodealswithlee.com</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- 30/60/90 TIMELINE -->
+  <!-- ============================================ -->
+  <div class="section">
+    <h2 style="font-size:1.5rem;font-weight:800;margin-bottom:8px">Your 30/60/90 Day Journey</h2>
+    <p style="color:rgba(255,255,255,0.5);margin-bottom:20px">What success looks like at each milestone</p>
+
+    <div class="timeline">
+      <div class="timeline-item current">
+        <h4>Days 1&ndash;7: Foundation</h4>
+        <div class="period">Week 1</div>
+        <p>Get all systems set up. Meet the team. Understand the business model. Start training.</p>
+        <ul>
+          <li>All logins working</li>
+          <li>Completed team introductions</li>
+          <li>Reviewed company overview materials</li>
+          <li>Started GHL training</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item future">
+        <h4>Days 8&ndash;30: Learning</h4>
+        <div class="period">Month 1</div>
+        <p>Deep training on your role. Shadow experienced team members. Start handling tasks with supervision.</p>
+        <ul>
+          <li>Completed all training modules</li>
+          <li>Handling basic tasks independently</li>
+          <li>Know the phone scripts</li>
+          <li>First 30-day review passed</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item future">
+        <h4>Days 31&ndash;60: Building</h4>
+        <div class="period">Month 2</div>
+        <p>Working independently. Hitting initial targets. Contributing to team goals.</p>
+        <ul>
+          <li>Independent task completion</li>
+          <li>Meeting KPI targets</li>
+          <li>Positive team feedback</li>
+          <li>Advanced training started</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item future">
+        <h4>Days 61&ndash;90: Performing</h4>
+        <div class="period">Month 3</div>
+        <p>Full performance. Probation review. Transition to permanent team member.</p>
+        <ul>
+          <li>All targets met or exceeded</li>
+          <li>Probation review passed</li>
+          <li>Long-term development plan set</li>
+          <li>Full team member status</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- CTA -->
+  <!-- ============================================ -->
+  <div class="cta-box">
+    <h3>Questions? Need Help?</h3>
+    <p>Reach out to Daniel for tech issues, Krystle for operations, or just ask Lilly &mdash; she&rsquo;s always available.</p>
+    <a href="mailto:daniel@exposuresolutions.me?subject=DDWL%20Onboarding%20Help" class="cta-btn">Email Daniel</a>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>DDWL Team Onboarding Portal &mdash; Powered by <a href="https://exposuresolutions.me" target="_blank" rel="noopener">Exposure Solutions</a></p>
+    <p style="margin-top:8px;font-size:0.75rem;color:rgba(255,255,255,0.3)">Confidential &mdash; For DDWL team members only</p>
+  </div>
+
+</div>
+
+<!-- === SCRIPTS === -->
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+WebFont.load({
+  google: { families: ['Inter:400,500,600,700', 'Playfair Display:700,800,900'] },
+  active: function() {
+    document.body.style.fontFamily = "'Inter', -apple-system, sans-serif";
+    document.querySelectorAll('h1,h2,h3,h4').forEach(function(el){
+      if(el.closest('.check-content')) return;
+      el.style.fontFamily = "'Playfair Display', Georgia, serif";
+    });
+  }
+});
+
+// === STATE ===
+var STORAGE_KEY = 'ddwl-onboarding-progress';
+var state = loadState();
+
+function loadState() {
+  try {
+    var saved = localStorage.getItem(STORAGE_KEY);
+    return saved ? JSON.parse(saved) : { tasks: {}, name: '' };
+  } catch(e) { return { tasks: {}, name: '' }; }
+}
+
+function saveState() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
+}
+
+// === TOGGLE PHASE ===
+function togglePhase(num) {
+  var cl = document.getElementById('checklist-' + num);
+  if (cl) cl.classList.toggle('open');
+}
+
+// === TOGGLE CHECKBOX ===
+function toggleCheck(el) {
+  el.classList.toggle('checked');
+  var item = el.closest('.check-item');
+  var task = item.getAttribute('data-task');
+  var isChecked = el.classList.contains('checked');
+
+  state.tasks[task] = isChecked;
+  item.classList.toggle('done', isChecked);
+  saveState();
+  updateProgress();
+}
+
+// === UPDATE PROGRESS ===
+function updateProgress() {
+  var allItems = document.querySelectorAll('.check-item');
+  var total = allItems.length;
+  var done = document.querySelectorAll('.check-box.checked').length;
+  var pct = total > 0 ? Math.round((done / total) * 100) : 0;
+
+  document.getElementById('progressPct').textContent = pct + '%';
+  document.getElementById('progressFill').style.width = pct + '%';
+
+  // Update phase statuses
+  for (var p = 1; p <= 5; p++) {
+    var phaseEl = document.querySelector('[data-phase="' + p + '"]');
+    if (!phaseEl) continue;
+    var items = phaseEl.querySelectorAll('.check-item');
+    var phaseChecked = phaseEl.querySelectorAll('.check-box.checked').length;
+    var header = phaseEl.querySelector('.phase-header');
+    var number = phaseEl.querySelector('.phase-number');
+    var status = phaseEl.querySelector('.phase-status');
+
+    if (phaseChecked === items.length && items.length > 0) {
+      header.className = 'phase-header completed';
+      number.className = 'phase-number completed';
+      status.className = 'phase-status completed';
+      status.textContent = 'Complete';
+    }
+  }
+}
+
+// === RESTORE STATE ===
+function restoreState() {
+  for (var task in state.tasks) {
+    if (state.tasks[task]) {
+      var item = document.querySelector('[data-task="' + task + '"]');
+      if (item) {
+        var box = item.querySelector('.check-box');
+        box.classList.add('checked');
+        item.classList.add('done');
+      }
+    }
+  }
+  if (state.name) {
+    document.getElementById('heroName').textContent = 'Welcome, ' + state.name;
+  }
+  updateProgress();
+}
+
+// === URL PARAMS (for personalization) ===
+function checkParams() {
+  var params = new URLSearchParams(window.location.search);
+  var name = params.get('name');
+  var email = params.get('email');
+  if (name) {
+    state.name = name;
+    document.getElementById('heroName').textContent = 'Welcome, ' + name;
+    saveState();
+  }
+  if (email) {
+    document.getElementById('userEmail').textContent = email;
+  }
+}
+
+// === INIT ===
+checkParams();
+restoreState();
+</script>
+
+</body>
+</html>

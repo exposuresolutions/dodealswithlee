@@ -1,0 +1,467 @@
+<!--
+  Exposure OS — AI Chat Widget
+  ==============================
+  Embeddable chat widget for client websites.
+  Talks to a lightweight backend (chat-widget-api.py) that uses Groq (free).
+  
+  EMBED ON ANY SITE:
+    <script src="https://your-server.com/chat-widget.js" 
+            data-client="ddwl" 
+            data-color="#00E5FF"
+            data-api="https://your-server.com/api/chat">
+    </script>
+
+  STANDALONE PREVIEW:
+    Just open this file in a browser to see the widget.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat Widget Preview — DDWL</title>
+<style>
+  body { margin: 0; background: #111; font-family: Inter, -apple-system, sans-serif; min-height: 100vh; }
+  .preview-label { color: #666; text-align: center; padding: 40px; font-size: 14px; }
+</style>
+</head>
+<body>
+<div class="preview-label">
+  Chat widget preview — the bubble appears bottom-right →
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- CHAT WIDGET — Copy everything below to embed       -->
+<!-- ═══════════════════════════════════════════════════ -->
+
+<div id="xo-chat-widget" style="display:none;">
+  <!-- Chat Window -->
+  <div id="xo-chat-window">
+    <div id="xo-chat-header">
+      <div id="xo-chat-header-info">
+        <div id="xo-chat-avatar">L</div>
+        <div>
+          <div id="xo-chat-name">Lilly</div>
+          <div id="xo-chat-status">Online — AI Assistant</div>
+        </div>
+      </div>
+      <button id="xo-chat-close">&times;</button>
+    </div>
+    <div id="xo-chat-messages">
+      <div class="xo-msg xo-msg-bot">
+        <div class="xo-msg-bubble">Hey! I'm Lilly, the AI assistant for Do Deals With Lee. How can I help you today?</div>
+      </div>
+    </div>
+    <div id="xo-chat-input-area">
+      <input id="xo-chat-input" type="text" placeholder="Type a message..." autocomplete="off" />
+      <button id="xo-chat-send">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+      </button>
+    </div>
+  </div>
+  <!-- Floating Button -->
+  <div id="xo-chat-fab">
+    <svg id="xo-fab-icon-chat" width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+    <svg id="xo-fab-icon-close" width="28" height="28" viewBox="0 0 24 24" fill="white" style="display:none;"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+  </div>
+  <!-- Unread badge -->
+  <div id="xo-chat-badge" style="display:none;">1</div>
+</div>
+
+<style>
+/* ═══ CONFIG ═══ */
+:root {
+  --xo-primary: #00E5FF;
+  --xo-primary-dark: #00b8d4;
+  --xo-bg: #0a0a0a;
+  --xo-card: #161616;
+  --xo-border: #222;
+  --xo-text: #f0f0f0;
+  --xo-text-muted: #888;
+  --xo-bot-bubble: #1a1a2e;
+  --xo-user-bubble: var(--xo-primary);
+  --xo-radius: 16px;
+}
+
+/* ═══ WIDGET CONTAINER ═══ */
+#xo-chat-widget {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999999;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+}
+
+/* ═══ FAB BUTTON ═══ */
+#xo-chat-fab {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--xo-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0,229,255,0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+#xo-chat-fab:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 28px rgba(0,229,255,0.45);
+}
+#xo-chat-badge {
+  position: absolute;
+  bottom: 42px;
+  right: -2px;
+  background: #ff4444;
+  color: white;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  z-index: 1000000;
+}
+
+/* ═══ PULSE ═══ */
+@keyframes xo-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(0,229,255,0.4); }
+  70% { box-shadow: 0 0 0 18px rgba(0,229,255,0); }
+  100% { box-shadow: 0 0 0 0 rgba(0,229,255,0); }
+}
+#xo-chat-fab { animation: xo-pulse 2.5s ease-out 3; }
+
+/* ═══ CHAT WINDOW ═══ */
+#xo-chat-window {
+  display: none;
+  position: absolute;
+  bottom: 76px;
+  right: 0;
+  width: 380px;
+  max-width: calc(100vw - 48px);
+  height: 520px;
+  max-height: calc(100vh - 120px);
+  background: var(--xo-bg);
+  border: 1px solid var(--xo-border);
+  border-radius: var(--xo-radius);
+  overflow: hidden;
+  flex-direction: column;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.5);
+}
+#xo-chat-window.xo-open {
+  display: flex;
+}
+
+/* ═══ HEADER ═══ */
+#xo-chat-header {
+  background: var(--xo-card);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--xo-border);
+}
+#xo-chat-header-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#xo-chat-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--xo-primary);
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+}
+#xo-chat-name {
+  color: var(--xo-text);
+  font-weight: 600;
+  font-size: 15px;
+}
+#xo-chat-status {
+  color: var(--xo-text-muted);
+  font-size: 12px;
+}
+#xo-chat-close {
+  background: none;
+  border: none;
+  color: var(--xo-text-muted);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0 4px;
+  line-height: 1;
+}
+#xo-chat-close:hover { color: var(--xo-text); }
+
+/* ═══ MESSAGES ═══ */
+#xo-chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.xo-msg { display: flex; }
+.xo-msg-bot { justify-content: flex-start; }
+.xo-msg-user { justify-content: flex-end; }
+.xo-msg-bubble {
+  max-width: 80%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  line-height: 1.45;
+  word-wrap: break-word;
+}
+.xo-msg-bot .xo-msg-bubble {
+  background: var(--xo-bot-bubble);
+  color: var(--xo-text);
+  border-bottom-left-radius: 4px;
+}
+.xo-msg-user .xo-msg-bubble {
+  background: var(--xo-primary);
+  color: #000;
+  border-bottom-right-radius: 4px;
+  font-weight: 500;
+}
+
+/* Typing indicator */
+.xo-typing .xo-msg-bubble { display: flex; gap: 4px; padding: 14px 18px; }
+.xo-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--xo-text-muted);
+  animation: xo-bounce 1.4s infinite ease-in-out;
+}
+.xo-dot:nth-child(2) { animation-delay: 0.2s; }
+.xo-dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes xo-bounce {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+/* ═══ INPUT ═══ */
+#xo-chat-input-area {
+  padding: 12px 16px;
+  background: var(--xo-card);
+  border-top: 1px solid var(--xo-border);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+#xo-chat-input {
+  flex: 1;
+  background: var(--xo-bg);
+  border: 1px solid var(--xo-border);
+  border-radius: 24px;
+  padding: 10px 16px;
+  color: var(--xo-text);
+  font-size: 14px;
+  outline: none;
+  font-family: inherit;
+}
+#xo-chat-input:focus { border-color: var(--xo-primary); }
+#xo-chat-input::placeholder { color: var(--xo-text-muted); }
+#xo-chat-send {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--xo-primary);
+  border: none;
+  color: #000;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+#xo-chat-send:hover { background: var(--xo-primary-dark); }
+
+/* ═══ SCROLLBAR ═══ */
+#xo-chat-messages::-webkit-scrollbar { width: 4px; }
+#xo-chat-messages::-webkit-scrollbar-track { background: transparent; }
+#xo-chat-messages::-webkit-scrollbar-thumb { background: var(--xo-border); border-radius: 4px; }
+
+/* ═══ MOBILE ═══ */
+@media (max-width: 480px) {
+  #xo-chat-window {
+    width: calc(100vw - 16px);
+    height: calc(100vh - 100px);
+    bottom: 70px;
+    right: -16px;
+    border-radius: 12px 12px 0 0;
+  }
+}
+</style>
+
+<script>
+(function() {
+  // ═══ CONFIG — Change per client ═══
+  var CONFIG = {
+    clientName: 'Do Deals With Lee',
+    botName: 'Lilly',
+    botAvatar: 'L',
+    primaryColor: '#00E5FF',
+    greeting: "Hey! I'm Lilly, the AI assistant for Do Deals With Lee. How can I help you today?",
+    systemPrompt: "You are Lilly, the AI assistant for Do Deals With Lee (DDWL), a Tampa Bay real estate investment company run by Lee Kearney. Lee does wholesaling, coaching, and creative finance deals. Be helpful, concise, and professional. If someone wants to sell a property, get their name, phone number, and property address. If they want coaching info, direct them to dodealswithlee.com. Keep responses under 100 words.",
+    apiUrl: '', // Set to your backend URL, or leave empty for demo mode
+    groqKey: '', // Only for demo/testing — in production, use backend proxy
+  };
+  // ═══════════════════════════════════
+
+  var widget = document.getElementById('xo-chat-widget');
+  var chatWindow = document.getElementById('xo-chat-window');
+  var fab = document.getElementById('xo-chat-fab');
+  var iconChat = document.getElementById('xo-fab-icon-chat');
+  var iconClose = document.getElementById('xo-fab-icon-close');
+  var badge = document.getElementById('xo-chat-badge');
+  var messages = document.getElementById('xo-chat-messages');
+  var input = document.getElementById('xo-chat-input');
+  var sendBtn = document.getElementById('xo-chat-send');
+  var isOpen = false;
+  var history = [
+    { role: 'system', content: CONFIG.systemPrompt },
+    { role: 'assistant', content: CONFIG.greeting }
+  ];
+
+  widget.style.display = 'block';
+
+  // Toggle chat
+  fab.addEventListener('click', function() {
+    isOpen = !isOpen;
+    chatWindow.classList.toggle('xo-open', isOpen);
+    iconChat.style.display = isOpen ? 'none' : 'block';
+    iconClose.style.display = isOpen ? 'block' : 'none';
+    badge.style.display = 'none';
+    if (isOpen) input.focus();
+  });
+
+  document.getElementById('xo-chat-close').addEventListener('click', function() {
+    isOpen = false;
+    chatWindow.classList.remove('xo-open');
+    iconChat.style.display = 'block';
+    iconClose.style.display = 'none';
+  });
+
+  // Send message
+  function sendMessage() {
+    var text = input.value.trim();
+    if (!text) return;
+    input.value = '';
+
+    addMessage(text, 'user');
+    history.push({ role: 'user', content: text });
+
+    showTyping();
+    getResponse(text);
+  }
+
+  sendBtn.addEventListener('click', sendMessage);
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') sendMessage();
+  });
+
+  function addMessage(text, sender) {
+    var div = document.createElement('div');
+    div.className = 'xo-msg xo-msg-' + sender;
+    var bubble = document.createElement('div');
+    bubble.className = 'xo-msg-bubble';
+    bubble.textContent = text;
+    div.appendChild(bubble);
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function showTyping() {
+    var div = document.createElement('div');
+    div.className = 'xo-msg xo-msg-bot xo-typing';
+    div.id = 'xo-typing';
+    div.innerHTML = '<div class="xo-msg-bubble"><div class="xo-dot"></div><div class="xo-dot"></div><div class="xo-dot"></div></div>';
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function removeTyping() {
+    var t = document.getElementById('xo-typing');
+    if (t) t.remove();
+  }
+
+  function getResponse(text) {
+    // If no API configured, use demo mode
+    if (!CONFIG.apiUrl && !CONFIG.groqKey) {
+      setTimeout(function() {
+        removeTyping();
+        var demo = getDemoResponse(text);
+        addMessage(demo, 'bot');
+        history.push({ role: 'assistant', content: demo });
+      }, 800 + Math.random() * 1200);
+      return;
+    }
+
+    // Call Groq directly (demo/testing only) or backend proxy
+    var url = CONFIG.apiUrl || 'https://api.groq.com/openai/v1/chat/completions';
+    var headers = { 'Content-Type': 'application/json' };
+    if (CONFIG.groqKey) headers['Authorization'] = 'Bearer ' + CONFIG.groqKey;
+
+    fetch(url, {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify({
+        model: 'llama-3.3-70b-versatile',
+        messages: history,
+        temperature: 0.4,
+        max_tokens: 300,
+      })
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      removeTyping();
+      var reply = data.choices && data.choices[0] && data.choices[0].message
+        ? data.choices[0].message.content
+        : 'Sorry, I had trouble responding. Please try again.';
+      addMessage(reply, 'bot');
+      history.push({ role: 'assistant', content: reply });
+    })
+    .catch(function(err) {
+      removeTyping();
+      addMessage('Connection error. Please try again.', 'bot');
+    });
+  }
+
+  // Demo responses when no API is configured
+  function getDemoResponse(text) {
+    var t = text.toLowerCase();
+    if (t.includes('sell') || t.includes('property') || t.includes('house'))
+      return "I'd love to help! To get you a fast cash offer, I just need: 1) Your name, 2) Property address, 3) Best phone number. What's the address?";
+    if (t.includes('coach') || t.includes('learn') || t.includes('course') || t.includes('mentor'))
+      return "Lee offers coaching programs for real estate investors at all levels. Check out dodealswithlee.com for details, or I can have someone reach out to you. What's your name?";
+    if (t.includes('wholesale') || t.includes('deal'))
+      return "Wholesaling is Lee's specialty! He's done thousands of deals in Tampa Bay. Are you looking to learn wholesaling, or do you have a property to sell?";
+    if (t.includes('hello') || t.includes('hi') || t.includes('hey'))
+      return "Hey there! Welcome to Do Deals With Lee. Are you looking to sell a property fast, or interested in learning about real estate investing?";
+    if (t.includes('price') || t.includes('cost') || t.includes('how much'))
+      return "Every property is different — we make fair cash offers based on the property's condition and market. Want to give me the address and I'll have Lee's team take a look?";
+    return "Thanks for reaching out! I can help with selling a property fast, real estate coaching, or connecting you with Lee's team. What are you interested in?";
+  }
+
+  // Auto-show badge after 5 seconds if chat not opened
+  setTimeout(function() {
+    if (!isOpen) badge.style.display = 'flex';
+  }, 5000);
+
+})();
+</script>
+
+</body>
+</html>

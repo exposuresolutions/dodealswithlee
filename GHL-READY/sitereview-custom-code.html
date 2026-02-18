@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DDWL Site Review - Lee & Krystle</title>
+<style>
+
+/* Force GHL wrapper elements to dark - kills white borders/backgrounds */
+html, body, #preview-container, .hl-page-preview, .hl_page-preview,
+[id*="preview"], [class*="preview"], [class*="page-"], [class*="hl_page"],
+[class*="wrapper"], [class*="section"], .c-editor, .c-editor-content, .hl-page-creator,
+#section-0, #section-1, #section-2, #section-3, #section-4, #section-5,
+.inner-section, .section-element, .row-element, .column-element,
+div[data-page-element], div[class*="element"], div[class*="row"],
+main, article, section, header, aside, nav,
+.page-wrapper, .site-wrapper, .content-wrapper {
+    background: #0a0a0a !important;
+    background-color: #0a0a0a !important;
+    border: none !important;
+    border-color: #0a0a0a !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+    box-shadow: none !important;
+}
+/* Restore our own elements */
+.container { max-width: 800px !important; margin: 0 auto !important; padding: 20px !important; }
+.header { padding: 30px 20px !important; border-bottom: 2px solid #ff6b00 !important; }
+.notice { padding: 20px !important; border-left: 4px solid #00e5ff !important; }
+.form-section { padding: 30px !important; border: 1px solid rgba(255,255,255,.08) !important; }
+.question-group, .rating-group label, .btn-submit, .toast, .site-link-btn { border: revert !important; padding: revert !important; }
+.footer { padding: 40px 20px !important; }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important; background: #0a0a0a; color: rgba(255,255,255,.9); line-height: 1.6; }
+
+.header { background: linear-gradient(135deg, #111 0%, #0a0a0a 100%); border-bottom: 2px solid #ff6b00; padding: 30px 20px; text-align: center; }
+.header img { height: 70px; margin-bottom: 12px; }
+.header h1 { color: #ff6b00; font-size: 2rem; margin-bottom: 8px; font-family: 'Playfair Display', Georgia, serif; }
+.header p { color: #aaa; font-size: 1.1rem; }
+.header .badge { display: inline-block; background: #ff6b00; color: #000; padding: 4px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; margin-top: 10px; }
+
+.container { max-width: 800px; margin: 0 auto; padding: 20px; }
+
+.notice { background: #161616; border-left: 4px solid #00e5ff; padding: 20px; border-radius: 8px; margin: 30px 0; }
+.notice h3 { color: #00e5ff; margin-bottom: 8px; }
+.notice ul { list-style: none; padding: 0; }
+.notice li { padding: 4px 0; }
+.notice li::before { content: "\2192  "; color: #ff6b00; }
+
+.section-title { color: #ff6b00; font-size: 1.4rem; margin: 40px 0 20px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,.1); font-family: 'Playfair Display', Georgia, serif !important; }
+
+.site-link-box { text-align: center; margin: 30px 0; }
+.site-link-btn { display: inline-block; padding: 18px 40px; background: #ff6b00; color: #fff; text-decoration: none; border-radius: 10px; font-weight: 700; font-size: 1.1rem; transition: background 0.2s; }
+.site-link-btn:hover { background: #ff8533; color: #fff; }
+.site-link-sub { color: #888; font-size: 0.85rem; margin-top: 8px; }
+
+.form-section { background: #111; border: 1px solid rgba(255,255,255,.08); border-radius: 16px; padding: 30px; margin: 20px 0; }
+
+.question-group { margin-bottom: 28px; }
+.question-group label { display: block; color: #e0e0e0; font-size: 1rem; margin-bottom: 8px; font-weight: 500; }
+.question-group .hint { color: #888; font-size: 0.85rem; margin-bottom: 8px; font-style: italic; }
+.question-group input, .question-group textarea, .question-group select {
+    width: 100%; padding: 12px 16px; background: #161616; border: 1px solid rgba(255,255,255,.1);
+    border-radius: 8px; color: #e0e0e0; font-size: 1rem; font-family: inherit;
+    transition: border-color 0.2s;
+}
+.question-group input:focus, .question-group textarea:focus, .question-group select:focus {
+    outline: none; border-color: #ff6b00;
+}
+.question-group textarea { resize: vertical; min-height: 80px; }
+.question-group select option { background: #161616; color: rgba(255,255,255,.9); }
+
+.rating-group { display: flex; gap: 8px; flex-wrap: wrap; }
+.rating-group label { display: flex; align-items: center; gap: 6px; cursor: pointer;
+    background: #161616; padding: 8px 16px; border-radius: 8px; border: 1px solid rgba(255,255,255,.1);
+    font-weight: 400; transition: all 0.2s; }
+.rating-group input[type="radio"] { display: none; }
+.rating-group input[type="radio"]:checked + span { color: #ff6b00; }
+.rating-group label:has(input:checked) { border-color: #ff6b00; background: rgba(255,107,0,0.1); }
+
+.divider { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 35px 0; }
+.section-label { color: #00e5ff; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
+
+.btn-submit { display: block; width: 100%; padding: 16px; background: #ff6b00; color: #000;
+    font-size: 1.1rem; font-weight: 700; border: none; border-radius: 8px; cursor: pointer;
+    transition: background 0.2s; margin-top: 30px; }
+.btn-submit:hover { background: #ff8533; }
+.btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #28c840;
+    color: #000; padding: 14px 28px; border-radius: 8px; font-weight: 600; opacity: 0;
+    transition: opacity 0.3s; z-index: 999; pointer-events: none; max-width: 90%; text-align: center; }
+.toast.show { opacity: 1; }
+.toast.error { background: #ff5f57; }
+
+.footer { text-align: center; padding: 40px 20px; color: #666; font-size: 0.85rem; }
+</style>
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+WebFont.load({
+  google: { families: ['Inter:400,500,600,700', 'Playfair Display:700,800,900'] },
+  active: function() {
+    document.body.style.fontFamily = "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    document.querySelectorAll('h1,h2,h3,.section-title,.section-label').forEach(function(el){
+      el.style.fontFamily = "'Playfair Display', Georgia, serif";
+    });
+  }
+});
+</script>
+<script>
+// Fallback: also inject link tag directly
+(function(){
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800;900&display=swap';
+  document.head.appendChild(link);
+})();
+</script>
+<div class="header">
+    <img src="data:image/png;base64,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" alt="Do Deals With Lee">
+    <h1>DDWL Academy - Site Review</h1>
+    <p>Lee & Krystle &mdash; your feedback shapes the final product</p>
+    <span class="badge">CONFIDENTIAL REVIEW</span>
+</div>
+
+<div class="container">
+
+    <div class="notice">
+        <h3>What We Need From You</h3>
+        <ul>
+            <li><strong>Lee's headshot/photo</strong> &mdash; we have one in there, let us know if you want a different one</li>
+            <li><strong>Your honest feedback</strong> &mdash; on the site design, content, and flow</li>
+            <li><strong>Any changes</strong> &mdash; before we push this live</li>
+        </ul>
+    </div>
+
+    <h2 class="section-title">Step 1: View the Site</h2>
+    <div class="site-link-box">
+        <a href="https://dodealswithlee.com/nhome" target="_blank" rel="noopener" class="site-link-btn">Open the DDWL Academy Site &#8594;</a>
+        <p class="site-link-sub">Opens in a new tab &mdash; scroll through the entire site, then come back here</p>
+    </div>
+
+    <h2 class="section-title">Step 2: Your Feedback</h2>
+
+    <form id="reviewForm" class="form-section">
+
+        <div class="section-label">First Impressions</div>
+
+        <div class="question-group">
+            <label>Your Name</label>
+            <input type="text" id="responder" name="responder" required placeholder="Lee or Krystle">
+        </div>
+
+        <div class="question-group">
+            <label>Your Email</label>
+            <div class="hint">So we can follow up with you directly on any changes.</div>
+            <input type="email" id="reviewerEmail" name="email" required placeholder="your@email.com">
+        </div>
+
+        <div class="question-group">
+            <label>When you first saw the site, what was your gut reaction?</label>
+            <div class="hint">Don't overthink it &mdash; first impressions matter most in real estate.</div>
+            <textarea id="firstImpression" name="firstImpression" rows="3" placeholder="What hit you first?"></textarea>
+        </div>
+
+        <div class="question-group">
+            <label>Overall look and feel &mdash; does this represent the DDWL brand?</label>
+            <div class="rating-group">
+                <label><input type="radio" name="brandFit" value="5"><span>Nailed it</span></label>
+                <label><input type="radio" name="brandFit" value="4"><span>Close, minor tweaks</span></label>
+                <label><input type="radio" name="brandFit" value="3"><span>Needs work</span></label>
+                <label><input type="radio" name="brandFit" value="2"><span>Off track</span></label>
+                <label><input type="radio" name="brandFit" value="1"><span>Start over</span></label>
+            </div>
+        </div>
+
+        <hr class="divider">
+        <div class="section-label">Content & Messaging</div>
+
+        <div class="question-group">
+            <label>If a new student lands on this page, will they understand what DDWL offers in 10 seconds?</label>
+            <div class="hint">The best opportunities are won before the competition even knows they exist.</div>
+            <div class="rating-group">
+                <label><input type="radio" name="clarity" value="5"><span>Crystal clear</span></label>
+                <label><input type="radio" name="clarity" value="4"><span>Mostly clear</span></label>
+                <label><input type="radio" name="clarity" value="3"><span>Somewhat confusing</span></label>
+                <label><input type="radio" name="clarity" value="2"><span>Unclear</span></label>
+            </div>
+        </div>
+
+        <div class="question-group">
+            <label>What's the single most important message this site should communicate?</label>
+            <div class="hint">Every battle is won before it's ever fought &mdash; what's the one thing that wins them over?</div>
+            <textarea id="coreMessage" name="coreMessage" rows="3" placeholder="The one thing a visitor should walk away knowing..."></textarea>
+        </div>
+
+        <div class="question-group">
+            <label>Is there anything on the site that doesn't sound like Lee?</label>
+            <div class="hint">Authenticity is the ultimate competitive advantage.</div>
+            <textarea id="voiceCheck" name="voiceCheck" rows="3" placeholder="Any wording that feels off, or things Lee would never say..."></textarea>
+        </div>
+
+        <hr class="divider">
+        <div class="section-label">Strategy & Positioning</div>
+
+        <div class="question-group">
+            <label>Who is the ideal student for the DDWL Academy? Paint the picture.</label>
+            <div class="hint">Know your terrain before you move &mdash; who exactly are we targeting?</div>
+            <textarea id="idealStudent" name="idealStudent" rows="3" placeholder="Age, background, goals, what drives them..."></textarea>
+        </div>
+
+        <div class="question-group">
+            <label>What makes DDWL different from every other real estate education program?</label>
+            <div class="hint">In a crowded market, the one who controls the narrative controls the outcome.</div>
+            <textarea id="differentiator" name="differentiator" rows="3" placeholder="The thing no one else can claim..."></textarea>
+        </div>
+
+        <div class="question-group">
+            <label>What's the biggest objection a potential student would have &mdash; and how do we crush it?</label>
+            <div class="hint">The supreme art of war is to subdue the enemy without fighting.</div>
+            <textarea id="objection" name="objection" rows="3" placeholder="Their hesitation, and how Lee would handle it..."></textarea>
+        </div>
+
+        <hr class="divider">
+        <div class="section-label">Design & Visuals</div>
+
+        <div class="question-group">
+            <label>Colors and style &mdash; does the dark theme with orange/gold work for DDWL?</label>
+            <div class="rating-group">
+                <label><input type="radio" name="colorFit" value="5"><span>Love it</span></label>
+                <label><input type="radio" name="colorFit" value="4"><span>Good, small tweaks</span></label>
+                <label><input type="radio" name="colorFit" value="3"><span>Needs changes</span></label>
+                <label><input type="radio" name="colorFit" value="2"><span>Wrong direction</span></label>
+            </div>
+        </div>
+
+        <div class="question-group">
+            <label>What photos or images should we add?</label>
+            <textarea id="imageNeeds" name="imageNeeds" rows="3" placeholder="Headshot style, team photos, property photos, logos..."></textarea>
+        </div>
+
+        <div class="question-group">
+            <label>Any sections you'd add, remove, or rearrange?</label>
+            <textarea id="layoutChanges" name="layoutChanges" rows="3" placeholder="Move this, add that, remove this..."></textarea>
+        </div>
+
+        <hr class="divider">
+        <div class="section-label">The Application Form</div>
+
+        <div class="question-group">
+            <label>Did you test the application form at the bottom of the site? Did it work?</label>
+            <div class="rating-group">
+                <label><input type="radio" name="formTest" value="yes"><span>Yes, worked great</span></label>
+                <label><input type="radio" name="formTest" value="issues"><span>Yes, had issues</span></label>
+                <label><input type="radio" name="formTest" value="no"><span>Didn't test it</span></label>
+            </div>
+        </div>
+
+        <div class="question-group">
+            <label>What questions should we ask applicants that we're not asking?</label>
+            <div class="hint">The right questions reveal more than any answer ever could.</div>
+            <textarea id="formQuestions" name="formQuestions" rows="3" placeholder="Questions that would help qualify leads..."></textarea>
+        </div>
+
+        <hr class="divider">
+        <div class="section-label">Final Thoughts</div>
+
+        <div class="question-group">
+            <label>On a scale of 1-10, how ready is this site to go live?</label>
+            <div class="rating-group">
+                <label><input type="radio" name="readiness" value="10"><span>10 &mdash; Ship it</span></label>
+                <label><input type="radio" name="readiness" value="8"><span>8 &mdash; Almost there</span></label>
+                <label><input type="radio" name="readiness" value="6"><span>6 &mdash; Needs work</span></label>
+                <label><input type="radio" name="readiness" value="4"><span>4 &mdash; Major changes</span></label>
+                <label><input type="radio" name="readiness" value="2"><span>2 &mdash; Rebuild</span></label>
+            </div>
+        </div>
+
+        <div class="question-group">
+            <label>If you could change only ONE thing before launch, what would it be?</label>
+            <div class="hint">Victorious warriors win first and then go to war &mdash; what's the one move that wins?</div>
+            <textarea id="oneChange" name="oneChange" rows="3" placeholder="The single most important change..."></textarea>
+        </div>
+
+        <div class="question-group">
+            <label>Anything else on your mind?</label>
+            <textarea id="additional" name="additional" rows="4" placeholder="Open floor &mdash; whatever you want us to know..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">Submit Feedback</button>
+    </form>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="footer">
+    <p>DDWL Site Review &mdash; Prepared by Exposure Solutions</p>
+    <p>Responses go directly to Lilly at lilly@dodealswithlee.com</p>
+</div>
+
+<script>
+const GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/KbiucErIMNPbO1mY4qXL/webhook-trigger/mCdlXsgchQ4v9BQeIa9E';
+const GHL_PROXY = 'https://ghl-proxy-blush.vercel.app/sitereview';
+const NOTIFY_EMAILS = ['lilly@dodealswithlee.com', 'daniel@exposuresolutions.me', 'admin@dodealswithlee.com'];
+
+function showToast(msg, type = 'success') {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = `toast ${type} show`;
+    setTimeout(() => t.classList.remove('show'), 5000);
+}
+
+async function submitReview(data) {
+    const payload = {
+        _form_type: 'Site Review Feedback - Version A',
+        _submitted_at: new Date().toISOString(),
+        _source: 'dodealswithlee.com/sitereview',
+        ...data
+    };
+
+    var webhookOk = false;
+    var proxyOk = false;
+    var emailOk = false;
+
+    // 1. Send to GHL proxy (creates/updates contact with custom fields)
+    try {
+        const r = await fetch(GHL_PROXY, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+        if (r.ok) proxyOk = true;
+    } catch (e) { console.error('Proxy error:', e); }
+
+    // 2. Also send to GHL webhook (for workflow triggers)
+    try {
+        const r = await fetch(GHL_WEBHOOK, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+        if (r.ok) webhookOk = true;
+    } catch (e) { console.error('GHL error:', e); }
+
+    // 3. ALSO send email notification
+    for (const email of NOTIFY_EMAILS) {
+        try {
+            const fd = new FormData();
+            fd.append('_subject', `DDWL Site Review - Version A - ${data.responder || 'Unknown'}`);
+            fd.append('_template', 'table');
+            fd.append('_captcha', 'false');
+            fd.append('_replyto', data.email || 'noreply@dodealswithlee.com');
+            Object.entries(payload).forEach(([k, v]) => fd.append(k, v));
+            const r = await fetch(`https://formsubmit.co/ajax/${email}`, {
+                method: 'POST', headers: { 'Accept': 'application/json' }, body: fd
+            });
+            if (r.ok) emailOk = true;
+        } catch (e) { console.error('Email error:', e); }
+    }
+    return proxyOk || webhookOk || emailOk;
+}
+
+document.getElementById('reviewForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('.btn-submit');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    const data = {};
+    new FormData(this).forEach((v, k) => { data[k] = v; });
+
+    const ok = await submitReview(data);
+    if (ok) {
+        showToast('Feedback received! We\'ll review your responses and send an updated version within 24 hours. Check your email for next steps.');
+        this.reset();
+    } else {
+        showToast('Something went wrong. Please email lilly@dodealswithlee.com directly.', 'error');
+    }
+    btn.textContent = 'Submit Feedback';
+    btn.disabled = false;
+});
+</script>
+</body>
+</html>

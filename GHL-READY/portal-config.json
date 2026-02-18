@@ -1,0 +1,169 @@
+{
+  "clients": {
+    "ddwl": {
+      "name": "Do Deals With Lee",
+      "shortName": "DDWL",
+      "tagline": "Real Deals. Real Money. Real Mentorship.",
+      "logo": "https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/67630a6111b3975ed85ffd20.svg",
+      "favicon": "",
+      "website": "https://dodealswithlee.com",
+      "industry": "Real Estate Investment Education",
+      "location": {
+        "city": "Tampa",
+        "state": "FL",
+        "country": "US",
+        "remote": true
+      },
+      "colors": {
+        "black": "#0a0a0a",
+        "dark": "#111111",
+        "card": "#161616",
+        "primary": "#00e5ff",
+        "primaryLight": "#40efff",
+        "primaryDark": "#00b8d4",
+        "accent": "#ff6b00",
+        "accentLight": "#ff8533",
+        "accentDark": "#e05500",
+        "success": "#28c840",
+        "error": "#ff5f57",
+        "gold": "#ffd700"
+      },
+      "fonts": {
+        "heading": "Playfair Display",
+        "headingWeights": "700,800,900",
+        "body": "Inter",
+        "bodyWeights": "400,500,600,700"
+      },
+      "ghl": {
+        "locationId": "KbiucErIMNPbO1mY4qXL",
+        "webhook": "https://services.leadconnectorhq.com/hooks/KbiucErIMNPbO1mY4qXL/webhook-trigger/mCdlXsgchQ4v9BQeIa9E",
+        "proxy": "https://ghl-proxy-blush.vercel.app"
+      },
+      "admins": [
+        {
+          "name": "Lee Kearney",
+          "role": "CEO & Founder",
+          "email": "lee.kearney@dodealswithlee.com",
+          "notifications": ["hire-decision", "90-day-review", "critical-issues"],
+          "initials": "LK",
+          "color": "#ff6b00"
+        },
+        {
+          "name": "Krystle Gordon",
+          "role": "Operations Manager",
+          "email": "krystle.gordon@dodealswithlee.com",
+          "notifications": ["new-application", "interview-scheduled", "hire-decision", "onboarding-complete", "30-day-review", "60-day-review", "90-day-review"],
+          "initials": "KG",
+          "color": "#00e5ff"
+        },
+        {
+          "name": "Daniel Gallagher",
+          "role": "Tech Lead",
+          "email": "daniel@exposuresolutions.me",
+          "notifications": ["new-application", "tech-setup-required", "system-issues"],
+          "initials": "DG",
+          "color": "#28c840"
+        },
+        {
+          "name": "Lilly",
+          "role": "AI Agent (Admin)",
+          "email": "admin@dodealswithlee.com",
+          "notifications": ["all"],
+          "initials": "L",
+          "color": "#a855f7"
+        }
+      ],
+      "social": {
+        "instagram": "",
+        "facebook": "",
+        "linkedin": "",
+        "tiktok": "",
+        "youtube": ""
+      },
+      "companyInfo": {
+        "founded": "",
+        "employees": "5-20",
+        "stats": [
+          "7,000+ deals closed",
+          "$500M+ in volume",
+          "Inc. 5000 recognized",
+          "500+ students trained"
+        ]
+      }
+    },
+    "flavors": {
+      "name": "Flavors Zante",
+      "shortName": "Flavors",
+      "tagline": "The World's Most Technologically Advanced Bar",
+      "logo": "https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/695718f8c902bf5286dfa38c.png",
+      "favicon": "",
+      "website": "",
+      "industry": "Hospitality & Entertainment",
+      "location": {
+        "city": "Laganas",
+        "state": "Zakynthos",
+        "country": "GR",
+        "remote": false
+      },
+      "colors": {
+        "black": "#0a0a0a",
+        "dark": "#111111",
+        "card": "#161616",
+        "primary": "#ff00ff",
+        "primaryLight": "#ff66ff",
+        "primaryDark": "#cc00cc",
+        "accent": "#00ff88",
+        "accentLight": "#33ffaa",
+        "accentDark": "#00cc6a",
+        "success": "#28c840",
+        "error": "#ff5f57",
+        "gold": "#ffd700"
+      },
+      "fonts": {
+        "heading": "Orbitron",
+        "headingWeights": "700,800,900",
+        "body": "Inter",
+        "bodyWeights": "400,500,600,700"
+      },
+      "ghl": {
+        "locationId": "KbiucErIMNPbO1mY4qXL",
+        "webhook": "",
+        "proxy": ""
+      },
+      "admins": [
+        {
+          "name": "Owner",
+          "role": "Owner",
+          "email": "",
+          "notifications": ["hire-decision", "critical-issues"],
+          "initials": "FZ",
+          "color": "#ff00ff"
+        },
+        {
+          "name": "Daniel Gallagher",
+          "role": "Tech Lead",
+          "email": "daniel@exposuresolutions.me",
+          "notifications": ["all"],
+          "initials": "DG",
+          "color": "#28c840"
+        }
+      ],
+      "social": {
+        "instagram": "https://www.instagram.com/flavorsbarzante/",
+        "facebook": "",
+        "tiktok": "",
+        "linkedin": ""
+      },
+      "companyInfo": {
+        "founded": "",
+        "employees": "10-50",
+        "stats": [
+          "AI-Powered Entertainment",
+          "8+ Interactive Games",
+          "Silent Disco",
+          "Zante's #1 Bar Experience"
+        ]
+      }
+    }
+  }
+}

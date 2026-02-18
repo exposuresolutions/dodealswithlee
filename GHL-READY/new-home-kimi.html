@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Do Deals With Lee - Cleveland Parcell Deal Network</title>
+  <style>
+/* GHL AGGRESSIVE RESET — REQUIRED */
+html, body, #preview-container, .hl-page-preview, .hl_page-preview,
+[id*="preview"], [class*="preview"], [class*="page-"], [class*="hl_page"],
+[class*="wrapper"], [class*="container"], [class*="section"],
+.c-editor, .c-editor-content, .hl-page-creator,
+#section-0, #section-1, #section-2, #section-3, #section-4, #section-5,
+.inner-section, .section-element, .row-element, .column-element,
+div[data-page-element], div[class*="element"], div[class*="row"],
+main, article, section, header, footer, aside, nav,
+.page-wrapper, .site-wrapper, .content-wrapper, .hl-wrapper,
+.hl-container, .hl-section, .hl-row, .hl-column {
+    background: #0a0a0a !important;
+    background-color: #0a0a0a !important;
+    border: none !important;
+    border-color: #0a0a0a !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+    box-shadow: none !important;
+}
+</style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'brand-black': '#0a0a0a',
+            'brand-dark': '#111111',
+            'brand-card': '#161616',
+            'brand-cyan': '#00e5ff',
+            'brand-orange': '#ff6b00',
+            'brand-gold': '#ffd700',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .font-display { font-family: 'Playfair Display', serif; }
+  </style>
+</head>
+<body class="bg-brand-black text-white">
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+  <script>
+  WebFont.load({
+    google: { families: ['Inter:300,400,500,600,700,800,900', 'Playfair Display:400,600,700,800'] },
+    active: function() { document.body.style.fontFamily = "'Inter', system-ui, sans-serif"; }
+  });
+  </script>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-30 bg-brand-black/80 backdrop-blur border-b border-white/10">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="flex items-center justify-between">
+        <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/67630a6111b3975ed85ffd20.svg" alt="Lee Kearney" class="h-10">
+        <button onclick="scrollToSection('apply')" class="bg-brand-orange hover:bg-brand-orange/90 px-6 py-2 rounded font-semibold transition">
+          Join Cleveland Deal
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section id="hero" class="min-h-screen flex items-center relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-brand-dark to-brand-black"></div>
+    <div class="absolute top-1/2 left-1/2 w-96 h-96 bg-brand-cyan/10 rounded-full blur-3xl"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h1 class="font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
+            Real-Time Access to My
+            <span class="text-brand-cyan">$47M</span>
+            Cleveland Parcell
+          </h1>
+          <p class="mt-6 text-xl text-gray-300 max-w-lg">
+            7,000+ deals and $500M+ in volume. I'm opening 50 partnership slots to investors who want to co-develop 184 units in Cleveland's hottest growth zone.
+          </p>
+          <div class="mt-8 flex flex-col sm:flex-row gap-4">
+            <button onclick="scrollToSection('calculator')" class="bg-brand-cyan text-brand-black px-8 py-4 rounded font-bold hover:bg-brand-cyan/90 transition">
+              See Your Split
+            </button>
+            <button onclick="scrollToSection('apply')" class="border border-brand-orange text-brand-orange px-8 py-4 rounded font-bold hover:bg-brand-orange/10 transition">
+              Apply for Partnership
+            </button>
+          </div>
+        </div>
+        <div class="relative">
+          <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/6740d661a865994979d38612.webp" 
+               alt="Lee Kearney" class="rounded-lg shadow-2xl w-full">
+          <div class="absolute -bottom-4 -right-4 bg-brand-orange text-brand-black p-4 rounded-lg font-bold">
+            LIVE PROJECT • CLEVELAND 2024
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Proof -->
+  <section id="stats" class="py-20 bg-brand-card/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-8 text-center">
+        <div>
+          <div class="text-4xl font-bold text-brand-cyan">7,000+</div>
+          <div class="text-gray-400 mt-2">Properties Since 2004</div>
+        </div>
+        <div>
+          <div class="text-4xl font-bold text-brand-cyan">$500M+</div>
+          <div class="text-gray-400 mt-2">Total Sales Volume</div>
+        </div>
+        <div>
+          <div class="text-4xl font-bold text-brand-cyan">184</div>
+          <div class="text-gray-400 mt-2">Units in Cleveland</div>
+        </div>
+        <div>
+          <div class="text-4xl font-bold text-brand-cyan">50</div>
+          <div class="text-gray-400 mt-2">Partnership Slots</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Revenue Strategy -->
+  <section id="partnership" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-4xl md:text-5xl font-bold text-center mb-4">
+        Three Ways to Get In
+      </h2>
+      <p class="text-center text-gray-300 mb-12 max-w-2xl mx-auto">
+        No courses. No masterminds. Just real partnership on a real deal with real profit splits.
+      </p>
+      
+      <div class="grid lg:grid-cols-3 gap-8">
+        <!-- Tier 1 -->
+        <div class="bg-brand-card p-8 rounded-lg border border-white/10">
+          <div class="text-brand-gold text-3xl font-bold">TIER 1</div>
+          <h3 class="font-display text-2xl font-bold mt-2">Silent Partner</h3>
+          <div class="text-3xl font-bold text-brand-cyan mt-4">$50K - $250K</div>
+          <ul class="mt-6 space-y-3 text-gray-300">
+            <li>• Quarterly profit distributions</li>
+            <li>• 15-18% preferred return</li>
+            <li>• Monthly project updates</li>
+            <li>• No active work required</li>
+          </ul>
+          <button onclick="scrollToSection('apply')" class="w-full mt-8 bg-brand-cyan text-brand-black py-3 font-bold rounded hover:bg-brand-cyan/90 transition">
+            Reserve Your Spot
+          </button>
+        </div>
+
+        <!-- Tier 2 -->
+        <div class="bg-brand-card p-8 rounded-lg border border-brand-cyan">
+          <div class="text-brand-cyan text-3xl font-bold">TIER 2</div>
+          <h3 class="font-display text-2xl font-bold mt-2">Active Partner</h3>
+          <div class="text-3xl font-bold text-brand-cyan mt-4">$25K - $100K</div>
+          <ul class="mt-6 space-y-3 text-gray-300">
+            <li>• Profit split with sweat equity</li>
+            <li>• Weekly development calls</li>
+            <li>• City approval meetings</li>
+            <li>• Exit strategy planning</li>
+          </ul>
+          <button onclick="scrollToSection('apply')" class="w-full mt-8 bg-brand-cyan text-brand-black py-3 font-bold rounded hover:bg-brand-cyan/90 transition">
+            Apply for Active Role
+          </button>
+        </div>
+
+        <!-- Tier 3 -->
+        <div class="bg-brand-card p-8 rounded-lg border border-white/10">
+          <div class="text-brand-orange text-3xl font-bold">TIER 3</div>
+          <h3 class="font-display text-2xl font-bold mt-2">Deal Scout</h3>
+          <div class="text-3xl font-bold text-brand-cyan mt-4">$10K Entry</div>
+          <ul class="mt-6 space-y-3 text-gray-300">
+            <li>• Find similar parcels</li>
+            <li>• 20% finder's fee on deals</li>
+            <li>• Learn my exact process</li>
+            <li>• Access to my buyer list</li>
+          </ul>
+          <button onclick="scrollToSection('apply')" class="w-full mt-8 bg-brand-orange text-brand-black py-3 font-bold rounded hover:bg-brand-orange/90 transition">
+            Become a Scout
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROI Calculator -->
+  <section id="calculator" class="py-20 bg-brand-card/30">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-4xl md:text-5xl font-bold text-center mb-8">
+        Calculate Your Cut
+      </h2>
+      
+      <div class="bg-brand-card p-8 rounded-lg">
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <label class="block text-sm font-semibold mb-2">Investment Amount</label>
+            <input type="range" id="investAmount" min="10000" max="1000000" step="1000" value="100000" 
+                   class="w-full h-2 bg-brand-dark rounded-lg appearance-none cursor-pointer">
+            <div id="investOutput" class="text-2xl font-bold text-brand-cyan mt-2">$100,000</div>
+            
+            <label class="block text-sm font-semibold mt-6 mb-2">Partner Tier</label>
+            <select id="tierSelect" class="w-full bg-brand-dark border border-white/10 rounded px-4 py-2">
+              <option value="1">Silent Partner (15%)</option>
+              <option value="2">Active Partner (20%)</option>
+              <option value="3">Deal Scout (25%)</option>
+            </select>
+          </div>
+          
+          <div>
+            <h3 class="font-bold text-lg mb-4">Projected Returns</h3>
+            <div class="space-y-4">
+              <div class="flex justify-between">
+                <span>Annual Return</span>
+                <span id="annualReturn" class="text-brand-cyan font-bold">$15,000</span>
+              </div>
+              <div class="flex justify-between">
+                <span>3-Year Total</span>
+                <span id="totalReturn" class="text-brand-gold font-bold">$45,000</span>
+              </div>
+              <div class="flex justify-between">
+                <span>ROI</span>
+                <span id="roiPercent" class="text-brand-cyan font-bold">45%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-4xl md:text-5xl font-bold text-center mb-12">
+        The Cleveland Parcell Timeline
+      </h2>
+      
+      <div class="grid md:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-brand-cyan rounded-full flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="map" class="w-8 h-8 text-brand-black"></i>
+          </div>
+          <h3 class="font-bold text-lg">Phase 1: Land <br>Acquisition</h3>
+          <p class="text-gray-400 mt-2">Complete • 6.2 acres secured</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="w-16 h-16 bg-brand-orange rounded-full flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="file-text" class="w-8 h-8 text-brand-black"></i>
+          </div>
+          <h3 class="font-bold text-lg">Phase 2: City <br>Approvals</h3>
+          <p class="text-gray-400 mt-2">In Progress • 30 days</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="w-16 h-16 bg-brand-gold rounded-full flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="hard-hat" class="w-8 h-8 text-brand-black"></i>
+          </div>
+          <h3 class="font-bold text-lg">Phase 3: <br>Construction</h3>
+          <p class="text-gray-400 mt-2">Q1 2025 • 18 months</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="w-16 h-16 bg-brand-cyan rounded-full flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="dollar-sign" class="w-8 h-8 text-brand-black"></i>
+          </div>
+          <h3 class="font-bold text-lg">Phase 4: <br>Exit</h3>
+          <p class="text-gray-400 mt-2">Q4 2026 • Target: $47M</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-20 bg-brand-card/30">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-4xl md:text-5xl font-bold text-center mb-12">
+        Straight Answers
+      </h2>
+      
+      <div class="space-y-6">
+        <div class="bg-brand-card p-6 rounded-lg">
+          <h3 class="font-bold text-lg mb-2">Why Cleveland?</h3>
+          <p class="text-gray-300">Cleveland's University Circle is exploding. Medical schools, tech companies, and hospitals are driving 40% rent growth. I bought before Amazon announced their facility - now we're sitting on gold.</p>
+        </div>
+        
+        <div class="bg-brand-card p-6 rounded-lg">
+          <h3 class="font-bold text-lg mb-2">What's my risk?</h3>
+          <p class="text-gray-300">Your money is secured by the land and improvements. Worst case: we sell the parcel. Best case: full buildout hits $47M valuation. I've never lost investor money in 20 years.</p>
+        </div>
+        
+        <div class="bg-brand-card p-6 rounded-lg">
+          <h3 class="font-bold text-lg mb-2">How fast will I see profit?</h3>
+          <p class="text-gray-300">Phase 1 investors get quarterly distributions starting Q2 2025. Full exit target is Q4 2026. I'll update you monthly - no disappearing acts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Application -->
+  <section id="apply" class="py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-4xl md:text-5xl font-bold text-center mb-4">
+        Apply for Partnership
+      </h2>
+      <p class="text-center text-gray-300 mb-12">
+        11 spots filled. 39 remaining. This form goes directly to my phone.
+      </p>
+      
+      <form id="partnershipForm" class="bg-brand-card p-8 rounded-lg">
+        <div class="grid md:grid-cols-2 gap-6">
+          <input type="text" name="first_name" placeholder="First Name" required 
+                 class="bg-brand-dark border border-white/10 rounded px-4 py-3">
+          <input type="text" name="last_name" placeholder="Last Name" required 
+                 class="bg-brand-dark border border-white/10 rounded px-4 py-3">
+          <input type="email" name="email" placeholder="Email" required 
+                 class="bg-brand-dark border border-white/10 rounded px-4 py-3">
+          <input type="tel" name="phone" placeholder="Phone" required 
+                 class="bg-brand-dark border border-white/10 rounded px-4 py-3">
+        </div>
+        
+        <select name="tier" required class="w-full mt-6 bg-brand-dark border border-white/10 rounded px-4 py-3">
+          <option value="">Select Partnership Tier</option>
+          <option value="silent">Silent Partner ($50K+)</option>
+          <option value="active">Active Partner ($25K+)</option>
+          <option value="scout">Deal Scout ($10K)</option>
+        </select>
+        
+        <input type="text" name="investment_amount" placeholder="Investment Amount" required 
+               class="w-full mt-6 bg-brand-dark border border-white/10 rounded px-4 py-3">
+        
+        <textarea name="experience" placeholder="Tell me about your real estate experience" rows="4" 
+                  class="w-full mt-6 bg-brand-dark border border-white/10 rounded px-4 py-3"></textarea>
+        
+        <button type="submit" class="w-full mt-6 bg-brand-orange text-brand-black py-4 font-bold rounded hover:bg-brand-orange/90 transition">
+          Submit Application
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-400">
+      <p>Lee Kearney • PO Box 172566 Tampa FL 33672</p>
+      <p class="mt-2">
+        <a href="tel:813-675-0916" class="text-brand-cyan hover:text-brand-cyan/80">813-675-0916</a> • 
+        <a href="mailto:info@dodealswithlee.com" class="text-brand-cyan hover:text-brand-cyan/80">info@dodealswithlee.com</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // GSAP Animations
+    gsap.registerPlugin(ScrollTrigger);
+    
+    gsap.from('#hero h1, #hero p, #hero button', {
+      opacity: 0,
+      y: 30,
+      duration: 0.8,
+      stagger: 0.2
+    });
+    
+    gsap.from('#stats > div', {
+      opacity: 0,
+      y: 50,
+      duration: 0.6,
+      scrollTrigger: {
+        trigger: '#stats',
+        start: 'top 80%'
+      },
+      stagger: 0.1
+    });
+
+    // Lucide icons
+    lucide.createIcons();
+
+    // ROI Calculator
+    const investSlider = document.getElementById('investAmount');
+    const investOutput = document.getElementById('investOutput');
+    const tierSelect = document.getElementById('tierSelect');
+    const annualReturn = document.getElementById('annualReturn');
+    const totalReturn = document.getElementById('totalReturn');
+    const roiPercent = document.getElementById('roiPercent');
+
+    function updateCalculator() {
+      const amount = parseInt(investSlider.value);
+      const tier = parseInt(tierSelect.value);
+      const rates = [0.15, 0.20, 0.25];
+      const rate = rates[tier - 1];
+      
+      investOutput.textContent = `$${amount.toLocaleString()}`;
+      annualReturn.textContent = `$${(amount * rate).toLocaleString()}`;
+      totalReturn.textContent = `$${(amount * rate * 3).toLocaleString()}`;
+      roiPercent.textContent = `${(rate * 300).toFixed(0)}%`;
+    }
+
+    investSlider.addEventListener('input', updateCalculator);
+    tierSelect.addEventListener('change', updateCalculator);
+    updateCalculator();
+
+    // Form Submission
+    function scrollToSection(sectionId) {
+      document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    document.getElementById('partnershipForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(e.target);
+      const payload = Object.fromEntries(formData);
+      payload._form_type = 'partnership_application';
+      payload._submitted_at = new Date().toISOString();
+      payload._source = 'dodealswithlee.com/newhome-b (Kimi K2)';
+      
+      const btn = e.target.querySelector('button');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      
+      try {
+        const response = await fetch('https://services.leadconnectorhq.com/hooks/KbiucErIMNPbO1mY4qXL/webhook-trigger/mCdlXsgchQ4v9BQeIa9E', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        
+        if (response.ok) {
+          alert('Application sent! Lee will call you within 24 hours.');
+          e.target.reset();
+        } else {
+          throw new Error('Webhook failed');
+        }
+      } catch (error) {
+        // Fallback to formsubmit.co — notify both Lilly and Daniel
+        const emails = ['lilly@dodealswithlee.com', 'daniel@exposuresolutions.me', 'admin@dodealswithlee.com'];
+        let sent = false;
+        for (const em of emails) {
+          try {
+            const fb = await fetch('https://formsubmit.co/ajax/' + em, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+            if (fb.ok) sent = true;
+          } catch(e2) {}
+        }
+        if (sent) {
+          alert('Application sent via backup system. Lee will call you within 24 hours.');
+          e.target.reset();
+        } else {
+          alert('Error submitting form. Please call 813-675-0916 directly.');
+        }
+      } finally {
+        btn.textContent = 'Submit Application';
+        btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

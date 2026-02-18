@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do Deals With Lee&trade; | Real Estate Investing Expert | Coaching &amp; Live Events</title>
+    <meta name="description" content="Lee Kearney - Tampa's top real estate investor. 20 years experience, $500M+ deals, Inc. 5000. Sell your home fast, do deals, get coaching, fund deals, and join live events.">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ddwl-black': '#0a0a0a',
+                        'ddwl-dark': '#111111',
+                        'ddwl-card': '#161616',
+                        'ddwl-cyan': '#00e5ff',
+                        'ddwl-cyan-light': '#40efff',
+                        'ddwl-orange': '#ff6b00',
+                        'ddwl-orange-light': '#ff8533',
+                        'ddwl-gold': '#ffd700'
+                    },
+                    fontFamily: {
+                        'playfair': ['Playfair Display', 'serif'],
+                        'inter': ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* GHL AGGRESSIVE RESET - NUCLEAR */
+        *:not(a):not(span):not(i):not(img):not(input):not(textarea):not(select):not(button):not(label):not(p):not(h1):not(h2):not(h3):not(h4):not(h5):not(h6):not(li):not(ul):not(ol):not(strong):not(em):not(b):not(small):not(br){background-color:#0a0a0a!important}
+        html,body{background:#0a0a0a!important;margin:0!important;padding:0!important}
+        #preview-container,.hl-page-preview,.hl_page-preview,
+        [id*="preview"],[class*="preview"],[class*="page-"],[class*="hl_page"],
+        [class*="wrapper"],[class*="container"],[class*="section"],
+        .c-editor,.c-editor-content,.hl-page-creator,
+        #section-0,#section-1,#section-2,#section-3,#section-4,#section-5,
+        #section-6,#section-7,#section-8,#section-9,#section-10,
+        .inner-section,.section-element,.row-element,.column-element,
+        div[data-page-element],div[class*="element"],div[class*="row"],
+        main,article,header,footer,aside,
+        .page-wrapper,.site-wrapper,.content-wrapper,.hl-wrapper,
+        .hl-container,.hl-section,.hl-row,.hl-column,
+        .row-fluid,.container-fluid,.body-wrapper,
+        div[style*="background: rgb(255"],div[style*="background-color: rgb(255"],
+        div[style*="background: white"],div[style*="background-color: white"],
+        div[style*="background:#fff"],div[style*="background-color:#fff"]{
+        background:#0a0a0a!important;background-color:#0a0a0a!important;
+        border:none!important;border-color:#0a0a0a!important;
+        margin:0!important;padding:0!important;max-width:100%!important;box-shadow:none!important}
+
+        .glass-card{background:rgba(22,22,22,0.8)!important;-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1)!important}
+        .gradient-text {
+            background: linear-gradient(135deg, #00e5ff, #ffd700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-orange {
+            background: linear-gradient(135deg, #ff6b00, #ff8533) !important;
+        }
+        .hero-glow {
+            box-shadow: 0 0 120px rgba(0, 229, 255, 0.2);
+        }
+        .hero-glow-orange {
+            box-shadow: 0 0 120px rgba(255, 107, 0, 0.15);
+        }
+        .portal-card {
+            background: rgba(22, 22, 22, 0.9) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+        .portal-card:hover {
+            border-color: #00e5ff;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 229, 255, 0.15);
+        }
+        .service-card {
+            background: rgba(22, 22, 22, 0.9) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+        .service-card:hover {
+            border-color: #ff6b00;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(255, 107, 0, 0.15);
+        }
+        .stat-pill {
+            background: rgba(22, 22, 22, 0.9) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .toast {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        .toast.show {
+            transform: translateX(0);
+        }
+        .mob-menu {
+            background: rgba(10, 10, 10, 0.98) !important;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .float-anim { animation: float 3s ease-in-out infinite; }
+        .cta-pill {
+            border: 2px solid;
+            border-radius: 50px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        .cta-pill:hover { transform: scale(1.05); }
+    </style>
+</head>
+
+<body class="bg-ddwl-black text-white font-inter overflow-x-hidden">
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="fixed top-0 w-full z-50 glass-card">
+        <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="/claudehome">
+                <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/6990a7630084987c66721a4f.png"
+                     alt="Do Deals With Lee" class="h-12">
+            </a>
+
+            <div class="hidden lg:flex items-center space-x-2 text-sm">
+                <a href="/sellnow" class="px-4 py-2 rounded-full border border-ddwl-orange text-ddwl-orange hover:bg-ddwl-orange hover:text-black transition-all font-semibold">Sell Your Home</a>
+                <a href="#services" class="px-4 py-2 text-gray-300 hover:text-ddwl-cyan transition-colors">Investors</a>
+                <a href="/events" class="px-4 py-2 text-gray-300 hover:text-ddwl-cyan transition-colors">Events</a>
+                <a href="/coaching" class="px-4 py-2 text-gray-300 hover:text-ddwl-cyan transition-colors">Coaching</a>
+                <a href="#portals" class="px-4 py-2 text-gray-300 hover:text-ddwl-cyan transition-colors">Portals</a>
+                <a href="#about" class="px-4 py-2 text-gray-300 hover:text-ddwl-cyan transition-colors">About</a>
+            </div>
+
+            <div class="hidden lg:flex items-center space-x-4 text-sm text-gray-400">
+                <a href="mailto:info@dodealswithlee.com" class="hover:text-ddwl-cyan transition-colors flex items-center space-x-1">
+                    <i data-lucide="mail" class="w-4 h-4"></i>
+                    <span>info@dodealswithlee.com</span>
+                </a>
+                <a href="tel:8136750916" class="hover:text-ddwl-cyan transition-colors flex items-center space-x-1">
+                    <i data-lucide="phone" class="w-4 h-4"></i>
+                    <span>813-675-0916</span>
+                </a>
+            </div>
+
+            <button onclick="document.getElementById('mobMenu').classList.toggle('hidden')" class="lg:hidden text-white">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobMenu" class="hidden mob-menu lg:hidden px-6 pb-6 space-y-3">
+            <a href="/sellnow" class="block py-2 text-ddwl-orange font-semibold">Sell Your Home</a>
+            <a href="#services" class="block py-2 text-gray-300">Investors</a>
+            <a href="/events" class="block py-2 text-gray-300">Events</a>
+            <a href="/coaching" class="block py-2 text-gray-300">Coaching</a>
+            <a href="#portals" class="block py-2 text-gray-300">Portals</a>
+            <a href="#about" class="block py-2 text-gray-300">About Lee</a>
+            <div class="pt-2 border-t border-gray-800 text-sm text-gray-400">
+                <p>info@dodealswithlee.com</p>
+                <p>813-675-0916</p>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="min-h-screen flex items-center relative overflow-hidden pt-20">
+        <div class="absolute inset-0 opacity-10">
+            <div class="hero-glow absolute top-1/4 left-1/4 w-96 h-96 rounded-full"></div>
+            <div class="hero-glow-orange absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 w-full">
+            <!-- Hero Grid: CTA | Photo | CTA -->
+            <div class="grid md:grid-cols-3 gap-8 items-center">
+                <!-- Left CTA: Sell Your Home -->
+                <div class="text-center">
+                    <span class="text-ddwl-orange text-sm font-bold uppercase tracking-widest block mb-4">Homeowner?</span>
+                    <a href="/sellnow" class="cta-pill inline-block px-10 py-5 border-ddwl-orange text-ddwl-orange hover:bg-ddwl-orange hover:text-black text-lg">
+                        Sell Your Home<br>To Lee
+                    </a>
+                    <p class="text-gray-400 text-sm mt-4">No repairs. No fees. Fast cash closing.</p>
+                </div>
+
+                <!-- Center: Lee's Photo -->
+                <div class="relative text-center">
+                    <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/6740d661a865994979d38612.webp"
+                         alt="Lee Kearney" class="w-full max-w-sm mx-auto rounded-2xl shadow-2xl">
+                    <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
+                        <div class="stat-pill px-6 py-2 rounded-full flex items-center space-x-3">
+                            <span class="text-ddwl-gold font-bold">$500M+</span>
+                            <span class="text-gray-400 text-sm">Sales Volume</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right CTA: Do Deals -->
+                <div class="text-center">
+                    <span class="text-ddwl-cyan text-sm font-bold uppercase tracking-widest block mb-4">Investor or Lender?</span>
+                    <a href="/home-780355" class="cta-pill inline-block px-10 py-5 border-ddwl-cyan text-ddwl-cyan hover:bg-ddwl-cyan hover:text-black text-lg">
+                        Do Deals<br>With Lee
+                    </a>
+                    <p class="text-gray-400 text-sm mt-4">Coaching. Events. Partnerships. Funding.</p>
+                </div>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="flex flex-wrap justify-center gap-6 mt-16">
+                <div class="stat-pill px-6 py-3 rounded-full flex items-center space-x-2">
+                    <i data-lucide="trending-up" class="w-5 h-5 text-ddwl-gold"></i>
+                    <span class="font-semibold">7,000+ Properties</span>
+                </div>
+                <div class="stat-pill px-6 py-3 rounded-full flex items-center space-x-2">
+                    <i data-lucide="award" class="w-5 h-5 text-ddwl-gold"></i>
+                    <span class="font-semibold">Inc. 5000 Recognized</span>
+                </div>
+                <div class="stat-pill px-6 py-3 rounded-full flex items-center space-x-2">
+                    <i data-lucide="graduation-cap" class="w-5 h-5 text-ddwl-gold"></i>
+                    <span class="font-semibold">MBA &mdash; USF</span>
+                </div>
+                <div class="stat-pill px-6 py-3 rounded-full flex items-center space-x-2">
+                    <i data-lucide="calendar" class="w-5 h-5 text-ddwl-gold"></i>
+                    <span class="font-semibold">20 Years Experience</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== ABOUT LEE ========== -->
+    <section id="about" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-4xl lg:text-6xl font-playfair font-bold mb-4">
+                        Lee <span class="gradient-text">Kearney</span>
+                    </h2>
+                    <p class="text-ddwl-orange text-lg font-semibold mb-8">Transforming Florida&rsquo;s Real Estate Landscape</p>
+
+                    <div class="space-y-5 text-gray-300 leading-relaxed text-lg">
+                        <p>Lee Kearney is a seasoned real estate investor and entrepreneur based in Tampa, Florida with nearly two decades of experience. He has successfully completed thousands of real estate transactions across Florida.</p>
+                        <p>His expertise spans single-family homes, property flipping, and leveraging market cycles. Lee has built and scaled multiple real estate ventures achieving significant sales volumes.</p>
+                        <p>His platform <strong class="text-white">&ldquo;Do Deals With Lee&rdquo;</strong> is dedicated to educating and empowering fellow investors. Lee holds an <strong class="text-ddwl-cyan">MBA from the University of South Florida</strong> and has been recognized on the <strong class="text-ddwl-gold">Inc. 5000 List</strong>.</p>
+                        <p>His commitment to innovation and education is helping the next generation of investors succeed.</p>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Credential Cards -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="glass-card p-6 rounded-xl text-center">
+                            <div class="text-3xl font-bold text-ddwl-gold mb-1">7,000+</div>
+                            <div class="text-sm text-gray-400">Deals Completed</div>
+                        </div>
+                        <div class="glass-card p-6 rounded-xl text-center">
+                            <div class="text-3xl font-bold text-ddwl-cyan mb-1">$500M+</div>
+                            <div class="text-sm text-gray-400">Sales Volume</div>
+                        </div>
+                        <div class="glass-card p-6 rounded-xl text-center">
+                            <div class="text-3xl font-bold text-ddwl-orange mb-1">20</div>
+                            <div class="text-sm text-gray-400">Years Experience</div>
+                        </div>
+                        <div class="glass-card p-6 rounded-xl text-center">
+                            <div class="text-3xl font-bold text-ddwl-gold mb-1">Inc.</div>
+                            <div class="text-sm text-gray-400">5000 Recognized</div>
+                        </div>
+                    </div>
+
+                    <!-- Facebook Group CTA -->
+                    <a href="https://www.facebook.com/groups/425007186734068" target="_blank" rel="noopener" class="block glass-card p-6 rounded-xl hover:border-blue-500 transition-all group">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+                                <i data-lucide="users" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold group-hover:text-blue-400 transition-colors">Join the Facebook Group</h4>
+                                <p class="text-sm text-gray-400">Connect with Lee&rsquo;s investor community</p>
+                            </div>
+                            <i data-lucide="external-link" class="w-5 h-5 text-gray-500 ml-auto"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SERVICES HUB ========== -->
+    <section id="services" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-6xl font-playfair font-bold mb-6">
+                    Your Path to <span class="gradient-text">Real Estate Success</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Unlock the secrets of successful real estate investing with Lee Kearney. Personalized coaching, dynamic live events, and comprehensive courses tailored to your needs.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Sell Your Home -->
+                <a href="/sellnow" class="service-card p-8 rounded-xl block group">
+                    <div class="w-14 h-14 gradient-orange rounded-xl flex items-center justify-center mb-6">
+                        <i data-lucide="home" class="w-7 h-7 text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-playfair font-bold mb-3 group-hover:text-ddwl-orange transition-colors">Sell Your Home Fast</h3>
+                    <p class="text-gray-400 mb-4">Need to sell your home quickly? Whether you&rsquo;re facing foreclosure, moving, dealing with a vacant property, or don&rsquo;t want costly repairs and endless showings &mdash; we can help.</p>
+                    <ul class="space-y-2 text-sm text-gray-300 mb-6">
+                        <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-ddwl-orange"></i><span>Sell as-is &mdash; no repairs</span></li>
+                        <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-ddwl-orange"></i><span>Zero fees or commissions</span></li>
+                        <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-ddwl-orange"></i><span>Cash offer within 24 hours</span></li>
+                    </ul>
+                    <span class="text-ddwl-orange font-semibold flex items-center space-x-1">
+                        <span>Get Your Cash Offer Today</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </span>
+                </a>
+
+                <!-- Events -->
+                <a href="/events" class="service-card p-8 rounded-xl block group">
+                    <div class="w-14 h-14 bg-ddwl-cyan rounded-xl flex items-center justify-center mb-6">
+                        <i data-lucide="calendar" class="w-7 h-7 text-ddwl-black"></i>
+                    </div>
+                    <h3 class="text-2xl font-playfair font-bold mb-3 group-hover:text-ddwl-cyan transition-colors">Live Events</h3>
+                    <p class="text-gray-400 mb-4">Learn how to consistently do profitable real estate deals. If you&rsquo;re new to real estate, this will give you exactly what you need to thrive during this shifting market in 2026.</p>
+                    <ul class="space-y-2 text-sm text-gray-300 mb-6">
+                        <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-ddwl-cyan"></i><span>FREE pop-up events in Tampa</span></li>
+                        <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-ddwl-cyan"></i><span>New &amp; veteran investors welcome</span></li>
+                        <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-ddwl-cyan"></i><span>2026 market strategies</span></li>
+                    </ul>
+                    <span class="text-ddwl-cyan font-semibold flex items-center space-x-1">
+                        <span>Reserve Your Spot</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </span>
+                </a>
+
+                <!-- Coaching -->
+                <a href="/coaching" class="service-card p-8 rounded-xl block group">
+                    <div class="w-14 h-14 bg-ddwl-gold rounded-xl flex items-center justify-center mb-6">
+                        <i data-lucide="brain" class="w-7 h-7 text-ddwl-black"></i>
+                    </div>
+                    <h3 class="text-2xl font-playfair font-bold mb-3 group-hover:text-ddwl-gold transition-colors">Private Coaching</h3>
+                    <p class="text-gray-400 mb-4">Accelerate your real estate success with one-on-one private coaching. Lee has over 20 years of experience and thousands of successful deals &mdash; get tailored guidance and support.</p>
+                    <ul class="space-y-2 text-sm text-gray-300 mb-6">
+                        <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-ddwl-gold"></i><span>Personalized attention from Lee</span></li>
+                        <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-ddwl-gold"></i><span>In-depth portfolio analysis &amp; action plans</span></li>
+                        <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-ddwl-gold"></i><span>Ongoing support &amp; accountability</span></li>
+                    </ul>
+                    <span class="text-ddwl-gold font-semibold flex items-center space-x-1">
+                        <span>Book Your Private Coaching Session</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </span>
+                </a>
+
+                <!-- Do a Deal -->
+                <a href="/do_a_deal_with_lee_now" class="service-card p-8 rounded-xl block group">
+                    <div class="w-14 h-14 bg-ddwl-cyan rounded-xl flex items-center justify-center mb-6">
+                        <i data-lucide="handshake" class="w-7 h-7 text-ddwl-black"></i>
+                    </div>
+                    <h3 class="text-2xl font-playfair font-bold mb-3 group-hover:text-ddwl-cyan transition-colors">Do a Deal With Lee</h3>
+                    <p class="text-gray-400 mb-4">Partner with Lee Kearney and unlock your real estate investing potential. Benefit from his expertise, access exclusive opportunities, and scale your business faster.</p>
+                    <ul class="space-y-2 text-sm text-gray-300 mb-6">
+                        <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-ddwl-cyan"></i><span>Fill out form &rarr; get a call from Lee</span></li>
+                        <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-ddwl-cyan"></i><span>30-min Zoom to discuss your deal</span></li>
+                        <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-ddwl-cyan"></i><span>If approved, start partnering on deals</span></li>
+                    </ul>
+                    <span class="text-ddwl-cyan font-semibold flex items-center space-x-1">
+                        <span>Send Your Deal to Lee</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </span>
+                </a>
+
+                <!-- Fund a Deal -->
+                <a href="/fund-a-deal-with-lee" class="service-card p-8 rounded-xl block group">
+                    <div class="w-14 h-14 gradient-orange rounded-xl flex items-center justify-center mb-6">
+                        <i data-lucide="banknote" class="w-7 h-7 text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-playfair font-bold mb-3 group-hover:text-ddwl-orange transition-colors">Fund a Deal</h3>
+                    <p class="text-gray-400 mb-4">Join forces with one of Florida&rsquo;s most active real estate investors. We specialize in high-velocity wholesale transactions and select cosmetic rehabs. Buy right. Move fast. Keep money in motion.</p>
+                    <ul class="space-y-2 text-sm text-gray-300 mb-6">
+                        <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-ddwl-orange"></i><span>Speed &amp; consistency &mdash; capital isn&rsquo;t sitting idle</span></li>
+                        <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-ddwl-orange"></i><span>Loans secured by real estate below market</span></li>
+                        <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-ddwl-orange"></i><span>Thousands of successful transactions</span></li>
+                    </ul>
+                    <span class="text-ddwl-orange font-semibold flex items-center space-x-1">
+                        <span>Contact info@DoDealsWithLee.com</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </span>
+                </a>
+
+                <!-- Student Enrollment -->
+                <a href="/studentenrollment" class="service-card p-8 rounded-xl block group">
+                    <div class="w-14 h-14 bg-ddwl-gold rounded-xl flex items-center justify-center mb-6">
+                        <i data-lucide="book-open" class="w-7 h-7 text-ddwl-black"></i>
+                    </div>
+                    <h3 class="text-2xl font-playfair font-bold mb-3 group-hover:text-ddwl-gold transition-colors">Student Enrollment</h3>
+                    <p class="text-gray-400 mb-4">Enroll in Lee&rsquo;s comprehensive real estate education platform. AI-powered courses, market analysis, and proven strategies for every level.</p>
+                    <ul class="space-y-2 text-sm text-gray-300 mb-6">
+                        <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-ddwl-gold"></i><span>AI voice clone training</span></li>
+                        <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-ddwl-gold"></i><span>Comprehensive course library</span></li>
+                        <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-ddwl-gold"></i><span>Beginner to advanced tracks</span></li>
+                    </ul>
+                    <span class="text-ddwl-gold font-semibold flex items-center space-x-1">
+                        <span>Enroll Now</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </span>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PORTALS (New Features) ========== -->
+    <section id="portals" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-ddwl-cyan text-sm font-bold uppercase tracking-widest">New</span>
+                <h2 class="text-4xl lg:text-5xl font-playfair font-bold mt-2 mb-6">
+                    DDWL <span class="gradient-text">Team Portals</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                    Streamlined systems for our team, partners, and new hires.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <a href="/careeer" class="portal-card p-6 rounded-xl block text-center group">
+                    <div class="w-12 h-12 bg-ddwl-cyan rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="briefcase" class="w-6 h-6 text-ddwl-black"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2 group-hover:text-ddwl-cyan transition-colors">Careers</h3>
+                    <p class="text-sm text-gray-400">Browse open positions and apply to join the DDWL team</p>
+                </a>
+
+                <a href="/onboardingportal" class="portal-card p-6 rounded-xl block text-center group">
+                    <div class="w-12 h-12 bg-ddwl-orange rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="clipboard-check" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2 group-hover:text-ddwl-orange transition-colors">Onboarding</h3>
+                    <p class="text-sm text-gray-400">New team member onboarding checklist and resources</p>
+                </a>
+
+                <a href="/adminportal" class="portal-card p-6 rounded-xl block text-center group">
+                    <div class="w-12 h-12 bg-ddwl-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="layout-dashboard" class="w-6 h-6 text-ddwl-black"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2 group-hover:text-ddwl-gold transition-colors">Admin Dashboard</h3>
+                    <p class="text-sm text-gray-400">Recruitment pipeline, candidate management, and analytics</p>
+                </a>
+
+                <a href="/studentenrollment" class="portal-card p-6 rounded-xl block text-center group">
+                    <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="graduation-cap" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2 group-hover:text-green-400 transition-colors">Student Enrollment</h3>
+                    <p class="text-sm text-gray-400">Course enrollment, progress tracking, and certifications</p>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== TESTIMONIALS ========== -->
+    <section class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-playfair font-bold mb-6">
+                    What Investors <span class="gradient-text">Are Saying</span>
+                </h2>
+                <p class="text-lg text-gray-300">Don&rsquo;t just take our word for it &mdash; hear from some of Lee&rsquo;s successful students who have partnered with him to close deals and grow their businesses.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+
+                <div class="glass-card p-8 rounded-xl">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-14 h-14 bg-ddwl-cyan rounded-full flex items-center justify-center font-bold text-ddwl-black text-lg">NH</div>
+                        <div>
+                            <h4 class="font-bold text-lg">Nate H.</h4>
+                            <p class="text-sm text-gray-400">Investor &amp; Partner</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed italic">
+                        &ldquo;I met Lee in August and he immediately helped me identify bottlenecks in my business. He&rsquo;s the first person I recommend for tricky deals. His ability to see opportunities where others see problems is what sets him apart.&rdquo;
+                    </p>
+                </div>
+
+                <div class="glass-card p-8 rounded-xl">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-14 h-14 bg-ddwl-gold rounded-full flex items-center justify-center font-bold text-ddwl-black text-lg">NK</div>
+                        <div>
+                            <h4 class="font-bold text-lg">Nick K.</h4>
+                            <p class="text-sm text-gray-400">Student &amp; Deal Partner</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed italic">
+                        &ldquo;Lee has this incredible ability to simplify complex deals. I&rsquo;ve been learning and doing deals for a couple of years now, and partnering with Lee took everything to the next level. His systems and strategies are proven.&rdquo;
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== DEAL CALCULATOR ========== -->
+    <section id="calculator" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-playfair font-bold mb-6">
+                    Free <span class="gradient-text">Deal Calculator</span>
+                </h2>
+                <p class="text-xl text-gray-300">Use Lee&rsquo;s proven formula to analyze any real estate deal in seconds</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="glass-card p-8 rounded-xl">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Property Value (ARV)</label>
+                                <div class="relative">
+                                    <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                    <input type="number" id="propertyValue" class="w-full bg-ddwl-black border border-gray-600 rounded-lg pl-8 pr-4 py-3 focus:border-ddwl-cyan focus:outline-none" placeholder="250000">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Repair Costs</label>
+                                <div class="relative">
+                                    <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                    <input type="number" id="repairCosts" class="w-full bg-ddwl-black border border-gray-600 rounded-lg pl-8 pr-4 py-3 focus:border-ddwl-cyan focus:outline-none" placeholder="30000">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Holding Costs (months)</label>
+                                <input type="number" id="holdingTime" class="w-full bg-ddwl-black border border-gray-600 rounded-lg px-4 py-3 focus:border-ddwl-cyan focus:outline-none" placeholder="6">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Target Profit Margin (%)</label>
+                                <input type="number" id="profitMargin" class="w-full bg-ddwl-black border border-gray-600 rounded-lg px-4 py-3 focus:border-ddwl-cyan focus:outline-none" placeholder="20" min="10" max="50">
+                            </div>
+                            <button onclick="calculateDeal()" class="w-full bg-ddwl-cyan text-ddwl-black py-3 rounded-lg font-bold hover:bg-ddwl-gold transition-all">
+                                Calculate Max Offer
+                            </button>
+                        </div>
+
+                        <div class="bg-ddwl-black rounded-lg p-6 border border-gray-800">
+                            <h3 class="text-xl font-bold mb-4 text-center">Deal Analysis</h3>
+                            <div id="calculatorResults" class="space-y-4 text-center">
+                                <div class="text-gray-400 py-8">Enter property details to see analysis</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== APPLICATION / CONTACT FORM ========== -->
+    <section id="apply" class="py-24">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl lg:text-5xl font-playfair font-bold mb-6">
+                    Ready to <span class="gradient-text">Do Deals?</span>
+                </h2>
+                <p class="text-xl text-gray-300">Fill out the form below. Lee&rsquo;s team will reach out within 24 hours.</p>
+            </div>
+
+            <form id="applicationForm" class="glass-card p-8 rounded-xl space-y-6">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">First Name *</label>
+                        <input type="text" name="firstName" required class="w-full bg-ddwl-black border border-gray-600 rounded-lg px-4 py-3 focus:border-ddwl-cyan focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">Last Name *</label>
+                        <input type="text" name="lastName" required class="w-full bg-ddwl-black border border-gray-600 rounded-lg px-4 py-3 focus:border-ddwl-cyan focus:outline-none">
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">Email *</label>
+                        <input type="email" name="email" required class="w-full bg-ddwl-black border border-gray-600 rounded-lg px-4 py-3 focus:border-ddwl-cyan focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">Phone *</label>
+                        <input type="tel" name="phone" required class="w-full bg-ddwl-black border border-gray-600 rounded-lg px-4 py-3 focus:border-ddwl-cyan focus:outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold mb-2">I&rsquo;m Interested In</label>
+                    <select name="interest" class="w-full bg-ddwl-black border border-gray-600 rounded-lg px-4 py-3 focus:border-ddwl-cyan focus:outline-none">
+                        <option value="">Select what interests you</option>
+                        <option value="sell-home">Selling My Home to Lee</option>
+                        <option value="do-deal">Doing a Deal With Lee</option>
+                        <option value="fund-deal">Funding a Deal With Lee</option>
+                        <option value="coaching">Private Coaching</option>
+                        <option value="events">Live Events</option>
+                        <option value="education">Student Enrollment / Courses</option>
+                        <option value="careers">Careers at DDWL</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold mb-2">Address</label>
+                    <input type="text" name="address" class="w-full bg-ddwl-black border border-gray-600 rounded-lg px-4 py-3 focus:border-ddwl-cyan focus:outline-none" placeholder="Street address, City, State, Zip">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold mb-2">Tell us about your situation or deal</label>
+                    <textarea name="details" rows="4" class="w-full bg-ddwl-black border border-gray-600 rounded-lg px-4 py-3 focus:border-ddwl-cyan focus:outline-none" placeholder="Property details, investment goals, or questions..."></textarea>
+                </div>
+
+                <div class="flex items-start space-x-3">
+                    <input type="checkbox" name="smsConsent" id="smsConsent" class="mt-1">
+                    <label for="smsConsent" class="text-xs text-gray-400 leading-relaxed">
+                        I Consent to Receive SMS Notifications, Alerts &amp; Occasional Marketing Communication from Do Deals With Lee. Message frequency varies. Message &amp; data rates may apply. Text HELP to (813) 692-5520 for assistance. You can reply STOP to unsubscribe at any time.
+                    </label>
+                </div>
+
+                <button type="submit" class="w-full bg-gradient-to-r from-ddwl-orange to-ddwl-gold text-ddwl-black py-4 rounded-lg font-bold text-lg hover:opacity-90 transition-all">
+                    Send to Lee&rsquo;s Team
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="py-16 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/6990a7630084987c66721a4f.png"
+                         alt="Do Deals With Lee" class="h-12 mb-4">
+                    <p class="text-gray-400 mb-4">Real Estate Investing Expert. Coaching &amp; Live Events. Tampa, Florida.</p>
+                    <a href="https://www.facebook.com/groups/425007186734068" target="_blank" rel="noopener" class="inline-flex items-center space-x-2 text-blue-400 hover:text-blue-300 transition-colors text-sm">
+                        <i data-lucide="users" class="w-4 h-4"></i>
+                        <span>Facebook Group</span>
+                    </a>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4">Homeowners</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="/sellnow" class="hover:text-ddwl-orange transition-colors">Sell Your Home</a></li>
+                        <li><a href="/sellform" class="hover:text-ddwl-orange transition-colors">Get Cash Offer</a></li>
+                    </ul>
+
+                    <h4 class="font-bold mb-4 mt-6">Investors</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="/events" class="hover:text-ddwl-cyan transition-colors">Live Events</a></li>
+                        <li><a href="/coaching" class="hover:text-ddwl-cyan transition-colors">Private Coaching</a></li>
+                        <li><a href="/do_a_deal_with_lee_now" class="hover:text-ddwl-cyan transition-colors">Do a Deal</a></li>
+                        <li><a href="/fund-a-deal-with-lee" class="hover:text-ddwl-cyan transition-colors">Fund a Deal</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4">Team Portals</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="/careeer" class="hover:text-ddwl-cyan transition-colors">Careers</a></li>
+                        <li><a href="/onboardingportal" class="hover:text-ddwl-cyan transition-colors">Onboarding</a></li>
+                        <li><a href="/adminportal" class="hover:text-ddwl-cyan transition-colors">Admin Dashboard</a></li>
+                        <li><a href="/studentenrollment" class="hover:text-ddwl-cyan transition-colors">Student Enrollment</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4">Contact</h4>
+                    <div class="space-y-3 text-gray-400 text-sm">
+                        <div class="flex items-center space-x-2">
+                            <i data-lucide="mail" class="w-4 h-4"></i>
+                            <a href="mailto:info@dodealswithlee.com" class="hover:text-ddwl-cyan transition-colors">info@dodealswithlee.com</a>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i data-lucide="phone" class="w-4 h-4"></i>
+                            <a href="tel:8136750916" class="hover:text-ddwl-cyan transition-colors">813-675-0916</a>
+                        </div>
+                        <div class="flex items-start space-x-2">
+                            <i data-lucide="map-pin" class="w-4 h-4 mt-1"></i>
+                            <span>PO Box 172566<br>Tampa FL 33672</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                <p>&copy; 2025 Do Deals with Lee&trade; All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="/privacy_policy" class="hover:text-gray-300 transition-colors">Privacy Policy</a>
+                    <a href="/Terms_of_Service" class="hover:text-gray-300 transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast fixed top-20 right-6 z-50 glass-card p-4 rounded-lg max-w-sm">
+        <div class="flex items-center space-x-3">
+            <div id="toastIcon" class="w-8 h-8 rounded-full flex items-center justify-center">
+                <i id="toastIconSymbol" class="w-5 h-5"></i>
+            </div>
+            <div>
+                <div id="toastTitle" class="font-semibold"></div>
+                <div id="toastMessage" class="text-sm text-gray-400"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Font Loading -->
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script>
+        WebFont.load({
+            google: { families: ['Inter:300,400,500,600,700,800,900', 'Playfair Display:400,600,700,800'] },
+            active: function() { document.body.style.fontFamily = "'Inter', system-ui, sans-serif"; }
+        });
+    </script>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero animations
+        gsap.from(".cta-pill", { duration: 1, y: 40, opacity: 0, stagger: 0.2, ease: "power2.out" });
+        gsap.from(".stat-pill", { duration: 0.8, y: 20, opacity: 0, stagger: 0.1, ease: "power2.out", delay: 0.5 });
+
+        // Scroll animations for cards
+        gsap.utils.toArray('.service-card, .portal-card, .glass-card').forEach(function(card) {
+            gsap.from(card, {
+                scrollTrigger: { trigger: card, start: "top 85%" },
+                y: 40,
+                opacity: 0,
+                duration: 0.7,
+                ease: "power2.out"
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                var target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Close mobile menu
+                    document.getElementById('mobMenu').classList.add('hidden');
+                }
+            });
+        });
+
+        // Deal Calculator
+        function calculateDeal() {
+            var propertyValue = parseFloat(document.getElementById('propertyValue').value) || 0;
+            var repairCosts = parseFloat(document.getElementById('repairCosts').value) || 0;
+            var holdingTime = parseFloat(document.getElementById('holdingTime').value) || 0;
+            var profitMargin = parseFloat(document.getElementById('profitMargin').value) || 20;
+
+            if (propertyValue === 0) {
+                showToast('Error', 'Please enter a property value', 'error');
+                return;
+            }
+
+            var holdingCosts = (propertyValue * 0.01) * holdingTime;
+            var desiredProfit = propertyValue * (profitMargin / 100);
+            var safetyBuffer = propertyValue * 0.05;
+            var closingCosts = propertyValue * 0.03;
+
+            var maxOffer = propertyValue - repairCosts - holdingCosts - desiredProfit - safetyBuffer - closingCosts;
+            var potentialProfit = propertyValue - maxOffer - repairCosts - holdingCosts - closingCosts;
+            var roi = ((potentialProfit / maxOffer) * 100);
+
+            var resultsDiv = document.getElementById('calculatorResults');
+            resultsDiv.innerHTML =
+                '<div class="space-y-3">' +
+                    '<div class="bg-ddwl-cyan text-ddwl-black p-4 rounded-lg font-bold text-xl text-center">' +
+                        'Max Offer: $' + maxOffer.toLocaleString() +
+                    '</div>' +
+                    '<div class="text-left space-y-3 text-sm mt-4">' +
+                        '<div class="flex justify-between"><span class="text-gray-400">Potential Profit:</span><span class="text-ddwl-gold font-bold">$' + potentialProfit.toLocaleString() + '</span></div>' +
+                        '<div class="flex justify-between"><span class="text-gray-400">ROI:</span><span class="text-ddwl-gold font-bold">' + roi.toFixed(1) + '%</span></div>' +
+                        '<div class="flex justify-between"><span class="text-gray-400">Holding Costs:</span><span>$' + holdingCosts.toLocaleString() + '</span></div>' +
+                        '<div class="flex justify-between"><span class="text-gray-400">Closing Costs:</span><span>$' + closingCosts.toLocaleString() + '</span></div>' +
+                        '<div class="flex justify-between"><span class="text-gray-400">Safety Buffer:</span><span>$' + safetyBuffer.toLocaleString() + '</span></div>' +
+                    '</div>' +
+                    '<div class="text-xs text-gray-500 italic mt-4 text-center">' +
+                        '"This is my proven formula after 7,000+ deals" &mdash; Lee' +
+                    '</div>' +
+                '</div>';
+        }
+
+        // Form submission
+        document.getElementById('applicationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            var formData = new FormData(this);
+            var data = {};
+            formData.forEach(function(value, key) { data[key] = value; });
+
+            data._form_type = 'homepage_inquiry';
+            data._submitted_at = new Date().toISOString();
+            data._source = 'dodealswithlee.com/logo4 (Premium Metal)';
+
+            var form = this;
+
+            fetch('https://services.leadconnectorhq.com/hooks/KbiucErIMNPbO1mY4qXL/webhook-trigger/mCdlXsgchQ4v9BQeIa9E', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            }).then(function(response) {
+                if (response.ok) {
+                    showToast('Success!', 'Submitted! We will contact you within 24 hours.', 'success');
+                    form.reset();
+                } else {
+                    throw new Error('Webhook failed');
+                }
+            }).catch(function() {
+                var emails = ['lilly@dodealswithlee.com', 'daniel@exposuresolutions.me', 'admin@dodealswithlee.com'];
+                emails.forEach(function(email) {
+                    fetch('https://formsubmit.co/ajax/' + email, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    }).catch(function() {});
+                });
+                showToast('Submitted!', 'Application received. We will be in touch.', 'success');
+                form.reset();
+            });
+        });
+
+        // Toast notification
+        function showToast(title, message, type) {
+            var toast = document.getElementById('toast');
+            var icon = document.getElementById('toastIcon');
+            var iconSymbol = document.getElementById('toastIconSymbol');
+            document.getElementById('toastTitle').textContent = title;
+            document.getElementById('toastMessage').textContent = message;
+
+            if (type === 'success') {
+                icon.className = 'w-8 h-8 bg-green-500 rounded-full flex items-center justify-center';
+                iconSymbol.setAttribute('data-lucide', 'check');
+            } else if (type === 'error') {
+                icon.className = 'w-8 h-8 bg-red-500 rounded-full flex items-center justify-center';
+                iconSymbol.setAttribute('data-lucide', 'x');
+            } else {
+                icon.className = 'w-8 h-8 bg-ddwl-cyan rounded-full flex items-center justify-center';
+                iconSymbol.setAttribute('data-lucide', 'info');
+            }
+
+            lucide.createIcons();
+            toast.classList.add('show');
+            setTimeout(function() { toast.classList.remove('show'); }, 5000);
+        }
+    </script>
+</body>
+</html>

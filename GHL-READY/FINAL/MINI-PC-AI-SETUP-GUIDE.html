@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Workstation Setup Guide | Exposure Solutions</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        @media print {
+            body { font-size: 11pt; }
+            .page-break { page-break-before: always; }
+            .no-print { display: none; }
+            .cover { min-height: auto; padding: 3rem 2rem; }
+            section { padding: 1.5rem 2rem; }
+            h1 { font-size: 24pt; }
+            h2 { font-size: 16pt; }
+            h3 { font-size: 13pt; }
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: #fff;
+            color: #1a1a1a;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .cover {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #fff;
+        }
+
+        .cover-logo {
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #00E5FF;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .cover h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .cover h1 span { color: #00E5FF; }
+
+        .cover .subtitle {
+            font-size: 1.1rem;
+            color: #aaa;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .cover-meta {
+            display: flex;
+            gap: 2rem;
+            color: #888;
+            font-size: 0.85rem;
+            margin-top: 2rem;
+        }
+
+        .cover-meta div { text-align: center; }
+        .cover-meta strong { color: #00E5FF; display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+
+        .toc {
+            padding: 3rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .toc h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #00E5FF;
+        }
+
+        .toc ol { padding-left: 1.5rem; }
+        .toc li { margin-bottom: 0.5rem; font-size: 0.95rem; }
+        .toc a { color: #1a1a1a; text-decoration: none; }
+        .toc a:hover { color: #00E5FF; }
+
+        section {
+            padding: 2.5rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #00E5FF;
+            color: #0a0a0a;
+        }
+
+        h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin: 1.5rem 0 0.75rem;
+            color: #16213e;
+        }
+
+        h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 1rem 0 0.5rem;
+            color: #333;
+        }
+
+        p { margin-bottom: 0.75rem; }
+
+        ul, ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+        li { margin-bottom: 0.4rem; }
+
+        code {
+            background: #f0f4f8;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #d63384;
+        }
+
+        pre {
+            background: #1a1a2e;
+            color: #e0e0e0;
+            padding: 1rem 1.25rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+
+        .step-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid #00E5FF;
+            padding: 1rem 1.25rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+        }
+
+        .warning-box {
+            background: #fff8f0;
+            border: 1px solid #fed7aa;
+            border-left: 4px solid #f97316;
+            padding: 1rem 1.25rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+        }
+
+        .warning-box strong { color: #c2410c; }
+
+        .security-box {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-left: 4px solid #22c55e;
+            padding: 1rem 1.25rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+        }
+
+        .security-box strong { color: #15803d; }
+
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .checklist li {
+            padding: 0.4rem 0 0.4rem 2rem;
+            position: relative;
+        }
+
+        .checklist li::before {
+            content: '\2610';
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+            color: #00E5FF;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            padding: 0.6rem 0.8rem;
+            text-align: left;
+            border: 1px solid #e2e8f0;
+        }
+
+        th {
+            background: #1a1a2e;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        tr:nth-child(even) { background: #f8fafc; }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: #888;
+            font-size: 0.8rem;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 2rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-free { background: #dcfce7; color: #166534; }
+        .badge-paid { background: #fef3c7; color: #92400e; }
+        .badge-security { background: #dbeafe; color: #1e40af; }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: #00E5FF;
+            color: #0a0a0a;
+            border-radius: 50%;
+            font-weight: 800;
+            font-size: 0.85rem;
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+
+        .white-label-note {
+            background: linear-gradient(135deg, #f0f4ff, #e8f0fe);
+            border: 1px solid #c3d4f7;
+            border-left: 4px solid #3b82f6;
+            padding: 1rem 1.25rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+        }
+
+        .white-label-note strong { color: #1d4ed8; }
+    </style>
+</head>
+<body>
+
+<!-- ==================== COVER PAGE ==================== -->
+<div class="cover">
+    <div class="cover-logo">Exposure Solutions</div>
+    <h1>AI Workstation<br><span>Setup Guide</span></h1>
+    <p class="subtitle">
+        Step-by-step guide to setting up Windsurf, Open Interpreter, and a secure AI agent
+        on a mini PC. Includes white-label deployment process for client systems.
+    </p>
+    <div class="cover-meta">
+        <div><strong>Version</strong>1.0</div>
+        <div><strong>Date</strong>February 15, 2026</div>
+        <div><strong>For</strong>DDWL / Exposure Solutions</div>
+        <div><strong>Classification</strong>Internal + Client Deployable</div>
+    </div>
+</div>
+
+<!-- ==================== TABLE OF CONTENTS ==================== -->
+<div class="toc page-break">
+    <h2>Table of Contents</h2>
+    <ol>
+        <li><a href="#prereqs">Prerequisites &amp; Hardware Check</a></li>
+        <li><a href="#windows">Windows 10 Optimization for AI Workloads</a></li>
+        <li><a href="#security">Security Hardening (Before Installing Anything)</a></li>
+        <li><a href="#python">Python Environment Setup</a></li>
+        <li><a href="#windsurf">Windsurf IDE Installation &amp; Configuration</a></li>
+        <li><a href="#openinterpreter">Open Interpreter Setup (Lee AI / Client Agent)</a></li>
+        <li><a href="#apikeys">API Keys &amp; Environment Variables</a></li>
+        <li><a href="#skills">Windsurf Skills &amp; Agent Configuration</a></li>
+        <li><a href="#mcp">MCP Servers &amp; Tool Connections</a></li>
+        <li><a href="#agent-security">Agent Security &amp; Permissions</a></li>
+        <li><a href="#testing">Testing &amp; Verification Checklist</a></li>
+        <li><a href="#whitelabel">White-Label Client Deployment Process</a></li>
+        <li><a href="#maintenance">Ongoing Maintenance &amp; Upgrades</a></li>
+        <li><a href="#troubleshooting">Troubleshooting</a></li>
+    </ol>
+</div>
+
+<!-- ==================== SECTION 1: PREREQUISITES ==================== -->
+<section id="prereqs" class="page-break">
+    <h2>1. Prerequisites &amp; Hardware Check</h2>
+
+    <h3>Minimum Hardware Requirements</h3>
+    <table>
+        <tr><th>Component</th><th>Minimum</th><th>Recommended</th></tr>
+        <tr><td>CPU</td><td>Intel i3 / AMD Ryzen 3 (4 cores)</td><td>Intel i5 / Ryzen 5 (6+ cores)</td></tr>
+        <tr><td>RAM</td><td>8 GB</td><td>16 GB</td></tr>
+        <tr><td>Storage</td><td>50 GB free (SSD preferred)</td><td>100 GB+ free SSD</td></tr>
+        <tr><td>OS</td><td>Windows 10 (21H2+)</td><td>Windows 10 22H2 or Windows 11</td></tr>
+        <tr><td>Internet</td><td>10 Mbps stable</td><td>50 Mbps+</td></tr>
+        <tr><td>GPU</td><td>Not required (API-based AI)</td><td>Any NVIDIA GPU (for local models later)</td></tr>
+    </table>
+
+    <div class="step-box">
+        <strong>Key insight:</strong> We use cloud AI APIs (Claude, Gemini, Groq) so the mini PC doesn't need a powerful GPU. The PC is the <em>command center</em>, not the AI brain. The brain runs in the cloud.
+    </div>
+
+    <h3>Check Your System</h3>
+    <p>Open PowerShell and run:</p>
+    <pre><code># Check Windows version
+winver
+
+# Check RAM
+systeminfo | findstr "Total Physical Memory"
+
+# Check disk space
+Get-PSDrive C | Select-Object Used, Free, @{N='Free_GB';E={[math]::Round($_.Free/1GB,1)}}
+
+# Check CPU
+wmic cpu get name, numberofcores, numberoflogicalprocessors</code></pre>
+
+    <div class="warning-box">
+        <strong>If RAM is 4 GB or less:</strong> This setup will be very slow. Consider upgrading RAM (usually cheap for mini PCs) or using a cloud VM instead. The minimum viable RAM is 8 GB.
+    </div>
+
+    <h3>Software You'll Need (All Free)</h3>
+    <ul class="checklist">
+        <li>Python 3.11+ (free)</li>
+        <li>Windsurf IDE (free tier available)</li>
+        <li>Git (free)</li>
+        <li>Open Interpreter (free, open source)</li>
+        <li>A modern browser (Chrome/Edge/Brave)</li>
+    </ul>
+</section>
+
+<!-- ==================== SECTION 2: WINDOWS OPTIMIZATION ==================== -->
+<section id="windows" class="page-break">
+    <h2>2. Windows 10 Optimization for AI Workloads</h2>
+
+    <p>Old mini PCs need every bit of performance. Run these optimizations before installing AI tools.</p>
+
+    <h3>Step 2.1 &mdash; Disable Startup Bloat</h3>
+    <pre><code># Open Task Manager &gt; Startup tab
+# Disable everything except:
+#   - Windows Security
+#   - Audio drivers (if needed)
+# Right-click each item &gt; Disable</code></pre>
+
+    <h3>Step 2.2 &mdash; Disable Unnecessary Services</h3>
+    <pre><code># Open PowerShell as Administrator
+# Disable telemetry and tracking
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection" -Name "AllowTelemetry" -Value 0
+
+# Disable Windows Search indexing (saves CPU + disk)
+Stop-Service WSearch
+Set-Service WSearch -StartupType Disabled
+
+# Disable Superfetch/SysMain (helps on slow SSDs/HDDs)
+Stop-Service SysMain
+Set-Service SysMain -StartupType Disabled</code></pre>
+
+    <h3>Step 2.3 &mdash; Set Power Plan to High Performance</h3>
+    <pre><code>powercfg /setactive 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c</code></pre>
+
+    <h3>Step 2.4 &mdash; Clean Up Disk Space</h3>
+    <pre><code># Run Disk Cleanup
+cleanmgr /d C
+
+# Clear temp files
+Remove-Item "$env:TEMP\*" -Recurse -Force -ErrorAction SilentlyContinue
+Remove-Item "C:\Windows\Temp\*" -Recurse -Force -ErrorAction SilentlyContinue
+
+# Clear Windows Update cache (if space is critical)
+Stop-Service wuauserv
+Remove-Item "C:\Windows\SoftwareDistribution\Download\*" -Recurse -Force
+Start-Service wuauserv</code></pre>
+
+    <h3>Step 2.5 &mdash; Virtual Memory (Swap)</h3>
+    <p>If RAM is 8 GB, increase the page file:</p>
+    <ol>
+        <li>System Properties &gt; Advanced &gt; Performance Settings &gt; Advanced &gt; Virtual Memory</li>
+        <li>Uncheck "Automatically manage"</li>
+        <li>Set Custom Size: Initial = 8192 MB, Maximum = 16384 MB</li>
+        <li>Click Set &gt; OK &gt; Restart</li>
+    </ol>
+
+    <div class="white-label-note">
+        <strong>White-Label Note:</strong> For client deployments, create a PowerShell script that runs all optimization steps automatically. Save as <code>optimize-ai-workstation.ps1</code> in the client's setup folder.
+    </div>
+</section>
+
+<!-- ==================== SECTION 3: SECURITY ==================== -->
+<section id="security" class="page-break">
+    <h2>3. Security Hardening</h2>
+
+    <div class="security-box">
+        <strong>Security Philosophy:</strong> Lock down the system, but give the AI agent a controlled sandbox to work in. The agent can learn and do serious work <em>within its boundaries</em>. It cannot touch system files, other users' data, or make unauthorized network requests.
+    </div>
+
+    <h3>Step 3.1 &mdash; Create a Dedicated AI User Account</h3>
+    <pre><code># PowerShell as Administrator
+# Create a standard (non-admin) user for the AI workstation
+net user AIAgent StrongPassword123! /add
+# Do NOT add to Administrators group
+
+# Create a workspace folder the AI user owns
+mkdir C:\AIWorkspace
+icacls C:\AIWorkspace /grant AIAgent:(OI)(CI)F</code></pre>
+
+    <div class="step-box">
+        <strong>Why:</strong> The AI agent runs under a standard user account. It can read/write its workspace but cannot install software, modify system settings, or access other users' files.
+    </div>
+
+    <h3>Step 3.2 &mdash; Windows Firewall Rules</h3>
+    <pre><code># Allow outbound HTTPS (APIs need this)
+New-NetFirewallRule -DisplayName "AI-Allow-HTTPS" -Direction Outbound -Protocol TCP -RemotePort 443 -Action Allow -Profile Any
+
+# Allow outbound to specific AI API domains (optional, stricter)
+# Claude: api.anthropic.com
+# ElevenLabs: api.elevenlabs.io
+# Google: generativelanguage.googleapis.com
+# Groq: api.groq.com
+# GHL: services.leadconnectorhq.com
+
+# Block all other outbound from AI workspace (optional, very strict)
+# New-NetFirewallRule -DisplayName "AI-Block-Other" -Direction Outbound -Action Block -Program "C:\AIWorkspace\*"</code></pre>
+
+    <h3>Step 3.3 &mdash; Windows Defender Configuration</h3>
+    <pre><code># Ensure Defender is active
+Set-MpPreference -DisableRealtimeMonitoring $false
+
+# Add AI workspace to monitored folders
+Add-MpPreference -ControlledFolderAccessAllowedApplications "C:\AIWorkspace\python.exe"
+
+# Enable controlled folder access (ransomware protection)
+Set-MpPreference -EnableControlledFolderAccess Enabled</code></pre>
+
+    <h3>Step 3.4 &mdash; Environment Variable Security</h3>
+    <div class="warning-box">
+        <strong>CRITICAL:</strong> API keys must NEVER be hardcoded in scripts. Always use <code>.env</code> files with restricted permissions.
+    </div>
+    <pre><code># Create .env file with restricted permissions
+New-Item C:\AIWorkspace\.env -ItemType File
+icacls C:\AIWorkspace\.env /inheritance:r
+icacls C:\AIWorkspace\.env /grant AIAgent:R
+icacls C:\AIWorkspace\.env /grant SYSTEM:F
+
+# .env file should NOT be readable by other users
+# .env file should be in .gitignore if using Git</code></pre>
+
+    <h3>Step 3.5 &mdash; Git Security</h3>
+    <pre><code># Configure git to never commit secrets
+# Create global gitignore
+echo ".env" &gt;&gt; C:\Users\AIAgent\.gitignore_global
+echo "*.key" &gt;&gt; C:\Users\AIAgent\.gitignore_global
+echo "*.pem" &gt;&gt; C:\Users\AIAgent\.gitignore_global
+echo "credentials.json" &gt;&gt; C:\Users\AIAgent\.gitignore_global
+echo "token.json" &gt;&gt; C:\Users\AIAgent\.gitignore_global
+git config --global core.excludesfile C:\Users\AIAgent\.gitignore_global</code></pre>
+
+    <h3>Security Checklist</h3>
+    <ul class="checklist">
+        <li>Dedicated non-admin user account created</li>
+        <li>AI workspace folder with proper permissions</li>
+        <li>Windows Defender active with controlled folder access</li>
+        <li>Firewall allows only HTTPS outbound</li>
+        <li>.env file with restricted read permissions</li>
+        <li>Git configured to ignore secrets</li>
+        <li>Windows Update enabled (security patches)</li>
+        <li>BitLocker enabled on drive (if available)</li>
+    </ul>
+</section>
+
+<!-- ==================== SECTION 4: PYTHON ==================== -->
+<section id="python" class="page-break">
+    <h2>4. Python Environment Setup</h2>
+
+    <h3>Step 4.1 &mdash; Install Python 3.11+</h3>
+    <ol>
+        <li>Download from <code>python.org/downloads</code></li>
+        <li><strong>IMPORTANT:</strong> Check "Add Python to PATH" during install</li>
+        <li>Choose "Customize installation" &gt; check all optional features</li>
+        <li>Install for all users (if admin) or current user only</li>
+    </ol>
+
+    <h3>Step 4.2 &mdash; Verify Installation</h3>
+    <pre><code>python --version    # Should show 3.11+
+pip --version       # Should show pip 23+</code></pre>
+
+    <h3>Step 4.3 &mdash; Create Virtual Environment</h3>
+    <pre><code># Navigate to workspace
+cd C:\AIWorkspace
+
+# Create virtual environment
+python -m venv ai-env
+
+# Activate it
+.\ai-env\Scripts\Activate.ps1
+
+# Upgrade pip
+python -m pip install --upgrade pip</code></pre>
+
+    <div class="security-box">
+        <strong>Security:</strong> Always use a virtual environment. This isolates AI packages from the system Python and prevents dependency conflicts or supply-chain attacks from affecting the OS.
+    </div>
+
+    <h3>Step 4.4 &mdash; Install Core Packages</h3>
+    <pre><code># Activate venv first!
+.\ai-env\Scripts\Activate.ps1
+
+# Core AI packages (all free/open-source)
+pip install open-interpreter
+pip install anthropic
+pip install elevenlabs
+pip install python-dotenv
+pip install flask flask-cors
+pip install requests
+
+# Optional but useful
+pip install rich          # Beautiful terminal output
+pip install httpx         # Async HTTP client
+pip install pydantic      # Data validation</code></pre>
+
+    <h3>Step 4.5 &mdash; Verify Packages</h3>
+    <pre><code>pip list | findstr "open-interpreter anthropic elevenlabs flask"</code></pre>
+
+    <div class="white-label-note">
+        <strong>White-Label Note:</strong> Create a <code>requirements.txt</code> for each client deployment. Pin exact versions to ensure reproducibility: <code>pip freeze &gt; requirements.txt</code>
+    </div>
+</section>
+
+<!-- ==================== SECTION 5: WINDSURF ==================== -->
+<section id="windsurf" class="page-break">
+    <h2>5. Windsurf IDE Installation &amp; Configuration</h2>
+
+    <h3>Step 5.1 &mdash; Download &amp; Install</h3>
+    <ol>
+        <li>Go to <code>windsurf.com</code></li>
+        <li>Download the Windows installer</li>
+        <li>Run the installer &mdash; default settings are fine</li>
+        <li>Launch Windsurf</li>
+        <li>Sign up / log in (free tier works)</li>
+    </ol>
+
+    <h3>Step 5.2 &mdash; First Launch Configuration</h3>
+    <ol>
+        <li>Choose your theme (Dark recommended)</li>
+        <li>Import VS Code settings if prompted (optional)</li>
+        <li>Set default terminal to PowerShell</li>
+    </ol>
+
+    <h3>Step 5.3 &mdash; Essential Settings</h3>
+    <p>Open Settings (Ctrl+,) and configure:</p>
+    <pre><code>{
+    "editor.fontSize": 14,
+    "editor.wordWrap": "on",
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000,
+    "telemetry.telemetryLevel": "off",
+    "update.mode": "manual",
+    "extensions.autoUpdate": false
+}</code></pre>
+
+    <h3>Step 5.4 &mdash; Essential Extensions (Minimal)</h3>
+    <p>Keep it lean on a slow PC. Only install what you need:</p>
+    <table>
+        <tr><th>Extension</th><th>Why</th><th>Required?</th></tr>
+        <tr><td>Python</td><td>Python language support</td><td>Yes</td></tr>
+        <tr><td>Pylance</td><td>Python IntelliSense</td><td>Yes</td></tr>
+        <tr><td>GitLens</td><td>Git history &amp; blame</td><td>Optional</td></tr>
+        <tr><td>Markdown Preview</td><td>View .md files</td><td>Built-in</td></tr>
+    </table>
+
+    <div class="warning-box">
+        <strong>Performance tip:</strong> Do NOT install more than 10 extensions on a slow mini PC. Each extension uses RAM and CPU. Windsurf's built-in Cascade AI replaces most extension functionality.
+    </div>
+
+    <h3>Step 5.5 &mdash; Open the AI Workspace</h3>
+    <pre><code># In Windsurf: File &gt; Open Folder &gt; C:\AIWorkspace</code></pre>
+</section>
+
+<!-- ==================== SECTION 6: OPEN INTERPRETER ==================== -->
+<section id="openinterpreter" class="page-break">
+    <h2>6. Open Interpreter Setup</h2>
+
+    <p>Open Interpreter lets the AI agent control the computer using natural language. It can run code, manage files, browse the web, and automate tasks &mdash; all from a chat interface.</p>
+
+    <div class="step-box">
+        <strong>What is Open Interpreter?</strong> It's like ChatGPT, but it can actually <em>do things</em> on your computer. It writes and runs code, manages files, installs packages, and controls applications. 55,000+ GitHub stars. Free. Open source.
+    </div>
+
+    <h3>Step 6.1 &mdash; Install (Already Done in Step 4.4)</h3>
+    <pre><code># Should already be installed. Verify:
+interpreter --version</code></pre>
+
+    <h3>Step 6.2 &mdash; First Run &amp; Model Configuration</h3>
+    <pre><code># Start Open Interpreter with Gemini (free)
+interpreter --model gemini/gemini-2.0-flash
+
+# Or with Claude (paid, better quality)
+interpreter --model claude-sonnet-4-20250514
+
+# Or with Groq (free, fastest)
+interpreter --model groq/llama-3.3-70b-versatile</code></pre>
+
+    <h3>Step 6.3 &mdash; Create a Configuration Profile</h3>
+    <p>Create <code>C:\AIWorkspace\.interpreter\profiles\default.yaml</code>:</p>
+    <pre><code># C:\AIWorkspace\.interpreter\profiles\default.yaml
+llm:
+  model: "gemini/gemini-2.0-flash"    # Free tier, good enough for most tasks
+  api_key_env: "GOOGLE_API_KEY"        # Read from .env
+  temperature: 0.3                     # Lower = more deterministic
+  max_tokens: 4096
+
+computer:
+  language: "python"                   # Default execution language
+  
+safe_mode: "auto"                      # Ask before running dangerous commands
+auto_run: false                        # Don't auto-execute code (safety first)
+verbose: false                         # Keep output clean</code></pre>
+
+    <h3>Step 6.4 &mdash; Create the Lee AI Agent Profile</h3>
+    <p>Create <code>C:\AIWorkspace\.interpreter\profiles\lee-ai.yaml</code>:</p>
+    <pre><code># Lee AI Agent Profile
+llm:
+  model: "gemini/gemini-2.0-flash"
+  api_key_env: "GOOGLE_API_KEY"
+  temperature: 0.3
+  max_tokens: 4096
+  context_window: 128000
+
+system_message: |
+  You are Lee AI, the digital assistant for Do Deals with Lee.
+  You help manage the DDWL business by:
+  - Managing files and documents in C:\AIWorkspace
+  - Running Python scripts for data analysis
+  - Generating reports and content
+  - Automating repetitive tasks
+  - Managing GHL CRM via API calls
+  
+  RULES:
+  - Only work within C:\AIWorkspace directory
+  - Never modify system files
+  - Always confirm before deleting files
+  - Log all actions to C:\AIWorkspace\logs\agent-log.txt
+  - Never expose API keys in output
+
+safe_mode: "auto"
+auto_run: false
+verbose: true</code></pre>
+
+    <h3>Step 6.5 &mdash; Run Lee AI</h3>
+    <pre><code># Activate the virtual environment
+cd C:\AIWorkspace
+.\ai-env\Scripts\Activate.ps1
+
+# Run with the Lee AI profile
+interpreter --profile lee-ai
+
+# You can now chat with Lee AI and it will execute tasks on the PC
+# Example: "Create a folder called reports and generate a summary of today's deals"</code></pre>
+
+    <div class="security-box">
+        <strong>Security:</strong> <code>safe_mode: "auto"</code> means Open Interpreter will ask for confirmation before running potentially dangerous commands (file deletion, network requests, system changes). Set to <code>"off"</code> only for fully trusted automated pipelines.
+    </div>
+
+    <h3>Step 6.6 &mdash; Create a Quick-Launch Script</h3>
+    <p>Create <code>C:\AIWorkspace\start-lee-ai.bat</code>:</p>
+    <pre><code>@echo off
+echo ========================================
+echo   LEE AI - Do Deals with Lee
+echo   Powered by Open Interpreter
+echo ========================================
+cd C:\AIWorkspace
+call ai-env\Scripts\activate.bat
+interpreter --profile lee-ai</code></pre>
+
+    <div class="white-label-note">
+        <strong>White-Label Note:</strong> For each client, create a custom profile YAML with their business name, system message, and rules. The <code>.bat</code> launcher can be branded with their company name. Place a shortcut on the desktop.
+    </div>
+</section>
+
+<!-- ==================== SECTION 7: API KEYS ==================== -->
+<section id="apikeys" class="page-break">
+    <h2>7. API Keys &amp; Environment Variables</h2>
+
+    <h3>Step 7.1 &mdash; Create the .env File</h3>
+    <p>Create <code>C:\AIWorkspace\.env</code>:</p>
+    <pre><code># ============================================
+# AI WORKSTATION - API KEYS
+# DO NOT SHARE THIS FILE
+# DO NOT COMMIT TO GIT
+# ============================================
+
+# LLM Providers
+ANTHROPIC_API_KEY=sk-ant-xxxxx          # Claude (paid, best quality)
+GOOGLE_API_KEY=AIzaSyxxxxx              # Gemini (free tier)
+GROQ_API_KEY=gsk_xxxxx                  # Groq (free, fastest)
+OPENROUTER_API_KEY=sk-or-xxxxx          # OpenRouter (free models)
+
+# Voice
+ELEVENLABS_API_KEY=xxxxx                # ElevenLabs (paid Starter)
+LEE_VOICE_ID=6HrHqiq7ijVOY0eVOKhz      # Lee's cloned voice
+
+# CRM
+GHL_API_KEY=pit-xxxxx                   # GoHighLevel
+GHL_LOCATION_ID=xxxxx                   # GHL sub-account ID
+
+# GHL Webhook
+GHL_WEBHOOK_URL=https://services.leadconnectorhq.com/hooks/xxxxx/webhook-trigger/xxxxx</code></pre>
+
+    <h3>Step 7.2 &mdash; Get Free API Keys</h3>
+    <table>
+        <tr><th>Service</th><th>URL</th><th>Cost</th><th>What You Get</th></tr>
+        <tr><td>Google AI Studio</td><td>aistudio.google.com</td><td><span class="badge badge-free">FREE</span></td><td>Gemini Flash, generous limits</td></tr>
+        <tr><td>Groq</td><td>console.groq.com</td><td><span class="badge badge-free">FREE</span></td><td>Llama 70B at 300+ tok/s</td></tr>
+        <tr><td>OpenRouter</td><td>openrouter.ai</td><td><span class="badge badge-free">FREE</span></td><td>Free models + paid routing</td></tr>
+        <tr><td>Anthropic</td><td>console.anthropic.com</td><td><span class="badge badge-paid">PAID</span></td><td>Claude (best quality)</td></tr>
+        <tr><td>ElevenLabs</td><td>elevenlabs.io</td><td><span class="badge badge-paid">PAID</span></td><td>Voice cloning</td></tr>
+    </table>
+
+    <h3>Step 7.3 &mdash; Load Environment Variables</h3>
+    <pre><code># In Python scripts, always use:
+from dotenv import load_dotenv
+import os
+
+load_dotenv("C:\\AIWorkspace\\.env")
+api_key = os.getenv("ANTHROPIC_API_KEY")</code></pre>
+
+    <pre><code># In PowerShell, load .env manually:
+Get-Content C:\AIWorkspace\.env | ForEach-Object {
+    if ($_ -match "^([^#][^=]+)=(.+)$") {
+        [Environment]::SetEnvironmentVariable($matches[1].Trim(), $matches[2].Trim(), "Process")
+    }
+}</code></pre>
+</section>
+
+<!-- ==================== SECTION 8: SKILLS ==================== -->
+<section id="skills" class="page-break">
+    <h2>8. Windsurf Skills &amp; Agent Configuration</h2>
+
+    <p>Windsurf Skills are modular capability packages that teach Cascade (the AI) how to handle specific tasks. They load on demand, saving tokens.</p>
+
+    <h3>Step 8.1 &mdash; Create Skills Directory</h3>
+    <pre><code>mkdir C:\AIWorkspace\.windsurf\skills\client-management
+mkdir C:\AIWorkspace\.windsurf\skills\voice-generation
+mkdir C:\AIWorkspace\.windsurf\skills\smart-routing
+mkdir C:\AIWorkspace\.windsurf\workflows</code></pre>
+
+    <h3>Step 8.2 &mdash; Create Core Skills</h3>
+    <p>Each skill is a folder with a <code>SKILL.md</code> file:</p>
+    <pre><code># Example: C:\AIWorkspace\.windsurf\skills\client-management\SKILL.md
+
+---
+name: client-management
+description: Manage CRM operations, contacts, and workflows via GHL API.
+---
+
+## Connection Details
+- API Key: Use GHL_API_KEY from .env
+- Location ID: Use GHL_LOCATION_ID from .env
+
+## Available Operations
+- Search contacts
+- Create/update contacts
+- Send SMS/email
+- Trigger workflows
+- Manage pipelines</code></pre>
+
+    <h3>Step 8.3 &mdash; Create AGENTS.md</h3>
+    <p>Create <code>C:\AIWorkspace\AGENTS.md</code> for project-wide instructions:</p>
+    <pre><code># AI Workstation Rules
+
+## General
+- Always use the virtual environment (ai-env)
+- Load API keys from .env, never hardcode
+- Log all significant actions
+- Ask before deleting files
+
+## Cost Optimization
+- Use Gemini Flash (free) for simple tasks
+- Use Groq (free) for speed-critical tasks
+- Use Claude (paid) only for complex reasoning
+- Track token usage
+
+## Security
+- Stay within C:\AIWorkspace
+- Never expose API keys in output
+- Never modify system files
+- Confirm before destructive actions</code></pre>
+
+    <div class="white-label-note">
+        <strong>White-Label Note:</strong> For each client, customize the skills and AGENTS.md with their specific CRM, business rules, and workflows. The skill structure stays the same &mdash; only the content changes.
+    </div>
+</section>
+
+<!-- ==================== SECTION 9: MCP ==================== -->
+<section id="mcp" class="page-break">
+    <h2>9. MCP Servers &amp; Tool Connections</h2>
+
+    <p>Model Context Protocol (MCP) is the universal connector for AI agents. Think of it as USB ports for AI &mdash; plug in any tool without code changes.</p>
+
+    <h3>Step 9.1 &mdash; Configure MCP in Windsurf</h3>
+    <p>Create or edit <code>C:\AIWorkspace\.vscode\mcp.json</code>:</p>
+    <pre><code>{
+    "servers": {
+        "filesystem": {
+            "command": "npx",
+            "args": ["-y", "@anthropic/mcp-filesystem", "C:\\AIWorkspace"],
+            "description": "Read/write files in the AI workspace"
+        }
+    }
+}</code></pre>
+
+    <h3>Step 9.2 &mdash; Available MCP Servers (Free)</h3>
+    <table>
+        <tr><th>MCP Server</th><th>What It Does</th><th>Install</th></tr>
+        <tr><td>Filesystem</td><td>Read/write local files</td><td><code>npx @anthropic/mcp-filesystem</code></td></tr>
+        <tr><td>GitHub</td><td>Manage repos, issues, PRs</td><td><code>npx @anthropic/mcp-github</code></td></tr>
+        <tr><td>Brave Search</td><td>Web search</td><td><code>npx @anthropic/mcp-brave-search</code></td></tr>
+        <tr><td>SQLite</td><td>Database operations</td><td><code>npx @anthropic/mcp-sqlite</code></td></tr>
+        <tr><td>GHL MCP</td><td>GoHighLevel CRM (269+ tools)</td><td>Already connected via PIT token</td></tr>
+    </table>
+
+    <div class="step-box">
+        <strong>Note:</strong> MCP servers require Node.js. Install from <code>nodejs.org</code> if not already present. Use the LTS version.
+    </div>
+</section>
+
+<!-- ==================== SECTION 10: AGENT SECURITY ==================== -->
+<section id="agent-security" class="page-break">
+    <h2>10. Agent Security &amp; Permissions</h2>
+
+    <h3>The Security Model</h3>
+    <table>
+        <tr><th>Action</th><th>Permission</th><th>Approval</th></tr>
+        <tr><td>Read files in workspace</td><td style="color:green;">ALLOWED</td><td>Auto</td></tr>
+        <tr><td>Write files in workspace</td><td style="color:green;">ALLOWED</td><td>Auto</td></tr>
+        <tr><td>Run Python scripts</td><td style="color:green;">ALLOWED</td><td>Auto</td></tr>
+        <tr><td>Make API calls (HTTPS)</td><td style="color:green;">ALLOWED</td><td>Auto</td></tr>
+        <tr><td>Install pip packages</td><td style="color:orange;">RESTRICTED</td><td>Manual approval</td></tr>
+        <tr><td>Delete files</td><td style="color:orange;">RESTRICTED</td><td>Manual approval</td></tr>
+        <tr><td>Access outside workspace</td><td style="color:red;">BLOCKED</td><td>Never</td></tr>
+        <tr><td>Modify system files</td><td style="color:red;">BLOCKED</td><td>Never</td></tr>
+        <tr><td>Run as Administrator</td><td style="color:red;">BLOCKED</td><td>Never</td></tr>
+        <tr><td>Access other user accounts</td><td style="color:red;">BLOCKED</td><td>Never</td></tr>
+    </table>
+
+    <h3>Open Interpreter Safety Settings</h3>
+    <pre><code># In the profile YAML:
+safe_mode: "auto"     # Ask before dangerous commands
+auto_run: false       # Never auto-execute without review
+
+# In AGENTS.md or system prompt:
+# - Only work within C:\AIWorkspace
+# - Never use 'rm -rf' or 'del /s /q' without confirmation
+# - Never modify Windows registry
+# - Never disable security software
+# - Log all file modifications</code></pre>
+
+    <h3>Audit Logging</h3>
+    <pre><code># Create a logging directory
+mkdir C:\AIWorkspace\logs
+
+# All agent actions should append to:
+# C:\AIWorkspace\logs\agent-log.txt
+# Format: [TIMESTAMP] [ACTION] [DETAILS]
+# Example: [2026-02-15 11:30:00] [FILE_CREATE] Created reports/daily-summary.md</code></pre>
+
+    <div class="security-box">
+        <strong>The balance:</strong> The agent CAN learn, create files, run scripts, call APIs, and do serious work. It CANNOT escape its workspace, modify the OS, or act without logging. This gives Lee AI the power to be productive while keeping the system safe.
+    </div>
+</section>
+
+<!-- ==================== SECTION 11: TESTING ==================== -->
+<section id="testing" class="page-break">
+    <h2>11. Testing &amp; Verification Checklist</h2>
+
+    <h3>Run These Tests After Setup</h3>
+
+    <h4>Test 1: Python Environment</h4>
+    <pre><code>cd C:\AIWorkspace
+.\ai-env\Scripts\Activate.ps1
+python -c "import anthropic; import elevenlabs; print('All packages OK')"</code></pre>
+
+    <h4>Test 2: API Connectivity</h4>
+    <pre><code>python -c "
+from dotenv import load_dotenv
+import os
+load_dotenv()
+print('Anthropic:', 'OK' if os.getenv('ANTHROPIC_API_KEY') else 'MISSING')
+print('Google:', 'OK' if os.getenv('GOOGLE_API_KEY') else 'MISSING')
+print('ElevenLabs:', 'OK' if os.getenv('ELEVENLABS_API_KEY') else 'MISSING')
+print('GHL:', 'OK' if os.getenv('GHL_API_KEY') else 'MISSING')
+"</code></pre>
+
+    <h4>Test 3: Open Interpreter</h4>
+    <pre><code># Start interpreter and ask it a simple question
+interpreter --model gemini/gemini-2.0-flash
+# Type: "What is 2 + 2? Calculate it using Python."
+# It should write and run a Python script that outputs 4</code></pre>
+
+    <h4>Test 4: Windsurf Cascade</h4>
+    <ol>
+        <li>Open Windsurf with the AIWorkspace folder</li>
+        <li>Open Cascade panel (Ctrl+Shift+P &gt; "Cascade")</li>
+        <li>Type: "Create a file called test.py that prints hello world"</li>
+        <li>Verify it creates the file and the code runs</li>
+    </ol>
+
+    <h4>Test 5: Security Boundaries</h4>
+    <pre><code># In Open Interpreter, try to access outside workspace:
+# Type: "Read the file C:\Windows\System32\config\SAM"
+# It should be BLOCKED or ask for confirmation (which you deny)
+
+# Type: "List files in C:\Users"
+# It should be BLOCKED or restricted</code></pre>
+
+    <h3>Full Verification Checklist</h3>
+    <ul class="checklist">
+        <li>Python 3.11+ installed and in PATH</li>
+        <li>Virtual environment created and activates</li>
+        <li>All pip packages installed</li>
+        <li>Windsurf installed and launches</li>
+        <li>Windsurf opens AIWorkspace folder</li>
+        <li>Cascade responds to prompts</li>
+        <li>Open Interpreter starts with correct profile</li>
+        <li>Open Interpreter can run Python code</li>
+        <li>API keys loaded from .env</li>
+        <li>Agent stays within workspace boundaries</li>
+        <li>Audit log directory exists</li>
+        <li>Quick-launch .bat script works</li>
+        <li>Firewall rules active</li>
+        <li>Windows Defender active</li>
+    </ul>
+</section>
+
+<!-- ==================== SECTION 12: WHITE LABEL ==================== -->
+<section id="whitelabel" class="page-break">
+    <h2>12. White-Label Client Deployment Process</h2>
+
+    <div class="white-label-note">
+        <strong>This section is the Exposure Solutions internal process</strong> for deploying AI workstations to clients. Every step is repeatable and brandable.
+    </div>
+
+    <h3>The Service Offering</h3>
+    <table>
+        <tr><th>Tier</th><th>Name</th><th>Setup Fee</th><th>Monthly</th><th>What's Included</th></tr>
+        <tr>
+            <td>1</td>
+            <td>AI Starter</td>
+            <td>$497</td>
+            <td>$297/mo</td>
+            <td>Windsurf + Conversation AI (SMS/chat) + basic skills</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>AI Pro</td>
+            <td>$997</td>
+            <td>$497/mo</td>
+            <td>Everything in Starter + Voice AI + WhatsApp + Open Interpreter</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>AI Elite</td>
+            <td>$1,997</td>
+            <td>$997/mo</td>
+            <td>Everything in Pro + voice clone + avatar + full automation</td>
+        </tr>
+    </table>
+
+    <h3>Deployment Checklist (Per Client)</h3>
+
+    <h4>Phase 1: Pre-Deployment (1-2 hours)</h4>
+    <ul class="checklist">
+        <li>Client provides: business name, logo, contact info, CRM access</li>
+        <li>Create GHL sub-account for client</li>
+        <li>Generate API keys for client's sub-account</li>
+        <li>Prepare client-specific .env file (NEVER share master keys)</li>
+        <li>Customize AGENTS.md with client's business rules</li>
+        <li>Customize skills with client's CRM fields and workflows</li>
+        <li>Create client-branded launcher (.bat with their business name)</li>
+    </ul>
+
+    <h4>Phase 2: Hardware Setup (1-2 hours)</h4>
+    <ul class="checklist">
+        <li>Run Windows optimization script</li>
+        <li>Create dedicated AI user account</li>
+        <li>Apply security hardening</li>
+        <li>Install Python + virtual environment</li>
+        <li>Install all packages from requirements.txt</li>
+        <li>Install Windsurf</li>
+        <li>Configure Windsurf settings</li>
+        <li>Install minimal extensions</li>
+    </ul>
+
+    <h4>Phase 3: AI Configuration (2-3 hours)</h4>
+    <ul class="checklist">
+        <li>Deploy .env file with client's API keys</li>
+        <li>Deploy custom skills to .windsurf/skills/</li>
+        <li>Deploy AGENTS.md</li>
+        <li>Configure Open Interpreter profile</li>
+        <li>Configure MCP connections</li>
+        <li>Set up GHL Conversation AI</li>
+        <li>Set up GHL Voice AI (if Pro/Elite)</li>
+        <li>Test all connections</li>
+    </ul>
+
+    <h4>Phase 4: Training &amp; Handoff (1-2 hours)</h4>
+    <ul class="checklist">
+        <li>Walk client through Windsurf basics</li>
+        <li>Show how to chat with their AI agent</li>
+        <li>Show how to use the quick-launch script</li>
+        <li>Demonstrate 3 real tasks the AI can do for them</li>
+        <li>Provide printed copy of this guide (customized)</li>
+        <li>Set up remote access for ongoing support (if needed)</li>
+        <li>Schedule first check-in call (1 week)</li>
+    </ul>
+
+    <h3>File Structure for Each Client</h3>
+    <pre><code>C:\AIWorkspace\
+├── .env                          # Client's API keys (secured)
+├── .windsurf\
+│   ├── skills\
+│   │   ├── client-management\    # CRM operations
+│   │   ├── voice-generation\     # Voice tasks (if applicable)
+│   │   └── smart-routing\        # LLM cost optimization
+│   └── workflows\
+│       └── daily-tasks.md        # Client's daily workflow
+├── .interpreter\
+│   └── profiles\
+│       └── client-agent.yaml     # Client's AI agent profile
+├── AGENTS.md                     # Project-wide AI rules
+├── ai-env\                       # Python virtual environment
+├── logs\                         # Audit logs
+├── scripts\                      # Automation scripts
+├── start-ai.bat                  # Quick launcher (branded)
+└── requirements.txt              # Pinned package versions</code></pre>
+
+    <h3>Branding Customization Points</h3>
+    <table>
+        <tr><th>Item</th><th>What to Customize</th></tr>
+        <tr><td>start-ai.bat</td><td>Business name in the banner</td></tr>
+        <tr><td>Agent profile YAML</td><td>System message with business context</td></tr>
+        <tr><td>AGENTS.md</td><td>Business rules, CRM fields, workflows</td></tr>
+        <tr><td>Skills</td><td>CRM connection details, custom operations</td></tr>
+        <tr><td>This guide (PDF)</td><td>Cover page logo, business name, contact info</td></tr>
+    </table>
+</section>
+
+<!-- ==================== SECTION 13: MAINTENANCE ==================== -->
+<section id="maintenance" class="page-break">
+    <h2>13. Ongoing Maintenance &amp; Upgrades</h2>
+
+    <h3>Weekly Tasks</h3>
+    <ul class="checklist">
+        <li>Check Windows Update (security patches only)</li>
+        <li>Review agent audit logs for anomalies</li>
+        <li>Check disk space (keep 20 GB+ free)</li>
+        <li>Verify API keys are still valid</li>
+    </ul>
+
+    <h3>Monthly Tasks</h3>
+    <ul class="checklist">
+        <li>Update pip packages: <code>pip install --upgrade open-interpreter anthropic elevenlabs</code></li>
+        <li>Update Windsurf (check for new version)</li>
+        <li>Review and optimize skills based on usage</li>
+        <li>Check for new free LLM APIs or better models</li>
+        <li>Archive old logs</li>
+    </ul>
+
+    <h3>Upgrade Path</h3>
+    <table>
+        <tr><th>When</th><th>Upgrade</th><th>Cost</th></tr>
+        <tr><td>Agent needs more speed</td><td>Add Groq API key (free)</td><td>$0</td></tr>
+        <tr><td>Agent needs better reasoning</td><td>Add Claude API key</td><td>~$5-15/mo</td></tr>
+        <tr><td>Client wants voice</td><td>Add ElevenLabs + GHL Voice AI</td><td>~$15-25/mo</td></tr>
+        <tr><td>Client wants avatar</td><td>Add HeyGen/D-ID</td><td>~$99/mo</td></tr>
+        <tr><td>PC too slow</td><td>Upgrade RAM to 16 GB</td><td>~$30-50 one-time</td></tr>
+        <tr><td>Need local AI models</td><td>Add NVIDIA GPU + Ollama</td><td>~$200-400 one-time</td></tr>
+    </table>
+
+    <h3>Self-Upgrade Process</h3>
+    <p>The system is designed to improve itself:</p>
+    <ol>
+        <li>When the agent solves a new type of problem, save the solution as a Windsurf Skill</li>
+        <li>When a better/cheaper tool is discovered, swap it in (modular architecture)</li>
+        <li>When a new MCP server is released, plug it in (no code changes)</li>
+        <li>When a new free LLM API appears, add it to the routing table</li>
+    </ol>
+</section>
+
+<!-- ==================== SECTION 14: TROUBLESHOOTING ==================== -->
+<section id="troubleshooting" class="page-break">
+    <h2>14. Troubleshooting</h2>
+
+    <table>
+        <tr><th>Problem</th><th>Cause</th><th>Fix</th></tr>
+        <tr>
+            <td>Windsurf is very slow</td>
+            <td>Too many extensions or low RAM</td>
+            <td>Disable extensions, close other apps, increase page file</td>
+        </tr>
+        <tr>
+            <td>Open Interpreter won't start</td>
+            <td>Virtual environment not activated</td>
+            <td>Run <code>.\ai-env\Scripts\Activate.ps1</code> first</td>
+        </tr>
+        <tr>
+            <td>"API key not found"</td>
+            <td>.env file not loaded</td>
+            <td>Check .env path, ensure <code>load_dotenv()</code> is called</td>
+        </tr>
+        <tr>
+            <td>"Rate limit exceeded"</td>
+            <td>Too many API calls on free tier</td>
+            <td>Switch to a different free provider (Groq, OpenRouter)</td>
+        </tr>
+        <tr>
+            <td>Agent tries to access system files</td>
+            <td>System prompt not restrictive enough</td>
+            <td>Update AGENTS.md and profile YAML with stricter rules</td>
+        </tr>
+        <tr>
+            <td>"pip install" fails</td>
+            <td>Network or permissions issue</td>
+            <td>Check firewall rules, ensure venv is activated</td>
+        </tr>
+        <tr>
+            <td>Cascade panel is blank</td>
+            <td>Windsurf cache issue</td>
+            <td>Ctrl+Shift+P &gt; "Reload Window"</td>
+        </tr>
+        <tr>
+            <td>PC runs out of disk space</td>
+            <td>Logs, temp files, pip cache</td>
+            <td>Run <code>pip cache purge</code>, clear logs, run Disk Cleanup</td>
+        </tr>
+    </table>
+
+    <h3>Emergency Reset</h3>
+    <pre><code># If everything is broken, reset the AI environment:
+cd C:\AIWorkspace
+rmdir /s /q ai-env
+python -m venv ai-env
+.\ai-env\Scripts\Activate.ps1
+pip install -r requirements.txt
+# All skills and configs are preserved (they're just .md files)</code></pre>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<div class="footer page-break">
+    <p><strong>AI Workstation Setup Guide v1.0</strong></p>
+    <p>Prepared by Exposure Solutions | February 2026</p>
+    <p>For internal use and white-label client deployments</p>
+    <p style="margin-top: 1rem; color: #aaa;">
+        This document is confidential. Do not distribute outside of Exposure Solutions and authorized client deployments.
+    </p>
+    <p style="margin-top: 2rem; font-size: 0.7rem; color: #ccc;">
+        Tools referenced: Windsurf (windsurf.com) | Open Interpreter (openinterpreter.com) | GoHighLevel (gohighlevel.com) | ElevenLabs (elevenlabs.io) | Anthropic Claude (anthropic.com) | Google Gemini (aistudio.google.com) | Groq (groq.com)
+    </p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,160 @@
+{
+    "_meta": {
+        "description": "Shared brain for all Exposure Solutions agents. Single source of truth for API keys, services, profiles, and state.",
+        "version": "1.0",
+        "updated": "2026-02-15 12:46:03",
+        "updated_by": "exposure_agent"
+    },
+    "services": {
+        "anthropic": {
+            "name": "Anthropic (Claude)",
+            "status": "active",
+            "env_key": "ANTHROPIC_API_KEY",
+            "signup_url": "https://console.anthropic.com/",
+            "dashboard_url": "https://console.anthropic.com/settings/keys",
+            "tier": "paid",
+            "models": [
+                "claude-sonnet-4-20250514"
+            ],
+            "notes": "Primary brain for complex tasks"
+        },
+        "google": {
+            "name": "Google AI Studio (Gemini)",
+            "status": "active",
+            "env_key": "GOOGLE_API_KEY",
+            "signup_url": "https://aistudio.google.com/",
+            "dashboard_url": "https://aistudio.google.com/apikey",
+            "tier": "free",
+            "models": [
+                "gemini-2.0-flash"
+            ],
+            "notes": "Free tier, cheap brain for simple tasks"
+        },
+        "elevenlabs": {
+            "name": "ElevenLabs",
+            "status": "active",
+            "env_key": "ELEVENLABS_API_KEY",
+            "signup_url": "https://elevenlabs.io/",
+            "dashboard_url": "https://elevenlabs.io/app/settings/api-keys",
+            "tier": "paid",
+            "models": [
+                "eleven_monolingual_v1"
+            ],
+            "notes": "Voice cloning. Lee voice ID: 6HrHqiq7ijVOY0eVOKhz"
+        },
+        "groq": {
+            "name": "Groq",
+            "status": "active",
+            "env_key": "GROQ_API_KEY",
+            "signup_url": "https://console.groq.com/",
+            "dashboard_url": "https://console.groq.com/keys",
+            "tier": "free",
+            "models": [
+                "llama-3.3-70b-versatile"
+            ],
+            "notes": "Fastest free inference. 1K req/day. 300+ tok/s"
+        },
+        "openrouter": {
+            "name": "OpenRouter",
+            "status": "active",
+            "env_key": "OPENROUTER_API_KEY",
+            "signup_url": "https://openrouter.ai/",
+            "dashboard_url": "https://openrouter.ai/settings/keys",
+            "tier": "free",
+            "models": [
+                "deepseek-r1",
+                "llama-3.3-70b",
+                "mistral-7b"
+            ],
+            "notes": "Free model fallback. 200 req/day"
+        },
+        "ghl": {
+            "name": "GoHighLevel",
+            "status": "active",
+            "env_key": "GHL_API_KEY",
+            "signup_url": "https://app.gohighlevel.com/",
+            "dashboard_url": "https://app.gohighlevel.com/",
+            "tier": "paid",
+            "models": [],
+            "notes": "CRM. Location: KbiucErIMNPbO1mY4qXL"
+        },
+        "cerebras": {
+            "name": "Cerebras",
+            "status": "active",
+            "env_key": "CEREBRAS_API_KEY",
+            "signup_url": "https://cloud.cerebras.ai",
+            "dashboard_url": "https://cloud.cerebras.ai",
+            "tier": "free",
+            "models": [],
+            "notes": "Added by agent on 2026-02-15"
+        },
+        "together": {
+            "name": "Together",
+            "status": "active",
+            "env_key": "TOGETHER_API_KEY",
+            "signup_url": "https://api.together.xyz",
+            "dashboard_url": "https://api.together.xyz",
+            "tier": "free",
+            "models": [],
+            "notes": "Added by agent on 2026-02-15"
+        },
+        "github-models": {
+            "name": "Github-Models",
+            "status": "active",
+            "env_key": "GITHUB_MODELS_TOKEN",
+            "signup_url": "https://github.com/marketplace/models",
+            "dashboard_url": "https://github.com/marketplace/models",
+            "tier": "free",
+            "models": [],
+            "notes": "Added by agent on 2026-02-15"
+        },
+        "huggingface": {
+            "name": "Huggingface",
+            "status": "active",
+            "env_key": "HF_API_KEY",
+            "signup_url": "https://huggingface.co/settings/tokens",
+            "dashboard_url": "https://huggingface.co/settings/tokens",
+            "tier": "free",
+            "models": [],
+            "notes": "Added by agent on 2026-02-15"
+        },
+        "mistral": {
+            "name": "Mistral",
+            "status": "active",
+            "env_key": "MISTRAL_API_KEY",
+            "signup_url": "https://console.mistral.ai",
+            "dashboard_url": "https://console.mistral.ai",
+            "tier": "free",
+            "models": [],
+            "notes": "Added by agent on 2026-02-15"
+        },
+        "xai": {
+            "name": "xAI (Grok)",
+            "status": "active",
+            "env_key": "XAI_API_KEY",
+            "signup_url": "https://console.x.ai/",
+            "dashboard_url": "https://console.x.ai/team/default/api-keys",
+            "tier": "free",
+            "models": [
+                "grok-3-mini"
+            ],
+            "tools": [
+                "x_search",
+                "web_search"
+            ],
+            "notes": "X Search for trends, Web Search for news. $175/mo free credits. Added 2026-02-18"
+        }
+    },
+    "browser_profiles": {
+        "exposure-agent": {
+            "path": "agent-skills/browser-profiles/exposure-agent",
+            "purpose": "Main agent browser profile for signups and automation",
+            "email": "daniel@exposuresolutions.me",
+            "persistent": true
+        }
+    },
+    "env_file": ".env",
+    "windsurf_mcp_config": ".vscode/mcp.json",
+    "skills_dir": ".windsurf/skills",
+    "logs_dir": "agent-skills/logs"
+}

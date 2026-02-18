@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Careers | Do Deals With Lee</title>
+<meta name="description" content="Join Lee Kearney's team. Explore open positions at Do Deals With Lee — real estate careers in Tampa, FL and remote.">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    'lee-black': '#0a0a0a',
+                    'lee-dark': '#111111',
+                    'lee-card': '#161616',
+                    'lee-cyan': '#00e5ff',
+                    'lee-orange': '#ff6b00',
+                    'lee-gold': '#ffd700'
+                },
+                fontFamily: {
+                    'playfair': ['Playfair Display', 'serif'],
+                    'inter': ['Inter', 'system-ui', 'sans-serif']
+                }
+            }
+        }
+    }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+    /* GHL AGGRESSIVE RESET - NUCLEAR */
+    *:not(a):not(span):not(i):not(img):not(input):not(textarea):not(select):not(button):not(label):not(p):not(h1):not(h2):not(h3):not(h4):not(h5):not(h6):not(li):not(ul):not(ol):not(strong):not(em):not(b):not(small):not(br){background-color:#0a0a0a!important}
+    html,body{background:#0a0a0a!important;margin:0!important;padding:0!important}
+    #preview-container,.hl-page-preview,.hl_page-preview,
+    [id*="preview"],[class*="preview"],[class*="page-"],[class*="hl_page"],
+    [class*="wrapper"],[class*="container"],[class*="section"],
+    .c-editor,.c-editor-content,.hl-page-creator,
+    #section-0,#section-1,#section-2,#section-3,#section-4,#section-5,
+    #section-6,#section-7,#section-8,#section-9,#section-10,
+    .inner-section,.section-element,.row-element,.column-element,
+    div[data-page-element],div[class*="element"],div[class*="row"],
+    main,article,header,footer,aside,
+    .page-wrapper,.site-wrapper,.content-wrapper,.hl-wrapper,
+    .hl-container,.hl-section,.hl-row,.hl-column,
+    .row-fluid,.container-fluid,.body-wrapper,
+    div[style*="background: rgb(255"],div[style*="background-color: rgb(255"],
+    div[style*="background: white"],div[style*="background-color: white"],
+    div[style*="background:#fff"],div[style*="background-color:#fff"]{
+        background: #0a0a0a !important;
+        background-color: #0a0a0a !important;
+        border: none !important;
+        border-color: #0a0a0a !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+        box-shadow: none !important;
+    }
+
+    .glass-card {
+        background: rgba(22, 22, 22, 0.8) !important;
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
+    .gradient-text {
+        background: linear-gradient(135deg, #00e5ff, #ffd700);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .hero-glow {
+        box-shadow: 0 0 100px rgba(0, 229, 255, 0.3);
+    }
+
+    .toast {
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+    }
+    .toast.show {
+        transform: translateX(0);
+    }
+
+    .mob-menu{display:none}.mob-menu.open{display:flex}
+
+    /* Modal */
+    .modal-overlay {
+        display: none;
+    }
+    .modal-overlay.open {
+        display: flex;
+    }
+
+    /* Schema.org structured data is in script tag below */
+</style>
+</head>
+
+<body class="bg-lee-black text-white font-inter overflow-x-hidden">
+
+<!-- Navigation -->
+<nav class="fixed top-0 w-full z-50 glass-card">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <a href="/claudehome">
+            <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/67630a6111b3975ed85ffd20.svg" alt="Do Deals With Lee" class="h-8">
+        </a>
+        <div class="hidden md:flex space-x-8">
+            <a href="/claudehome" class="hover:text-lee-cyan transition-colors">Home</a>
+            <a href="#positions" class="hover:text-lee-cyan transition-colors">Open Positions</a>
+            <a href="#why-ddwl" class="hover:text-lee-cyan transition-colors">Why DDWL</a>
+            <a href="/studentenrollment" class="hover:text-lee-cyan transition-colors">Students</a>
+            <a href="/careeer" class="text-lee-cyan font-semibold transition-colors">Careers</a>
+        </div>
+        <div class="flex items-center gap-3">
+            <a href="#positions" class="bg-lee-cyan text-lee-black px-6 py-2 rounded-lg font-semibold hover:bg-lee-gold transition-all hidden sm:inline-block">View Jobs</a>
+            <button onclick="document.getElementById('mobMenu').classList.toggle('open')" class="md:hidden text-white" title="Menu"><i data-lucide="menu" class="w-6 h-6"></i></button>
+        </div>
+    </div>
+    <div id="mobMenu" class="mob-menu flex-col px-6 pb-4 md:hidden space-y-3">
+        <a href="/claudehome" class="hover:text-lee-cyan transition-colors">Home</a>
+        <a href="#positions" class="hover:text-lee-cyan transition-colors">Open Positions</a>
+        <a href="#why-ddwl" class="hover:text-lee-cyan transition-colors">Why DDWL</a>
+        <a href="/studentenrollment" class="hover:text-lee-cyan transition-colors">Students</a>
+        <a href="/careeer" class="text-lee-cyan font-semibold">Careers</a>
+        <a href="#positions" class="bg-lee-cyan text-lee-black px-6 py-2 rounded-lg font-semibold text-center">View Jobs</a>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="min-h-[70vh] flex items-center relative overflow-hidden pt-20">
+    <div class="absolute inset-0 opacity-10">
+        <div class="hero-glow absolute top-1/4 right-1/4 w-96 h-96 rounded-full"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-8">
+            <h1 class="text-5xl lg:text-7xl font-playfair font-bold leading-tight">
+                Build Your
+                <span class="gradient-text">Career</span>
+                With Us
+            </h1>
+
+            <p class="text-xl text-gray-300 leading-relaxed">
+                Join Lee Kearney&rsquo;s team and be part of a company that&rsquo;s closed
+                <strong class="text-lee-cyan">7,000+ deals</strong> and $500M+ in volume.
+                We&rsquo;re growing fast and looking for driven people.
+            </p>
+
+            <div class="flex flex-wrap gap-4">
+                <div class="flex items-center space-x-2">
+                    <i data-lucide="map-pin" class="w-5 h-5 text-lee-gold"></i>
+                    <span>Tampa, FL &amp; Remote</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <i data-lucide="briefcase" class="w-5 h-5 text-lee-gold"></i>
+                    <span id="jobCountBadge">0 Open Positions</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <i data-lucide="zap" class="w-5 h-5 text-lee-gold"></i>
+                    <span>AI-Powered Workplace</span>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4">
+                <button onclick="scrollTo('#positions')" class="bg-lee-cyan text-lee-black px-8 py-4 rounded-lg font-semibold hover:bg-lee-gold transition-all flex items-center justify-center space-x-2">
+                    <span>See Open Roles</span>
+                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </button>
+                <button onclick="scrollTo('#why-ddwl')" class="border border-lee-cyan text-lee-cyan px-8 py-4 rounded-lg font-semibold hover:bg-lee-cyan hover:text-lee-black transition-all">
+                    Why Work Here
+                </button>
+            </div>
+        </div>
+
+        <div class="relative hidden lg:block">
+            <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/6740d661a865994979d38612.webp"
+                 alt="Lee Kearney" class="w-full rounded-2xl shadow-2xl">
+            <div class="absolute -bottom-6 -left-6 glass-card p-6 rounded-xl">
+                <div class="text-3xl font-bold text-lee-gold">Inc. 5000</div>
+                <div class="text-sm text-gray-400">Recognized Company</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why DDWL -->
+<section id="why-ddwl" class="py-20 bg-lee-dark">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl lg:text-6xl font-playfair font-bold mb-6">
+                Why <span class="gradient-text">Do Deals With Lee?</span>
+            </h2>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                We&rsquo;re not a typical company. We move fast, use AI everywhere, and reward results.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="glass-card p-8 rounded-xl text-center">
+                <div class="w-16 h-16 bg-lee-cyan rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i data-lucide="brain" class="w-8 h-8 text-lee-black"></i>
+                </div>
+                <h3 class="text-2xl font-playfair font-bold mb-4">AI-First Culture</h3>
+                <p class="text-gray-300">We use AI agents, voice clones, and automation to 10x our output. You&rsquo;ll work with cutting-edge tools every day.</p>
+            </div>
+
+            <div class="glass-card p-8 rounded-xl text-center border-2 border-lee-gold relative">
+                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-lee-gold text-lee-black px-4 py-1 rounded-full text-sm font-bold">
+                    TOP PERK
+                </div>
+                <div class="w-16 h-16 bg-lee-gold rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i data-lucide="trending-up" class="w-8 h-8 text-lee-black"></i>
+                </div>
+                <h3 class="text-2xl font-playfair font-bold mb-4">Real Deal Access</h3>
+                <p class="text-gray-300">Learn from 7,000+ deals. See how real estate investing works from the inside. Some roles include deal participation.</p>
+            </div>
+
+            <div class="glass-card p-8 rounded-xl text-center">
+                <div class="w-16 h-16 bg-lee-orange rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i data-lucide="rocket" class="w-8 h-8 text-white"></i>
+                </div>
+                <h3 class="text-2xl font-playfair font-bold mb-4">Growth Track</h3>
+                <p class="text-gray-300">We promote from within. Clear progression paths, mentorship from Lee and Krystle, and real responsibility from day one.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Open Positions -->
+<section id="positions" class="py-20">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl lg:text-5xl font-playfair font-bold mb-6">
+                Open <span class="gradient-text">Positions</span>
+            </h2>
+            <p class="text-xl text-gray-300">Find your role. Every position includes mentorship and AI tools.</p>
+        </div>
+
+        <div id="jobGrid" class="space-y-6"></div>
+    </div>
+</section>
+
+<!-- Culture / Stats -->
+<section class="py-20 bg-lee-dark">
+    <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-4xl font-playfair font-bold text-center mb-16">
+            Life at <span class="gradient-text">DDWL</span>
+        </h2>
+
+        <div class="grid md:grid-cols-4 gap-8 mb-16">
+            <div class="text-center">
+                <div class="text-4xl font-bold text-lee-gold mb-2">7,000+</div>
+                <div class="text-gray-400">Deals Closed</div>
+            </div>
+            <div class="text-center">
+                <div class="text-4xl font-bold text-lee-cyan mb-2">$500M+</div>
+                <div class="text-gray-400">Total Volume</div>
+            </div>
+            <div class="text-center">
+                <div class="text-4xl font-bold text-lee-orange mb-2">AI</div>
+                <div class="text-gray-400">Powered Workplace</div>
+            </div>
+            <div class="text-center">
+                <div class="text-4xl font-bold text-lee-gold mb-2">Inc.</div>
+                <div class="text-gray-400">5000 Recognized</div>
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="glass-card p-6 rounded-xl">
+                <div class="flex items-center space-x-3 mb-4">
+                    <div class="w-10 h-10 bg-lee-cyan rounded-full flex items-center justify-center">
+                        <i data-lucide="heart" class="w-5 h-5 text-lee-black"></i>
+                    </div>
+                    <h4 class="font-bold">Benefits</h4>
+                </div>
+                <ul class="space-y-2 text-gray-300 text-sm">
+                    <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-lee-cyan"></i><span>Competitive salary + bonuses</span></li>
+                    <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-lee-cyan"></i><span>Flexible / remote options</span></li>
+                    <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-lee-cyan"></i><span>Deal participation opportunities</span></li>
+                    <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-lee-cyan"></i><span>AI tools &amp; training</span></li>
+                </ul>
+            </div>
+            <div class="glass-card p-6 rounded-xl">
+                <div class="flex items-center space-x-3 mb-4">
+                    <div class="w-10 h-10 bg-lee-gold rounded-full flex items-center justify-center">
+                        <i data-lucide="users" class="w-5 h-5 text-lee-black"></i>
+                    </div>
+                    <h4 class="font-bold">Team</h4>
+                </div>
+                <ul class="space-y-2 text-gray-300 text-sm">
+                    <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-lee-gold"></i><span>Small, high-impact team</span></li>
+                    <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-lee-gold"></i><span>Direct access to leadership</span></li>
+                    <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-lee-gold"></i><span>No bureaucracy</span></li>
+                    <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-lee-gold"></i><span>Results-driven culture</span></li>
+                </ul>
+            </div>
+            <div class="glass-card p-6 rounded-xl">
+                <div class="flex items-center space-x-3 mb-4">
+                    <div class="w-10 h-10 bg-lee-orange rounded-full flex items-center justify-center">
+                        <i data-lucide="graduation-cap" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <h4 class="font-bold">Growth</h4>
+                </div>
+                <ul class="space-y-2 text-gray-300 text-sm">
+                    <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-lee-orange"></i><span>Mentorship from Lee &amp; Krystle</span></li>
+                    <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-lee-orange"></i><span>Real estate education included</span></li>
+                    <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-lee-orange"></i><span>Promote from within</span></li>
+                    <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-lee-orange"></i><span>Conference &amp; event access</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-lee-dark py-16">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid md:grid-cols-4 gap-8 mb-12">
+            <div>
+                <img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/67630a6111b3975ed85ffd20.svg" alt="Do Deals With Lee" class="h-8 mb-4">
+                <p class="text-gray-400 mb-4">Real deals. Real money. Real careers.</p>
+                <div class="flex space-x-4">
+                    <a href="#" title="LinkedIn" class="w-10 h-10 bg-lee-cyan rounded-full flex items-center justify-center text-lee-black hover:bg-lee-gold transition-colors"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                    <a href="#" title="YouTube" class="w-10 h-10 bg-lee-cyan rounded-full flex items-center justify-center text-lee-black hover:bg-lee-gold transition-colors"><i data-lucide="youtube" class="w-5 h-5"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-bold mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-gray-400">
+                    <li><a href="/claudehome" class="hover:text-lee-cyan transition-colors">Home</a></li>
+                    <li><a href="/careeer" class="hover:text-lee-cyan transition-colors">Careers</a></li>
+                    <li><a href="/studentenrollment" class="hover:text-lee-cyan transition-colors">Student Enrollment</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-4">More</h4>
+                <ul class="space-y-2 text-gray-400">
+                    <li><a href="/onboardingportal" class="hover:text-lee-cyan transition-colors">Team Onboarding</a></li>
+                    <li><a href="/adminportal" class="hover:text-lee-cyan transition-colors">Admin Dashboard</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-4">Contact</h4>
+                <div class="space-y-2 text-gray-400">
+                    <div class="flex items-center space-x-2"><i data-lucide="phone" class="w-4 h-4"></i><span>(813) 675-0916</span></div>
+                    <div class="flex items-center space-x-2"><i data-lucide="mail" class="w-4 h-4"></i><span>info@dodealswithlee.com</span></div>
+                    <div class="flex items-start space-x-2"><i data-lucide="map-pin" class="w-4 h-4 mt-1"></i><span>412 E. Madison St. Suite 800-B<br>Tampa, FL 33602</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+            <p>&copy; 2025 Do Deals With Lee&trade;. All rights reserved. | Every applicant receives a response.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Application Modal -->
+<div class="modal-overlay fixed inset-0 bg-black/85 z-[200] overflow-y-auto items-start justify-center p-4" id="modalOverlay">
+    <div class="glass-card rounded-xl max-w-2xl w-full mx-auto my-10">
+        <div class="flex justify-between items-center p-6 border-b border-white/10">
+            <h2 class="text-xl font-playfair font-bold" id="modalTitle">Apply Now</h2>
+            <button onclick="closeModal()" class="text-gray-400 hover:text-white text-2xl">&times;</button>
+        </div>
+        <div class="p-6" id="modalBody">
+            <form id="applyForm" class="space-y-5">
+                <input type="hidden" id="fJobId" name="jobId">
+                <input type="hidden" id="fJobTitle" name="jobTitle">
+
+                <div class="grid md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">First Name *</label>
+                        <input type="text" name="firstName" required class="w-full bg-lee-black border border-gray-600 rounded-lg px-4 py-3 focus:border-lee-cyan focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">Last Name *</label>
+                        <input type="text" name="lastName" required class="w-full bg-lee-black border border-gray-600 rounded-lg px-4 py-3 focus:border-lee-cyan focus:outline-none">
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">Email *</label>
+                        <input type="email" name="email" required class="w-full bg-lee-black border border-gray-600 rounded-lg px-4 py-3 focus:border-lee-cyan focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">Phone *</label>
+                        <input type="tel" name="phone" required class="w-full bg-lee-black border border-gray-600 rounded-lg px-4 py-3 focus:border-lee-cyan focus:outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold mb-2">Location</label>
+                    <input type="text" name="location" class="w-full bg-lee-black border border-gray-600 rounded-lg px-4 py-3 focus:border-lee-cyan focus:outline-none" placeholder="City, State">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold mb-2">LinkedIn URL</label>
+                    <input type="url" name="linkedin" class="w-full bg-lee-black border border-gray-600 rounded-lg px-4 py-3 focus:border-lee-cyan focus:outline-none" placeholder="https://linkedin.com/in/...">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold mb-2">CV / Resume</label>
+                    <input type="file" name="cv" accept=".pdf,.doc,.docx" class="w-full bg-lee-black border border-gray-600 rounded-lg px-4 py-3 focus:border-lee-cyan focus:outline-none text-gray-400 file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:bg-lee-cyan file:text-lee-black file:font-semibold file:text-sm">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold mb-2">Cover Note</label>
+                    <textarea name="coverNote" rows="4" class="w-full bg-lee-black border border-gray-600 rounded-lg px-4 py-3 focus:border-lee-cyan focus:outline-none" placeholder="Why are you interested in this role?"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold mb-2">Earliest Start Date</label>
+                    <input type="date" name="startDate" class="w-full bg-lee-black border border-gray-600 rounded-lg px-4 py-3 focus:border-lee-cyan focus:outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold mb-2">How did you hear about us?</label>
+                    <select name="source" class="w-full bg-lee-black border border-gray-600 rounded-lg px-4 py-3 focus:border-lee-cyan focus:outline-none">
+                        <option value="">Select...</option>
+                        <option value="google">Google</option>
+                        <option value="linkedin">LinkedIn</option>
+                        <option value="indeed">Indeed</option>
+                        <option value="referral">Referral</option>
+                        <option value="social">Social Media</option>
+                        <option value="website">DDWL Website</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-lee-cyan to-lee-gold text-lee-black py-4 rounded-lg font-bold text-lg hover:opacity-90 transition-all">
+                    Submit Application
+                </button>
+            </form>
+
+            <div id="successMsg" class="text-center py-12 hidden">
+                <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i data-lucide="check" class="w-8 h-8 text-white"></i>
+                </div>
+                <h3 class="text-2xl font-playfair font-bold mb-3 text-green-400">Application Submitted!</h3>
+                <p class="text-gray-300 mb-2">Thank you for your interest in joining DDWL.</p>
+                <p class="text-gray-300">We&rsquo;ll review your application and respond within 48 hours.</p>
+                <p class="text-gray-500 text-sm mt-4">Reference: <strong id="appRef"></strong></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Toast -->
+<div id="toast" class="toast fixed top-20 right-6 z-50 glass-card p-4 rounded-lg max-w-sm">
+    <div class="flex items-center space-x-3">
+        <div id="toastIcon" class="w-8 h-8 rounded-full flex items-center justify-center bg-lee-cyan">
+            <i data-lucide="check" class="w-5 h-5 text-lee-black"></i>
+        </div>
+        <div>
+            <div id="toastTitle" class="font-semibold"></div>
+            <div id="toastMsg" class="text-sm text-gray-400"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Schema.org JobPosting structured data -->
+<script type="application/ld+json" id="schemaJobs"></script>
+
+<!-- Font Loading -->
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+WebFont.load({
+    google: { families: ['Inter:300,400,500,600,700,800,900', 'Playfair Display:400,600,700,800'] },
+    active: function() { document.body.style.fontFamily = "'Inter', system-ui, sans-serif"; }
+});
+</script>
+
+<script>
+// Initialize Lucide
+lucide.createIcons();
+
+// GSAP
+gsap.registerPlugin(ScrollTrigger);
+gsap.from("h1", { duration: 1.2, y: 50, opacity: 0, ease: "power2.out" });
+gsap.from("h1 + p", { duration: 1.2, y: 30, opacity: 0, ease: "power2.out", delay: 0.2 });
+gsap.utils.toArray('.glass-card').forEach(function(card) {
+    gsap.from(card, { scrollTrigger: card, y: 50, opacity: 0, duration: 0.8, ease: "power2.out" });
+});
+
+function scrollTo(sel) {
+    document.querySelector(sel).scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ============================================================
+// JOB DATA — Edit this array to add/remove positions
+// ============================================================
+var JOBS = [
+    {
+        id: "acquisitions-manager",
+        title: "Acquisitions Manager",
+        department: "Deals",
+        type: "Full-time",
+        location: "Tampa, FL",
+        remote: false,
+        salary: "$60K - $80K + Deal Bonuses",
+        posted: "2025-02-01",
+        description: "Lead our acquisitions team. Source, analyze, and negotiate real estate deals across Florida. You'll work directly with Lee on high-value transactions.",
+        requirements: ["2+ years real estate experience", "Strong negotiation skills", "Florida market knowledge", "Valid driver's license", "CRM experience (GHL preferred)"],
+        tags: ["Real Estate", "Negotiation", "Leadership"]
+    },
+    {
+        id: "marketing-coordinator",
+        title: "Marketing Coordinator",
+        department: "Marketing",
+        type: "Full-time",
+        location: "Remote",
+        remote: true,
+        salary: "$45K - $55K",
+        posted: "2025-02-05",
+        description: "Drive our digital marketing, social media, and lead generation. Create content that converts. Manage our AI-powered marketing stack.",
+        requirements: ["Digital marketing experience", "Social media management", "Content creation skills", "Analytics proficiency", "AI tools familiarity a plus"],
+        tags: ["Marketing", "Social Media", "Content", "AI"]
+    },
+    {
+        id: "transaction-coordinator",
+        title: "Transaction Coordinator",
+        department: "Operations",
+        type: "Full-time",
+        location: "Tampa, FL / Hybrid",
+        remote: false,
+        salary: "$40K - $50K",
+        posted: "2025-02-10",
+        description: "Manage deal flow from contract to close. Coordinate with title companies, lenders, and contractors. Keep our pipeline moving.",
+        requirements: ["Real estate transaction experience", "Extreme attention to detail", "Multi-tasking ability", "GHL/CRM experience", "Florida real estate knowledge"],
+        tags: ["Operations", "Transactions", "Detail-Oriented"]
+    },
+    {
+        id: "ai-operations-specialist",
+        title: "AI Operations Specialist",
+        department: "Technology",
+        type: "Full-time",
+        location: "Remote",
+        remote: true,
+        salary: "$55K - $75K",
+        featured: true,
+        posted: "2025-02-12",
+        description: "Build and manage our AI agent ecosystem. Work with Claude, GPT, and custom models to automate operations, marketing, and deal analysis.",
+        requirements: ["AI/ML experience or strong interest", "Python or JavaScript", "API integration experience", "Problem-solving mindset", "Real estate interest a plus"],
+        tags: ["AI", "Technology", "Automation", "Python"]
+    }
+];
+
+var CONFIG = {
+    ghlWebhook: "https://services.leadconnectorhq.com/hooks/KbiucErIMNPbO1mY4qXL/webhook-trigger/mCdlXsgchQ4v9BQeIa9E",
+    companyName: "Do Deals With Lee",
+    adminEmail: "admin@dodealswithlee.com"
+};
+
+// ============================================================
+// RENDER JOBS
+// ============================================================
+function renderJobs() {
+    var grid = document.getElementById('jobGrid');
+    document.getElementById('jobCountBadge').textContent = JOBS.length + ' Open Position' + (JOBS.length !== 1 ? 's' : '');
+
+    grid.innerHTML = JOBS.map(function(j) {
+        var badges = '<span class="inline-block text-xs font-semibold px-3 py-1 rounded-full bg-lee-cyan/20 text-lee-cyan mr-2">' + j.type + '</span>';
+        badges += '<span class="inline-block text-xs font-semibold px-3 py-1 rounded-full bg-white/10 text-gray-300 mr-2">' + j.department + '</span>';
+        if (j.remote) badges += '<span class="inline-block text-xs font-semibold px-3 py-1 rounded-full bg-green-500/20 text-green-400 mr-2">Remote</span>';
+        if (j.featured) badges += '<span class="inline-block text-xs font-semibold px-3 py-1 rounded-full bg-lee-gold/20 text-lee-gold mr-2">Featured</span>';
+
+        var reqs = j.requirements.map(function(r) {
+            return '<li class="flex items-center space-x-2 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-lee-cyan flex-shrink-0"></i><span>' + r + '</span></li>';
+        }).join('');
+
+        var tags = j.tags.map(function(t) {
+            return '<span class="text-xs bg-white/5 border border-white/10 px-2 py-1 rounded text-gray-500">' + t + '</span>';
+        }).join('');
+
+        return '<div class="glass-card rounded-xl p-8 hover:border-lee-cyan/50 transition-all' + (j.featured ? ' border-2 border-lee-gold/50' : '') + '">' +
+            '<div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-4">' +
+                '<div><h3 class="text-2xl font-playfair font-bold mb-2">' + j.title + '</h3><div class="flex flex-wrap gap-1">' + badges + '</div></div>' +
+                '<div class="text-right"><div class="text-lee-gold font-bold">' + j.salary + '</div><div class="text-sm text-gray-500 flex items-center justify-end space-x-1"><i data-lucide="map-pin" class="w-3 h-3"></i><span>' + j.location + '</span></div></div>' +
+            '</div>' +
+            '<p class="text-gray-300 mb-6">' + j.description + '</p>' +
+            '<ul class="space-y-2 mb-6">' + reqs + '</ul>' +
+            '<div class="flex flex-wrap gap-2 mb-6">' + tags + '</div>' +
+            '<div class="flex justify-between items-center">' +
+                '<span class="text-xs text-gray-500">Posted ' + j.posted + '</span>' +
+                '<button onclick="openApply(\'' + j.id + '\')" class="bg-lee-cyan text-lee-black px-6 py-2 rounded-lg font-semibold hover:bg-lee-gold transition-all flex items-center space-x-2"><span>Apply Now</span><i data-lucide="arrow-right" class="w-4 h-4"></i></button>' +
+            '</div></div>';
+    }).join('');
+
+    // Re-init Lucide for dynamic content
+    lucide.createIcons();
+
+    // Schema.org
+    var schema = JOBS.map(function(j) {
+        return {
+            "@context": "https://schema.org/",
+            "@type": "JobPosting",
+            "title": j.title,
+            "description": j.description,
+            "datePosted": j.posted,
+            "employmentType": j.type === "Full-time" ? "FULL_TIME" : "PART_TIME",
+            "hiringOrganization": { "@type": "Organization", "name": "Do Deals With Lee", "sameAs": "https://dodealswithlee.com" },
+            "jobLocation": { "@type": "Place", "address": { "@type": "PostalAddress", "addressLocality": "Tampa", "addressRegion": "FL", "addressCountry": "US" } },
+            "jobLocationType": j.remote ? "TELECOMMUTE" : undefined
+        };
+    });
+    document.getElementById('schemaJobs').textContent = JSON.stringify(schema);
+}
+
+// ============================================================
+// APPLICATION MODAL
+// ============================================================
+function openApply(jobId) {
+    var j = JOBS.find(function(x) { return x.id === jobId; });
+    if (!j) return;
+    document.getElementById('fJobId').value = j.id;
+    document.getElementById('fJobTitle').value = j.title;
+    document.getElementById('modalTitle').textContent = 'Apply: ' + j.title;
+    document.getElementById('applyForm').style.display = 'block';
+    document.getElementById('successMsg').classList.add('hidden');
+    document.getElementById('applyForm').reset();
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+document.getElementById('modalOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+});
+
+// ============================================================
+// SUBMIT
+// ============================================================
+document.getElementById('applyForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
+
+    var fd = new FormData(this);
+    var data = {};
+    fd.forEach(function(v, k) { if (k !== 'cv') data[k] = v; });
+
+    var cvInput = this.querySelector('input[name="cv"]');
+    data.cvFileName = cvInput.files.length ? cvInput.files[0].name : '';
+
+    var ref = 'DDWL-APP-' + Date.now().toString(36).toUpperCase();
+    data.applicationRef = ref;
+    data.appliedAt = new Date().toISOString();
+    data.type = 'job-application';
+    data.tags = ['job-applicant', 'new-application', data.jobId];
+
+    // localStorage bridge for admin dashboard
+    try {
+        var pending = JSON.parse(localStorage.getItem('ddwl_pending_applications')) || [];
+        pending.push(data);
+        localStorage.setItem('ddwl_pending_applications', JSON.stringify(pending));
+    } catch(err) {}
+
+    // GHL webhook
+    fetch(CONFIG.ghlWebhook, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
+    .then(function() { showSuccess(ref); })
+    .catch(function() { showSuccess(ref); });
+});
+
+function showSuccess(ref) {
+    document.getElementById('applyForm').style.display = 'none';
+    document.getElementById('appRef').textContent = ref;
+    document.getElementById('successMsg').classList.remove('hidden');
+    lucide.createIcons();
+    showToast('Application Submitted!', 'We\'ll be in touch within 48 hours.');
+}
+
+function showToast(title, msg) {
+    document.getElementById('toastTitle').textContent = title;
+    document.getElementById('toastMsg').textContent = msg;
+    document.getElementById('toast').classList.add('show');
+    setTimeout(function() { document.getElementById('toast').classList.remove('show'); }, 5000);
+}
+
+// INIT
+renderJobs();
+</script>
+
+</body>
+</html>

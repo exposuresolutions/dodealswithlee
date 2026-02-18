@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DDWL Smart Signage &amp; Billboard Concepts</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0a;color:#e0e0e0;font-family:'Inter',sans-serif;font-size:14px;line-height:1.7}
+.page{max-width:900px;margin:0 auto;padding:60px 48px;min-height:100vh;border-bottom:1px solid #1a1a1a;position:relative}
+h1{font-family:'Playfair Display',serif;font-size:42px;font-weight:900;line-height:1.15;margin-bottom:16px}
+h2{font-family:'Playfair Display',serif;font-size:28px;font-weight:800;line-height:1.2;margin-bottom:12px}
+h3{font-family:'Inter',sans-serif;font-size:16px;font-weight:700;line-height:1.4}
+.cy{color:#00e5ff}
+.or{color:#ff6b00}
+.gd{color:#ffd700}
+.gt{background:linear-gradient(135deg,#00e5ff,#ffd700);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.tag{display:inline-block;padding:4px 14px;border-radius:50px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+.ta{background:rgba(0,229,255,.12);color:#00e5ff}
+.tb{background:rgba(255,107,0,.12);color:#ff6b00}
+.tc{background:rgba(255,215,0,.12);color:#ffd700}
+.tg{background:rgba(0,255,100,.12);color:#00ff64}
+.tp{background:rgba(168,85,247,.12);color:#a855f7}
+.card{background:rgba(22,22,22,.9);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:28px}
+.card:hover{border-color:rgba(0,229,255,.15)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+.g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px}
+.mb8{margin-bottom:8px}
+.mb12{margin-bottom:12px}
+.mb16{margin-bottom:16px}
+.mb24{margin-bottom:24px}
+.mb32{margin-bottom:32px}
+.mb48{margin-bottom:48px}
+.ts{font-size:14px;color:#bbb;line-height:1.7}
+.tx{font-size:13px}
+.dv{border-top:1px solid rgba(255,255,255,.06);margin:32px 0}
+.pn{position:absolute;bottom:24px;right:48px;font-size:11px;color:#333;letter-spacing:2px}
+.tc2{text-align:center}
+.icon-box{width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0}
+.feature-row{display:flex;gap:20px;align-items:flex-start;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.feature-row:last-child{border-bottom:none}
+.num{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;flex-shrink:0}
+.sign-mock{background:#111;border:1px solid #222;border-radius:12px;padding:24px;text-align:center;min-height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bb-mock{background:linear-gradient(180deg,#0d1117,#080808);border:1px solid #222;border-radius:12px;padding:32px;text-align:center;min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.glow-dot{position:absolute;width:120px;height:120px;border-radius:50%;filter:blur(60px);opacity:.15}
+.cool-factor{background:linear-gradient(135deg,rgba(0,229,255,.08),rgba(255,215,0,.04));border:1px solid rgba(0,229,255,.15);border-radius:12px;padding:16px 20px;display:flex;gap:12px;align-items:flex-start}
+.cool-factor .emoji{font-size:20px;flex-shrink:0;margin-top:2px}
+.vs-table{width:100%;border-collapse:collapse}
+.vs-table th{text-align:left;padding:10px 12px;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:#666;border-bottom:1px solid #222}
+.vs-table td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.03);font-size:13px}
+.vs-table tr:hover td{background:rgba(0,229,255,.02)}
+.check{color:#00ff64}
+.warn{color:#ffd700}
+.pb{position:fixed;bottom:24px;right:24px;background:#00e5ff;color:#0a0a0a;border:none;padding:12px 24px;border-radius:50px;font-weight:700;cursor:pointer;font-size:14px;z-index:100}
+@media print{.pb{display:none}.page{break-after:page;min-height:auto;padding:40px 32px}}
+@media(max-width:768px){.g2,.g3,.g4{grid-template-columns:1fr}.page{padding:32px 20px}h1{font-size:28px}h2{font-size:22px}}
+</style>
+</head>
+<body>
+
+<!-- PAGE 1: COVER -->
+<div class="page" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
+<div class="tag ta mb16">Smart Signage Strategy</div>
+<h1 style="font-size:48px">Signs That Make People<br>Say <span class="gt">"That's Cool"</span></h1>
+<p class="ts mb32" style="max-width:560px">Billboards, yard signs, and for-sale signs that don't just advertise &mdash; they capture leads, deliver instant property info, and make DDWL the most recognizable brand on every street.</p>
+<div class="g3 mb48" style="max-width:600px;width:100%">
+<div class="card tc2"><div class="cy" style="font-size:32px;font-weight:800">QR</div><div class="tx" style="color:#666">Scan</div></div>
+<div class="card tc2"><div class="or" style="font-size:32px;font-weight:800">NFC</div><div class="tx" style="color:#666">Tap</div></div>
+<div class="card tc2"><div class="gd" style="font-size:32px;font-weight:800">SMS</div><div class="tx" style="color:#666">Text</div></div>
+</div>
+<img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/67630a6111b3975ed85ffd20.svg" alt="DDWL" style="height:36px;opacity:.4">
+<p class="tx" style="color:#333;margin-top:12px">Do Deals With Lee&trade; &bull; Prepared by Daniel Gallagher &amp; Lilly &bull; February 2026</p>
+<div class="pn">01 / 08</div>
+</div>
+
+<!-- PAGE 2: THE PROBLEM WITH NORMAL SIGNS -->
+<div class="page">
+<div class="tag tb mb12">The Problem</div>
+<h2 class="mb16">Every Real Estate Sign Looks <span class="or">Exactly the Same</span></h2>
+<p class="ts mb32">White sign. Agent photo. Phone number. Logo. That's it. Nobody stops, nobody remembers, nobody calls. Here's what's wrong with 99% of real estate signs:</p>
+<div class="g2 mb32">
+<div class="card">
+<h3 class="mb8 or">&#x274C; Traditional Sign</h3>
+<div class="sign-mock" style="min-height:220px">
+<div style="background:#fff;border-radius:4px;padding:20px 30px;width:80%">
+<div style="font-family:Arial;font-size:10px;color:#333;text-transform:uppercase;letter-spacing:1px">For Sale</div>
+<div style="font-family:Arial;font-size:18px;font-weight:700;color:#003366;margin:8px 0">GENERIC REALTY</div>
+<div style="width:40px;height:40px;background:#ddd;border-radius:50%;margin:0 auto 8px"></div>
+<div style="font-family:Arial;font-size:9px;color:#666">John Smith &bull; 555-0123</div>
+<div style="font-family:Arial;font-size:8px;color:#999;margin-top:4px">www.genericrealty.com</div>
+</div>
+</div>
+<ul class="ts" style="margin-top:16px;padding-left:20px;color:#888">
+<li>Invisible at night</li>
+<li>No way to get info without calling</li>
+<li>Looks like every other sign</li>
+<li>Zero lead capture</li>
+<li>Dead the moment property sells</li>
+</ul>
+</div>
+<div class="card">
+<h3 class="mb8 cy">&#x2705; DDWL Smart Sign</h3>
+<div class="sign-mock" style="min-height:220px;background:#080808">
+<svg viewBox="0 0 260 180" width="220" xmlns="http://www.w3.org/2000/svg">
+<rect width="260" height="180" rx="8" fill="#0a0a0a" stroke="#00e5ff" stroke-width="1.5"/>
+<rect x="0" y="0" width="260" height="4" rx="2" fill="url(#sg1)"/>
+<defs><linearGradient id="sg1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#00e5ff"/><stop offset="50%" style="stop-color:#ffd700"/><stop offset="100%" style="stop-color:#ff6b00"/></linearGradient></defs>
+<text x="130" y="30" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="14" fill="#00e5ff" letter-spacing="3">DO DEALS WITH LEE</text>
+<text x="130" y="52" text-anchor="middle" font-family="'Inter',sans-serif" font-size="22" font-weight="800" fill="white">FOR SALE</text>
+<rect x="80" y="62" width="100" height="2" rx="1" fill="#ff6b00" opacity=".5"/>
+<text x="130" y="82" text-anchor="middle" font-family="'Inter',sans-serif" font-size="9" fill="#888">3 Bed &bull; 2 Bath &bull; 1,850 sqft</text>
+<!-- QR Code placeholder -->
+<rect x="20" y="96" width="50" height="50" rx="4" fill="#111" stroke="#333" stroke-width=".5"/>
+<rect x="24" y="100" width="8" height="8" rx="1" fill="#00e5ff"/><rect x="34" y="100" width="4" height="4" fill="#00e5ff"/><rect x="40" y="100" width="8" height="8" rx="1" fill="#00e5ff"/>
+<rect x="24" y="110" width="4" height="4" fill="#00e5ff"/><rect x="30" y="112" width="4" height="4" fill="#00e5ff"/><rect x="40" y="110" width="4" height="4" fill="#00e5ff"/>
+<rect x="24" y="118" width="8" height="8" rx="1" fill="#00e5ff"/><rect x="34" y="120" width="4" height="4" fill="#00e5ff"/><rect x="40" y="118" width="8" height="8" rx="1" fill="#00e5ff"/>
+<text x="45" y="158" text-anchor="middle" font-family="'Inter',sans-serif" font-size="6" fill="#00e5ff">SCAN ME</text>
+<!-- NFC icon -->
+<circle cx="130" cy="120" r="16" fill="none" stroke="#ffd700" stroke-width="1" opacity=".4"/>
+<circle cx="130" cy="120" r="10" fill="none" stroke="#ffd700" stroke-width="1" opacity=".6"/>
+<circle cx="130" cy="120" r="4" fill="#ffd700" opacity=".8"/>
+<text x="130" y="145" text-anchor="middle" font-family="'Inter',sans-serif" font-size="6" fill="#ffd700">TAP PHONE HERE</text>
+<!-- SMS -->
+<text x="200" y="108" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7" fill="#ff6b00" font-weight="700">TEXT "DEAL"</text>
+<text x="200" y="118" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7" fill="#ff6b00">TO 813-675-0916</text>
+<text x="200" y="130" text-anchor="middle" font-family="'Inter',sans-serif" font-size="5.5" fill="#888">Instant property details</text>
+<!-- Bottom bar -->
+<rect x="0" y="156" width="260" height="24" rx="0" fill="#111"/>
+<text x="130" y="171" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7" fill="#666">dodealswithlee.com &bull; 813-675-0916</text>
+</svg>
+</div>
+<ul class="ts" style="margin-top:16px;padding-left:20px;color:#ccc">
+<li><strong class="cy">3 ways to engage</strong> &mdash; scan, tap, or text</li>
+<li><strong class="gd">Solar LED lit</strong> &mdash; visible at night</li>
+<li><strong class="or">Auto lead capture</strong> &mdash; into GHL CRM</li>
+<li><strong>Dynamic QR</strong> &mdash; update without reprinting</li>
+<li><strong>Reusable</strong> &mdash; QR redirects to next listing</li>
+</ul>
+</div>
+</div>
+<div class="pn">02 / 08</div>
+</div>
+
+<!-- PAGE 3: THE 7 SMART FEATURES -->
+<div class="page">
+<div class="tag ta mb12">Smart Features</div>
+<h2 class="mb16">7 Technologies That Make People Go <span class="gt">"Whoa"</span></h2>
+<p class="ts mb24">Each one is proven, affordable, and feeds directly into Lee's GHL CRM for automated follow-up.</p>
+
+<div class="feature-row">
+<div class="num" style="background:rgba(0,229,255,.15);color:#00e5ff">1</div>
+<div>
+<h3 class="mb8">Dynamic QR Codes <span class="tag ta" style="font-size:9px;padding:2px 8px">Must Have</span></h3>
+<p class="ts">Not static QR codes &mdash; <strong>dynamic</strong> ones. The same printed QR code can be redirected to a different property page anytime. When the house sells, redirect it to the next listing or Lee's portfolio. <strong>One sign, infinite listings.</strong></p>
+<div class="cool-factor" style="margin-top:12px">
+<div class="emoji">&#x1F4A1;</div>
+<div class="tx" style="color:#aaa"><strong class="cy">Cool factor:</strong> Buyer scans QR &rarr; lands on a stunning property page with photos, virtual tour, price, and a "Schedule Viewing" button. Their phone number is captured before they even see the listing. Retarget them on Facebook/Google within hours.</div>
+</div>
+</div>
+</div>
+
+<div class="feature-row">
+<div class="num" style="background:rgba(255,215,0,.15);color:#ffd700">2</div>
+<div>
+<h3 class="mb8">NFC Tap-to-View <span class="tag tc" style="font-size:9px;padding:2px 8px">Game Changer</span></h3>
+<p class="ts">Embed a &pound;0.50 NFC chip behind the sign. Buyer holds their phone near the sign &rarr; <strong>instantly opens the listing page</strong>. No camera, no scanning, no typing. Just tap. Works on every iPhone and Android made since 2018.</p>
+<div class="cool-factor" style="margin-top:12px">
+<div class="emoji">&#x1F4F1;</div>
+<div class="tx" style="color:#aaa"><strong class="gd">Cool factor:</strong> "TAP PHONE HERE" with a gold ring on the sign. People will literally walk up to try it. It feels like magic. HomeSmart just launched this in May 2025 and it's their biggest differentiator.</div>
+</div>
+</div>
+</div>
+
+<div class="feature-row">
+<div class="num" style="background:rgba(255,107,0,.15);color:#ff6b00">3</div>
+<div>
+<h3 class="mb8">SMS Text Code <span class="tag tb" style="font-size:9px;padding:2px 8px">Lead Machine</span></h3>
+<p class="ts"><strong>TEXT "DEAL" TO 813-675-0916</strong> &mdash; buyer texts the code, instantly receives property details via SMS. Behind the scenes: their phone number is captured in GHL, tagged with the property address, and an automated follow-up sequence begins. Works for people who don't know how to scan QR codes (older demographic).</p>
+<div class="cool-factor" style="margin-top:12px">
+<div class="emoji">&#x1F4AC;</div>
+<div class="tx" style="color:#aaa"><strong class="or">Cool factor:</strong> Each property gets a unique text code (DEAL1, DEAL2, etc). The reply includes a photo, price, beds/baths, and a link. The lead is in your CRM before they've even driven past the house.</div>
+</div>
+</div>
+</div>
+
+<div class="feature-row">
+<div class="num" style="background:rgba(0,255,100,.15);color:#00ff64">4</div>
+<div>
+<h3 class="mb8">Solar LED Illumination <span class="tag tg" style="font-size:9px;padding:2px 8px">24/7 Visibility</span></h3>
+<p class="ts">Solar-powered LED spotlights clip onto the sign post. The sign glows at night &mdash; <strong>200% more visibility</strong> after sunset. Most buyers drive neighborhoods after work (5-8pm). In Cleveland winters, that's pitch dark. Your sign is the only one they can read.</p>
+<div class="cool-factor" style="margin-top:12px">
+<div class="emoji">&#x1F31F;</div>
+<div class="tx" style="color:#aaa"><strong class="check">Cool factor:</strong> Use cyan LED (#00E5FF) to match the brand. The sign literally glows in Lee's signature neon blue. Unmistakable. Cost: ~$25-40 per solar light unit, rechargeable, weatherproof.</div>
+</div>
+</div>
+</div>
+
+<div class="pn">03 / 08</div>
+</div>
+
+<!-- PAGE 4: MORE FEATURES -->
+<div class="page">
+<div class="tag ta mb12">Smart Features (continued)</div>
+<h2 class="mb24">Three More Tricks <span class="gt">Nobody Else Does</span></h2>
+
+<div class="feature-row">
+<div class="num" style="background:rgba(168,85,247,.15);color:#a855f7">5</div>
+<div>
+<h3 class="mb8">AR Virtual Tour Trigger <span class="tag tp" style="font-size:9px;padding:2px 8px">Future-Proof</span></h3>
+<p class="ts">The QR code doesn't just open a webpage &mdash; it opens an <strong>AR experience</strong>. Buyer points their phone at the house and sees floating info: price, bed/bath count, square footage, and a "Walk Inside" button that launches a 360&deg; virtual tour. They're touring the house from the sidewalk.</p>
+<div class="cool-factor" style="margin-top:12px">
+<div class="emoji">&#x1F3E0;</div>
+<div class="tx" style="color:#aaa"><strong style="color:#a855f7">Cool factor:</strong> Goldman Sachs projects the AR real estate market at $2.6B by 2025. Early adopters win. This makes Lee look like he's from the future while competitors are still using paper flyers.</div>
+</div>
+</div>
+</div>
+
+<div class="feature-row">
+<div class="num" style="background:rgba(0,229,255,.15);color:#00e5ff">6</div>
+<div>
+<h3 class="mb8">Retargeting Pixel on Landing Page <span class="tag ta" style="font-size:9px;padding:2px 8px">Ninja Move</span></h3>
+<p class="ts">Every QR/NFC landing page has Facebook Pixel + Google Tag. When someone scans the sign, they start seeing DDWL ads on Facebook, Instagram, and Google within hours. <strong>The sign follows them home.</strong> Even if they don't call, they see Lee's brand everywhere for the next 30 days.</p>
+<div class="cool-factor" style="margin-top:12px">
+<div class="emoji">&#x1F3AF;</div>
+<div class="tx" style="color:#aaa"><strong class="cy">Cool factor:</strong> A $5/day retargeting budget means every person who scanned any DDWL sign sees Lee's face and listings on their phone for a month. That's maybe 100 impressions per lead for pennies.</div>
+</div>
+</div>
+</div>
+
+<div class="feature-row">
+<div class="num" style="background:rgba(255,215,0,.15);color:#ffd700">7</div>
+<div>
+<h3 class="mb8">"Sold" Sign That Keeps Working <span class="tag tc" style="font-size:9px;padding:2px 8px">Secret Weapon</span></h3>
+<p class="ts">When a property sells, don't remove the sign immediately. Flip the rider to "SOLD BY LEE" and <strong>redirect the dynamic QR code</strong> to show: "This home sold in X days. Want to sell yours? Want to see similar listings?" The sign keeps generating leads even after the deal closes.</p>
+<div class="cool-factor" style="margin-top:12px">
+<div class="emoji">&#x1F525;</div>
+<div class="tx" style="color:#aaa"><strong class="gd">Cool factor:</strong> Neighbors see the "SOLD" sign, scan it out of curiosity, and land on a page that says "Your neighbor's home sold for $X in Y days. Wondering what yours is worth?" with a home valuation form. That's how you farm an entire neighborhood from one sign.</div>
+</div>
+</div>
+</div>
+
+<div class="dv"></div>
+<div class="card" style="border-color:rgba(0,229,255,.2)">
+<h3 class="mb8 cy">&#x1F4B0; Total Cost Per Smart Sign</h3>
+<div class="g4">
+<div><div class="tx" style="color:#666">Sign + Post</div><div class="ts"><strong>$30-60</strong></div></div>
+<div><div class="tx" style="color:#666">NFC Chip</div><div class="ts"><strong>$0.50-2</strong></div></div>
+<div><div class="tx" style="color:#666">Solar LED</div><div class="ts"><strong>$25-40</strong></div></div>
+<div><div class="tx" style="color:#666">Dynamic QR</div><div class="ts"><strong>Free-$5/mo</strong></div></div>
+</div>
+<p class="tx" style="color:#666;margin-top:12px">Total: ~$60-100 per smart sign vs $15-30 for a dumb one. The ROI from one captured lead pays for 100 signs.</p>
+</div>
+<div class="pn">04 / 08</div>
+</div>
+
+<!-- PAGE 5: YARD SIGN DESIGNS -->
+<div class="page">
+<div class="tag tb mb12">Yard Signs</div>
+<h2 class="mb16">For Sale / For Rent <span class="or">Sign Designs</span></h2>
+<p class="ts mb32">Three sign concepts matching our three logo concepts. All include QR, NFC zone, and SMS code. Designed to be readable from 50+ feet and unmistakable as DDWL.</p>
+
+<div class="g3 mb32">
+<!-- Sign A: The Wave -->
+<div>
+<div class="tag ta mb8">Concept A &mdash; Wave</div>
+<div class="sign-mock">
+<svg viewBox="0 0 200 260" width="180" xmlns="http://www.w3.org/2000/svg">
+<rect width="200" height="260" rx="6" fill="#0a0a0a" stroke="#00e5ff" stroke-width="1"/>
+<!-- Wave top bar -->
+<path d="M0,8 Q50,0 100,8 Q150,16 200,8 L200,0 L0,0Z" fill="#00e5ff" opacity=".3"/>
+<path d="M0,5 Q50,-2 100,5 Q150,12 200,5" stroke="#00e5ff" stroke-width="1.5" fill="none"/>
+<!-- Logo -->
+<text x="100" y="35" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="16" fill="white" letter-spacing="3">DO DEALS WITH LEE</text>
+<!-- FOR SALE -->
+<text x="100" y="68" text-anchor="middle" font-family="'Inter',sans-serif" font-size="32" font-weight="800" fill="white">FOR SALE</text>
+<path d="M30,76 Q100,84 170,76" stroke="#00e5ff" stroke-width="1.5" fill="none" opacity=".5"/>
+<!-- Property info -->
+<text x="100" y="100" text-anchor="middle" font-family="'Inter',sans-serif" font-size="10" fill="#888">3 Bed &bull; 2 Bath &bull; 1,850 sqft</text>
+<!-- QR -->
+<rect x="20" y="115" width="48" height="48" rx="4" fill="#111" stroke="#333" stroke-width=".5"/>
+<rect x="26" y="121" width="10" height="10" rx="1.5" fill="#00e5ff" opacity=".7"/>
+<rect x="38" y="121" width="4" height="4" fill="#00e5ff" opacity=".5"/>
+<rect x="26" y="135" width="4" height="4" fill="#00e5ff" opacity=".5"/>
+<rect x="38" y="133" width="10" height="10" rx="1.5" fill="#00e5ff" opacity=".7"/>
+<rect x="32" y="147" width="10" height="10" rx="1.5" fill="#00e5ff" opacity=".7"/>
+<text x="44" y="175" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7" fill="#00e5ff" font-weight="600">SCAN</text>
+<!-- NFC -->
+<circle cx="100" cy="138" r="18" fill="none" stroke="#ffd700" stroke-width=".8" opacity=".3"/>
+<circle cx="100" cy="138" r="12" fill="none" stroke="#ffd700" stroke-width=".8" opacity=".5"/>
+<circle cx="100" cy="138" r="5" fill="#ffd700" opacity=".6"/>
+<text x="100" y="165" text-anchor="middle" font-family="'Inter',sans-serif" font-size="6" fill="#ffd700">TAP HERE</text>
+<!-- SMS -->
+<text x="160" y="130" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7" fill="#ff6b00" font-weight="700">TEXT</text>
+<text x="160" y="140" text-anchor="middle" font-family="'Inter',sans-serif" font-size="8" fill="#ff6b00" font-weight="800">"DEAL"</text>
+<text x="160" y="152" text-anchor="middle" font-family="'Inter',sans-serif" font-size="6" fill="#888">to 813-675</text>
+<text x="160" y="160" text-anchor="middle" font-family="'Inter',sans-serif" font-size="6" fill="#888">-0916</text>
+<!-- Wave bottom -->
+<path d="M0,220 Q50,212 100,220 Q150,228 200,220 L200,260 L0,260Z" fill="#00e5ff" opacity=".08"/>
+<path d="M0,222 Q50,214 100,222 Q150,230 200,222" stroke="#00e5ff" stroke-width="1" fill="none" opacity=".3"/>
+<!-- Footer -->
+<text x="100" y="242" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7" fill="#555">dodealswithlee.com</text>
+<text x="100" y="252" text-anchor="middle" font-family="'Inter',sans-serif" font-size="6" fill="#444">813-675-0916</text>
+</svg>
+</div>
+</div>
+
+<!-- Sign B: The Flame -->
+<div>
+<div class="tag tb mb8">Concept B &mdash; Flame</div>
+<div class="sign-mock">
+<svg viewBox="0 0 200 260" width="180" xmlns="http://www.w3.org/2000/svg">
+<rect width="200" height="260" rx="6" fill="#0a0a0a" stroke="#ff6b00" stroke-width="1"/>
+<!-- Flame slash top -->
+<line x1="0" y1="12" x2="200" y2="0" stroke="#ff6b00" stroke-width="3" opacity=".4"/>
+<line x1="0" y1="15" x2="200" y2="3" stroke="#ffd700" stroke-width="1" opacity=".2"/>
+<!-- Logo -->
+<text x="100" y="38" text-anchor="middle" font-family="'Oswald',sans-serif" font-size="16" font-weight="700" fill="white" letter-spacing="3">DO DEALS WITH LEE</text>
+<!-- FOR SALE -->
+<text x="100" y="72" text-anchor="middle" font-family="'Oswald',sans-serif" font-size="34" font-weight="700" fill="white">FOR SALE</text>
+<line x1="30" y1="78" x2="170" y2="78" stroke="#ff6b00" stroke-width="2"/>
+<!-- Property info -->
+<text x="100" y="100" text-anchor="middle" font-family="'Inter',sans-serif" font-size="10" fill="#888">3 Bed &bull; 2 Bath &bull; 1,850 sqft</text>
+<!-- QR -->
+<rect x="20" y="115" width="48" height="48" rx="4" fill="#111" stroke="#333" stroke-width=".5"/>
+<rect x="26" y="121" width="10" height="10" rx="1.5" fill="#ff6b00" opacity=".7"/>
+<rect x="38" y="121" width="4" height="4" fill="#ff6b00" opacity=".5"/>
+<rect x="26" y="135" width="4" height="4" fill="#ff6b00" opacity=".5"/>
+<rect x="38" y="133" width="10" height="10" rx="1.5" fill="#ff6b00" opacity=".7"/>
+<rect x="32" y="147" width="10" height="10" rx="1.5" fill="#ff6b00" opacity=".7"/>
+<text x="44" y="175" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7" fill="#ff6b00" font-weight="600">SCAN</text>
+<!-- NFC -->
+<circle cx="100" cy="138" r="18" fill="none" stroke="#ffd700" stroke-width=".8" opacity=".3"/>
+<circle cx="100" cy="138" r="12" fill="none" stroke="#ffd700" stroke-width=".8" opacity=".5"/>
+<circle cx="100" cy="138" r="5" fill="#ffd700" opacity=".6"/>
+<text x="100" y="165" text-anchor="middle" font-family="'Inter',sans-serif" font-size="6" fill="#ffd700">TAP HERE</text>
+<!-- SMS -->
+<text x="160" y="130" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7" fill="#ff6b00" font-weight="700">TEXT</text>
+<text x="160" y="140" text-anchor="middle" font-family="'Inter',sans-serif" font-size="8" fill="#ff6b00" font-weight="800">"DEAL"</text>
+<text x="160" y="152" text-anchor="middle" font-family="'Inter',sans-serif" font-size="6" fill="#888">to 813-675</text>
+<text x="160" y="160" text-anchor="middle" font-family="'Inter',sans-serif" font-size="6" fill="#888">-0916</text>
+<!-- Flame slash bottom -->
+<line x1="0" y1="218" x2="200" y2="206" stroke="#ff6b00" stroke-width="3" opacity=".3"/>
+<line x1="0" y1="221" x2="200" y2="209" stroke="#ffd700" stroke-width="1" opacity=".15"/>
+<!-- Footer -->
+<text x="100" y="242" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7" fill="#555">dodealswithlee.com</text>
+<text x="100" y="252" text-anchor="middle" font-family="'Inter',sans-serif" font-size="6" fill="#444">813-675-0916</text>
+</svg>
+</div>
+</div>
+
+<!-- Sign C: The Crown -->
+<div>
+<div class="tag tc mb8">Concept C &mdash; Crown</div>
+<div class="sign-mock">
+<svg viewBox="0 0 200 260" width="180" xmlns="http://www.w3.org/2000/svg">
+<rect width="200" height="260" rx="6" fill="#0a0a0a" stroke="#ffd700" stroke-width="1"/>
+<!-- Crown top -->
+<path d="M80,8 L84,20 L90,13 L96,20 L100,6 L104,20 L110,13 L116,20 L120,8 L124,24 L76,24Z" fill="#ffd700" opacity=".5"/>
+<rect x="78" y="24" width="44" height="3" rx="1" fill="#ffd700" opacity=".3"/>
+<!-- Logo -->
+<text x="100" y="45" text-anchor="middle" font-family="'Playfair Display',serif" font-size="14" font-weight="800" fill="white" letter-spacing="2">DO DEALS WITH LEE</text>
+<!-- FOR SALE -->
+<text x="100" y="76" text-anchor="middle" font-family="'Playfair Display',serif" font-size="30" font-weight="800" fill="white">FOR SALE</text>
+<line x1="40" y1="82" x2="80" y2="82" stroke="#ffd700" stroke-width=".8" opacity=".4"/>
+<line x1="120" y1="82" x2="160" y2="82" stroke="#ffd700" stroke-width=".8" opacity=".4"/>
+<!-- Property info -->
+<text x="100" y="100" text-anchor="middle" font-family="'Inter',sans-serif" font-size="10" fill="#888">3 Bed &bull; 2 Bath &bull; 1,850 sqft</text>
+<!-- QR -->
+<rect x="20" y="115" width="48" height="48" rx="4" fill="#111" stroke="#333" stroke-width=".5"/>
+<rect x="26" y="121" width="10" height="10" rx="1.5" fill="#ffd700" opacity=".7"/>
+<rect x="38" y="121" width="4" height="4" fill="#ffd700" opacity=".5"/>
+<rect x="26" y="135" width="4" height="4" fill="#ffd700" opacity=".5"/>
+<rect x="38" y="133" width="10" height="10" rx="1.5" fill="#ffd700" opacity=".7"/>
+<rect x="32" y="147" width="10" height="10" rx="1.5" fill="#ffd700" opacity=".7"/>
+<text x="44" y="175" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7" fill="#ffd700" font-weight="600">SCAN</text>
+<!-- NFC -->
+<circle cx="100" cy="138" r="18" fill="none" stroke="#ffd700" stroke-width=".8" opacity=".3"/>
+<circle cx="100" cy="138" r="12" fill="none" stroke="#ffd700" stroke-width=".8" opacity=".5"/>
+<circle cx="100" cy="138" r="5" fill="#ffd700" opacity=".6"/>
+<text x="100" y="165" text-anchor="middle" font-family="'Inter',sans-serif" font-size="6" fill="#ffd700">TAP HERE</text>
+<!-- SMS -->
+<text x="160" y="130" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7" fill="#ff6b00" font-weight="700">TEXT</text>
+<text x="160" y="140" text-anchor="middle" font-family="'Inter',sans-serif" font-size="8" fill="#ff6b00" font-weight="800">"DEAL"</text>
+<text x="160" y="152" text-anchor="middle" font-family="'Inter',sans-serif" font-size="6" fill="#888">to 813-675</text>
+<text x="160" y="160" text-anchor="middle" font-family="'Inter',sans-serif" font-size="6" fill="#888">-0916</text>
+<!-- Gold line bottom -->
+<line x1="30" y1="215" x2="170" y2="215" stroke="#ffd700" stroke-width=".5" opacity=".3"/>
+<!-- Footer -->
+<text x="100" y="238" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7" fill="#555">dodealswithlee.com</text>
+<text x="100" y="248" text-anchor="middle" font-family="'Inter',sans-serif" font-size="6" fill="#444">813-675-0916</text>
+</svg>
+</div>
+</div>
+</div>
+
+<div class="card">
+<h3 class="mb8">&#x1F3AF; Sign Rider System</h3>
+<p class="ts">Each sign has interchangeable <strong>riders</strong> (small signs that clip on top/bottom):</p>
+<div class="g4" style="margin-top:12px">
+<div style="background:#111;border:1px solid #333;border-radius:6px;padding:8px;text-align:center"><div style="font-size:10px;font-weight:700;color:#00e5ff">FOR SALE</div></div>
+<div style="background:#111;border:1px solid #333;border-radius:6px;padding:8px;text-align:center"><div style="font-size:10px;font-weight:700;color:#ff6b00">FOR RENT</div></div>
+<div style="background:#111;border:1px solid #333;border-radius:6px;padding:8px;text-align:center"><div style="font-size:10px;font-weight:700;color:#ffd700">SOLD!</div></div>
+<div style="background:#111;border:1px solid #333;border-radius:6px;padding:8px;text-align:center"><div style="font-size:10px;font-weight:700;color:#00ff64">OPEN HOUSE</div></div>
+</div>
+</div>
+<div class="pn">05 / 08</div>
+</div>
+
+<!-- PAGE 6: BILLBOARD CONCEPTS -->
+<div class="page">
+<div class="tag tb mb12">Billboards</div>
+<h2 class="mb16">Billboard Designs That <span class="or">Stop Traffic</span></h2>
+<p class="ts mb32">Billboards have 3-5 seconds to make an impression. These designs use bold simplicity, the DDWL brand colors, and smart tech to convert drivers into leads.</p>
+
+<div class="mb32">
+<div class="tag ta mb8">Billboard 1 &mdash; "The Question"</div>
+<div class="bb-mock" style="min-height:180px">
+<div class="glow-dot" style="background:#00e5ff;top:-20px;left:-20px"></div>
+<div class="glow-dot" style="background:#ff6b00;bottom:-20px;right:-20px"></div>
+<div style="font-family:'Playfair Display',serif;font-size:36px;font-weight:800;color:white;margin-bottom:8px">What's Your Home <span class="cy">Worth?</span></div>
+<div style="font-family:'Inter',sans-serif;font-size:12px;color:#888;margin-bottom:16px">Find out in 60 seconds. No obligation. No BS.</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="background:#111;border:1px solid #333;border-radius:8px;padding:12px;display:flex;align-items:center;gap:8px">
+<div style="width:32px;height:32px;background:#00e5ff;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:8px;color:#0a0a0a;font-weight:700">QR</div>
+<div style="font-size:10px;color:#aaa">Scan for<br><strong style="color:#00e5ff">instant estimate</strong></div>
+</div>
+<div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:white;letter-spacing:3px">DO DEALS WITH LEE</div>
+<div style="font-size:11px;color:#888">dodealswithlee.com<br><strong style="color:#ff6b00">813-675-0916</strong></div>
+</div>
+</div>
+<p class="ts" style="margin-top:12px"><strong class="cy">Why it works:</strong> Asks a question every homeowner wonders. The QR code is scannable from a passenger seat. The "No BS" language matches Lee's brand voice. Simple, bold, memorable.</p>
+</div>
+
+<div class="mb32">
+<div class="tag tb mb8">Billboard 2 &mdash; "The Flex"</div>
+<div class="bb-mock" style="min-height:180px">
+<div class="glow-dot" style="background:#ffd700;top:-20px;right:-20px"></div>
+<div style="display:flex;align-items:center;gap:32px;width:100%">
+<div style="flex:1;text-align:left">
+<div style="font-family:'Inter',sans-serif;font-size:48px;font-weight:800;color:#ffd700;line-height:1">7,000+</div>
+<div style="font-family:'Inter',sans-serif;font-size:14px;color:#888;margin-top:4px">Deals Closed</div>
+<div style="font-family:'Inter',sans-serif;font-size:32px;font-weight:800;color:#00e5ff;line-height:1;margin-top:12px">$500M+</div>
+<div style="font-family:'Inter',sans-serif;font-size:14px;color:#888;margin-top:4px">In Volume</div>
+</div>
+<div style="flex:1;text-align:center">
+<div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:800;color:white">Ready to<br><span class="or">Do a Deal?</span></div>
+<div style="margin-top:12px;font-size:11px;color:#888">TEXT <strong style="color:#ff6b00">"DEAL"</strong> to <strong style="color:#ff6b00">813-675-0916</strong></div>
+</div>
+<div style="flex:0;text-align:right">
+<div style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:white;letter-spacing:3px;writing-mode:vertical-rl;transform:rotate(180deg)">DO DEALS WITH LEE</div>
+</div>
+</div>
+</div>
+<p class="ts" style="margin-top:12px"><strong class="gd">Why it works:</strong> The numbers do the talking. 7,000+ deals and $500M+ are impossible to ignore. The SMS CTA works even at highway speed &mdash; passengers can text immediately. No website to remember.</p>
+</div>
+
+<div>
+<div class="tag tc mb8">Billboard 3 &mdash; "The Neighborhood"</div>
+<div class="bb-mock" style="min-height:180px">
+<div class="glow-dot" style="background:#00e5ff;bottom:-20px;left:30%"></div>
+<div style="font-family:'Inter',sans-serif;font-size:14px;color:#ffd700;text-transform:uppercase;letter-spacing:3px;margin-bottom:8px">Cleveland &bull; Tampa &bull; Florida</div>
+<div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:800;color:white;margin-bottom:4px">Sell Your Home in <span class="cy">7 Days</span></div>
+<div style="font-family:'Inter',sans-serif;font-size:14px;color:#888;margin-bottom:16px">Cash offer. No repairs. No fees. Close on your timeline.</div>
+<div style="display:flex;gap:16px;align-items:center;justify-content:center">
+<div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:white;letter-spacing:3px">DO DEALS WITH LEE</div>
+<div style="width:1px;height:30px;background:#333"></div>
+<div style="font-size:16px;color:#ff6b00;font-weight:700">813-675-0916</div>
+<div style="width:1px;height:30px;background:#333"></div>
+<div style="background:#111;border:1px solid #333;border-radius:6px;padding:8px;font-size:9px;color:#888">Scan for<br><strong style="color:#00e5ff">cash offer</strong></div>
+</div>
+</div>
+<p class="ts" style="margin-top:12px"><strong class="or">Why it works:</strong> Location-specific targeting. "7 Days" creates urgency. The cash offer promise is the #1 thing sellers want to hear. Works for both Tampa and Cleveland markets.</p>
+</div>
+<div class="pn">06 / 08</div>
+</div>
+
+<!-- PAGE 7: THE LEAD FLOW -->
+<div class="page">
+<div class="tag tg mb12">Lead Flow</div>
+<h2 class="mb16">How Every Sign Feeds <span class="gt">Into GHL</span></h2>
+<p class="ts mb32">This is the real magic. Every interaction with a sign &mdash; scan, tap, or text &mdash; creates a contact in GoHighLevel and triggers an automated sequence.</p>
+
+<div class="card mb24">
+<div style="display:flex;flex-direction:column;gap:0">
+<!-- Step 1 -->
+<div style="display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+<div class="num" style="background:rgba(0,229,255,.15);color:#00e5ff">1</div>
+<div>
+<h3>Buyer Interacts with Sign</h3>
+<p class="tx" style="color:#888">Scans QR, taps NFC, or texts SMS code. All three methods work.</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div style="display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+<div class="num" style="background:rgba(255,215,0,.15);color:#ffd700">2</div>
+<div>
+<h3>Landing Page Captures Lead</h3>
+<p class="tx" style="color:#888">Property page loads with photos, details, virtual tour. <strong>Facebook Pixel + Google Tag fire.</strong> If SMS: phone number auto-captured. If QR/NFC: lead form captures name + phone before showing full details.</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div style="display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+<div class="num" style="background:rgba(255,107,0,.15);color:#ff6b00">3</div>
+<div>
+<h3>Contact Created in GHL</h3>
+<p class="tx" style="color:#888">Webhook fires &rarr; new contact in GHL. Tagged with: property address, source (sign), interaction type (QR/NFC/SMS), date/time.</p>
+</div>
+</div>
+<!-- Step 4 -->
+<div style="display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+<div class="num" style="background:rgba(0,255,100,.15);color:#00ff64">4</div>
+<div>
+<h3>Automated Follow-Up Begins</h3>
+<p class="tx" style="color:#888"><strong>Immediately:</strong> SMS with property details + Lee's intro.<br><strong>1 hour:</strong> Email with virtual tour link + similar listings.<br><strong>24 hours:</strong> SMS "Still interested? I can get you in for a showing today."<br><strong>3 days:</strong> Email with market report for that neighborhood.<br><strong>7 days:</strong> "Properties are moving fast" urgency SMS.</p>
+</div>
+</div>
+<!-- Step 5 -->
+<div style="display:flex;gap:16px;align-items:flex-start;padding:16px 0">
+<div class="num" style="background:rgba(168,85,247,.15);color:#a855f7">5</div>
+<div>
+<h3>Retargeting Ads Activate</h3>
+<p class="tx" style="color:#888">Within hours, the lead sees DDWL ads on Facebook, Instagram, and Google. Lee's face, the property, and similar listings follow them everywhere for 30 days. Cost: ~$0.01-0.05 per impression.</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="g2 mb24">
+<div class="card tc2">
+<div style="font-size:48px;font-weight:800;color:#00e5ff">3</div>
+<div class="tx" style="color:#888">Ways to interact</div>
+<div class="tx" style="color:#555">QR &bull; NFC &bull; SMS</div>
+</div>
+<div class="card tc2">
+<div style="font-size:48px;font-weight:800;color:#ff6b00">&lt;5s</div>
+<div class="tx" style="color:#888">To capture a lead</div>
+<div class="tx" style="color:#555">From sign to CRM</div>
+</div>
+</div>
+
+<div class="cool-factor">
+<div class="emoji">&#x1F9E0;</div>
+<div class="tx" style="color:#aaa"><strong class="cy">The genius:</strong> A traditional sign gets maybe 1 in 500 passersby to call. A smart sign captures leads from anyone curious enough to scan, tap, or text. That's 10-50x more leads from the same piece of real estate. And every lead is automatically nurtured by GHL &mdash; no manual follow-up needed.</div>
+</div>
+<div class="pn">07 / 08</div>
+</div>
+
+<!-- PAGE 8: NEXT STEPS & COSTS -->
+<div class="page">
+<div class="tag tb mb12">Action Plan</div>
+<h2 class="mb16">Let's Make This <span class="gt">Happen</span></h2>
+<p class="ts mb32">Here's the roadmap to get DDWL smart signs and billboards live.</p>
+
+<div style="display:flex;flex-direction:column;gap:20px;margin-bottom:40px">
+<div class="card" style="display:flex;gap:20px;align-items:flex-start">
+<div class="num" style="background:#00e5ff;color:#0a0a0a">1</div>
+<div>
+<h3 class="mb8">Finalize Logo Concept</h3>
+<p class="ts">Pick A, B, or C from the logo presentation. The sign design matches the chosen concept.</p>
+</div>
+</div>
+<div class="card" style="display:flex;gap:20px;align-items:flex-start">
+<div class="num" style="background:#ffd700;color:#0a0a0a">2</div>
+<div>
+<h3 class="mb8">Set Up Dynamic QR + SMS in GHL</h3>
+<p class="ts">Create property landing page template. Set up dynamic QR codes (free via Curb Hero or Flowcode). Configure SMS text codes in GHL. Set up retargeting pixels.</p>
+</div>
+</div>
+<div class="card" style="display:flex;gap:20px;align-items:flex-start">
+<div class="num" style="background:#ff6b00;color:#0a0a0a">3</div>
+<div>
+<h3 class="mb8">Order Smart Sign Kit</h3>
+<p class="ts">Print signs with QR zone + NFC zone + SMS code. Order NFC stickers ($0.50-2 each). Order solar LED lights ($25-40 each). Assemble and deploy.</p>
+</div>
+</div>
+<div class="card" style="display:flex;gap:20px;align-items:flex-start">
+<div class="num" style="background:linear-gradient(135deg,#00e5ff,#ffd700);color:#0a0a0a">4</div>
+<div>
+<h3 class="mb8">Build GHL Automation Pipeline</h3>
+<p class="ts">Create the 5-step follow-up sequence. Set up Facebook Custom Audience from sign leads. Create retargeting ad templates. Test the full flow end-to-end.</p>
+</div>
+</div>
+<div class="card" style="display:flex;gap:20px;align-items:flex-start">
+<div class="num" style="background:#fff;color:#0a0a0a">5</div>
+<div>
+<h3 class="mb8">Billboard Campaign</h3>
+<p class="ts">Design production-ready billboard files. Research billboard locations in Tampa + Cleveland. Get quotes from billboard companies. Launch with "The Question" billboard first (highest conversion potential).</p>
+</div>
+</div>
+</div>
+
+<div class="card mb32" style="border-color:rgba(0,229,255,.2)">
+<h3 class="mb12 cy">&#x1F4B0; Investment Summary</h3>
+<table class="vs-table">
+<tr><th>Item</th><th>Cost</th><th>Notes</th></tr>
+<tr><td>Smart Yard Signs (10x)</td><td><strong>$600-1,000</strong></td><td>Includes print, NFC chips, solar LEDs</td></tr>
+<tr><td>Dynamic QR Service</td><td><strong>Free-$50/mo</strong></td><td>Curb Hero (free) or Flowcode ($25/mo)</td></tr>
+<tr><td>NFC Stickers (50x)</td><td><strong>$25-100</strong></td><td>Reprogrammable, weatherproof</td></tr>
+<tr><td>GHL SMS Setup</td><td><strong>Included</strong></td><td>Already in Lee's GHL plan</td></tr>
+<tr><td>Billboard (1 month)</td><td><strong>$750-2,500</strong></td><td>Varies by location, digital vs static</td></tr>
+<tr><td>Retargeting Ads</td><td><strong>$150-300/mo</strong></td><td>Facebook + Google, $5-10/day</td></tr>
+</table>
+<p class="tx" style="color:#666;margin-top:16px"><strong>Total launch cost: ~$1,500-4,000.</strong> One closed deal from a sign lead pays for the entire program 100x over.</p>
+</div>
+
+<div class="dv"></div>
+<div class="tc2">
+<img src="https://storage.googleapis.com/msgsndr/KbiucErIMNPbO1mY4qXL/media/67630a6111b3975ed85ffd20.svg" alt="DDWL" style="height:36px;margin-bottom:16px">
+<p class="ts" style="color:#666">Do Deals With Lee&trade; &bull; Smart Signage &amp; Billboard Strategy</p>
+<p class="tx" style="color:#444">Prepared by Daniel Gallagher &amp; Lilly &bull; Exposure Solutions &bull; February 2026</p>
+<p class="tx" style="color:#444;margin-top:8px">info@dodealswithlee.com &bull; 813-675-0916</p>
+</div>
+<div class="pn">08 / 08</div>
+</div>
+
+<button class="pb no-print" onclick="window.print()">&#x1F5A8; Save as PDF / Print</button>
+
+</body>
+</html>
