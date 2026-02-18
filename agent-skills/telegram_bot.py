@@ -939,6 +939,167 @@ async def cmd_update(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 # ============================================================
+# /selfupdate — Full system self-update with rollback
+# ============================================================
+async def cmd_selfupdate(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Full system update: git pull, pip install, openclaw update, restart everything."""
+    if not is_admin(update):
+        await deny_access(update)
+        return
+    await update.effective_chat.send_action(ChatAction.TYPING)
+
+    # Save current commit hash for rollback
+    current = await run_shell(f"cd {DDWL_DIR} && git rev-parse --short HEAD")
+    await safe_reply(update, f"🔄 <b>Self-updating DDWL-OS...</b>\n<i>Current: {current}</i>\n<i>Saving rollback point...</i>")
+
+    steps = []
+
+    # Step 1: Git pull
+    out = await run_shell(f"cd {DDWL_DIR} && git pull 2>&1")
+    steps.append(f"<b>Git pull:</b> {'✅' if 'Already up to date' in out or 'Fast-forward' in out else '⚠️'}\n<code>{out[:300]}</code>")
+
+    # Step 2: Pip install requirements
+    out = await run_shell(f"source {DDWL_DIR}/venv/bin/activate && pip install -q -r {DDWL_DIR}/requirements.txt 2>&1 | tail -5", timeout=120)
+    steps.append(f"<b>Pip install:</b> ✅\n<code>{out[:200]}</code>")
+
+    # Step 3: Update OpenClaw
+    out = await run_shell("openclaw update 2>&1 | tail -5", timeout=120)
+    steps.append(f"<b>OpenClaw update:</b>\n<code>{out[:200]}</code>")
+
+    # Step 4: Restart services
+    out = await run_shell("sudo systemctl restart lilly-telegram 2>&1; systemctl --user restart openclaw-gateway 2>&1; sleep 2; echo 'Services restarted'")
+    steps.append(f"<b>Services:</b> ✅ restarted")
+
+    new_commit = await run_shell(f"cd {DDWL_DIR} && git rev-parse --short HEAD")
+    steps.append(f"\n<b>Now running:</b> {new_commit}")
+    steps.append(f"<b>Rollback to:</b> <code>/rollback {current}</code>")
+
+    await safe_reply(update, "\n\n".join(steps))
+
+
+async def cmd_rollback(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Rollback to a previous git commit."""
+    if not is_admin(update):
+        await deny_access(update)
+        return
+    commit = context.args[0] if context.args else ""
+    if not commit:
+        # Show recent commits to pick from
+        output = await run_shell(f"cd {DDWL_DIR} && git log --oneline -10")
+        await safe_reply(update, (
+            "⏪ <b>Rollback to a previous version</b>\n\n"
+            f"<code>{output}</code>\n\n"
+            "Usage: <code>/rollback abc1234</code>"
+        ))
+        return
+    await update.effective_chat.send_action(ChatAction.TYPING)
+    await safe_reply(update, f"⏪ <b>Rolling back to {commit}...</b>")
+    out = await run_shell(f"cd {DDWL_DIR} && git stash 2>/dev/null; git checkout {commit} 2>&1")
+    restart = await run_shell("sudo systemctl restart lilly-telegram 2>&1; echo DONE")
+    await safe_reply(update, f"<b>⏪ Rollback result:</b>\n\n<code>{out}</code>\n\n<i>Services restarting...</i>")
+
+
+# ============================================================
+# /skill — Manage OpenClaw skills
+# ============================================================
+async def cmd_skill(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Download, list, or update OpenClaw skills."""
+    if not is_admin(update):
+        await deny_access(update)
+        return
+    args = context.args if context.args else []
+    action = args[0].lower() if args else ""
+
+    if not action:
+        await safe_reply(update, (
+            "🧩 <b>Manage OpenClaw Skills</b>\n\n"
+            "<code>/skill list</code> — show installed skills\n"
+            "<code>/skill install slug</code> — install from ClawHub\n"
+            "<code>/skill update</code> — update all skills\n"
+            "<code>/skill search query</code> — search ClawHub\n"
+            "<code>/skill info slug</code> — skill details"
+        ))
+        return
+
+    await update.effective_chat.send_action(ChatAction.TYPING)
+
+    if action == "list":
+        output = await run_shell(f"ls -1 {DDWL_DIR}/skills/*/SKILL.md 2>/dev/null | sed 's|.*/skills/||;s|/SKILL.md||' && echo '---' && ls -1 ~/.openclaw/skills/*/SKILL.md 2>/dev/null | sed 's|.*/skills/||;s|/SKILL.md||' || echo 'No managed skills'")
+        await safe_reply(update, f"<b>🧩 Installed Skills</b>\n\n<b>Workspace:</b>\n<code>{output}</code>")
+    elif action == "install" and len(args) > 1:
+        slug = args[1]
+        await safe_reply(update, f"📦 <b>Installing skill:</b> <i>{slug}</i>...")
+        output = await run_shell(f"cd {DDWL_DIR} && clawhub install {slug} 2>&1", timeout=60)
+        await safe_reply(update, f"<b>📦 Install result:</b>\n\n<code>{output[:2000]}</code>")
+    elif action == "update":
+        await safe_reply(update, "🔄 <b>Updating all skills...</b>")
+        output = await run_shell(f"cd {DDWL_DIR} && clawhub update --all 2>&1", timeout=60)
+        await safe_reply(update, f"<b>🔄 Update result:</b>\n\n<code>{output[:2000]}</code>")
+    elif action == "search" and len(args) > 1:
+        query = " ".join(args[1:])
+        output = await run_shell(f"clawhub search {query} 2>&1 | head -30", timeout=30)
+        await safe_reply(update, f"<b>🔍 ClawHub: {query}</b>\n\n<code>{output[:2000]}</code>")
+    elif action == "info" and len(args) > 1:
+        slug = args[1]
+        # Try to read the local SKILL.md
+        output = await run_shell(f"cat {DDWL_DIR}/skills/{slug}/SKILL.md 2>/dev/null || cat ~/.openclaw/skills/{slug}/SKILL.md 2>/dev/null || echo 'Skill not found locally. Try /skill install {slug}'")
+        await safe_reply(update, f"<b>🧩 Skill: {slug}</b>\n\n<code>{output[:3000]}</code>")
+    else:
+        await safe_reply(update, "❓ Usage: <code>/skill [list|install|update|search|info] [name]</code>")
+
+
+# ============================================================
+# /health — System health check with auto-diagnosis
+# ============================================================
+async def cmd_health(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Run a comprehensive health check and report issues."""
+    if not is_admin(update):
+        await deny_access(update)
+        return
+    await update.effective_chat.send_action(ChatAction.TYPING)
+
+    checks = ["<b>🏥 System Health Check</b>\n"]
+
+    # Services
+    lilly = await run_shell("systemctl is-active lilly-telegram")
+    openclaw = await run_shell("systemctl --user is-active openclaw-gateway")
+    checks.append(f"<b>Services:</b>")
+    checks.append(f"  Lilly: {'✅' if lilly == 'active' else '❌'} {lilly}")
+    checks.append(f"  OpenClaw: {'✅' if openclaw == 'active' else '❌'} {openclaw}")
+
+    # Disk
+    disk = await run_shell("df -h / | tail -1 | awk '{print $5}'")
+    disk_pct = int(disk.replace('%', '')) if disk.replace('%', '').isdigit() else 0
+    checks.append(f"\n<b>Disk:</b> {'✅' if disk_pct < 80 else '⚠️' if disk_pct < 90 else '❌'} {disk} used")
+
+    # Memory
+    mem = await run_shell("free | grep Mem | awk '{printf \"%.0f\", $3/$2 * 100}'")
+    mem_pct = int(mem) if mem.isdigit() else 0
+    checks.append(f"<b>Memory:</b> {'✅' if mem_pct < 80 else '⚠️' if mem_pct < 90 else '❌'} {mem}% used")
+
+    # Load
+    load = await run_shell("cat /proc/loadavg | awk '{print $1}'")
+    checks.append(f"<b>Load:</b> {load}")
+
+    # Uptime
+    uptime = await run_shell("uptime -p")
+    checks.append(f"<b>Uptime:</b> {uptime}")
+
+    # Git status
+    git_status = await run_shell(f"cd {DDWL_DIR} && git log --oneline -1")
+    checks.append(f"\n<b>Code:</b> {git_status}")
+
+    # Recent errors
+    errors = await run_shell("sudo journalctl -p err --no-pager -n 5 --since '1 hour ago' 2>/dev/null | tail -5")
+    if errors and "No entries" not in errors:
+        checks.append(f"\n<b>⚠️ Recent errors:</b>\n<code>{errors[:500]}</code>")
+    else:
+        checks.append(f"\n<b>Errors:</b> ✅ None in last hour")
+
+    await safe_reply(update, "\n".join(checks))
+
+
+# ============================================================
 # NATURAL LANGUAGE — Plain text messages
 # ============================================================
 async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -1099,6 +1260,10 @@ async def post_init(application):
         BotCommand("logs", "View service logs"),
         BotCommand("download", "Download a file"),
         BotCommand("update", "Pull code + restart"),
+        BotCommand("selfupdate", "Full system update"),
+        BotCommand("rollback", "Revert to previous version"),
+        BotCommand("skill", "Manage OpenClaw skills"),
+        BotCommand("health", "System health check"),
         BotCommand("reboot", "Reboot server"),
         BotCommand("trends", "Trending news"),
         BotCommand("brief", "Morning brief"),
@@ -1158,6 +1323,10 @@ def main():
     app.add_handler(CommandHandler("logs", cmd_logs))
     app.add_handler(CommandHandler("reboot", cmd_reboot))
     app.add_handler(CommandHandler("update", cmd_update))
+    app.add_handler(CommandHandler("selfupdate", cmd_selfupdate))
+    app.add_handler(CommandHandler("rollback", cmd_rollback))
+    app.add_handler(CommandHandler("skill", cmd_skill))
+    app.add_handler(CommandHandler("health", cmd_health))
 
     # Inline keyboard callback
     app.add_handler(CallbackQueryHandler(button_handler))

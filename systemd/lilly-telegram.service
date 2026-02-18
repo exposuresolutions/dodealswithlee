@@ -1,0 +1,20 @@
+[Unit]
+Description=Lilly Telegram Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=exposureai
+WorkingDirectory=/home/exposureai/ddwl
+EnvironmentFile=/home/exposureai/ddwl/.env
+ExecStart=/home/exposureai/ddwl/venv/bin/python /home/exposureai/ddwl/agent-skills/telegram_bot.py
+ExecStopPost=/home/exposureai/ddwl/venv/bin/python /home/exposureai/ddwl/agent-skills/tg_notify.py "⚠️ Lilly service stopped or crashed. Auto-restarting in 10s..."
+Restart=always
+RestartSec=10
+StartLimitIntervalSec=300
+StartLimitBurst=5
+Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+[Install]
+WantedBy=multi-user.target
