@@ -939,6 +939,256 @@ async def cmd_update(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 # ============================================================
+# SUPERPOWER COMMANDS — AI, Browser, Media, Workflows
+# ============================================================
+
+async def cmd_ollama(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Query local Ollama LLM (runs on CPU, no API needed)."""
+    if not is_admin(update):
+        await deny_access(update)
+        return
+    prompt = " ".join(context.args) if context.args else ""
+    if not prompt:
+        # Show available models
+        models = await run_shell("ollama list 2>&1")
+        await safe_reply(update, (
+            "🧠 <b>Local AI (Ollama)</b>\n\n"
+            "<code>/ollama What is wholesaling?</code>\n"
+            "<code>/ollama Summarize this: [text]</code>\n"
+            "<code>/ollama Write a cold call script</code>\n\n"
+            f"<b>Models installed:</b>\n<code>{models}</code>\n\n"
+            "<i>⚠️ CPU-only: ~60s per response. For fast answers use /ask</i>"
+        ))
+        return
+    await update.effective_chat.send_action(ChatAction.TYPING)
+    await safe_reply(update, "🧠 <i>Thinking locally (CPU, ~60s)...</i>")
+    output = await run_shell(f"echo '{prompt.replace(chr(39), chr(39)+chr(92)+chr(39)+chr(39))}' | ollama run llama3.2:3b 2>&1", timeout=180)
+    await safe_reply(update, f"🧠 <b>Ollama:</b>\n\n{output[:3800]}")
+
+
+async def cmd_browse(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Take a screenshot of any webpage using Playwright."""
+    if not is_admin(update):
+        await deny_access(update)
+        return
+    url = context.args[0] if context.args else ""
+    if not url:
+        await safe_reply(update, (
+            "📸 <b>Screenshot any webpage</b>\n\n"
+            "<code>/browse https://dodealswithlee.com</code>\n"
+            "<code>/browse https://app.gohighlevel.com</code>\n"
+            "<code>/browse https://google.com/search?q=cleveland+wholesaling</code>"
+        ))
+        return
+    if not url.startswith("http"):
+        url = "https://" + url
+    await update.effective_chat.send_action(ChatAction.UPLOAD_PHOTO)
+    await safe_reply(update, f"📸 <i>Screenshotting {url}...</i>")
+    screenshot_path = f"/tmp/screenshot_{update.update_id}.png"
+    script = (
+        f"source {DDWL_DIR}/venv/bin/activate && python -c \""
+        f"from playwright.sync_api import sync_playwright; "
+        f"p = sync_playwright().start(); "
+        f"b = p.chromium.launch(headless=True); "
+        f"page = b.new_page(viewport={{'width': 1280, 'height': 720}}); "
+        f"page.goto('{url}', timeout=30000); "
+        f"page.wait_for_timeout(3000); "
+        f"page.screenshot(path='{screenshot_path}', full_page=False); "
+        f"b.close(); p.stop(); "
+        f"print('OK')\""
+    )
+    result = await run_shell(script, timeout=60)
+    if "OK" in result:
+        try:
+            with open(screenshot_path, "rb") as f:
+                await update.effective_chat.send_photo(photo=f, caption=f"📸 {url}")
+        except Exception as e:
+            await safe_reply(update, f"❌ Screenshot taken but failed to send: {str(e)[:200]}")
+    else:
+        await safe_reply(update, f"❌ Screenshot failed:\n<code>{result[:500]}</code>")
+
+
+async def cmd_ytdl(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Download YouTube video/audio using yt-dlp."""
+    if not is_admin(update):
+        await deny_access(update)
+        return
+    args = context.args if context.args else []
+    if not args:
+        await safe_reply(update, (
+            "🎬 <b>Download YouTube content</b>\n\n"
+            "<code>/ytdl https://youtube.com/watch?v=xxx</code> — download video\n"
+            "<code>/ytdl audio https://youtube.com/watch?v=xxx</code> — audio only\n"
+            "<code>/ytdl info https://youtube.com/watch?v=xxx</code> — video info\n"
+            "<code>/ytdl transcript https://youtube.com/watch?v=xxx</code> — get subtitles"
+        ))
+        return
+
+    await update.effective_chat.send_action(ChatAction.TYPING)
+
+    mode = "video"
+    url = args[0]
+    if args[0] in ("audio", "info", "transcript") and len(args) > 1:
+        mode = args[0]
+        url = args[1]
+
+    if mode == "info":
+        output = await run_shell(f"source {DDWL_DIR}/venv/bin/activate && yt-dlp --print title --print duration_string --print view_count --print upload_date '{url}' 2>&1", timeout=30)
+        await safe_reply(update, f"<b>🎬 Video Info:</b>\n\n<code>{output}</code>")
+    elif mode == "transcript":
+        output = await run_shell(
+            f"source {DDWL_DIR}/venv/bin/activate && yt-dlp --write-auto-sub --sub-lang en --skip-download "
+            f"--sub-format vtt -o '/tmp/yt_sub' '{url}' 2>&1 && cat /tmp/yt_sub.en.vtt 2>/dev/null | head -100",
+            timeout=60,
+        )
+        await safe_reply(update, f"<b>📝 Transcript:</b>\n\n<code>{output[:3500]}</code>")
+    elif mode == "audio":
+        await safe_reply(update, "🎵 <i>Downloading audio...</i>")
+        dl_path = f"/tmp/yt_audio_{update.update_id}.mp3"
+        output = await run_shell(
+            f"source {DDWL_DIR}/venv/bin/activate && yt-dlp -x --audio-format mp3 -o '{dl_path}' '{url}' 2>&1 | tail -3",
+            timeout=120,
+        )
+        try:
+            with open(dl_path, "rb") as f:
+                await update.effective_chat.send_audio(audio=f, caption="🎵 Downloaded audio")
+        except Exception:
+            await safe_reply(update, f"<b>🎵 Audio download result:</b>\n<code>{output[:1000]}</code>\n\n<i>File may be too large for Telegram (50MB limit)</i>")
+    else:
+        await safe_reply(update, "🎬 <i>Downloading video...</i>")
+        dl_path = f"/tmp/yt_video_{update.update_id}.mp4"
+        output = await run_shell(
+            f"source {DDWL_DIR}/venv/bin/activate && yt-dlp -f 'best[filesize<50M]' -o '{dl_path}' '{url}' 2>&1 | tail -3",
+            timeout=180,
+        )
+        try:
+            with open(dl_path, "rb") as f:
+                await update.effective_chat.send_video(video=f, caption="🎬 Downloaded video")
+        except Exception:
+            await safe_reply(update, f"<b>🎬 Download result:</b>\n<code>{output[:1000]}</code>\n\n<i>File may be too large for Telegram (50MB limit)</i>")
+
+
+async def cmd_convert(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Convert files between formats using Pandoc + FFmpeg."""
+    if not is_admin(update):
+        await deny_access(update)
+        return
+    args = " ".join(context.args) if context.args else ""
+    if not args:
+        await safe_reply(update, (
+            "🔄 <b>Convert files between formats</b>\n\n"
+            "<b>Documents (Pandoc):</b>\n"
+            "<code>/convert md-to-pdf report.md</code>\n"
+            "<code>/convert html-to-md page.html</code>\n"
+            "<code>/convert docx-to-md document.docx</code>\n\n"
+            "<b>Audio/Video (FFmpeg):</b>\n"
+            "<code>/convert mp4-to-mp3 video.mp4</code>\n"
+            "<code>/convert wav-to-mp3 audio.wav</code>\n\n"
+            "<i>Or send me a file and I'll convert it!</i>"
+        ))
+        return
+    await update.effective_chat.send_action(ChatAction.TYPING)
+    output = await run_shell(f"cd {DDWL_DIR} && {args}", timeout=120)
+    await safe_reply(update, f"<b>🔄 Convert result:</b>\n\n<code>{output[:2000]}</code>")
+
+
+async def cmd_n8n(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Manage n8n workflow automation (Docker)."""
+    if not is_admin(update):
+        await deny_access(update)
+        return
+    action = context.args[0].lower() if context.args else ""
+    if not action:
+        await safe_reply(update, (
+            "⚡ <b>n8n Workflow Automation</b>\n\n"
+            "<code>/n8n status</code> — container status\n"
+            "<code>/n8n start</code> — start n8n\n"
+            "<code>/n8n stop</code> — stop n8n\n"
+            "<code>/n8n restart</code> — restart n8n\n"
+            "<code>/n8n logs</code> — recent logs\n"
+            "<code>/n8n url</code> — access URL\n\n"
+            "<i>n8n runs on port 5678 via Docker</i>"
+        ))
+        return
+    await update.effective_chat.send_action(ChatAction.TYPING)
+    if action == "status":
+        output = await run_shell("docker ps -a --filter name=n8n --format 'Name: {{.Names}}\nStatus: {{.Status}}\nPorts: {{.Ports}}'")
+        await safe_reply(update, f"<b>⚡ n8n Status:</b>\n\n<code>{output}</code>")
+    elif action == "start":
+        output = await run_shell("docker start n8n 2>&1")
+        await safe_reply(update, f"<b>⚡ n8n started:</b> <code>{output}</code>")
+    elif action == "stop":
+        output = await run_shell("docker stop n8n 2>&1")
+        await safe_reply(update, f"<b>⚡ n8n stopped:</b> <code>{output}</code>")
+    elif action == "restart":
+        output = await run_shell("docker restart n8n 2>&1")
+        await safe_reply(update, f"<b>⚡ n8n restarted:</b> <code>{output}</code>")
+    elif action == "logs":
+        output = await run_shell("docker logs n8n --tail 20 2>&1")
+        await safe_reply(update, f"<b>⚡ n8n Logs:</b>\n\n<code>{output[-2000:]}</code>")
+    elif action == "url":
+        ts_ip = await run_shell("tailscale ip -4 2>/dev/null || echo 'localhost'")
+        local_ip = await run_shell("hostname -I | awk '{print $1}'")
+        await safe_reply(update, (
+            "<b>⚡ n8n Access URLs:</b>\n\n"
+            f"<b>Local:</b> <code>http://{local_ip.strip()}:5678</code>\n"
+            f"<b>Tailscale:</b> <code>http://{ts_ip.strip()}:5678</code>\n\n"
+            "<i>Open in your browser to build workflows</i>"
+        ))
+    else:
+        await safe_reply(update, "❓ Usage: <code>/n8n [status|start|stop|restart|logs|url]</code>")
+
+
+async def cmd_scrape(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Scrape text content from any webpage."""
+    if not is_admin(update):
+        await deny_access(update)
+        return
+    url = context.args[0] if context.args else ""
+    if not url:
+        await safe_reply(update, (
+            "🕷️ <b>Scrape webpage content</b>\n\n"
+            "<code>/scrape https://example.com</code>\n"
+            "<code>/scrape https://zillow.com/cleveland</code>\n\n"
+            "<i>Extracts text content from any URL</i>"
+        ))
+        return
+    if not url.startswith("http"):
+        url = "https://" + url
+    await update.effective_chat.send_action(ChatAction.TYPING)
+    script = (
+        f"source {DDWL_DIR}/venv/bin/activate && python -c \""
+        f"from playwright.sync_api import sync_playwright; "
+        f"p = sync_playwright().start(); "
+        f"b = p.chromium.launch(headless=True); "
+        f"page = b.new_page(); "
+        f"page.goto('{url}', timeout=30000); "
+        f"page.wait_for_timeout(3000); "
+        f"text = page.inner_text('body'); "
+        f"b.close(); p.stop(); "
+        f"print(text[:3500])\""
+    )
+    output = await run_shell(script, timeout=60)
+    await safe_reply(update, f"<b>🕷️ Scraped: {url}</b>\n\n<code>{output[:3500]}</code>")
+
+
+async def cmd_tailscale(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show Tailscale network status."""
+    if not is_admin(update):
+        await deny_access(update)
+        return
+    await update.effective_chat.send_action(ChatAction.TYPING)
+    status = await run_shell("tailscale status 2>&1")
+    ip = await run_shell("tailscale ip -4 2>&1")
+    await safe_reply(update, (
+        f"<b>🌐 Tailscale Network</b>\n\n"
+        f"<b>This device IP:</b> <code>{ip.strip()}</code>\n\n"
+        f"<b>Connected devices:</b>\n<code>{status}</code>\n\n"
+        f"<i>SSH from anywhere: ssh exposureai@{ip.strip()}</i>"
+    ))
+
+
+# ============================================================
 # /selfupdate — Full system self-update with rollback
 # ============================================================
 async def cmd_selfupdate(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -1264,6 +1514,13 @@ async def post_init(application):
         BotCommand("rollback", "Revert to previous version"),
         BotCommand("skill", "Manage OpenClaw skills"),
         BotCommand("health", "System health check"),
+        BotCommand("ollama", "Local AI (no API)"),
+        BotCommand("browse", "Screenshot a webpage"),
+        BotCommand("scrape", "Scrape webpage text"),
+        BotCommand("ytdl", "Download YouTube content"),
+        BotCommand("n8n", "Workflow automation"),
+        BotCommand("tailscale", "VPN network status"),
+        BotCommand("convert", "Convert file formats"),
         BotCommand("reboot", "Reboot server"),
         BotCommand("trends", "Trending news"),
         BotCommand("brief", "Morning brief"),
@@ -1327,6 +1584,18 @@ def main():
     app.add_handler(CommandHandler("rollback", cmd_rollback))
     app.add_handler(CommandHandler("skill", cmd_skill))
     app.add_handler(CommandHandler("health", cmd_health))
+
+    # Superpower handlers
+    app.add_handler(CommandHandler("ollama", cmd_ollama))
+    app.add_handler(CommandHandler("browse", cmd_browse))
+    app.add_handler(CommandHandler("screenshot", cmd_browse))
+    app.add_handler(CommandHandler("scrape", cmd_scrape))
+    app.add_handler(CommandHandler("ytdl", cmd_ytdl))
+    app.add_handler(CommandHandler("youtube", cmd_ytdl))
+    app.add_handler(CommandHandler("n8n", cmd_n8n))
+    app.add_handler(CommandHandler("convert", cmd_convert))
+    app.add_handler(CommandHandler("tailscale", cmd_tailscale))
+    app.add_handler(CommandHandler("ts", cmd_tailscale))
 
     # Inline keyboard callback
     app.add_handler(CallbackQueryHandler(button_handler))

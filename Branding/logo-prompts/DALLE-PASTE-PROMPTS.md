@@ -28,3 +28,17 @@ Recreate this exact "DO DEALS WITH LEE" holographic gradient logo on black backg
 
 ### 1C: All Cyan (no orange)
 Recreate this exact "DO DEALS WITH LEE" holographic gradient logo on black background with reflective floor. Keep everything the same EXCEPT make the entire logo cyan-to-white gradient — remove the orange entirely. House, text, tag all in shades of cyan/white holographic glow. Same layout. Square format.
+
+---
+
+## BILLBOARD MOCKUPS — Logo Only (Lee's Pick)
+Upload the neon logo (Image 1 — cyan/gold holographic "DO DEALS WITH LEE" with orange house) as reference.
+
+### Billboard — Logo Only (no tagline)
+Photorealistic nighttime highway billboard mockup. The billboard displays ONLY the "DO DEALS WITH LEE" neon logo — the exact logo from the reference image with the cyan-to-gold holographic gradient text, orange house icon with window, and the orange "WITH LEE" tag underneath. NO additional text, NO tagline, NO "7,000+ Deals Closed", NO phone number — just the clean logo centered on the billboard. Dark night sky, highway stretching into the distance, dramatic uplighting on the billboard. The logo should glow like a neon sign against the dark billboard. Widescreen 16:9 format.
+
+### Billboard — Logo + Phone Number
+Same photorealistic nighttime highway billboard mockup. The billboard displays the "DO DEALS WITH LEE" neon logo from the reference image, centered. Below the logo in clean white text: "DoDealswithLee.com". NO other text. Dark night sky, highway, dramatic uplighting. Widescreen 16:9 format.
+
+### Billboard — Logo + Tagline
+Same photorealistic nighttime highway billboard mockup. The billboard displays the "DO DEALS WITH LEE" neon logo from the reference image, centered. Below the logo in cyan neon text: "We Buy Houses. Cash. Fast." Dark night sky, highway, dramatic uplighting. Widescreen 16:9 format.
