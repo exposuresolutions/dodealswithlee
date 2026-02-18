@@ -19,6 +19,8 @@ import sys
 import json
 import time
 import logging
+import asyncio
+import subprocess
 import requests
 from pathlib import Path
 from datetime import datetime
@@ -57,6 +59,18 @@ GHL_API_HEADERS = {
 
 logging.basicConfig(format="  [%(asctime)s] %(message)s", datefmt="%H:%M:%S", level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+# Admin Telegram user IDs — only these users can run server commands
+ADMIN_IDS = {1399744360}  # Daniel Gallagher
+DDWL_DIR = Path.home() / "ddwl"
+
+
+def is_admin(update: Update) -> bool:
+    return update.effective_user.id in ADMIN_IDS
+
+
+async def deny_access(update: Update):
+    await safe_reply(update, "🔒 <b>Access denied.</b>\n<i>Server commands are admin-only.</i>")
 
 
 # ============================================================
@@ -134,10 +148,17 @@ async def cmd_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     welcome = (
         f"👋 <b>Hey {user.first_name}!</b>\n\n"
-        f"I'm <b>Lilly</b> — your DDWL command center.\n"
-        f"I manage GoHighLevel, research GHL updates,\n"
-        f"and can speak in Lee's voice.\n\n"
-        f"<b>Tap a button or type anything:</b>"
+        f"I'm <b>Lilly</b> — your DDWL-OS command center.\n"
+        f"Running 24/7 on the Lenovo server.\n\n"
+        f"<b>🏢 GHL</b>\n"
+        f"/status · /workflows · /contacts · /research\n\n"
+        f"<b>🧠 AI</b>\n"
+        f"/ask · /trends · /news · /brief · /say\n\n"
+        f"<b>🖥️ Server Control</b>\n"
+        f"/run · /install · /service · /git\n"
+        f"/disk · /mem · /top · /logs\n"
+        f"/download · /update · /reboot\n\n"
+        f"<b>Or just type in plain English</b> — I'll figure it out."
     )
     await safe_reply(update, welcome, reply_markup=reply_markup)
     logger.info(f"START from {user.first_name} ({user.id})")
@@ -476,6 +497,12 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await safe_reply(update, f"❌ Error: {str(e)[:200]}")
     elif action == "research":
         await cmd_research(update, context)
+    elif action == "reboot_confirm":
+        if is_admin(update):
+            context.args = ["confirm"]
+            await cmd_reboot(update, context)
+        else:
+            await deny_access(update)
     elif action == "voice_test":
         await update.effective_chat.send_action(ChatAction.RECORD_VOICE)
         try:
@@ -636,6 +663,251 @@ async def cmd_brief(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 # ============================================================
+# SERVER CONTROL — Run commands, install, manage services
+# ============================================================
+async def run_shell(cmd, timeout=60):
+    """Execute a shell command and return stdout+stderr."""
+    try:
+        proc = await asyncio.create_subprocess_shell(
+            cmd,
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.STDOUT,
+            cwd=str(DDWL_DIR),
+        )
+        stdout, _ = await asyncio.wait_for(proc.communicate(), timeout=timeout)
+        output = stdout.decode("utf-8", errors="replace").strip()
+        return output[:3800] if output else "(no output)"
+    except asyncio.TimeoutError:
+        proc.kill()
+        return "⏰ Command timed out (60s limit)"
+    except Exception as e:
+        return f"❌ Error: {str(e)[:200]}"
+
+
+async def cmd_run(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Execute any shell command on the server."""
+    if not is_admin(update):
+        await deny_access(update)
+        return
+    cmd = " ".join(context.args) if context.args else ""
+    if not cmd:
+        await safe_reply(update, (
+            "🖥️ <b>Run a command on the server</b>\n\n"
+            "<code>/run ls -la</code>\n"
+            "<code>/run df -h</code>\n"
+            "<code>/run docker ps</code>\n"
+            "<code>/run pip list</code>\n"
+            "<code>/run cat /etc/os-release</code>"
+        ))
+        return
+    await update.effective_chat.send_action(ChatAction.TYPING)
+    logger.info(f"🖥️ EXEC [{update.effective_user.first_name}]: {cmd}")
+    output = await run_shell(cmd)
+    await safe_reply(update, f"<b>$ {cmd}</b>\n\n<code>{output}</code>")
+
+
+async def cmd_install(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Install packages via apt or pip."""
+    if not is_admin(update):
+        await deny_access(update)
+        return
+    args = context.args if context.args else []
+    if not args:
+        await safe_reply(update, (
+            "📦 <b>Install packages</b>\n\n"
+            "<code>/install docker.io</code> — apt package\n"
+            "<code>/install pip requests flask</code> — pip packages\n"
+            "<code>/install apt nginx</code> — explicit apt"
+        ))
+        return
+    await update.effective_chat.send_action(ChatAction.TYPING)
+    if args[0] == "pip":
+        packages = " ".join(args[1:])
+        cmd = f"source {DDWL_DIR}/venv/bin/activate && pip install {packages}"
+    elif args[0] == "apt":
+        packages = " ".join(args[1:])
+        cmd = f"sudo DEBIAN_FRONTEND=noninteractive apt-get install -y {packages}"
+    else:
+        packages = " ".join(args)
+        cmd = f"sudo DEBIAN_FRONTEND=noninteractive apt-get install -y {packages}"
+    await safe_reply(update, f"📦 <b>Installing:</b> <i>{packages}</i>...")
+    output = await run_shell(cmd, timeout=120)
+    await safe_reply(update, f"<b>📦 Install result:</b>\n\n<code>{output[-2000:]}</code>")
+
+
+async def cmd_service(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Manage systemd services."""
+    if not is_admin(update):
+        await deny_access(update)
+        return
+    args = context.args if context.args else []
+    if len(args) < 1:
+        await safe_reply(update, (
+            "⚙️ <b>Manage services</b>\n\n"
+            "<code>/service list</code> — show DDWL services\n"
+            "<code>/service status lilly-telegram</code>\n"
+            "<code>/service restart lilly-telegram</code>\n"
+            "<code>/service stop chat-widget-api</code>\n"
+            "<code>/service start chat-widget-api</code>\n"
+            "<code>/service logs lilly-telegram</code>"
+        ))
+        return
+    await update.effective_chat.send_action(ChatAction.TYPING)
+    action = args[0].lower()
+    if action == "list":
+        output = await run_shell("systemctl list-units --type=service --state=running --no-pager | grep -E 'lilly|chat-widget|openclaw|ddwl' || echo 'No DDWL services found'; echo '---'; systemctl list-units --type=service --state=failed --no-pager | head -5")
+        await safe_reply(update, f"<b>⚙️ DDWL Services</b>\n\n<code>{output}</code>")
+    elif action == "logs" and len(args) > 1:
+        svc = args[1]
+        output = await run_shell(f"sudo journalctl -u {svc} --no-pager -n 25 --since '10 min ago'")
+        await safe_reply(update, f"<b>📋 Logs: {svc}</b>\n\n<code>{output[-3000:]}</code>")
+    elif action in ("start", "stop", "restart", "status") and len(args) > 1:
+        svc = args[1]
+        if action == "status":
+            output = await run_shell(f"sudo systemctl status {svc} --no-pager -l")
+        else:
+            output = await run_shell(f"sudo systemctl {action} {svc} && sudo systemctl status {svc} --no-pager -l")
+        icon = {"start": "▶️", "stop": "⏹️", "restart": "🔄", "status": "ℹ️"}.get(action, "⚙️")
+        await safe_reply(update, f"{icon} <b>{action.title()} {svc}</b>\n\n<code>{output}</code>")
+    else:
+        await safe_reply(update, "❓ Usage: <code>/service [list|start|stop|restart|status|logs] [name]</code>")
+
+
+async def cmd_download(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Download a file from a URL to the server."""
+    if not is_admin(update):
+        await deny_access(update)
+        return
+    url = context.args[0] if context.args else ""
+    if not url:
+        await safe_reply(update, (
+            "⬇️ <b>Download a file</b>\n\n"
+            "<code>/download https://example.com/file.zip</code>\n"
+            "Files saved to ~/ddwl/downloads/"
+        ))
+        return
+    await update.effective_chat.send_action(ChatAction.TYPING)
+    await safe_reply(update, f"⬇️ <b>Downloading:</b>\n<i>{url[:100]}</i>")
+    output = await run_shell(f"mkdir -p {DDWL_DIR}/downloads && cd {DDWL_DIR}/downloads && wget -q --show-progress '{url}' 2>&1 | tail -3", timeout=120)
+    await safe_reply(update, f"<b>⬇️ Download complete:</b>\n\n<code>{output}</code>")
+
+
+async def cmd_git(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Git operations on the DDWL repo."""
+    if not is_admin(update):
+        await deny_access(update)
+        return
+    action = context.args[0].lower() if context.args else ""
+    if not action:
+        await safe_reply(update, (
+            "🔀 <b>Git operations</b>\n\n"
+            "<code>/git pull</code> — pull latest changes\n"
+            "<code>/git status</code> — show repo status\n"
+            "<code>/git log</code> — recent commits"
+        ))
+        return
+    await update.effective_chat.send_action(ChatAction.TYPING)
+    if action == "pull":
+        output = await run_shell(f"cd {DDWL_DIR} && git pull")
+        await safe_reply(update, f"<b>🔀 Git Pull</b>\n\n<code>{output}</code>")
+    elif action == "status":
+        output = await run_shell(f"cd {DDWL_DIR} && git status --short")
+        await safe_reply(update, f"<b>🔀 Git Status</b>\n\n<code>{output}</code>")
+    elif action == "log":
+        output = await run_shell(f"cd {DDWL_DIR} && git log --oneline -10")
+        await safe_reply(update, f"<b>🔀 Git Log</b>\n\n<code>{output}</code>")
+    else:
+        output = await run_shell(f"cd {DDWL_DIR} && git {' '.join(context.args)}")
+        await safe_reply(update, f"<b>🔀 git {action}</b>\n\n<code>{output}</code>")
+
+
+async def cmd_disk(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show disk usage."""
+    if not is_admin(update):
+        await deny_access(update)
+        return
+    await update.effective_chat.send_action(ChatAction.TYPING)
+    output = await run_shell("df -h / && echo '' && du -sh ~/ddwl/* 2>/dev/null | sort -rh | head -10")
+    await safe_reply(update, f"<b>💾 Disk Usage</b>\n\n<code>{output}</code>")
+
+
+async def cmd_mem(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show memory usage."""
+    if not is_admin(update):
+        await deny_access(update)
+        return
+    await update.effective_chat.send_action(ChatAction.TYPING)
+    output = await run_shell("free -h && echo '' && echo 'Top memory:' && ps aux --sort=-%mem | head -6")
+    await safe_reply(update, f"<b>🧠 Memory</b>\n\n<code>{output}</code>")
+
+
+async def cmd_top(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show system overview."""
+    if not is_admin(update):
+        await deny_access(update)
+        return
+    await update.effective_chat.send_action(ChatAction.TYPING)
+    output = await run_shell(
+        "echo '=== SYSTEM ===' && uname -a && echo '' && "
+        "echo '=== UPTIME ===' && uptime && echo '' && "
+        "echo '=== MEMORY ===' && free -h | head -2 && echo '' && "
+        "echo '=== DISK ===' && df -h / | tail -1 && echo '' && "
+        "echo '=== TEMP ===' && cat /sys/class/thermal/thermal_zone*/temp 2>/dev/null | awk '{printf \"%.1f°C\\n\", $1/1000}' && echo '' && "
+        "echo '=== SERVICES ===' && systemctl is-active lilly-telegram chat-widget-api ssh 2>/dev/null | paste - - - && echo '' && "
+        "echo '=== TOP CPU ===' && ps aux --sort=-%cpu | head -4"
+    )
+    await safe_reply(update, f"<b>📊 Server Overview</b>\n\n<code>{output}</code>")
+
+
+async def cmd_logs(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """View service logs."""
+    if not is_admin(update):
+        await deny_access(update)
+        return
+    svc = context.args[0] if context.args else "lilly-telegram"
+    lines = context.args[1] if len(context.args) > 1 else "20"
+    await update.effective_chat.send_action(ChatAction.TYPING)
+    output = await run_shell(f"sudo journalctl -u {svc} --no-pager -n {lines} --since '30 min ago'")
+    await safe_reply(update, f"<b>📋 Logs: {svc}</b>\n\n<code>{output[-3000:]}</code>")
+
+
+async def cmd_reboot(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Reboot the server."""
+    if not is_admin(update):
+        await deny_access(update)
+        return
+    confirm = context.args[0].lower() if context.args else ""
+    if confirm != "confirm":
+        keyboard = [[InlineKeyboardButton("⚠️ Yes, reboot now", callback_data="reboot_confirm")]]
+        await safe_reply(update, (
+            "⚠️ <b>Reboot server?</b>\n\n"
+            "This will restart the Lenovo. All services will come back up automatically.\n\n"
+            "Type <code>/reboot confirm</code> or tap the button below."
+        ), reply_markup=InlineKeyboardMarkup(keyboard))
+        return
+    await safe_reply(update, "🔄 <b>Rebooting server...</b>\n<i>I'll be back in ~60 seconds.</i>")
+    await run_shell("sudo reboot")
+
+
+async def cmd_update(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Pull latest code and restart services."""
+    if not is_admin(update):
+        await deny_access(update)
+        return
+    await update.effective_chat.send_action(ChatAction.TYPING)
+    await safe_reply(update, "🔄 <b>Updating DDWL-OS...</b>\n<i>Pulling code + restarting services</i>")
+    output = await run_shell(
+        f"cd {DDWL_DIR} && git pull && "
+        f"source {DDWL_DIR}/venv/bin/activate && pip install -q -r requirements.txt 2>/dev/null; "
+        "sudo systemctl restart lilly-telegram chat-widget-api 2>/dev/null && "
+        "echo '✅ Update complete' && "
+        "systemctl is-active lilly-telegram chat-widget-api",
+        timeout=120,
+    )
+    await safe_reply(update, f"<b>🔄 Update Result</b>\n\n<code>{output}</code>")
+
+
+# ============================================================
 # NATURAL LANGUAGE — Plain text messages
 # ============================================================
 async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -644,7 +916,9 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
     logger.info(f"Text from {update.effective_user.first_name}: {text[:80]}")
 
     # Pattern match common intents
-    if any(w in text_lower for w in ["status", "how are", "what's up", "overview", "dashboard"]):
+    if any(w in text_lower for w in ["help", "commands", "menu", "what can you do"]):
+        await cmd_start(update, context)
+    elif any(w in text_lower for w in ["status", "how are", "what's up", "overview", "dashboard"]):
         await cmd_status(update, context)
     elif any(w in text_lower for w in ["workflow", "automation"]):
         await cmd_workflows(update, context)
@@ -653,7 +927,7 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif any(w in text_lower for w in ["reddit", "community", "forum"]):
         context.args = text_lower.replace("reddit", "").strip().split() or []
         await cmd_reddit(update, context)
-    elif any(w in text_lower for w in ["research", "what's new", "changelog", "update"]):
+    elif any(w in text_lower for w in ["research", "what's new", "changelog"]):
         await cmd_research(update, context)
     elif any(w in text_lower for w in ["trends", "trending", "what's hot", "what's happening"]):
         await cmd_trends(update, context)
@@ -668,10 +942,109 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif text_lower.startswith("ask "):
         context.args = text[4:].strip().split()
         await cmd_ask(update, context)
-    else:
-        # Route to doer agent
+    # Server control — natural language
+    elif any(w in text_lower for w in ["disk", "storage", "space", "how much space"]):
+        await cmd_disk(update, context)
+    elif any(w in text_lower for w in ["memory", "ram", "how much ram"]):
+        await cmd_mem(update, context)
+    elif any(w in text_lower for w in ["server", "system", "top", "cpu", "temperature", "temp"]):
+        await cmd_top(update, context)
+    elif any(w in text_lower for w in ["service", "services", "what's running"]):
+        context.args = ["list"]
+        await cmd_service(update, context)
+    elif any(p in text_lower for p in ["install ", "apt install", "pip install"]):
+        pkg = text_lower.replace("install", "").replace("apt", "").replace("pip", "").strip()
+        context.args = pkg.split() if pkg else []
+        await cmd_install(update, context)
+    elif any(p in text_lower for p in ["restart ", "stop ", "start "]):
+        for action in ["restart", "stop", "start"]:
+            if action in text_lower:
+                svc = text_lower.split(action, 1)[1].strip().split()[0] if text_lower.split(action, 1)[1].strip() else ""
+                if svc:
+                    context.args = [action, svc]
+                    await cmd_service(update, context)
+                    return
         context.args = text.split()
         await cmd_do(update, context)
+    elif any(w in text_lower for w in ["pull", "git pull", "update code", "update the code"]):
+        await cmd_update(update, context)
+    elif any(w in text_lower for w in ["reboot", "restart server", "restart the server"]):
+        context.args = []
+        await cmd_reboot(update, context)
+    elif any(w in text_lower for w in ["download "]):
+        url = text.split()[-1] if "http" in text else ""
+        context.args = [url] if url else []
+        await cmd_download(update, context)
+    elif any(w in text_lower for w in ["log", "logs", "show logs", "check logs"]):
+        context.args = ["lilly-telegram"]
+        await cmd_logs(update, context)
+    else:
+        # Route to AI — ask Groq to figure out what they want
+        if GROQ_KEY and is_admin(update):
+            await smart_route(update, context, text)
+        else:
+            context.args = text.split()
+            await cmd_do(update, context)
+
+
+async def smart_route(update: Update, context: ContextTypes.DEFAULT_TYPE, text: str):
+    """Use Groq AI to interpret what the user wants and either run a command or answer."""
+    await update.effective_chat.send_action(ChatAction.TYPING)
+    try:
+        prompt = f"""You are Lilly, an AI assistant that controls a Linux server. The user said: "{text}"
+
+Decide what to do. Respond with EXACTLY one of these formats:
+
+SHELL: <command> — if the user wants to run something on the server
+ANSWER: <response> — if the user is asking a question you can answer
+UNKNOWN: <message> — if you're not sure what they want
+
+Examples:
+- "check if nginx is running" → SHELL: systemctl is-active nginx
+- "how much space is left" → SHELL: df -h /
+- "install htop" → SHELL: sudo apt-get install -y htop
+- "what time is it" → SHELL: date
+- "what is wholesaling" → ANSWER: Wholesaling is a real estate strategy where...
+- "create a folder called projects" → SHELL: mkdir -p ~/projects
+- "show me the last 10 lines of the bot log" → SHELL: sudo journalctl -u lilly-telegram --no-pager -n 10
+- "what python packages are installed" → SHELL: /home/exposureai/ddwl/venv/bin/pip list
+- "restart the telegram bot" → SHELL: sudo systemctl restart lilly-telegram
+
+The server is Ubuntu 24.04. DDWL repo is at /home/exposureai/ddwl. Python venv at /home/exposureai/ddwl/venv.
+Services: lilly-telegram, chat-widget-api. User: exposureai. Always use full paths."""
+
+        r = requests.post(
+            "https://api.groq.com/openai/v1/chat/completions",
+            headers={"Authorization": f"Bearer {GROQ_KEY}", "Content-Type": "application/json"},
+            json={
+                "model": "llama-3.3-70b-versatile",
+                "messages": [{"role": "user", "content": prompt}],
+                "max_tokens": 300,
+                "temperature": 0.1,
+            },
+            timeout=15,
+        )
+        if not r.ok:
+            await safe_reply(update, f"❌ AI routing failed: {r.status_code}")
+            return
+
+        reply = r.json()["choices"][0]["message"]["content"].strip()
+        logger.info(f"🧠 Smart route: {reply[:100]}")
+
+        if reply.startswith("SHELL:"):
+            cmd = reply[6:].strip()
+            await safe_reply(update, f"🖥️ <b>Running:</b> <code>{cmd}</code>")
+            output = await run_shell(cmd)
+            await safe_reply(update, f"<code>{output}</code>")
+        elif reply.startswith("ANSWER:"):
+            answer = reply[7:].strip()
+            await safe_reply(update, f"💡 {answer}")
+        else:
+            msg = reply.replace("UNKNOWN:", "").strip()
+            await safe_reply(update, f"🤔 {msg}\n\n<i>Try /help to see what I can do.</i>")
+    except Exception as e:
+        logger.error(f"Smart route error: {e}")
+        await safe_reply(update, f"🤔 I'm not sure what you mean.\n\n<i>Try /help or /run [command]</i>")
 
 
 # ============================================================
@@ -684,14 +1057,21 @@ async def post_init(application):
         BotCommand("status", "GHL system dashboard"),
         BotCommand("workflows", "List all workflows"),
         BotCommand("contacts", "Recent contacts"),
-        BotCommand("research", "Reddit + Changelog scan"),
-        BotCommand("reddit", "Search GHL Reddit"),
-        BotCommand("ask", "Multi-AI GHL answer"),
-        BotCommand("say", "Lee's voice says it"),
-        BotCommand("do", "Execute GHL task"),
-        BotCommand("trends", "Trending news (Scout)"),
-        BotCommand("news", "Search news (Scout)"),
-        BotCommand("brief", "Morning brief (Scout)"),
+        BotCommand("ask", "Ask AI anything"),
+        BotCommand("run", "Run shell command"),
+        BotCommand("install", "Install packages"),
+        BotCommand("service", "Manage services"),
+        BotCommand("git", "Git operations"),
+        BotCommand("top", "Server overview"),
+        BotCommand("disk", "Disk usage"),
+        BotCommand("mem", "Memory usage"),
+        BotCommand("logs", "View service logs"),
+        BotCommand("download", "Download a file"),
+        BotCommand("update", "Pull code + restart"),
+        BotCommand("reboot", "Reboot server"),
+        BotCommand("trends", "Trending news"),
+        BotCommand("brief", "Morning brief"),
+        BotCommand("say", "Lee's voice"),
     ]
     await application.bot.set_my_commands(commands)
     me = await application.bot.get_me()
@@ -734,6 +1114,19 @@ def main():
     app.add_handler(CommandHandler("trends", cmd_trends))
     app.add_handler(CommandHandler("news", cmd_news))
     app.add_handler(CommandHandler("brief", cmd_brief))
+
+    # Server control handlers
+    app.add_handler(CommandHandler("run", cmd_run))
+    app.add_handler(CommandHandler("install", cmd_install))
+    app.add_handler(CommandHandler("service", cmd_service))
+    app.add_handler(CommandHandler("download", cmd_download))
+    app.add_handler(CommandHandler("git", cmd_git))
+    app.add_handler(CommandHandler("disk", cmd_disk))
+    app.add_handler(CommandHandler("mem", cmd_mem))
+    app.add_handler(CommandHandler("top", cmd_top))
+    app.add_handler(CommandHandler("logs", cmd_logs))
+    app.add_handler(CommandHandler("reboot", cmd_reboot))
+    app.add_handler(CommandHandler("update", cmd_update))
 
     # Inline keyboard callback
     app.add_handler(CallbackQueryHandler(button_handler))
