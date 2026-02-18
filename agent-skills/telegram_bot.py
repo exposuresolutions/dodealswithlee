@@ -73,6 +73,21 @@ async def deny_access(update: Update):
     await safe_reply(update, "🔒 <b>Access denied.</b>\n<i>Server commands are admin-only.</i>")
 
 
+def notify_admin(msg):
+    """Send a proactive Telegram message to admin (callable from anywhere, sync)."""
+    if not TELEGRAM_TOKEN:
+        return False
+    try:
+        r = requests.post(
+            f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",
+            json={"chat_id": list(ADMIN_IDS)[0], "text": msg, "parse_mode": "HTML"},
+            timeout=10,
+        )
+        return r.ok
+    except Exception:
+        return False
+
+
 # ============================================================
 # GHL API
 # ============================================================
@@ -128,19 +143,23 @@ async def cmd_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
     keyboard = [
         [
-            InlineKeyboardButton("📊 Status", callback_data="status"),
-            InlineKeyboardButton("⚡ Workflows", callback_data="workflows"),
+            InlineKeyboardButton("📊 GHL Status", callback_data="status"),
+            InlineKeyboardButton("🖥️ Server", callback_data="server_top"),
         ],
         [
+            InlineKeyboardButton("⚡ Workflows", callback_data="workflows"),
             InlineKeyboardButton("📋 Contacts", callback_data="contacts"),
-            InlineKeyboardButton("🎯 Pipelines", callback_data="pipelines"),
+        ],
+        [
+            InlineKeyboardButton("💾 Disk", callback_data="server_disk"),
+            InlineKeyboardButton("🧠 Memory", callback_data="server_mem"),
+        ],
+        [
+            InlineKeyboardButton("⚙️ Services", callback_data="server_services"),
+            InlineKeyboardButton("📋 Logs", callback_data="server_logs"),
         ],
         [
             InlineKeyboardButton("🔥 Reddit", callback_data="reddit"),
-            InlineKeyboardButton("📋 Changelog", callback_data="changelog"),
-        ],
-        [
-            InlineKeyboardButton("🧠 Research", callback_data="research"),
             InlineKeyboardButton("🎤 Voice Test", callback_data="voice_test"),
         ],
     ]
@@ -497,6 +516,18 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await safe_reply(update, f"❌ Error: {str(e)[:200]}")
     elif action == "research":
         await cmd_research(update, context)
+    elif action == "server_top":
+        await cmd_top(update, context)
+    elif action == "server_disk":
+        await cmd_disk(update, context)
+    elif action == "server_mem":
+        await cmd_mem(update, context)
+    elif action == "server_services":
+        context.args = ["list"]
+        await cmd_service(update, context)
+    elif action == "server_logs":
+        context.args = ["lilly-telegram"]
+        await cmd_logs(update, context)
     elif action == "reboot_confirm":
         if is_admin(update):
             context.args = ["confirm"]
